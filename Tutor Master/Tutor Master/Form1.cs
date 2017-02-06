@@ -9,11 +9,25 @@ using System.Windows.Forms;
 
 namespace Tutor_Master
 {
-    public partial class Form1 : Form
+    public partial class StartForm : Form
     {
-        public Form1()
+        public StartForm()
         {
             InitializeComponent();
+        }
+
+        private void btnSignIn_Click(object sender, EventArgs e)
+        {
+            SignIn signin = new SignIn();
+            signin.Show();
+            this.Close();
+        }
+
+        private void btnRegister_Click(object sender, EventArgs e)
+        {
+            RegisterForm regis = new RegisterForm();
+            regis.Show();
+            this.Close();
         }
     }
 }
