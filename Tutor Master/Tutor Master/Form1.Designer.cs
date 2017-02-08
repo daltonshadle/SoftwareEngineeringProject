@@ -45,6 +45,7 @@
             // 
             // btnSignIn
             // 
+            this.btnSignIn.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnSignIn.Location = new System.Drawing.Point(88, 154);
             this.btnSignIn.Name = "btnSignIn";
             this.btnSignIn.Size = new System.Drawing.Size(75, 23);
@@ -55,6 +56,7 @@
             // 
             // btnRegister
             // 
+            this.btnRegister.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnRegister.Location = new System.Drawing.Point(223, 154);
             this.btnRegister.Name = "btnRegister";
             this.btnRegister.Size = new System.Drawing.Size(75, 23);
@@ -65,9 +67,10 @@
             // 
             // lblTutorMaster
             // 
+            this.lblTutorMaster.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblTutorMaster.AutoSize = true;
             this.lblTutorMaster.Font = new System.Drawing.Font("Harlow Solid Italic", 36F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTutorMaster.Location = new System.Drawing.Point(43, 47);
+            this.lblTutorMaster.Location = new System.Drawing.Point(40, 50);
             this.lblTutorMaster.Name = "lblTutorMaster";
             this.lblTutorMaster.Size = new System.Drawing.Size(307, 61);
             this.lblTutorMaster.TabIndex = 3;
@@ -85,6 +88,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "StartForm";
             this.Text = "Tutor Master";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.ResumeLayout(false);
             this.PerformLayout();
 

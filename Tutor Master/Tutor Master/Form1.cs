@@ -18,16 +18,16 @@ namespace Tutor_Master
 
         private void btnSignIn_Click(object sender, EventArgs e)
         {
-            SignIn signin = new SignIn();
+            var signin = new SignIn();
             signin.Show();
-            this.Close();
+            this.Hide();
         }
 
         private void btnRegister_Click(object sender, EventArgs e)
         {
-            RegisterForm regis = new RegisterForm();
+            var regis = new RegisterForm();
             regis.Show();
-            this.Close();
+            this.Hide();
         }
     }
 }
