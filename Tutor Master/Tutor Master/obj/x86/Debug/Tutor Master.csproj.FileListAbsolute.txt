@@ -8,3 +8,5 @@ F:\Software Engineering\Tutor Master\Tutor Master\obj\x86\Debug\Tutor Master.csp
 F:\Software Engineering\Tutor Master\Tutor Master\obj\x86\Debug\Tutor Master.exe
 F:\Software Engineering\Tutor Master\Tutor Master\obj\x86\Debug\Tutor Master.pdb
 F:\Software Engineering\Tutor Master\Tutor Master\obj\x86\Debug\Tutor Master.csprojResolveAssemblyReference.cache
+C:\Users\User\Documents\SoftwareEngineering\Tutor Master\Tutor Master\obj\x86\Debug\Tutor Master.exe
+C:\Users\User\Documents\SoftwareEngineering\Tutor Master\Tutor Master\obj\x86\Debug\Tutor Master.pdb
