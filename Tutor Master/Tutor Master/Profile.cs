@@ -7,8 +7,18 @@ namespace Tutor_Master
 {
     class Profile
     {
+        //all the private data
         private string username;
         private string password;
+
+
+        //all the public functions
+
+        //constructor
+        public Profile() {
+            username = "";
+            password = "";
+        }
 
         public void register() 
         { 

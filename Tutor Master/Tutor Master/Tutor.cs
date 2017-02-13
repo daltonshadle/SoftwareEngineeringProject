@@ -14,17 +14,28 @@ namespace Tutor_Master
 
 
         //all the public functions
+
+        //constructor
+        public Tutor() : base() {
+            approvedCourses = new string[4];
+            //4 is just a placeholder
+        }
+
         public void manageSchedule() {
         
         }
+
         public void confirmTuteeRequest() { 
         
         }
+
         public void declineTuteeRequest() { 
         
         }
+
         public void sendApptRequest() { 
         
         }
+
     }
 }
