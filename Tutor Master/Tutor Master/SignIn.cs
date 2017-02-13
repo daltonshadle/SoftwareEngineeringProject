@@ -34,22 +34,33 @@ namespace Tutor_Master
             bool nameMatch = true; //Set as conditional if username is in database
             bool passMatch = true; //Set as conditional if password matches username
 
+            //nameMatch = false;
             if (nameMatch)
             {
                 if (passMatch)
                 {
+                    var profile = new UserProfile();
+                    profile.Show();
+                    this.Hide();
                     //move to profile form, successfully signed in
                 }
                 else 
-                { 
+                {
+                    lblPassError.Visible = true;
                     //password doesn't match, display error message
                 }
             }
             else 
-            { 
+            {
+                lblNameError.Visible = true;
                 //username doesn't match database, display error message
             }
             
+        }
+
+        private void label1_Click_1(object sender, EventArgs e)
+        {
+           
         }
     }
 }
