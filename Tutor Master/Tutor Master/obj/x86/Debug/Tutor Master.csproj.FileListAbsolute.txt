@@ -10,3 +10,11 @@ F:\Software Engineering\Tutor Master\Tutor Master\obj\x86\Debug\Tutor Master.pdb
 F:\Software Engineering\Tutor Master\Tutor Master\obj\x86\Debug\Tutor Master.csprojResolveAssemblyReference.cache
 C:\Users\User\Documents\SoftwareEngineering\Tutor Master\Tutor Master\obj\x86\Debug\Tutor Master.exe
 C:\Users\User\Documents\SoftwareEngineering\Tutor Master\Tutor Master\obj\x86\Debug\Tutor Master.pdb
+C:\Users\User\Documents\SoftwareEngineering\Tutor Master\Tutor Master\bin\Debug\Tutor Master.exe
+C:\Users\User\Documents\SoftwareEngineering\Tutor Master\Tutor Master\bin\Debug\Tutor Master.pdb
+C:\Users\User\Documents\SoftwareEngineering\Tutor Master\Tutor Master\obj\x86\Debug\Tutor Master.csprojResolveAssemblyReference.cache
+C:\Users\User\Documents\SoftwareEngineering\Tutor Master\Tutor Master\obj\x86\Debug\Tutor_Master.StartForm.resources
+C:\Users\User\Documents\SoftwareEngineering\Tutor Master\Tutor Master\obj\x86\Debug\Tutor_Master.Properties.Resources.resources
+C:\Users\User\Documents\SoftwareEngineering\Tutor Master\Tutor Master\obj\x86\Debug\Tutor_Master.RegisterForm.resources
+C:\Users\User\Documents\SoftwareEngineering\Tutor Master\Tutor Master\obj\x86\Debug\Tutor_Master.SignIn.resources
+C:\Users\User\Documents\SoftwareEngineering\Tutor Master\Tutor Master\obj\x86\Debug\Tutor Master.csproj.GenerateResource.Cache

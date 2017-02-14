@@ -15,6 +15,8 @@ namespace Tutor_Master
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            //Database db = new Database();
+            //db.SelectSignIn("bbailey", "soccer12");            
             Application.Run(new StartForm());
         }
     }
