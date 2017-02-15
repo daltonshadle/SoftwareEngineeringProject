@@ -9,5 +9,17 @@ C:\Users\User\Documents\SoftwareEngineering\Tutor Master\Tutor Master\obj\x86\De
 C:\Users\User\Documents\SoftwareEngineering\Tutor Master\Tutor Master\obj\x86\Debug\Tutor Master.csproj.GenerateResource.Cache
 C:\Users\User\Documents\SoftwareEngineering\Tutor Master\Tutor Master\obj\x86\Debug\Tutor Master.exe
 C:\Users\User\Documents\SoftwareEngineering\Tutor Master\Tutor Master\obj\x86\Debug\Tutor Master.pdb
+<<<<<<< HEAD
 F:\cs-225 project\SoftwareEngineering\Tutor Master\Tutor Master\obj\x86\Debug\Tutor Master.exe
 F:\cs-225 project\SoftwareEngineering\Tutor Master\Tutor Master\obj\x86\Debug\Tutor Master.pdb
+=======
+F:\Software Engineering\Tutor Master\Tutor Master\Tutor Master\obj\x86\Debug\Tutor Master.exe
+F:\Software Engineering\Tutor Master\Tutor Master\Tutor Master\obj\x86\Debug\Tutor Master.pdb
+F:\Software Engineering\Tutor Master\Tutor Master\Tutor Master\obj\x86\Debug\Tutor Master.csprojResolveAssemblyReference.cache
+F:\Software Engineering\Tutor Master\Tutor Master\Tutor Master\obj\x86\Debug\Tutor_Master.StartForm.resources
+F:\Software Engineering\Tutor Master\Tutor Master\Tutor Master\obj\x86\Debug\Tutor_Master.Properties.Resources.resources
+F:\Software Engineering\Tutor Master\Tutor Master\Tutor Master\obj\x86\Debug\Tutor_Master.RegisterForm.resources
+F:\Software Engineering\Tutor Master\Tutor Master\Tutor Master\obj\x86\Debug\Tutor_Master.SignIn.resources
+F:\Software Engineering\Tutor Master\Tutor Master\Tutor Master\obj\x86\Debug\Tutor_Master.UserProfile.resources
+F:\Software Engineering\Tutor Master\Tutor Master\Tutor Master\obj\x86\Debug\Tutor Master.csproj.GenerateResource.Cache
+>>>>>>> aeb53b4a26ea29efdedcdf635adab32adc435d72
