@@ -28,7 +28,7 @@ namespace Tutor_Master
             password = tbxPassword.Text;
             bool valid = false;
 
-            //Run sign in function under Profile class polimorphically
+            //Run sign in function under Profile class polymorphically
             Profile person = new Profile();
             person.signIn(username, password, ref valid);
 
@@ -65,6 +65,11 @@ namespace Tutor_Master
         private void label1_Click_1(object sender, EventArgs e)
         {
            
+        }
+
+        private void SignIn_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
