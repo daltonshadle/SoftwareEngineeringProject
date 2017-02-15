@@ -47,7 +47,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Appointment.cs" />
     <Compile Include="Database.cs" />
+    <Compile Include="Faculty.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -63,12 +65,15 @@
     <Compile Include="RegisterForm.Designer.cs">
       <DependentUpon>RegisterForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Schedule.cs" />
     <Compile Include="SignIn.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="SignIn.Designer.cs">
       <DependentUpon>SignIn.cs</DependentUpon>
     </Compile>
+    <Compile Include="Tutee.cs" />
+    <Compile Include="Tutor.cs" />
     <Compile Include="UserProfile.cs">
       <SubType>Form</SubType>
     </Compile>
