@@ -25,9 +25,11 @@ namespace Tutor_Master
             //runs through profile registration process
         }
 
-        public void signIn()
+        public void signIn(string user, string password, ref bool isValid)
         { 
             //runs through profile sign in process
+            Database db = new Database();
+            db.isValidSignIn(user, password, ref isValid);
         }
     }
 }

@@ -11,9 +11,10 @@ namespace Tutor_Master
 {
     public partial class UserProfile : Form
     {
-        public UserProfile()
+        public UserProfile(string Title)
         {
             InitializeComponent();
+            this.Text = Title;
         }
     }
 }

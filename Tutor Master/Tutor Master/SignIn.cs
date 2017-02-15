@@ -24,22 +24,26 @@ namespace Tutor_Master
 
         private void btnSignIn_Click(object sender, EventArgs e)
         {
-            username = tbxUsername.ToString();
-            password = tbxPassword.ToString();
+            username = tbxUsername.Text;
+            password = tbxPassword.Text;
+            bool valid = false;
+
             //Run sign in function under Profile class polimorphically
+            Profile person = new Profile();
+            person.signIn(username, password, ref valid);
 
             //check username and password through database
             //check if username is there and if password matches
 
-            bool nameMatch = true; //Set as conditional if username is in database
+            //bool nameMatch = true; //Set as conditional if username is in database
             bool passMatch = true; //Set as conditional if password matches username
 
             //nameMatch = false;
-            if (nameMatch)
+            if (valid)
             {
                 if (passMatch)
                 {
-                    var profile = new UserProfile();
+                    var profile = new UserProfile(username + " Profile");
                     profile.Show();
                     this.Hide();
                     //move to profile form, successfully signed in

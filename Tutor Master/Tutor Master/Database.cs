@@ -113,16 +113,17 @@ namespace Tutor_Master
             }
         }
 
+
+
         //Check that username is in the system when signing in
         //Returns true if the username and password are valid
         //Returns false if username is invalid, connection isn't open, or password is incorrect
-        public List< string > SelectSignIn(String user, String password)
+        public void isValidSignIn(string user, string password, ref bool correctPassword)
         {
             string query = "SELECT * FROM profile WHERE username = '"+user+"'";
 
             //Create a list to store the result
             List< string > list = new List< string >();
-            bool correctPassword = false;
             
             //Open connection
             if (this.OpenConnection() == true)
@@ -150,23 +151,15 @@ namespace Tutor_Master
 
                 catch
                 {
-                    MessageBox.Show("Invalid username and password combination");
+                    correctPassword = false;
                 }
                 //close Connection
                 this.CloseConnection();
-                if (correctPassword)
-                    return list;
-                else
-                {
-                    MessageBox.Show("Invalid username and password combination");
-                    list.Clear();
-                    return list;
-                }
                 
             }
             else
             {
-                return list;
+                correctPassword = false;
             }
         }
 
