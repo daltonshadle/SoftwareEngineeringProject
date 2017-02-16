@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tutor Master", "Tutor Master\Tutor Master.csproj", "{46E2ADD0-3CE3-4D12-A6E5-59CF824B7B11}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tutor Master", "Tutor Master\Tutor Master.csproj", "{0EF82844-DF83-426C-BC9C-AA748101279C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,10 +9,10 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{46E2ADD0-3CE3-4D12-A6E5-59CF824B7B11}.Debug|x86.ActiveCfg = Debug|x86
-		{46E2ADD0-3CE3-4D12-A6E5-59CF824B7B11}.Debug|x86.Build.0 = Debug|x86
-		{46E2ADD0-3CE3-4D12-A6E5-59CF824B7B11}.Release|x86.ActiveCfg = Release|x86
-		{46E2ADD0-3CE3-4D12-A6E5-59CF824B7B11}.Release|x86.Build.0 = Release|x86
+		{0EF82844-DF83-426C-BC9C-AA748101279C}.Debug|x86.ActiveCfg = Debug|x86
+		{0EF82844-DF83-426C-BC9C-AA748101279C}.Debug|x86.Build.0 = Debug|x86
+		{0EF82844-DF83-426C-BC9C-AA748101279C}.Release|x86.ActiveCfg = Release|x86
+		{0EF82844-DF83-426C-BC9C-AA748101279C}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -28,8 +28,8 @@ namespace Tutor_Master
         public void signIn(string user, string password, ref bool isValid)
         { 
             //runs through profile sign in process
-            Database db = new Database();
-            db.isValidSignIn(user, password, ref isValid);
+            //Database db = new Database();
+            //db.isValidSignIn(user, password, ref isValid);
         }
     }
 }
