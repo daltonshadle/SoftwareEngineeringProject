@@ -15,9 +15,9 @@ namespace Tutor_Master
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Database db = new Database();
-            db.Insert();          
-            //Application.Run(new StartForm());
+            //Database db = new Database();
+            //db.Insert();          
+            Application.Run(new StartForm());
         }
     }
 }

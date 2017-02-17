@@ -19,8 +19,10 @@ namespace Tutor_Master
         private void btnSignIn_Click(object sender, EventArgs e)
         {
             var signin = new SignIn();
-            signin.Show();
-            this.Hide();
+            signin.Visible = true;
+            this.Visible = false;
+            //signin.Show();
+            //this.Hide();
         }
 
         private void btnRegister_Click(object sender, EventArgs e)
