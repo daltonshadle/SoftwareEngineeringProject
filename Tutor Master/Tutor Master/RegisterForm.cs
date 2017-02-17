@@ -18,7 +18,7 @@ namespace Tutor_Master
             InitializeComponent();
         }
 
-        private void btnSignIn_Click(object sender, EventArgs e)
+        private void btnRegister_Click(object sender, EventArgs e)
         {
             username = tbxUsername.Text;
             password = tbxPassword.Text;
@@ -27,32 +27,33 @@ namespace Tutor_Master
             //Check to see if the username is available or not. Function returns bool by ref. Garrett
             //checkValidity(username, ref userValid);
 
-            if (userValid)  //valid username means the username is available.
+            //bool passValid = ((password.Length > 5) && (!password.Contains(" ")));
+
+            bool passValid = true;
+            userValid = true;
+            if (passValid)  //valid username means the username is available.
             {
-                bool passValid = ((password.Length > 5) && (!password.Contains(" ")));
-                if (passValid)  //valid password means it is at least
+                if (userValid)  //valid password means it is at least
                 {
-                    //Register the account username/password combination to database. Both are valid. Garrett.
-                    //registerUser(username, password);
-                    MessageBox.Show("Your account has been successfully registered.");
+                    //MessageBox.Show("Your account has been successfully registered.");
+
+                    Form nextForm = new Registration();
+                    this.Hide();
+                    nextForm.Show();
 
                 }
                 else
                 {
-                    lblPassError.Visible = true;
+                    lblUserError.Visible = true;
                     //password doesn't match, display error message
                 }
             }
             else
             {
-                lblUserError.Visible = true;
+                lblPassError.Visible = true;
                 //username doesn't match database, display error message
             }
         }
 
-        private void lblPassError_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }

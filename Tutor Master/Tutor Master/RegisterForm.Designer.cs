@@ -35,10 +35,12 @@
             this.lblUsername = new System.Windows.Forms.Label();
             this.lblUserError = new System.Windows.Forms.Label();
             this.lblPassError = new System.Windows.Forms.Label();
+            this.btnRegister = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
             // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(98, 9);
             this.label1.Name = "label1";
@@ -104,13 +106,24 @@
             this.lblPassError.TabIndex = 14;
             this.lblPassError.Text = "Invalid password- must be at least 6 characters, no spaces";
             this.lblPassError.Visible = false;
-            this.lblPassError.Click += new System.EventHandler(this.lblPassError_Click);
+            // 
+            // btnRegister
+            // 
+            this.btnRegister.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnRegister.Location = new System.Drawing.Point(101, 208);
+            this.btnRegister.Name = "btnRegister";
+            this.btnRegister.Size = new System.Drawing.Size(75, 23);
+            this.btnRegister.TabIndex = 15;
+            this.btnRegister.Text = "Register";
+            this.btnRegister.UseVisualStyleBackColor = true;
+            this.btnRegister.Click += new System.EventHandler(this.btnRegister_Click);
             // 
             // RegisterForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 262);
+            this.Controls.Add(this.btnRegister);
             this.Controls.Add(this.lblPassError);
             this.Controls.Add(this.lblUserError);
             this.Controls.Add(this.tbxPassword);
@@ -120,6 +133,7 @@
             this.Controls.Add(this.label1);
             this.Name = "RegisterForm";
             this.Text = "RegisterForm";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -134,5 +148,6 @@
         private System.Windows.Forms.Label lblUsername;
         private System.Windows.Forms.Label lblUserError;
         private System.Windows.Forms.Label lblPassError;
+        private System.Windows.Forms.Button btnRegister;
     }
 }
