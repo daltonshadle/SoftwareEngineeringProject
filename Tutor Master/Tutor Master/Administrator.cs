@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Tutor_Master
 {
-    class Administrator
+    class Administrator : Profile
     {
         //all the private data
 
@@ -13,7 +13,7 @@ namespace Tutor_Master
         //all the public functions
 
         //constructor
-        public Administrator() { 
+        public Administrator() : base() { 
         
         }
 
