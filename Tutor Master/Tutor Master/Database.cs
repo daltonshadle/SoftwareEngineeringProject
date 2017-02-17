@@ -10,7 +10,7 @@ namespace Tutor_Master
     class Database
     {
         private SqlCeConnection con;
-        private string connection = @"Data Source=C:\Users\User\Documents\SoftwareEngineering\Tutor Master\Tutor Master\TutorMaster.sdf";
+        private string connection = @"Data Source=C:\Users\grbohach\Documents\SoftwareEngineering\Tutor Master\Tutor Master\TutorMaster.sdf";
 
         public Database()
         {
@@ -47,16 +47,66 @@ namespace Tutor_Master
             }
         }
 
-        public void Insert()
+        public void isValidRegisterInfo(string user, string password, ref bool isValid)
         {
-            string query = "INSERT INTO profile (username, password) VALUES ('coolTerry7', 'rockstar#1')";
+            string query = "INSERT INTO profile (username, password) VALUES (@username, @password)";
 
             if (this.OpenConnection())
             {
                 SqlCeCommand cmd = new SqlCeCommand();
                 cmd.CommandText = query;
+                cmd.Parameters.Add("@username", user);
+                cmd.Parameters.Add("@password", password);
                 cmd.Connection = con;
-                cmd.ExecuteNonQuery();
+                try
+                {
+                    cmd.ExecuteNonQuery();
+                    isValid = true;
+                }
+                catch
+                {
+                    isValid = false;
+                }
+                
+                this.CloseConnection();
+            }
+        }
+
+        public void isValidSignIn(string user, string password, ref bool isValid)
+        {
+            string query = "SELECT * FROM profile WHERE username = @username";
+            List<string> list = new List<string>();
+
+            if (this.OpenConnection())
+            {
+                SqlCeCommand cmd = new SqlCeCommand();
+                cmd.CommandText = query;
+                cmd.Parameters.Add("@username", user);
+                cmd.Connection = con;
+                try
+                {
+                    SqlCeDataReader dataReader = cmd.ExecuteReader();
+
+                    //Read the data and store them in the list
+                    while (dataReader.Read())
+                    {
+                        list.Add(dataReader["username"] + "");
+                        list.Add(dataReader["password"] + "");
+                    }
+
+                    //close Data Reader
+                    dataReader.Close();
+                    if (password == list[1])
+                        isValid = true;
+                    else
+                        isValid = false;
+                    
+                }
+                catch
+                {
+                    isValid = false;
+                }
+
                 this.CloseConnection();
             }
         }
