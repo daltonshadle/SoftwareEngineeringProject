@@ -16,6 +16,9 @@ namespace Tutor_Master
         public Administrator() : base() { 
         
         }
+        public Administrator(string name, string pass) : base(name, pass) { 
+        
+        }
 
         public void manageSchedule() { 
         

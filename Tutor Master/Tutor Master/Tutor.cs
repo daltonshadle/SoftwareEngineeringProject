@@ -21,6 +21,11 @@ namespace Tutor_Master
             //4 is just a placeholder
             tutorSchedule = new Schedule();
         }
+        public Tutor() : base() {
+            approvedCourses = new string[4];
+            //4 is just a placeholder
+            tutorSchedule = new Schedule();
+        }
 
         public void manageSchedule() {
         

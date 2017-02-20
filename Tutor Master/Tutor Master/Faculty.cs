@@ -17,9 +17,13 @@ namespace Tutor_Master
         public Faculty() : base() {
             areaOfStudy = "";
         }
+        public Faculty(string areaofstudy, string name, string pass) : base(name, pass) {
+            //may need validation for this as well
+            areaOfStudy = areaofstudy;
+        }
 
         public void approveTutor(Tutor t) { 
-        
+            
         }
 
         public void approveTutorCourses(string course) { 

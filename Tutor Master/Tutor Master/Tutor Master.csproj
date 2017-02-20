@@ -47,8 +47,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Administrator.cs" />
     <Compile Include="Appointment.cs" />
-    <Compile Include="Database.cs" />
     <Compile Include="Faculty.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
