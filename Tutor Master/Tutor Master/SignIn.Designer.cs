@@ -136,6 +136,7 @@
             this.Name = "SignIn";
             this.Text = "SignIn";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.SignIn_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
