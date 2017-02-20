@@ -10,7 +10,7 @@ namespace Tutor_Master
         //all the private data
         private string meetingPlace;
         private string course;
-        private DateTime meetingtime;
+        private DateTime startTime, endTime;
         private Tutor tutor;
         private Tutee tutee;
 
@@ -21,7 +21,8 @@ namespace Tutor_Master
         public Appointment() {
             meetingPlace = "";
             course = "";
-            meetingtime = new DateTime();
+            startTime = new DateTime();
+            endTime = new DateTime();
             tutor = new Tutor();
             tutee = new Tutee();
         }
