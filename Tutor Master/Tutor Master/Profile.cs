@@ -20,6 +20,11 @@ namespace Tutor_Master
             password = "";
         }
 
+        public Profile(string name, string pass){
+            username = name;
+            password = pass;
+        }
+
         public void register() 
         { 
             //runs through profile registration process

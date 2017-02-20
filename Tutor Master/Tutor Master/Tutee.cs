@@ -9,7 +9,7 @@ namespace Tutor_Master
     {
         //all the private data
         private string[] courses;
-        //private schedule tuteeSchedule;
+        private Schedule tuteeSchedule;
         //Will wait on this one until the schedule class is done
 
 
@@ -20,6 +20,10 @@ namespace Tutor_Master
             courses = new string[4]; 
             //4 is just a placeholder
             //base is calling the base class constructor
+            tuteeSchedule = new Schedule();
+        }
+        public Tutee() : base() { 
+            
         }
 
         public void manageSchedule() { 
