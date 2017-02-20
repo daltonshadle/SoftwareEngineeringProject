@@ -65,14 +65,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-<<<<<<< HEAD
     <Compile Include="Administrator.cs" />
-    <Compile Include="Appointment.cs" />
     <Compile Include="Faculty.cs" />
-=======
     <Compile Include="Appointment.cs" />
     <Compile Include="Database.cs" />
->>>>>>> 658588accb2809fb3d1e1633bca192d64315b966
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -93,16 +89,13 @@
     <Compile Include="RegisterForm.Designer.cs">
       <DependentUpon>RegisterForm.cs</DependentUpon>
     </Compile>
-<<<<<<< HEAD
     <Compile Include="Schedule.cs" />
-=======
     <Compile Include="Registration1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Registration1.Designer.cs">
       <DependentUpon>Registration1.cs</DependentUpon>
     </Compile>
->>>>>>> 658588accb2809fb3d1e1633bca192d64315b966
     <Compile Include="SignIn.cs">
       <SubType>Form</SubType>
     </Compile>

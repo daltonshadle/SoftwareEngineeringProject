@@ -35,6 +35,15 @@ namespace Tutor_Master
             }
         }
 
+        public Appointment getAppt(Appointment a) {
+            Appointment temp;
+            if (profileSchedule.TryGetValue(a.getDateTime(), out temp)) {
+                temp = a;
+            }
+
+            return temp;
+        }
+
         public void editAppt(Appointment a) { 
             //function for editting information in the schedule
             

@@ -21,7 +21,7 @@ namespace Tutor_Master
             //4 is just a placeholder
             tutorSchedule = new Schedule();
         }
-        public Tutor() : base() {
+        public Tutor(string name, string pass) : base(name, pass) {
             approvedCourses = new string[4];
             //4 is just a placeholder
             tutorSchedule = new Schedule();

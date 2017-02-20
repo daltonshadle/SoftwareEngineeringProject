@@ -1,0 +1,12 @@
+F:\New Software Engineering\Tutor Master\Tutor Master\obj\x86\Debug\Tutor Master.csprojResolveAssemblyReference.cache
+F:\New Software Engineering\Tutor Master\Tutor Master\obj\x86\Debug\Tutor_Master.Properties.Resources.resources
+F:\New Software Engineering\Tutor Master\Tutor Master\obj\x86\Debug\Tutor_Master.RegisterForm.resources
+F:\New Software Engineering\Tutor Master\Tutor Master\obj\x86\Debug\Tutor_Master.Registration.resources
+F:\New Software Engineering\Tutor Master\Tutor Master\obj\x86\Debug\Tutor_Master.SignIn.resources
+F:\New Software Engineering\Tutor Master\Tutor Master\obj\x86\Debug\Tutor_Master.UserProfile.resources
+F:\New Software Engineering\Tutor Master\Tutor Master\obj\x86\Debug\Tutor Master.csproj.GenerateResource.Cache
+F:\New Software Engineering\Tutor Master\Tutor Master\bin\Debug\TutorMaster.sdf
+F:\New Software Engineering\Tutor Master\Tutor Master\bin\Debug\Tutor Master.exe
+F:\New Software Engineering\Tutor Master\Tutor Master\bin\Debug\Tutor Master.pdb
+F:\New Software Engineering\Tutor Master\Tutor Master\obj\x86\Debug\Tutor Master.exe
+F:\New Software Engineering\Tutor Master\Tutor Master\obj\x86\Debug\Tutor Master.pdb
