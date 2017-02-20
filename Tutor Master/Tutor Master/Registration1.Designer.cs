@@ -28,20 +28,22 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnNext = new System.Windows.Forms.Button();
             this.lblIntro = new System.Windows.Forms.Label();
             this.chkTutor = new System.Windows.Forms.CheckBox();
             this.chkTutee = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
-            // button1
+            // btnNext
             // 
-            this.button1.Location = new System.Drawing.Point(109, 177);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnNext.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnNext.Location = new System.Drawing.Point(109, 177);
+            this.btnNext.Name = "btnNext";
+            this.btnNext.Size = new System.Drawing.Size(75, 23);
+            this.btnNext.TabIndex = 0;
+            this.btnNext.Text = "Continue";
+            this.btnNext.UseVisualStyleBackColor = true;
+            this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
             // 
             // lblIntro
             // 
@@ -63,6 +65,7 @@
             this.chkTutor.TabIndex = 2;
             this.chkTutor.Text = "Tutor";
             this.chkTutor.UseVisualStyleBackColor = true;
+            this.chkTutor.CheckedChanged += new System.EventHandler(this.chkTutor_CheckedChanged);
             // 
             // chkTutee
             // 
@@ -74,6 +77,7 @@
             this.chkTutee.TabIndex = 3;
             this.chkTutee.Text = "Tutee";
             this.chkTutee.UseVisualStyleBackColor = true;
+            this.chkTutee.CheckedChanged += new System.EventHandler(this.chkTutee_CheckedChanged);
             // 
             // Registration
             // 
@@ -83,7 +87,7 @@
             this.Controls.Add(this.chkTutee);
             this.Controls.Add(this.chkTutor);
             this.Controls.Add(this.lblIntro);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnNext);
             this.Name = "Registration";
             this.Text = "Resitration1";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
@@ -94,7 +98,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnNext;
         private System.Windows.Forms.Label lblIntro;
         private System.Windows.Forms.CheckBox chkTutor;
         private System.Windows.Forms.CheckBox chkTutee;
