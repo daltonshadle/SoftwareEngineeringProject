@@ -9,7 +9,7 @@ namespace Tutor_Master
     {
         //all the private data
         private string[] approvedCourses;
-        //private schedule tutorSchedule;
+        private Schedule tutorSchedule;
         //We will wait on this until the tutor class is made
 
 
@@ -19,6 +19,12 @@ namespace Tutor_Master
         public Tutor() : base() {
             approvedCourses = new string[4];
             //4 is just a placeholder
+            tutorSchedule = new Schedule();
+        }
+        public Tutor(string name, string pass) : base(name, pass) {
+            approvedCourses = new string[4];
+            //4 is just a placeholder
+            tutorSchedule = new Schedule();
         }
 
         public void manageSchedule() {

@@ -65,6 +65,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Administrator.cs" />
+    <Compile Include="Faculty.cs" />
     <Compile Include="Appointment.cs" />
     <Compile Include="Database.cs" />
     <Compile Include="Form1.cs">
@@ -87,11 +89,24 @@
     <Compile Include="RegisterForm.Designer.cs">
       <DependentUpon>RegisterForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Schedule.cs" />
     <Compile Include="Registration1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Registration1.Designer.cs">
       <DependentUpon>Registration1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Registration2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Registration2.Designer.cs">
+      <DependentUpon>Registration2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Registration3.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Registration3.Designer.cs">
+      <DependentUpon>Registration3.cs</DependentUpon>
     </Compile>
     <Compile Include="SignIn.cs">
       <SubType>Form</SubType>
@@ -121,6 +136,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Registration1.resx">
       <DependentUpon>Registration1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Registration2.resx">
+      <DependentUpon>Registration2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SignIn.resx">
       <DependentUpon>SignIn.cs</DependentUpon>
