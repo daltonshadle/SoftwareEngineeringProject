@@ -33,15 +33,20 @@ namespace Tutor_Master
         private void btnNext_Click(object sender, EventArgs e)
         {
             
-            if (isTutor)
+            if (isTutor)    //This loop handles exclusively tutor and both tutor&tutee profiles.
             {
                 //Garrett write a query: update base Profile to tutor
                 var next = new Registration2(username, isTutor, isTutee);
                 this.Hide();
                 next.Show();
             }
-            if (isTutee)
-            {
+             
+            //This is set as an else because if the person is both tutor&tutee, then they will go through
+            //the tutor page and then THAT tutor page will decide whether or not the tutee page will run.
+            //This loop is only for exclusively tutee profiles.
+            else    
+            {  
+
                 //Garrett write a query: update base Profile to tutee
                 var next = new Registration3(username);
                 this.Hide();
