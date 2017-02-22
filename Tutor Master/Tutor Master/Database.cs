@@ -11,7 +11,12 @@ namespace Tutor_Master
     {
         private SqlCeConnection con;
 
+<<<<<<< HEAD
         private string connection = @"Data Source=F:\New Software Engineering\Tutor Master\Tutor Master\TutorMaster.sdf";
+=======
+
+        private string connection = @"Data Source=C:\Users\grbohach\Documents\SoftwareEngineering\Tutor Master\Tutor Master\TutorMaster.sdf";
+>>>>>>> d8a321e7264956f0d115e4681331da9383a667c8
 
 
         public Database()
@@ -53,6 +58,7 @@ namespace Tutor_Master
         {
 
             string query = "INSERT INTO profile (username, password) VALUES (@username, @password)";
+<<<<<<< HEAD
 
             //string query = "INSERT INTO profile (username, password) VALUES ('fda', 'gssa#1582')";
 
@@ -60,6 +66,8 @@ namespace Tutor_Master
 
 
 
+=======
+>>>>>>> d8a321e7264956f0d115e4681331da9383a667c8
 
             if (this.OpenConnection())
             {
@@ -135,24 +143,75 @@ namespace Tutor_Master
                     SqlCeCommand cmd = new SqlCeCommand();
                     cmd.CommandText = query;
                     cmd.Parameters.Add("@tutor", tutor);
-                    cmd.Parameters.Add();
+                    cmd.Parameters.Add("@tutee", tutee);
+                    cmd.Parameters.Add("@meetingPlace", meetingPlace);
+                    cmd.Parameters.Add("@course", course);
+                    cmd.Parameters.Add("@startTime", startTime);
+                    cmd.Parameters.Add("@endTime", endTime);
                     cmd.Connection = con;
                     try
                     {
                         cmd.ExecuteNonQuery();
-                        isValid = true;
                     }
-                    catch
+                    catch (Exception ex)
                     {
-                        isValid = false;
+                        MessageBox.Show(ex.Message);
                     }
 
                     this.CloseConnection();
                 }
             }
         }
-        
 
+        //if you want the list of course some tutors, pass in true
+        //if you want the list of courses someone is a tutee for, pass false
+        public List<string> getCourseList(string username, bool isTutor)
+        {
+            string query;
+            if (isTutor)
+                query = "SELECT course1, course2, course3, course4 FROM tutorCourses WHERE username = @username";
+            else
+                query = "SELECT course1, course2, course3, course4 FROM tuteeCourses WHERE username = @username";
+
+            this.CloseConnection();
+            List<string> list = new List<string>();
+
+            if (this.OpenConnection())
+            {
+                SqlCeCommand cmd = new SqlCeCommand();
+                cmd.CommandText = query;
+                cmd.Parameters.Add("@username", username);
+                cmd.Connection = con;
+                try
+                {
+                    SqlCeDataReader dataReader = cmd.ExecuteReader();
+
+                    //Read the data and store them in the list
+                    while (dataReader.Read())
+                    {
+                        list.Add(dataReader["course1"] + "");
+                        list.Add(dataReader["course2"] + "");
+                        list.Add(dataReader["course3"] + "");
+                        list.Add(dataReader["course4"] + "");
+                    }
+
+                    //close Data Reader
+                    dataReader.Close();
+                    this.CloseConnection();
+                    return list;
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    list.Clear();
+                    this.CloseConnection();
+                    return list;
+                }
+            }
+            else
+                return list;
+        }
         
     }
 }
