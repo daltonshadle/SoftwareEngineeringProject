@@ -22,7 +22,7 @@ namespace Tutor_Master
             //base is calling the base class constructor
             tuteeSchedule = new Schedule();
         }
-        public Tutee() : base() { 
+        public Tutee(string username, string password) : base(username, password) { 
             
         }
 

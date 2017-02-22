@@ -21,12 +21,10 @@ F:\Software Engineering\Tutor Master\Tutor Master\Tutor Master\bin\Debug\TutorMa
 F:\Software Engineering\Tutor Master\Tutor Master\Tutor Master\bin\Debug\Tutor Master.exe
 F:\Software Engineering\Tutor Master\Tutor Master\Tutor Master\bin\Debug\Tutor Master.pdb
 F:\Software Engineering\Tutor Master\Tutor Master\Tutor Master\obj\x86\Debug\Tutor_Master.Registration.resources
-<<<<<<< HEAD
 C:\Users\grbohach\Documents\SoftwareEngineering\Tutor Master\Tutor Master\obj\x86\Debug\Tutor Master.exe
 C:\Users\grbohach\Documents\SoftwareEngineering\Tutor Master\Tutor Master\obj\x86\Debug\Tutor Master.pdb
 =======
 F:\Software Engineering\Tutor Master\Tutor Master\Tutor Master\obj\x86\Debug\Tutor_Master.Registration2.resources
-=======
 F:\New Software Engineering\Tutor Master\Tutor Master\obj\x86\Debug\Tutor Master.csprojResolveAssemblyReference.cache
 F:\New Software Engineering\Tutor Master\Tutor Master\obj\x86\Debug\Tutor_Master.Properties.Resources.resources
 F:\New Software Engineering\Tutor Master\Tutor Master\obj\x86\Debug\Tutor_Master.RegisterForm.resources
