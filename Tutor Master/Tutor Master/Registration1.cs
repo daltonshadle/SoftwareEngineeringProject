@@ -12,10 +12,12 @@ namespace Tutor_Master
     public partial class Registration : Form
     {
         bool isTutee = false, isTutor = false;
+        string username;
 
-        public Registration()
+        public Registration(string user)
         {
             InitializeComponent();
+            username = user;
         }
 
         private void chkTutor_CheckedChanged(object sender, EventArgs e)
@@ -34,14 +36,14 @@ namespace Tutor_Master
             if (isTutor)
             {
                 //Garrett write a query: update base Profile to tutor
-                var next = new Registration2(isTutor, isTutee);
+                var next = new Registration2(username, isTutor, isTutee);
                 this.Hide();
                 next.Show();
             }
             if (isTutee)
             {
                 //Garrett write a query: update base Profile to tutee
-                var next = new Registration3(isTutor, isTutee);
+                var next = new Registration3(username);
                 this.Hide();
                 next.Show();
             }

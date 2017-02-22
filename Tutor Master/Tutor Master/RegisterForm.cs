@@ -37,7 +37,7 @@ namespace Tutor_Master
                 {
                     //MessageBox.Show("Your account has been successfully registered.");
 
-                    Form nextForm = new Registration();
+                    Form nextForm = new Registration(username);
                     this.Hide();
                     nextForm.Show();
 

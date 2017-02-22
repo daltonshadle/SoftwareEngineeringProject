@@ -140,6 +140,9 @@
     <EmbeddedResource Include="Registration2.resx">
       <DependentUpon>Registration2.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Registration3.resx">
+      <DependentUpon>Registration3.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SignIn.resx">
       <DependentUpon>SignIn.cs</DependentUpon>
     </EmbeddedResource>

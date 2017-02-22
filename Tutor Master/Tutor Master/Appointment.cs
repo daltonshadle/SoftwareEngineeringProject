@@ -10,12 +10,7 @@ namespace Tutor_Master
         //all the private data
         private string meetingPlace;
         private string course;
-<<<<<<< HEAD
         private DateTime startTime, endTime;
-=======
-        private DateTime startTime;
-        private DateTime endTime
->>>>>>> 6a68dec05c490bbe7448e871b95404d7cf29900d
         private Tutor tutor;
         private Tutee tutee;
 

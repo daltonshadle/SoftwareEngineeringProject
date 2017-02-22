@@ -43,7 +43,7 @@ namespace Tutor_Master
             {
                 if (passMatch)
                 {
-                    var profile = new UserProfile(username + " Profile");
+                    var profile = new UserProfile(username);
                     profile.Show();
                     this.Hide();
                     //move to profile form, successfully signed in

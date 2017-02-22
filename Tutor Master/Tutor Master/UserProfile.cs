@@ -11,10 +11,14 @@ namespace Tutor_Master
 {
     public partial class UserProfile : Form
     {
+
+        private bool tutorAcc, tuteeAcc;
+
         public UserProfile(string Title)
         {
             InitializeComponent();
             this.Text = Title;
         }
+
     }
 }
