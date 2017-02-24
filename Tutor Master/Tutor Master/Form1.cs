@@ -14,6 +14,8 @@ namespace Tutor_Master
         public StartForm()
         {
             InitializeComponent();
+            this.Icon = Tutor_Master.Properties.Resources.favicon;
+            
         }
 
         private void btnSignIn_Click(object sender, EventArgs e)

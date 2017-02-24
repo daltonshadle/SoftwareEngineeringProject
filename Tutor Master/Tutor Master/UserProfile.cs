@@ -18,6 +18,7 @@ namespace Tutor_Master
         {
             InitializeComponent();
             this.Text = Title;
+            this.Icon = Tutor_Master.Properties.Resources.favicon;
         }
 
     }

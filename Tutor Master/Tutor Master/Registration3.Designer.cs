@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Registration3));
             this.btnContinue = new System.Windows.Forms.Button();
             this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
             this.lblHeader = new System.Windows.Forms.Label();
@@ -83,14 +82,9 @@
             this.Controls.Add(this.lblHeader);
             this.Controls.Add(this.checkedListBox1);
             this.Controls.Add(this.btnContinue);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Registration3";
-<<<<<<< HEAD
             this.Text = "Registration - Tutee Courses";
-=======
-            this.Text = "Registration3";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
->>>>>>> 32f2c5a2675e30bd20d66fc03af12c7e4f42f5e5
             this.ResumeLayout(false);
             this.PerformLayout();
 
