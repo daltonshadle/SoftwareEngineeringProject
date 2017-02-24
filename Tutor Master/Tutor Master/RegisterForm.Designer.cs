@@ -34,8 +34,6 @@
             this.tbxUsername = new System.Windows.Forms.TextBox();
             this.lblPassword = new System.Windows.Forms.Label();
             this.lblUsername = new System.Windows.Forms.Label();
-            this.lblUserError = new System.Windows.Forms.Label();
-            this.lblPassError = new System.Windows.Forms.Label();
             this.btnRegister = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -86,28 +84,6 @@
             this.lblUsername.TabIndex = 9;
             this.lblUsername.Text = "Username:";
             // 
-            // lblUserError
-            // 
-            this.lblUserError.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.lblUserError.AutoSize = true;
-            this.lblUserError.Location = new System.Drawing.Point(87, 177);
-            this.lblUserError.Name = "lblUserError";
-            this.lblUserError.Size = new System.Drawing.Size(121, 13);
-            this.lblUserError.TabIndex = 13;
-            this.lblUserError.Text = "Username not available.";
-            this.lblUserError.Visible = false;
-            // 
-            // lblPassError
-            // 
-            this.lblPassError.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.lblPassError.AutoSize = true;
-            this.lblPassError.Location = new System.Drawing.Point(2, 177);
-            this.lblPassError.Name = "lblPassError";
-            this.lblPassError.Size = new System.Drawing.Size(283, 13);
-            this.lblPassError.TabIndex = 14;
-            this.lblPassError.Text = "Invalid password- must be at least 6 characters, no spaces";
-            this.lblPassError.Visible = false;
-            // 
             // btnRegister
             // 
             this.btnRegister.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -125,8 +101,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 262);
             this.Controls.Add(this.btnRegister);
-            this.Controls.Add(this.lblPassError);
-            this.Controls.Add(this.lblUserError);
             this.Controls.Add(this.tbxPassword);
             this.Controls.Add(this.tbxUsername);
             this.Controls.Add(this.lblPassword);
@@ -148,8 +122,6 @@
         private System.Windows.Forms.TextBox tbxUsername;
         private System.Windows.Forms.Label lblPassword;
         private System.Windows.Forms.Label lblUsername;
-        private System.Windows.Forms.Label lblUserError;
-        private System.Windows.Forms.Label lblPassError;
         private System.Windows.Forms.Button btnRegister;
     }
 }

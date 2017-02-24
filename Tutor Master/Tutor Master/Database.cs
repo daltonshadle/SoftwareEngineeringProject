@@ -11,10 +11,16 @@ namespace Tutor_Master
     {
         private SqlCeConnection con;
 
+<<<<<<< HEAD
 
         private string connection = @"Data Source=F:\New Software Engineering\Tutor Master\Tutor Master\TutorMaster.sdf";
         //private string connection = @"Data Source=C:\Users\grbohach\Documents\SoftwareEngineering\Tutor Master\Tutor Master\TutorMaster.sdf";
 
+=======
+
+        private string connection = @"Data Source=F:\New Software Engineering\Tutor Master\Tutor Master\TutorMaster.sdf";
+        //private string connection = @"Data Source=C:\Users\grbohach\Documents\SoftwareEngineering\Tutor Master\Tutor Master\TutorMaster.sdf";
+>>>>>>> 32f2c5a2675e30bd20d66fc03af12c7e4f42f5e5
 
 
         public Database()
@@ -56,12 +62,12 @@ namespace Tutor_Master
         {
 
             string query = "INSERT INTO profile (username, password) VALUES (@username, @password)";
+<<<<<<< HEAD
 
+=======
+>>>>>>> 32f2c5a2675e30bd20d66fc03af12c7e4f42f5e5
 
             //string query = "INSERT INTO profile (username, password) VALUES ('fda', 'gssa#1582')";
-
-           
-
 
 
 

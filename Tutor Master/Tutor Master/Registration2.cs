@@ -13,6 +13,7 @@ namespace Tutor_Master
     {
         bool tutorAcc, tuteeAcc;
         string username;
+        List<String> tutorClassesList;
 
         public Registration2()
         {
@@ -25,45 +26,43 @@ namespace Tutor_Master
             tutorAcc = isTutor;
             tuteeAcc = isTutee;
             username = user;
+            tutorClassesList = new List<string>();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (checkedListBox1.CheckedItems.Count != 0)
+            if (checkedListBox1.CheckedItems.Count != 0 && checkedListBox1.CheckedItems.Count < 5)
             {
                 // If so, loop through all checked items and print results.  
-                string s = "";
                 for (int x = 0; x <= checkedListBox1.CheckedItems.Count - 1; x++)
                 {
-                    s = s + "Checked Item " + (x + 1).ToString() + " = " + checkedListBox1.CheckedItems[x].ToString() + "\n";
+                    tutorClassesList.Add(checkedListBox1.CheckedItems[x].ToString());
                 }
-                MessageBox.Show(s);
-            }  
 
-            //Scott: store the selected classes in a list. 
+                //Faculty gets emailed here.
 
-            //Faculty gets emailed here.
+                //Database db = new Database();
+                //Garrett: db.addCourseList();
 
-            //Garrett, at this point the user would have selected their classes. Query to send stuff to faculty?
-
-            if (tuteeAcc)
-            {
-                //Garrett write a query: update base Profile to tutee
-                var next = new Registration3(username, tutorAcc, tuteeAcc);
-                this.Hide();
-                next.Show();
+                if (tuteeAcc)
+                {
+                    //Garrett write a query: update base Profile to tutee
+                    var next = new Registration3(username, tutorAcc, tuteeAcc);
+                    this.Hide();
+                    next.Show();
+                }
+                else
+                {
+                    //Garrett write a query: update base Profile to tutee
+                    var next = new UserProfile(username);
+                    this.Hide();
+                    next.Show();
+                }
             }
-            else
+            else if (checkedListBox1.CheckedItems.Count > 4)
             {
-                //Garrett write a query: update base Profile to tutee
-                var next = new UserProfile(username);
-                this.Hide();
-                next.Show();
+                MessageBox.Show("May not select more than 4 courses to tutor.");
             }
         }
-
-        
-
     }
-
 }
