@@ -10,6 +10,7 @@ namespace Tutor_Master
     class Database
     {
         private SqlCeConnection con;
+<<<<<<< HEAD
 
 
 
@@ -17,6 +18,9 @@ namespace Tutor_Master
 
         //private string connection = @"Data Source=F:\New Software Engineering\Tutor Master\Tutor Master\TutorMaster.sdf";
         //private string connection = @"Data Source=C:\Users\grbohach\Documents\SoftwareEngineering\Tutor Master\Tutor Master\TutorMaster.sdf";
+=======
+        private string connection = @"Data Source=C:\TutorMaster.sdf";
+>>>>>>> 93a6a8f38ccb590d2bf43b3235331f9b39018601
 
        
         public Database()
@@ -52,10 +56,11 @@ namespace Tutor_Master
             }
         }
 
-        public void isValidRegisterInfo(string user, string password, ref bool isValid)
+        //if first name and last name don't have data, pass empty strings
+        public void isValidRegisterInfo(string user, string password, string firstName, string lastName, ref bool isValid)
         {
 
-            string query = "INSERT INTO profile (username, password) VALUES (@username, @password)";
+            string query = "INSERT INTO profile (username, password, firstName, lastName) VALUES (@username, @password, @firstName, @lastName)";
 
             if (this.OpenConnection())
             {
@@ -63,6 +68,14 @@ namespace Tutor_Master
                 cmd.CommandText = query;
                 cmd.Parameters.Add("@username", user);
                 cmd.Parameters.Add("@password", password);
+                if (firstName == "")
+                    cmd.Parameters.Add("@firstName", DBNull.Value);
+                else
+                    cmd.Parameters.Add("@firstName", firstName);
+                if (lastName == "")
+                    cmd.Parameters.Add("@lastName", DBNull.Value);
+                else
+                    cmd.Parameters.Add("@lastName", lastName);
                 cmd.Connection = con;
                 try
                 {
@@ -266,6 +279,7 @@ namespace Tutor_Master
             }
         }
 
+        //set the isTutee value to the value passed in
         //have to change to update statement
         public void setTuteeStatus(string username, bool isTutee)
         {
@@ -289,6 +303,11 @@ namespace Tutor_Master
 
                 this.CloseConnection();
             }
+        }
+
+        public void deleteAccount(string username, string password)
+        {
+ 
         }
     }
 }

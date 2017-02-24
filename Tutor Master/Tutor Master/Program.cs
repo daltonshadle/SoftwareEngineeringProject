@@ -15,8 +15,23 @@ namespace Tutor_Master
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+<<<<<<< HEAD
         
             Application.Run(new StartForm());
+=======
+            bool val = true;
+            List<string> list= new List<string>();
+            list.Add("cs 1");
+            list.Add("calc 1");
+            list.Add("gen phys 1");
+            Database db = new Database();
+            //db.addNewCourseList("coolTerry7", list, val);
+            //db.isValidSignIn("coolTerry7", "rockstar#1", ref val);
+            //db.getCourseList("coolTerry7", true);
+            //db.setTutorStatus("coolTerry7", true);
+            db.addNewCourseList("bbailey", list, false);
+            //Application.Run(new StartForm());
+>>>>>>> 93a6a8f38ccb590d2bf43b3235331f9b39018601
         }
     }
 }

@@ -21,6 +21,10 @@ namespace Tutor_Master
 
         public void addAppt(Appointment a) { 
             //function for adding an appt to the schedule
+<<<<<<< HEAD
+=======
+
+>>>>>>> 93a6a8f38ccb590d2bf43b3235331f9b39018601
             //validation of the appointment is done when the appointment is created
 
             //check for overlapping appointment datetime
@@ -45,6 +49,7 @@ namespace Tutor_Master
         //}
         //    profileSchedule.Add(a.getStartTime(), a);
         //}
+<<<<<<< HEAD
             //validation of the appointment is done when the appointment is create
         //    profileSchedule.Add(a.getStartTime(), a);
         //}
@@ -56,21 +61,34 @@ namespace Tutor_Master
             if (profileSchedule.TryGetValue(a.getStartTime(), out temp)) {
                 profileSchedule.Remove(a.getStartTime());
             }
+=======
+
+            //validation of the appointment is done when the appointment is create
+            //profileSchedule.Add(a.getStartTime(), a);
+>>>>>>> 93a6a8f38ccb590d2bf43b3235331f9b39018601
         }
 
-        public Appointment getAppt(Appointment a) {
-            Appointment temp;
-            if (profileSchedule.TryGetValue(a.getStartTime(), out temp)) {
-                temp = a;
-            }
 
-            return temp;
-        }
+        //public void removeAppt(Appointment a) { 
+        //    //function for removing an appt from the schedule
+        //    Appointment temp;
+        //    if (profileSchedule.TryGetValue(a.getStartTime(), out temp)) {
+        //        profileSchedule.Remove(a.getStartTime());
+        //    }
+        //}
 
-        public void editAppt(Appointment a) { 
+        //public Appointment getAppt(Appointment a) {
+        //    Appointment temp;
+        //    if (profileSchedule.TryGetValue(a.getStartTime(), out temp)) {
+        //        temp = a;
+        //    }
+
+        //    return temp;
+        //}
+
+        //public void editAppt(Appointment a) { 
             //function for editting information in the schedule
             
         }
 
-    }
-}
+  
