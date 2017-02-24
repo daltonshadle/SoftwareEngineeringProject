@@ -10,21 +10,12 @@ namespace Tutor_Master
     class Database
     {
         private SqlCeConnection con;
-
-<<<<<<< HEAD
-        private string connection = @"Data Source=F:\New Software Engineering\Tutor Master\Tutor Master\TutorMaster.sdf";
-=======
-
-        private string connection = @"Data Source=C:\Users\grbohach\Documents\SoftwareEngineering\Tutor Master\Tutor Master\TutorMaster.sdf";
->>>>>>> d8a321e7264956f0d115e4681331da9383a667c8
-
+        private string connection = @"Data Source=C:\TutorMaster.sdf";
 
         public Database()
         {
             con = new SqlCeConnection(connection);
         }
-
-        
 
         private bool OpenConnection()
         {
@@ -58,16 +49,6 @@ namespace Tutor_Master
         {
 
             string query = "INSERT INTO profile (username, password) VALUES (@username, @password)";
-<<<<<<< HEAD
-
-            //string query = "INSERT INTO profile (username, password) VALUES ('fda', 'gssa#1582')";
-
-           
-
-
-
-=======
->>>>>>> d8a321e7264956f0d115e4681331da9383a667c8
 
             if (this.OpenConnection())
             {
@@ -85,14 +66,14 @@ namespace Tutor_Master
                 {
                     isValid = false;
                 }
-                
+
                 this.CloseConnection();
             }
         }
 
         public void isValidSignIn(string user, string password, ref bool isValid)
         {
-            string query = "SELECT * FROM profile WHERE username = @username";
+            string query = "SELECT password FROM profile WHERE username = @username";
             List<string> list = new List<string>();
 
             if (this.OpenConnection())
@@ -108,17 +89,16 @@ namespace Tutor_Master
                     //Read the data and store them in the list
                     while (dataReader.Read())
                     {
-                        list.Add(dataReader["username"] + "");
                         list.Add(dataReader["password"] + "");
                     }
 
                     //close Data Reader
                     dataReader.Close();
-                    if (password == list[1])
+                    if (password == list[0])
                         isValid = true;
                     else
                         isValid = false;
-                    
+
                 }
                 catch
                 {
@@ -129,7 +109,7 @@ namespace Tutor_Master
             }
         }
 
-        public void addAppointment(string meetingPlace, string course, DateTime startTime, DateTime endTime, Tutor tutor, Tutee tutee) 
+        public void addAppointment(string meetingPlace, string course, DateTime startTime, DateTime endTime, Tutor tutor, Tutee tutee)
         {
             {
 
@@ -163,7 +143,7 @@ namespace Tutor_Master
             }
         }
 
-        //if you want the list of course some tutors, pass in true
+        //if you want the list of course someone tutors, pass in true
         //if you want the list of courses someone is a tutee for, pass false
         public List<string> getCourseList(string username, bool isTutor)
         {
@@ -173,7 +153,6 @@ namespace Tutor_Master
             else
                 query = "SELECT course1, course2, course3, course4 FROM tuteeCourses WHERE username = @username";
 
-            this.CloseConnection();
             List<string> list = new List<string>();
 
             if (this.OpenConnection())
@@ -212,6 +191,97 @@ namespace Tutor_Master
             else
                 return list;
         }
-        
+
+        //if the courses what someone can tutor, pass in true
+        //if the courses what someone wants to be tutored, pass in false
+        //only use this function during registration
+        public void addNewCourseList(string username, List<string> courseList, bool isTutor)
+        {
+            string query;
+            if (isTutor)
+                query = "INSERT into tutorCourses (username, course1, course2, course3, course4) VALUES (@username, @course1, @course2, @course3, @course4)";
+            else
+                query = "INSERT into tuteeCourses (username, course1, course2, course3, course4) VALUES (@username, @course1, @course2, @course3, @course4)";
+
+            if (this.OpenConnection())
+            {
+                SqlCeCommand cmd = new SqlCeCommand();
+                cmd.CommandText = query;
+                cmd.Parameters.Add("@username", username);
+                int number = courseList.Count;
+                int i = 0;
+                for (; i < number; ++i)
+                {
+                    cmd.Parameters.Add("@course" + (i + 1).ToString(), courseList[i]);
+                }
+                for (; i < 4; ++i)
+                {
+                    cmd.Parameters.Add("@course" + (1 + i).ToString(), DBNull.Value);
+                }
+
+                cmd.Connection = con;
+                try
+                {
+                    cmd.ExecuteNonQuery();
+                    this.CloseConnection();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    this.CloseConnection();
+                }
+            }
+        }
+
+        //set the isTutor value to the value passed in
+        //have to change to update statement
+        public void setTutorStatus(string username, bool isTutor)
+        {
+            string query = "INSERT INTO profile (isTutor) VALUES (@isTutor) WHERE username = @username";
+
+            if (this.OpenConnection())
+            {
+                SqlCeCommand cmd = new SqlCeCommand();
+                cmd.CommandText = query;
+                cmd.Parameters.Add("@username", username);
+                cmd.Parameters.Add("@isTutor", isTutor);
+                cmd.Connection = con;
+                try
+                {
+                    cmd.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+
+                this.CloseConnection();
+            }
+        }
+
+        //have to change to update statement
+        public void setTuteeStatus(string username, bool isTutee)
+        {
+            string query = "INSERT INTO profile (isTutee) VALUES (@isTutee) WHERE username = @username";
+
+            if (this.OpenConnection())
+            {
+                SqlCeCommand cmd = new SqlCeCommand();
+                cmd.CommandText = query;
+                cmd.Parameters.Add("@username", username);
+                cmd.Parameters.Add("@isTutor", isTutee);
+                cmd.Connection = con;
+                try
+                {
+                    cmd.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+
+                this.CloseConnection();
+            }
+        }
     }
 }
