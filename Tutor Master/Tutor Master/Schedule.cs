@@ -24,7 +24,6 @@ namespace Tutor_Master
             //validation of the appointment is done when the appointment is created
 
             //check for overlapping appointment datetime
-<<<<<<< HEAD
             //profileSchedule.Add(a.getDateTime(), a);
         }
 
@@ -44,9 +43,8 @@ namespace Tutor_Master
 
         //    return temp;
         //}
-=======
-            profileSchedule.Add(a.getStartTime(), a);
-        }
+        //    profileSchedule.Add(a.getStartTime(), a);
+        //}
 
         public void removeAppt(Appointment a) { 
             //function for removing an appt from the schedule
@@ -64,7 +62,6 @@ namespace Tutor_Master
 
             return temp;
         }
->>>>>>> 00c5d49775561cb758f9d0d30e775644d1de5565
 
         public void editAppt(Appointment a) { 
             //function for editting information in the schedule

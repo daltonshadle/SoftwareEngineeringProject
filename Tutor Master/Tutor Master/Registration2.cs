@@ -31,7 +31,7 @@ namespace Tutor_Master
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (checkedListBox1.CheckedItems.Count != 0 && checkedListBox1.CheckedItems.Count < 5)
+            if (checkedListBox1.CheckedItems.Count > 0 && checkedListBox1.CheckedItems.Count < 5)
             {
                 // If so, loop through all checked items and print results.  
                 for (int x = 0; x <= checkedListBox1.CheckedItems.Count - 1; x++)
@@ -42,26 +42,28 @@ namespace Tutor_Master
                 //Faculty gets emailed here.
 
                 //Database db = new Database();
-                //Garrett: db.addCourseList();
+                //Garrett: db.addNewCourseList(username, tutorClasses, true);
 
                 if (tuteeAcc)
                 {
-                    //Garrett write a query: update base Profile to tutee
+                    //Garrett: update base Profile to tutee
+                    //setTuteeStatus(username, isTutee);
+                    //username is a String, isTutee is a bool
+
                     var next = new Registration3(username, tutorAcc, tuteeAcc);
                     this.Hide();
                     next.Show();
                 }
                 else
                 {
-                    //Garrett write a query: update base Profile to tutee
                     var next = new UserProfile(username);
                     this.Hide();
                     next.Show();
                 }
             }
-            else if (checkedListBox1.CheckedItems.Count > 4)
+            else if (checkedListBox1.CheckedItems.Count == 0 || checkedListBox1.CheckedItems.Count > 4)
             {
-                MessageBox.Show("May not select more than 4 courses to tutor.");
+                MessageBox.Show("Must choose from 1 to 4 courses.");
             }
         }
     }
