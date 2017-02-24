@@ -11,7 +11,7 @@ namespace Tutor_Master
 {
     public partial class Registration : Form
     {
-        bool isTutee = false, isTutor = false;
+        private bool isTutee = false, isTutor = false;
         string username;
 
         public Registration(string user)
@@ -36,7 +36,10 @@ namespace Tutor_Master
             
             if (isTutor)    //This loop handles exclusively tutor and both tutor&tutee profiles.
             {
+                
                 //Garrett write a query: update base Profile to tutor
+                //setTutorStatus(username, isTutor);
+
                 var next = new Registration2(username, isTutor, isTutee);
                 this.Hide();
                 next.Show();
@@ -45,10 +48,13 @@ namespace Tutor_Master
             //This is set as an else because if the person is both tutor&tutee, then they will go through
             //the tutor page and then THAT tutor page will decide whether or not the tutee page will run.
             //This loop is only for exclusively tutee profiles.
-            else    
+            else if (isTutee)
             {  
 
                 //Garrett write a query: update base Profile to tutee
+                //setTuteeStatus(username, isTutee);
+                //username is a String, isTutee is a bool
+
                 var next = new Registration3(username);
                 this.Hide();
                 next.Show();

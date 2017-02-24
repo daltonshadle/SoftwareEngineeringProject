@@ -34,8 +34,6 @@
             this.tbxUsername = new System.Windows.Forms.TextBox();
             this.tbxPassword = new System.Windows.Forms.TextBox();
             this.btnSignIn = new System.Windows.Forms.Button();
-            this.lblPassError = new System.Windows.Forms.Label();
-            this.lblNameError = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblTutorMaster
@@ -97,36 +95,11 @@
             this.btnSignIn.UseVisualStyleBackColor = true;
             this.btnSignIn.Click += new System.EventHandler(this.btnSignIn_Click);
             // 
-            // lblPassError
-            // 
-            this.lblPassError.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.lblPassError.AutoSize = true;
-            this.lblPassError.Location = new System.Drawing.Point(70, 240);
-            this.lblPassError.Name = "lblPassError";
-            this.lblPassError.Size = new System.Drawing.Size(235, 13);
-            this.lblPassError.TabIndex = 10;
-            this.lblPassError.Text = "Sign In error: Password did not match username.";
-            this.lblPassError.Visible = false;
-            this.lblPassError.Click += new System.EventHandler(this.label1_Click_1);
-            // 
-            // lblNameError
-            // 
-            this.lblNameError.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.lblNameError.AutoSize = true;
-            this.lblNameError.Location = new System.Drawing.Point(120, 240);
-            this.lblNameError.Name = "lblNameError";
-            this.lblNameError.Size = new System.Drawing.Size(153, 13);
-            this.lblNameError.TabIndex = 11;
-            this.lblNameError.Text = "Sign In error: Invalid username.";
-            this.lblNameError.Visible = false;
-            // 
             // SignIn
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(384, 262);
-            this.Controls.Add(this.lblNameError);
-            this.Controls.Add(this.lblPassError);
             this.Controls.Add(this.btnSignIn);
             this.Controls.Add(this.tbxPassword);
             this.Controls.Add(this.tbxUsername);
@@ -136,7 +109,6 @@
             this.Name = "SignIn";
             this.Text = "SignIn";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.Load += new System.EventHandler(this.SignIn_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -150,8 +122,6 @@
         private System.Windows.Forms.TextBox tbxUsername;
         private System.Windows.Forms.TextBox tbxPassword;
         private System.Windows.Forms.Button btnSignIn;
-        private System.Windows.Forms.Label lblPassError;
-        private System.Windows.Forms.Label lblNameError;
 
     }
 }

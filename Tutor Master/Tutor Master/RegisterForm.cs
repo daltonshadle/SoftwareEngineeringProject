@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
+//This form is working as expected. 2/23/17 
+
 namespace Tutor_Master
 {
     public partial class RegisterForm : Form
@@ -23,36 +25,34 @@ namespace Tutor_Master
         {
             username = tbxUsername.Text;
             password = tbxPassword.Text;
-            bool userValid = false;
+            bool accountValid = false;
 
             //Check to see if the username is available or not. Function returns bool by ref. Garrett
-            //checkValidity(username, ref userValid);
-
-            //bool passValid = ((password.Length > 5) && (!password.Contains(" ")));
-
-            bool passValid = true;
-            userValid = true;
-            if (passValid)  //valid username means the username is available.
+            
+            bool passValid = ((password.Length > 5) && (!password.Contains(" ")));
+            if (passValid)
             {
-                if (userValid)  //valid password means it is at least
+                Database db = new Database();
+                db.isValidRegisterInfo(username, password, ref accountValid);
+
+                if (accountValid)
                 {
                     //MessageBox.Show("Your account has been successfully registered.");
 
                     Form nextForm = new Registration(username);
                     this.Hide();
                     nextForm.Show();
-
                 }
                 else
                 {
-                    MessageBox.Show("Invalid password- must be at least 6 characters, no spaces");
-                    //password doesn't match, display error message
+                    MessageBox.Show("Username not available.");
+                    //username doesn't match database, display error message
                 }
             }
             else
             {
-                MessageBox.Show("Username not available.");
-                //username doesn't match database, display error message
+                MessageBox.Show("Invalid password- must be at least 6 characters, no spaces");
+                //password doesn't match, display error message
             }
         }
     }
