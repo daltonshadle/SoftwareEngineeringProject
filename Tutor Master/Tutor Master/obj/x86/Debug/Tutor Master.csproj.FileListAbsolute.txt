@@ -1,0 +1,14 @@
+F:\cs-225 project\SoftwareEngineering\Tutor Master\Tutor Master\bin\Debug\Tutor Master.exe
+F:\cs-225 project\SoftwareEngineering\Tutor Master\Tutor Master\bin\Debug\Tutor Master.pdb
+F:\cs-225 project\SoftwareEngineering\Tutor Master\Tutor Master\obj\x86\Debug\Tutor Master.csprojResolveAssemblyReference.cache
+F:\cs-225 project\SoftwareEngineering\Tutor Master\Tutor Master\obj\x86\Debug\Tutor_Master.Properties.Resources.resources
+F:\cs-225 project\SoftwareEngineering\Tutor Master\Tutor Master\obj\x86\Debug\Tutor_Master.RegisterForm.resources
+F:\cs-225 project\SoftwareEngineering\Tutor Master\Tutor Master\obj\x86\Debug\Tutor_Master.Registration.resources
+F:\cs-225 project\SoftwareEngineering\Tutor Master\Tutor Master\obj\x86\Debug\Tutor_Master.Registration2.resources
+F:\cs-225 project\SoftwareEngineering\Tutor Master\Tutor Master\obj\x86\Debug\Tutor_Master.Registration3.resources
+F:\cs-225 project\SoftwareEngineering\Tutor Master\Tutor Master\obj\x86\Debug\Tutor_Master.SignIn.resources
+F:\cs-225 project\SoftwareEngineering\Tutor Master\Tutor Master\obj\x86\Debug\Tutor_Master.UserProfile.resources
+F:\cs-225 project\SoftwareEngineering\Tutor Master\Tutor Master\obj\x86\Debug\Tutor Master.csproj.GenerateResource.Cache
+F:\cs-225 project\SoftwareEngineering\Tutor Master\Tutor Master\obj\x86\Debug\Tutor Master.exe
+F:\cs-225 project\SoftwareEngineering\Tutor Master\Tutor Master\obj\x86\Debug\Tutor Master.pdb
+F:\cs-225 project\SoftwareEngineering\Tutor Master\Tutor Master\obj\x86\Debug\Tutor_Master.WeekCalendar.resources

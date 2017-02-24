@@ -60,9 +60,13 @@
             this.checkedListBox1.Name = "checkedListBox1";
             this.checkedListBox1.Size = new System.Drawing.Size(120, 94);
             this.checkedListBox1.TabIndex = 2;
+<<<<<<< HEAD
 
             //this.checkedListBox1.SelectedIndexChanged += new System.EventHandler(this.checkedListBox1_SelectedIndexChanged);
 
+=======
+            //this.checkedListBox1.SelectedIndexChanged += new System.EventHandler(this.checkedListBox1_SelectedIndexChanged);
+>>>>>>> 9e0843b9b480c4c04233b159fe2255031860cbec
             // 
             // lblHeader
             // 
