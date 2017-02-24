@@ -15,6 +15,9 @@ namespace Tutor_Master
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+        
+            Application.Run(new StartForm());
+
             bool val = true;
             List<string> list= new List<string>();
             list.Add("cs 1");

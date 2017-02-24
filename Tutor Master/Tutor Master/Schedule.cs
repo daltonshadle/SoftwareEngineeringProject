@@ -15,18 +15,19 @@ namespace Tutor_Master
         //all the public fucntions
 
         //constructor
-        public Schedule(){
+        public Schedule()
+        {
             profileSchedule = new SortedList<DateTime, Appointment>();
         }
 
-        public void addAppt(Appointment a) { 
-            //function for adding an appt to the schedule
+        //public void addAppt(Appointment a) { 
+        //    //function for adding an appt to the schedule
 
-            //validation of the appointment is done when the appointment is created
+        //    //validation of the appointment is done when the appointment is created
 
-            //check for overlapping appointment datetime
-            //profileSchedule.Add(a.getDateTime(), a);
-        }
+        //    //check for overlapping appointment datetime
+        //    //profileSchedule.Add(a.getDateTime(), a);
+        //}
 
         //public void removeAppt(Appointment a) { 
         //    //function for removing an appt from the schedule
@@ -47,9 +48,22 @@ namespace Tutor_Master
         //    profileSchedule.Add(a.getStartTime(), a);
         //}
 
-            //validation of the appointment is done when the appointment is create
-            //profileSchedule.Add(a.getStartTime(), a);
-        }
+        //validation of the appointment is done when the appointment is create
+        //    profileSchedule.Add(a.getStartTime(), a);
+        //}
+
+
+        //public void removeAppt(Appointment a) { 
+        //    //function for removing an appt from the schedule
+        //    Appointment temp;
+        //    if (profileSchedule.TryGetValue(a.getStartTime(), out temp)) {
+        //        profileSchedule.Remove(a.getStartTime());
+        //    }
+
+
+        //    //validation of the appointment is done when the appointment is create
+        //    //profileSchedule.Add(a.getStartTime(), a);
+        //}
 
 
         //public void removeAppt(Appointment a) { 
@@ -70,8 +84,9 @@ namespace Tutor_Master
         //}
 
         //public void editAppt(Appointment a) { 
-            //function for editting information in the schedule
-            
-        }
+        //function for editting information in the schedule
+
+    }
+}
 
   

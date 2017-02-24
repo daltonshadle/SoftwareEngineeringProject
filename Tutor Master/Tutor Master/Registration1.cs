@@ -38,7 +38,8 @@ namespace Tutor_Master
             {
                 
                 //Garrett write a query: update base Profile to tutor
-                //setTutorStatus(username, isTutor);
+                Database db = new Database();
+                db.setTutorStatus(username, isTutor);
 
                 var next = new Registration2(username, isTutor, isTutee);
                 this.Hide();
@@ -52,7 +53,8 @@ namespace Tutor_Master
             {  
 
                 //Garrett write a query: update base Profile to tutee
-                //setTuteeStatus(username, isTutee);
+                Database db = new Database();
+                db.setTuteeStatus(username, isTutee);
                 //username is a String, isTutee is a bool
 
                 var next = new Registration3(username);

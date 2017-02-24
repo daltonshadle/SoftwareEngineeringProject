@@ -31,18 +31,9 @@ namespace Tutor_Master
             this.Icon = Tutor_Master.Properties.Resources.favicon;
             tutorAcc = isTutor;
             tuteeAcc = isTutee;
-            user = username;
+            username = user;
             tuteeClassesList = new List<string>();
         }
-
-        //private void button1_Click(object sender, EventArgs e)
-        //{
-        //    //Garrett write a query: update base Profile to tutee
-        //    var next = new UserProfile(username);
-        //    this.Hide();
-        //    next.Show();
-            
-        //}
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -53,11 +44,11 @@ namespace Tutor_Master
                 {
                     tuteeClassesList.Add(checkedListBox1.CheckedItems[x].ToString());
                 }
-
+                
                 //Faculty gets emailed here.
 
-                //Database db = new Database();
-                //Garrett: db.addNewCourseList(username, tuteeClasses, false);
+                Database db = new Database();
+                db.addNewCourseList(username, tuteeClassesList, false);
 
                 var next = new UserProfile(username);
                 this.Hide();

@@ -10,7 +10,11 @@ namespace Tutor_Master
     class Database
     {
         private SqlCeConnection con;
+
         private string connection = @"Data Source=C:\TutorMaster.sdf";
+
+        //private string connection = @"Data Source=F:\New Software Engineering\Tutor Master\Tutor Master\TutorMaster.sdf";
+        //private string connection = @"Data Source=C:\Users\grbohach\Documents\SoftwareEngineering\Tutor Master\Tutor Master\TutorMaster.sdf";
 
         public Database()
         {
@@ -279,7 +283,7 @@ namespace Tutor_Master
                 SqlCeCommand cmd = new SqlCeCommand();
                 cmd.CommandText = query;
                 cmd.Parameters.Add("@username", username);
-                cmd.Parameters.Add("@isTutor", isTutee);
+                cmd.Parameters.Add("@isTutee", isTutee);
                 cmd.Connection = con;
                 try
                 {
