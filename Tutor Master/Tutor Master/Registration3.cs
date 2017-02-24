@@ -56,8 +56,8 @@ namespace Tutor_Master
 
                 //Faculty gets emailed here.
 
-                //Database db = new Database();
-                //Garrett: db.addNewCourseList(username, tuteeClasses, false);
+                Database db = new Database();
+                db.addNewCourseList(username, tuteeClassesList, false);
 
                 var next = new UserProfile(username);
                 this.Hide();

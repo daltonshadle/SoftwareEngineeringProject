@@ -43,13 +43,14 @@ namespace Tutor_Master
 
                 //Faculty gets emailed here.
 
-                //Database db = new Database();
-                //Garrett: db.addNewCourseList(username, tutorClasses, true);
+                Database db = new Database();
+                db.addNewCourseList(username, tutorClassesList, true);
 
                 if (tuteeAcc)
                 {
                     //Garrett: update base Profile to tutee
-                    //setTuteeStatus(username, isTutee);
+                   
+                    db.setTuteeStatus(username, tuteeAcc);
                     //username is a String, isTutee is a bool
 
                     var next = new Registration3(username, tutorAcc, tuteeAcc);
