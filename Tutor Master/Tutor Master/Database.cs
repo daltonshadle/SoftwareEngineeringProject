@@ -10,31 +10,15 @@ namespace Tutor_Master
     class Database
     {
         private SqlCeConnection con;
-<<<<<<< HEAD
+
+
 
         private string connection = @"Data Source=C:\TutorMaster.sdf";
-=======
-        private string connection = @"Data Source=C:\TutorMaster.sdf";
-<<<<<<< HEAD
-=======
-=======
 
-        private string connection = @"Data Source=F:\New Software Engineering\Tutor Master\Tutor Master\TutorMaster.sdf";
+        //private string connection = @"Data Source=F:\New Software Engineering\Tutor Master\Tutor Master\TutorMaster.sdf";
         //private string connection = @"Data Source=C:\Users\grbohach\Documents\SoftwareEngineering\Tutor Master\Tutor Master\TutorMaster.sdf";
 
-<<<<<<< HEAD
-=======
-
-        private string connection = @"Data Source=C:\TutorMaster.sdf";
-        //private string connection = @"Data Source=C:\Users\grbohach\Documents\SoftwareEngineering\Tutor Master\Tutor Master\TutorMaster.sdf";
->>>>>>> 32f2c5a2675e30bd20d66fc03af12c7e4f42f5e5
-
->>>>>>> c1e12a2d4dfd1cef1950988e03ea25962dc7cd79
-=======
->>>>>>> 2311370a4a3c905bf54cfcad94358b4127bf3c0f
->>>>>>> 01041c80c9b7fc494a090448b15612df6fe5fcee
->>>>>>> 9e0843b9b480c4c04233b159fe2255031860cbec
-
+       
         public Database()
         {
             con = new SqlCeConnection(connection);
@@ -72,16 +56,6 @@ namespace Tutor_Master
         {
 
             string query = "INSERT INTO profile (username, password) VALUES (@username, @password)";
-<<<<<<< HEAD
-
-
-
-
-
-            //string query = "INSERT INTO profile (username, password) VALUES ('fda', 'gssa#1582')";
-
-=======
->>>>>>> 9e0843b9b480c4c04233b159fe2255031860cbec
 
             if (this.OpenConnection())
             {

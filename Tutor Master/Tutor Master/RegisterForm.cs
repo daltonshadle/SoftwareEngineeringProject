@@ -13,7 +13,8 @@ namespace Tutor_Master
 {
     public partial class RegisterForm : Form
     {
-        private string username, password;
+        private string username, password, passConfirm, firstName, lastName;
+        bool accountValid = false;
 
         public RegisterForm()
         {
@@ -25,12 +26,17 @@ namespace Tutor_Master
         {
             username = tbxUsername.Text;
             password = tbxPassword.Text;
-            bool accountValid = false;
+            passConfirm = tbxPassConfirm.Text;
+            firstName = tbxFirstName.Text;
+            lastName = tbxLastName.Text;
+           
 
             //Check to see if the username is available or not. Function returns bool by ref. Garrett
             
             bool passValid = ((password.Length > 5) && (!password.Contains(" ")));
-            if (passValid)
+            bool passesMatch = (passValid && (password == passConfirm));
+
+            if (passesMatch)
             {
                 Database db = new Database();
                 db.isValidRegisterInfo(username, password, ref accountValid);
