@@ -21,6 +21,7 @@ namespace Tutor_Master
 
         public void addAppt(Appointment a) { 
             //function for adding an appt to the schedule
+<<<<<<< HEAD
             //validation of the appointment is done when the appointment is created
 
             //check for overlapping appointment datetime
@@ -45,6 +46,11 @@ namespace Tutor_Master
         //}
         //    profileSchedule.Add(a.getStartTime(), a);
         //}
+=======
+            //validation of the appointment is done when the appointment is create
+            profileSchedule.Add(a.getStartTime(), a);
+        }
+>>>>>>> 9122aa12ae9fd9bd0260aef8e108ada7492c4069
 
         public void removeAppt(Appointment a) { 
             //function for removing an appt from the schedule

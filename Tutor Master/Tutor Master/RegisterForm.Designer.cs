@@ -106,7 +106,7 @@
             this.Controls.Add(this.lblUsername);
             this.Controls.Add(this.label1);
             this.Name = "RegisterForm";
-            this.Text = "RegisterForm";
+            this.Text = "Registration - Home ";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.ResumeLayout(false);
             this.PerformLayout();

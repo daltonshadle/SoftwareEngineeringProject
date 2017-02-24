@@ -18,6 +18,7 @@ namespace Tutor_Master
         {
             InitializeComponent();
             username = user;
+            this.Icon = Tutor_Master.Properties.Resources.favicon;
         }
 
         private void chkTutor_CheckedChanged(object sender, EventArgs e)

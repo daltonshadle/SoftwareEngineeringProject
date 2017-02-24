@@ -18,6 +18,7 @@ namespace Tutor_Master
         public Registration3(string user)  //If this constructor is run, it means the profile is only a tutee.
         {
             InitializeComponent();
+            this.Icon = Tutor_Master.Properties.Resources.favicon;
             tutorAcc = false;
             tuteeAcc = true;
             username = user;
@@ -27,6 +28,7 @@ namespace Tutor_Master
         public Registration3(string user, bool isTutor, bool isTutee)    //if this file is run, it means profile is both tutor and tutee
         {
             InitializeComponent();
+            this.Icon = Tutor_Master.Properties.Resources.favicon;
             tutorAcc = isTutor;
             tuteeAcc = isTutee;
             user = username;

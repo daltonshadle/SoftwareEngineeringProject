@@ -85,7 +85,6 @@
             this.Controls.Add(this.btnRegister);
             this.Controls.Add(this.btnSignIn);
             this.Controls.Add(this.label1);
-            //this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "StartForm";
             this.Text = "Tutor Master";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;

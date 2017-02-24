@@ -89,7 +89,7 @@
             this.Controls.Add(this.lblIntro);
             this.Controls.Add(this.btnNext);
             this.Name = "Registration";
-            this.Text = "Resitration1";
+            this.Text = "Registration - Account Type";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.ResumeLayout(false);
             this.PerformLayout();

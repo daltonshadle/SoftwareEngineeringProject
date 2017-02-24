@@ -83,7 +83,7 @@
             this.Controls.Add(this.checkedListBox1);
             this.Controls.Add(this.btnContinue);
             this.Name = "Registration3";
-            this.Text = "Registration3";
+            this.Text = "Registration - Tutee Courses";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.ResumeLayout(false);
             this.PerformLayout();

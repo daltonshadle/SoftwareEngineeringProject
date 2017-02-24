@@ -14,15 +14,15 @@ namespace Tutor_Master
         public StartForm()
         {
             InitializeComponent();
+            this.Icon = Tutor_Master.Properties.Resources.favicon;
+            
         }
 
         private void btnSignIn_Click(object sender, EventArgs e)
         {
             var signin = new SignIn();
-            signin.Visible = true;
-            this.Visible = false;
-            //signin.Show();
-            //this.Hide();
+            signin.Show();
+            this.Hide();
         }
 
         private void btnRegister_Click(object sender, EventArgs e)

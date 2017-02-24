@@ -18,6 +18,7 @@ namespace Tutor_Master
         public RegisterForm()
         {
             InitializeComponent();
+            this.Icon = Tutor_Master.Properties.Resources.favicon;
         }
 
         private void btnRegister_Click(object sender, EventArgs e)
