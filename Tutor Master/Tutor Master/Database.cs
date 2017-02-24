@@ -10,19 +10,12 @@ namespace Tutor_Master
     class Database
     {
         private SqlCeConnection con;
-<<<<<<< HEAD
-
-
 
         private string connection = @"Data Source=C:\TutorMaster.sdf";
 
         //private string connection = @"Data Source=F:\New Software Engineering\Tutor Master\Tutor Master\TutorMaster.sdf";
         //private string connection = @"Data Source=C:\Users\grbohach\Documents\SoftwareEngineering\Tutor Master\Tutor Master\TutorMaster.sdf";
-=======
-        private string connection = @"Data Source=C:\TutorMaster.sdf";
->>>>>>> 93a6a8f38ccb590d2bf43b3235331f9b39018601
 
-       
         public Database()
         {
             con = new SqlCeConnection(connection);

@@ -41,13 +41,14 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(212, 9);
+            this.label1.Location = new System.Drawing.Point(265, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(74, 13);
             this.label1.TabIndex = 0;
@@ -56,7 +57,7 @@
             // tbxPassword
             // 
             this.tbxPassword.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.tbxPassword.Location = new System.Drawing.Point(141, 106);
+            this.tbxPassword.Location = new System.Drawing.Point(194, 106);
             this.tbxPassword.Name = "tbxPassword";
             this.tbxPassword.PasswordChar = '*';
             this.tbxPassword.Size = new System.Drawing.Size(100, 20);
@@ -65,7 +66,7 @@
             // tbxUsername
             // 
             this.tbxUsername.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.tbxUsername.Location = new System.Drawing.Point(141, 80);
+            this.tbxUsername.Location = new System.Drawing.Point(194, 80);
             this.tbxUsername.Name = "tbxUsername";
             this.tbxUsername.Size = new System.Drawing.Size(100, 20);
             this.tbxUsername.TabIndex = 11;
@@ -74,7 +75,7 @@
             // 
             this.lblPassword.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblPassword.AutoSize = true;
-            this.lblPassword.Location = new System.Drawing.Point(77, 109);
+            this.lblPassword.Location = new System.Drawing.Point(130, 109);
             this.lblPassword.Name = "lblPassword";
             this.lblPassword.Size = new System.Drawing.Size(63, 13);
             this.lblPassword.TabIndex = 10;
@@ -84,7 +85,7 @@
             // 
             this.lblUsername.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblUsername.AutoSize = true;
-            this.lblUsername.Location = new System.Drawing.Point(77, 83);
+            this.lblUsername.Location = new System.Drawing.Point(130, 83);
             this.lblUsername.Name = "lblUsername";
             this.lblUsername.Size = new System.Drawing.Size(65, 13);
             this.lblUsername.TabIndex = 9;
@@ -93,7 +94,7 @@
             // btnRegister
             // 
             this.btnRegister.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnRegister.Location = new System.Drawing.Point(215, 208);
+            this.btnRegister.Location = new System.Drawing.Point(268, 208);
             this.btnRegister.Name = "btnRegister";
             this.btnRegister.Size = new System.Drawing.Size(75, 23);
             this.btnRegister.TabIndex = 15;
@@ -105,7 +106,7 @@
             // 
             this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(40, 135);
+            this.label2.Location = new System.Drawing.Point(93, 135);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(100, 13);
             this.label2.TabIndex = 16;
@@ -114,7 +115,7 @@
             // tbxPassConfirm
             // 
             this.tbxPassConfirm.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.tbxPassConfirm.Location = new System.Drawing.Point(141, 132);
+            this.tbxPassConfirm.Location = new System.Drawing.Point(194, 132);
             this.tbxPassConfirm.Name = "tbxPassConfirm";
             this.tbxPassConfirm.PasswordChar = '*';
             this.tbxPassConfirm.Size = new System.Drawing.Size(100, 20);
@@ -123,7 +124,7 @@
             // tbxLastName
             // 
             this.tbxLastName.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.tbxLastName.Location = new System.Drawing.Point(344, 106);
+            this.tbxLastName.Location = new System.Drawing.Point(397, 106);
             this.tbxLastName.Name = "tbxLastName";
             this.tbxLastName.PasswordChar = '*';
             this.tbxLastName.Size = new System.Drawing.Size(100, 20);
@@ -132,7 +133,7 @@
             // tbxFirstName
             // 
             this.tbxFirstName.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.tbxFirstName.Location = new System.Drawing.Point(344, 80);
+            this.tbxFirstName.Location = new System.Drawing.Point(397, 80);
             this.tbxFirstName.Name = "tbxFirstName";
             this.tbxFirstName.Size = new System.Drawing.Size(100, 20);
             this.tbxFirstName.TabIndex = 20;
@@ -141,7 +142,7 @@
             // 
             this.label3.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(280, 109);
+            this.label3.Location = new System.Drawing.Point(333, 109);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(59, 13);
             this.label3.TabIndex = 19;
@@ -151,7 +152,7 @@
             // 
             this.label4.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(280, 83);
+            this.label4.Location = new System.Drawing.Point(333, 83);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(58, 13);
             this.label4.TabIndex = 18;
@@ -161,17 +162,28 @@
             // 
             this.label5.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(188, 175);
+            this.label5.Location = new System.Drawing.Point(241, 175);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(123, 13);
             this.label5.TabIndex = 22;
             this.label5.Text = "* Indicates required field.";
             // 
+            // label6
+            // 
+            this.label6.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(503, 96);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(80, 13);
+            this.label6.TabIndex = 23;
+            this.label6.Text = "(Fields optional)";
+            // 
             // RegisterForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(513, 262);
+            this.ClientSize = new System.Drawing.Size(619, 262);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.tbxLastName);
             this.Controls.Add(this.tbxFirstName);
@@ -208,5 +220,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
     }
 }
