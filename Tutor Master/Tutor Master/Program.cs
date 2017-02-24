@@ -25,7 +25,8 @@ namespace Tutor_Master
             //db.isValidSignIn("coolTerry7", "rockstar#1", ref val);
             //db.getCourseList("coolTerry7", true);
             //db.setTutorStatus("coolTerry7", true);
-            db.addNewCourseList("bbailey", list, false);
+            //db.addNewCourseList("bbailey", list, false);
+            db.deleteAccount("coolTerry7", "rockstar#1");
             //Application.Run(new StartForm());
         }
     }

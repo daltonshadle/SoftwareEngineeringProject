@@ -33,7 +33,7 @@ namespace Tutor_Master
             if (passValid)
             {
                 Database db = new Database();
-                db.isValidRegisterInfo(username, password, ref accountValid);
+                db.isValidSignIn(username, password, ref accountValid);
 
                 if (accountValid)
                 {

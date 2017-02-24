@@ -296,7 +296,48 @@ namespace Tutor_Master
 
         public void deleteAccount(string username, string password)
         {
- 
+            bool isValidDelete = false;
+            Database db = new Database();
+
+            string queryProfile = "DELETE FROM profile WHERE username = @username";
+            string queryTuteeCourse = "DELETE FROM tuteeCourses WHERE username = @username";
+            string queryTutorCourse = "DELETE FROM tutorCourses WHERE username = @username";
+
+            if (this.OpenConnection()) 
+            {
+                db.isValidSignIn(username, password, ref isValidDelete);
+                if (isValidDelete)
+                {
+                    SqlCeCommand cmdDeleteProfile = new SqlCeCommand();
+                    SqlCeCommand cmdDeleteTuteeCourse = new SqlCeCommand();
+                    SqlCeCommand cmdDeleteTutorCourse = new SqlCeCommand();
+
+                    cmdDeleteProfile.CommandText = queryProfile;
+                    cmdDeleteTuteeCourse.CommandText = queryTuteeCourse;
+                    cmdDeleteTutorCourse.CommandText = queryTutorCourse;
+
+                    cmdDeleteProfile.Parameters.Add("@username", username);
+                    cmdDeleteTuteeCourse.Parameters.Add("@username", username);
+                    cmdDeleteTutorCourse.Parameters.Add("@username", username);
+
+                    cmdDeleteTutorCourse.Connection = con;
+                    cmdDeleteTuteeCourse.Connection = con;
+                    cmdDeleteProfile.Connection = con;
+                    try
+                    {
+                        cmdDeleteProfile.ExecuteNonQuery();
+                        cmdDeleteTuteeCourse.ExecuteNonQuery();
+                        cmdDeleteTutorCourse.ExecuteNonQuery();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+
+                    this.CloseConnection();
+                }
+
+            }
         }
     }
 }
