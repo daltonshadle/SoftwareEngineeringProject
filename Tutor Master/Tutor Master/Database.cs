@@ -11,24 +11,6 @@ namespace Tutor_Master
     {
         private SqlCeConnection con;
         private string connection = @"Data Source=C:\TutorMaster.sdf";
-<<<<<<< HEAD
-=======
-=======
-
-        private string connection = @"Data Source=F:\New Software Engineering\Tutor Master\Tutor Master\TutorMaster.sdf";
-        //private string connection = @"Data Source=C:\Users\grbohach\Documents\SoftwareEngineering\Tutor Master\Tutor Master\TutorMaster.sdf";
-
-<<<<<<< HEAD
-=======
-
-        private string connection = @"Data Source=C:\TutorMaster.sdf";
-        //private string connection = @"Data Source=C:\Users\grbohach\Documents\SoftwareEngineering\Tutor Master\Tutor Master\TutorMaster.sdf";
->>>>>>> 32f2c5a2675e30bd20d66fc03af12c7e4f42f5e5
-
->>>>>>> c1e12a2d4dfd1cef1950988e03ea25962dc7cd79
-=======
->>>>>>> 2311370a4a3c905bf54cfcad94358b4127bf3c0f
->>>>>>> 01041c80c9b7fc494a090448b15612df6fe5fcee
 
         public Database()
         {
@@ -63,10 +45,11 @@ namespace Tutor_Master
             }
         }
 
-        public void isValidRegisterInfo(string user, string password, ref bool isValid)
+        //if first name and last name don't have data, pass empty strings
+        public void isValidRegisterInfo(string user, string password, string firstName, string lastName, ref bool isValid)
         {
 
-            string query = "INSERT INTO profile (username, password) VALUES (@username, @password)";
+            string query = "INSERT INTO profile (username, password, firstName, lastName) VALUES (@username, @password, @firstName, @lastName)";
 
             if (this.OpenConnection())
             {
@@ -74,6 +57,14 @@ namespace Tutor_Master
                 cmd.CommandText = query;
                 cmd.Parameters.Add("@username", user);
                 cmd.Parameters.Add("@password", password);
+                if (firstName == "")
+                    cmd.Parameters.Add("@firstName", DBNull.Value);
+                else
+                    cmd.Parameters.Add("@firstName", firstName);
+                if (lastName == "")
+                    cmd.Parameters.Add("@lastName", DBNull.Value);
+                else
+                    cmd.Parameters.Add("@lastName", lastName);
                 cmd.Connection = con;
                 try
                 {
@@ -277,6 +268,7 @@ namespace Tutor_Master
             }
         }
 
+        //set the isTutee value to the value passed in
         //have to change to update statement
         public void setTuteeStatus(string username, bool isTutee)
         {
@@ -300,6 +292,11 @@ namespace Tutor_Master
 
                 this.CloseConnection();
             }
+        }
+
+        public void deleteAccount(string username, string password)
+        {
+ 
         }
     }
 }
