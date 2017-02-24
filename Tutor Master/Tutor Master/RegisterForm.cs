@@ -44,16 +44,15 @@ namespace Tutor_Master
                 }
                 else
                 {
-                    lblUserError.Visible = true;
+                    MessageBox.Show("Invalid password- must be at least 6 characters, no spaces");
                     //password doesn't match, display error message
                 }
             }
             else
             {
-                lblPassError.Visible = true;
+                MessageBox.Show("Username not available.");
                 //username doesn't match database, display error message
             }
         }
-
     }
 }

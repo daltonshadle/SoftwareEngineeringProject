@@ -24,25 +24,25 @@ namespace Tutor_Master
             //validation of the appointment is done when the appointment is created
 
             //check for overlapping appointment datetime
-            profileSchedule.Add(a.getDateTime(), a);
+            //profileSchedule.Add(a.getDateTime(), a);
         }
 
-        public void removeAppt(Appointment a) { 
-            //function for removing an appt from the schedule
-            Appointment temp;
-            if (profileSchedule.TryGetValue(a.getDateTime(), out temp)) {
-                profileSchedule.Remove(a.getDateTime());
-            }
-        }
+        //public void removeAppt(Appointment a) { 
+        //    //function for removing an appt from the schedule
+        //    Appointment temp;
+        //    if (profileSchedule.TryGetValue(a.getDateTime(), out temp)) {
+        //        profileSchedule.Remove(a.getDateTime());
+        //    }
+        //}
 
-        public Appointment getAppt(Appointment a) {
-            Appointment temp;
-            if (profileSchedule.TryGetValue(a.getDateTime(), out temp)) {
-                temp = a;
-            }
+        //public Appointment getAppt(Appointment a) {
+        //    Appointment temp;
+        //    if (profileSchedule.TryGetValue(a.getDateTime(), out temp)) {
+        //        temp = a;
+        //    }
 
-            return temp;
-        }
+        //    return temp;
+        //}
 
         public void editAppt(Appointment a) { 
             //function for editting information in the schedule

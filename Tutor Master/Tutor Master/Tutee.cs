@@ -22,12 +22,9 @@ namespace Tutor_Master
             //base is calling the base class constructor
             tuteeSchedule = new Schedule();
         }
-<<<<<<< HEAD
-=======
         public Tutee(string username, string password) : base(username, password) { 
             
         }
->>>>>>> d8a321e7264956f0d115e4681331da9383a667c8
 
         public void manageSchedule() { 
         
