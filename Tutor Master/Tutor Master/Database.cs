@@ -14,11 +14,10 @@ namespace Tutor_Master
         private string connection = @"Data Source=C:\TutorMaster.sdf";
 =======
 
-<<<<<<< HEAD
-
         private string connection = @"Data Source=F:\New Software Engineering\Tutor Master\Tutor Master\TutorMaster.sdf";
         //private string connection = @"Data Source=C:\Users\grbohach\Documents\SoftwareEngineering\Tutor Master\Tutor Master\TutorMaster.sdf";
 
+<<<<<<< HEAD
 =======
 
         private string connection = @"Data Source=F:\New Software Engineering\Tutor Master\Tutor Master\TutorMaster.sdf";
@@ -26,6 +25,8 @@ namespace Tutor_Master
 >>>>>>> 32f2c5a2675e30bd20d66fc03af12c7e4f42f5e5
 
 >>>>>>> c1e12a2d4dfd1cef1950988e03ea25962dc7cd79
+=======
+>>>>>>> 2311370a4a3c905bf54cfcad94358b4127bf3c0f
 
         public Database()
         {
@@ -65,11 +66,14 @@ namespace Tutor_Master
 
             string query = "INSERT INTO profile (username, password) VALUES (@username, @password)";
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
-
 =======
->>>>>>> 32f2c5a2675e30bd20d66fc03af12c7e4f42f5e5
+>>>>>>> 2311370a4a3c905bf54cfcad94358b4127bf3c0f
+
+
+
 
             //string query = "INSERT INTO profile (username, password) VALUES ('fda', 'gssa#1582')";
 

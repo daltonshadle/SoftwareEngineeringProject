@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Registration));
             this.btnNext = new System.Windows.Forms.Button();
             this.lblIntro = new System.Windows.Forms.Label();
             this.chkTutor = new System.Windows.Forms.CheckBox();
@@ -89,7 +88,6 @@
             this.Controls.Add(this.chkTutor);
             this.Controls.Add(this.lblIntro);
             this.Controls.Add(this.btnNext);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Registration";
             this.Text = "Registration - Account Type";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;

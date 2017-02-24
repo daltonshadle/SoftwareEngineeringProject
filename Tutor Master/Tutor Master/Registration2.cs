@@ -18,11 +18,13 @@ namespace Tutor_Master
         public Registration2()
         {
             InitializeComponent();
+            this.Icon = Tutor_Master.Properties.Resources.favicon;
         }
 
         public Registration2(string user, bool isTutor, bool isTutee)
         {
             InitializeComponent();
+            this.Icon = Tutor_Master.Properties.Resources.favicon;
             tutorAcc = isTutor;
             tuteeAcc = isTutee;
             username = user;

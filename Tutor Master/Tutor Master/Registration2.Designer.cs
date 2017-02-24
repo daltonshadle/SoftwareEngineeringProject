@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Registration2));
             this.btnNext = new System.Windows.Forms.Button();
             this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
             this.lblHeader = new System.Windows.Forms.Label();
@@ -62,10 +61,13 @@
             this.checkedListBox1.Size = new System.Drawing.Size(120, 94);
             this.checkedListBox1.TabIndex = 2;
 <<<<<<< HEAD
+<<<<<<< HEAD
             //this.checkedListBox1.SelectedIndexChanged += new System.EventHandler(this.checkedListBox1_SelectedIndexChanged);
 =======
 <<<<<<< HEAD
 =======
+=======
+>>>>>>> 2311370a4a3c905bf54cfcad94358b4127bf3c0f
             // 
             // lblHeader
             // 
@@ -76,8 +78,11 @@
             this.lblHeader.Size = new System.Drawing.Size(217, 13);
             this.lblHeader.TabIndex = 3;
             this.lblHeader.Text = "Select the classes you want to be a tutor for.";
+<<<<<<< HEAD
 >>>>>>> 32f2c5a2675e30bd20d66fc03af12c7e4f42f5e5
 >>>>>>> c1e12a2d4dfd1cef1950988e03ea25962dc7cd79
+=======
+>>>>>>> 2311370a4a3c905bf54cfcad94358b4127bf3c0f
             // 
             // Registration2
             // 
@@ -87,14 +92,9 @@
             this.Controls.Add(this.lblHeader);
             this.Controls.Add(this.checkedListBox1);
             this.Controls.Add(this.btnNext);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Registration2";
-<<<<<<< HEAD
             this.Text = "Registration - Tutor Courses";
-=======
-            this.Text = ".";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
->>>>>>> 32f2c5a2675e30bd20d66fc03af12c7e4f42f5e5
             this.ResumeLayout(false);
             this.PerformLayout();
 
