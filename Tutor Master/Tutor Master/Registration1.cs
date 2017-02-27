@@ -61,7 +61,7 @@ namespace Tutor_Master
             //the tutor page and then THAT tutor page will decide whether or not the tutee page will run.
             //This loop is only for exclusively tutee profiles.
             else if (isTutee)
-            {  
+            {
 
                 //Garrett write a query: update base Profile to tutee
                 Database db = new Database();
@@ -71,6 +71,11 @@ namespace Tutor_Master
                 var next = new Registration3(username);
                 this.Hide();
                 next.Show();
+            }
+            else
+            {
+                MessageBox.Show("Must choose at least one type of profile.");
+                //User did not click either box.
             }
 
             

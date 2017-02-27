@@ -60,13 +60,6 @@
             this.checkedListBox1.Name = "checkedListBox1";
             this.checkedListBox1.Size = new System.Drawing.Size(120, 94);
             this.checkedListBox1.TabIndex = 2;
-
-
-            //this.checkedListBox1.SelectedIndexChanged += new System.EventHandler(this.checkedListBox1_SelectedIndexChanged);
-
-
-            //this.checkedListBox1.SelectedIndexChanged += new System.EventHandler(this.checkedListBox1_SelectedIndexChanged);
-
             // 
             // lblHeader
             // 
@@ -74,9 +67,9 @@
             this.lblHeader.AutoSize = true;
             this.lblHeader.Location = new System.Drawing.Point(34, 9);
             this.lblHeader.Name = "lblHeader";
-            this.lblHeader.Size = new System.Drawing.Size(217, 13);
+            this.lblHeader.Size = new System.Drawing.Size(219, 13);
             this.lblHeader.TabIndex = 3;
-            this.lblHeader.Text = "Select the classes you want to be a tutor for.";
+            this.lblHeader.Text = "Select the courses you want to be a tutor for.";
             // 
             // Registration2
             // 
