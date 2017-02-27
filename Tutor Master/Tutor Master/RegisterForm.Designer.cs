@@ -126,7 +126,6 @@
             this.tbxLastName.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.tbxLastName.Location = new System.Drawing.Point(397, 106);
             this.tbxLastName.Name = "tbxLastName";
-            this.tbxLastName.PasswordChar = '*';
             this.tbxLastName.Size = new System.Drawing.Size(100, 20);
             this.tbxLastName.TabIndex = 21;
             // 

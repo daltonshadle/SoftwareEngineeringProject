@@ -246,6 +246,48 @@ namespace Tutor_Master
             }
         }
 
+        //gets all of the courses to fill the check boxes during registration process
+        public List<string> getAllCourses()
+        {
+            string query;
+            query = "SELECT name FROM courses";
+
+            List<string> list = new List<string>();
+
+            if (this.OpenConnection())
+            {
+                SqlCeCommand cmd = new SqlCeCommand();
+                cmd.CommandText = query;
+                cmd.Connection = con;
+                try
+                {
+                    SqlCeDataReader dataReader = cmd.ExecuteReader();
+
+                    //Read the data and store them in the list
+                    while (dataReader.Read())
+                    {
+                        string tempString = dataReader.GetString(0);
+                        list.Add(tempString);
+                    }
+
+                    //close Data Reader
+                    dataReader.Close();
+                    this.CloseConnection();
+                    return list;
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    list.Clear();
+                    this.CloseConnection();
+                    return list;
+                }
+            }
+            else
+                return list;
+        }
+
         //set the isTutor value to the value passed in
         //have to change to update statement
         public void setTutorStatus(string username, bool isTutor)

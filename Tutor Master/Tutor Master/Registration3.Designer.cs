@@ -56,8 +56,8 @@
             "CS 1",
             "CS 2",
             "Foundations of CS",
-            "Western Religions of China",
-            "General Physal 1",
+            "Religions of China",
+            "General Physics 1",
             "General Physics 2"});
             this.checkedListBox1.Location = new System.Drawing.Point(81, 50);
             this.checkedListBox1.Name = "checkedListBox1";
@@ -68,11 +68,11 @@
             // 
             this.lblHeader.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblHeader.AutoSize = true;
-            this.lblHeader.Location = new System.Drawing.Point(34, 9);
+            this.lblHeader.Location = new System.Drawing.Point(47, 9);
             this.lblHeader.Name = "lblHeader";
-            this.lblHeader.Size = new System.Drawing.Size(217, 13);
+            this.lblHeader.Size = new System.Drawing.Size(195, 13);
             this.lblHeader.TabIndex = 4;
-            this.lblHeader.Text = "Select the classes you want to be a tutor for.";
+            this.lblHeader.Text = "Select the courses you want a tutor for. ";
             // 
             // Registration3
             // 

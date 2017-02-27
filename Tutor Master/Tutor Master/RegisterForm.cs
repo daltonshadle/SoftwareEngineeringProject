@@ -36,33 +36,39 @@ namespace Tutor_Master
             bool passValid = ((password.Length > 5) && (!password.Contains(" ")));
             bool passesMatch = (passValid && (password == passConfirm));
 
-            if (passesMatch)
+            if (username != "" && password != "" && passConfirm != "")
             {
-                Database db = new Database();
-<<<<<<< HEAD
-                db.isValidSignIn(username, password, ref accountValid);
-=======
-                db.isValidRegisterInfo(username, password, firstName, lastName, ref accountValid);
->>>>>>> 0dfce605a9664d6b1ba19c0dda5c754a2e0c5f98
 
-                if (accountValid)
+                if (passesMatch)
                 {
-                    //MessageBox.Show("Your account has been successfully registered.");
+                    Database db = new Database();
+                    db.isValidSignIn(username, password, ref accountValid);
+                    db.isValidRegisterInfo(username, password, firstName, lastName, ref accountValid);
 
-                    Form nextForm = new Registration(username);
-                    this.Hide();
-                    nextForm.Show();
+                    if (accountValid)
+                    {
+                        //MessageBox.Show("Your account has been successfully registered.");
+
+                        Form nextForm = new Registration(username);
+                        this.Hide();
+                        nextForm.Show();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Username not available.");
+                        //username doesn't match database, display error message
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Username not available.");
-                    //username doesn't match database, display error message
+                    MessageBox.Show("Invalid password- must be at least 6 characters, no spaces");
+                    //password doesn't match, display error message
                 }
             }
             else
             {
-                MessageBox.Show("Invalid password- must be at least 6 characters, no spaces");
-                //password doesn't match, display error message
+                MessageBox.Show("Required fields must not be empty.");
+                //All 3 of the required items were not submitted.
             }
         }
     }

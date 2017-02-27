@@ -15,8 +15,9 @@ namespace Tutor_Master
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-        
-            Application.Run(new StartForm());
+
+
+            //Application.Run(new StartForm());
 
             bool val = true;
             List<string> list= new List<string>();
@@ -29,7 +30,8 @@ namespace Tutor_Master
             //db.getCourseList("coolTerry7", true);
             //db.setTutorStatus("coolTerry7", true);
             //db.addNewCourseList("bbailey", list, false);
-            db.deleteAccount("coolTerry7", "rockstar#1");
+            //db.deleteAccount("coolTerry7", "rockstar#1");
+            db.getAllCourses();
             //Application.Run(new StartForm());
         }
     }
