@@ -21,6 +21,17 @@ namespace Tutor_Master
             this.Icon = Tutor_Master.Properties.Resources.favicon;
         }
 
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            base.OnFormClosing(e);
+
+            if (e.CloseReason == CloseReason.WindowsShutDown) return;
+
+            // Confirm user wants to close
+            Database db = new Database();
+            db.deleteAccount(username);
+        }
+
         private void chkTutor_CheckedChanged(object sender, EventArgs e)
         {
             isTutor = true;

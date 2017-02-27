@@ -35,6 +35,17 @@ namespace Tutor_Master
             tuteeClassesList = new List<string>();
         }
 
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            base.OnFormClosing(e);
+
+            if (e.CloseReason == CloseReason.WindowsShutDown) return;
+
+            // Confirm user wants to close
+            Database db = new Database();
+            db.deleteAccount(username);
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
             if (checkedListBox1.CheckedItems.Count > 0 && checkedListBox1.CheckedItems.Count < 5)

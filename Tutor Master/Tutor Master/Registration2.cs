@@ -15,10 +15,15 @@ namespace Tutor_Master
         string username;
         List<String> tutorClassesList;
 
+        Database db = new Database();
+
         public Registration2()
         {
             InitializeComponent();
             this.Icon = Tutor_Master.Properties.Resources.favicon;
+
+            //Here we will try to fill the checkboxes
+            //db.getAllCourses();
         }
 
         public Registration2(string user, bool isTutor, bool isTutee)
@@ -29,6 +34,26 @@ namespace Tutor_Master
             tuteeAcc = isTutee;
             username = user;
             tutorClassesList = new List<string>();
+
+            //Here we will try to fill the checkboxes
+            //List<String> courses = db.getAllCourses();
+
+            var checkBox = (CheckedListBox)checkedListBox1;
+            for (int i = 0; i < 7; i++)
+            {
+                checkBox.Text = "Hello";
+            }
+        }
+
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            base.OnFormClosing(e);
+
+            if (e.CloseReason == CloseReason.WindowsShutDown) return;
+
+            // Confirm user wants to close
+            Database db = new Database();
+            db.deleteAccount(username);
         }
 
         private void button1_Click(object sender, EventArgs e)
