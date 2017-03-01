@@ -38,15 +38,6 @@ namespace Tutor_Master
 
             if (username != "" && password != "" && passConfirm != "")
             {
-<<<<<<< HEAD
-                Database db = new Database();
-
-                db.isValidSignIn(username, password, ref accountValid);
-
-                db.isValidRegisterInfo(username, password, firstName, lastName, ref accountValid);
-
-=======
->>>>>>> 02506ba197a8654f9496b2e78534bb143b9499f7
 
                 if (passesMatch)
                 {

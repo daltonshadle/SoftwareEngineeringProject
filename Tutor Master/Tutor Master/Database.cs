@@ -426,5 +426,56 @@ namespace Tutor_Master
                 this.CloseConnection();
             }
         }
+
+        public List<string> getProfileInfo(string username)
+        {
+            string query;
+            query = "SELECT profile.firstName, profile.lastName, tuteeCourses.course1 AS tuteeCourse1, tuteeCourses.course2 AS tuteeCourse2, tuteeCourses.course3 AS tuteeCourse3, tuteeCourses.course4 AS tuteeCourse4, tutorCourses.course1 AS tutorCourse1, tutorCourses.course2 AS tutorCourse2, tutorCourses.course3 AS tutorCourse3, tutorCourses.course4 AS tutorCourse4 FROM profile LEFT OUTER JOIN tuteeCourses ON profile.username = tuteeCourses.username LEFT OUTER JOIN tutorCourses ON profile.username = tutorCourses.username WHERE profile.username = @username";
+
+
+            List<string> list = new List<string>();
+
+            if (this.OpenConnection())
+            {
+                SqlCeCommand cmd = new SqlCeCommand();
+                cmd.CommandText = query;
+                cmd.Parameters.Add("@username", username);
+                cmd.Connection = con;
+                try
+                {
+                    SqlCeDataReader dataReader = cmd.ExecuteReader();
+
+                    //Read the data and store them in the list
+                    while (dataReader.Read())
+                    {
+                        list.Add(dataReader["firstName"] + "");
+                        list.Add(dataReader["lastName"] + "");
+                        list.Add(dataReader["tuteeCourse1"] + "");
+                        list.Add(dataReader["tuteeCourse2"] + "");
+                        list.Add(dataReader["tuteeCourse3"] + "");
+                        list.Add(dataReader["tuteeCourse4"] + "");
+                        list.Add(dataReader["tutorCourse1"] + "");
+                        list.Add(dataReader["tutorCourse2"] + "");
+                        list.Add(dataReader["tutorCourse3"] + "");
+                        list.Add(dataReader["tutorCourse4"] + "");
+                    }
+
+                    //close Data Reader
+                    dataReader.Close();
+                    this.CloseConnection();
+                    return list;
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    list.Clear();
+                    this.CloseConnection();
+                    return list;
+                }
+            }
+            else
+                return list;
+        }
     }
 }

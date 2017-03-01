@@ -38,11 +38,11 @@ namespace Tutor_Master
             //Here we will try to fill the checkboxes
             //List<String> courses = db.getAllCourses();
 
-            var checkBox = (CheckedListBox)checkedListBox1;
-            for (int i = 0; i < 7; i++)
-            {
-                checkBox.Text = "Hello";
-            }
+            //var checkBox = (CheckedListBox)checkedListBox1;
+            //for (int i = 0; i < 7; i++)
+            //{
+            //    checkBox.Text = "Hello";
+            //}
         }
 
         protected override void OnFormClosing(FormClosingEventArgs e)
