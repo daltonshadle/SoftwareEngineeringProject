@@ -42,5 +42,12 @@ namespace Tutor_Master
             return str.ToUpper();
         }
 
+        private void btnLogout_Click(object sender, EventArgs e)
+        {
+            var form = new StartForm();
+            form.Show();
+            this.Hide();
+        }
+
     }
 }

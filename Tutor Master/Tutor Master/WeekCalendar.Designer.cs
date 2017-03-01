@@ -34,11 +34,19 @@
             this.panelMon = new System.Windows.Forms.Panel();
             this.lblMonday = new System.Windows.Forms.Label();
             this.panelTues = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.lblTuesday = new System.Windows.Forms.Label();
+            this.shapeContainer1 = new Microsoft.VisualBasic.PowerPacks.ShapeContainer();
+            this.rectangleShape1 = new Microsoft.VisualBasic.PowerPacks.RectangleShape();
             this.panelWed = new System.Windows.Forms.Panel();
             this.lblWednesday = new System.Windows.Forms.Label();
             this.panelThur = new System.Windows.Forms.Panel();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.lblThursday = new System.Windows.Forms.Label();
+            this.shapeContainer2 = new Microsoft.VisualBasic.PowerPacks.ShapeContainer();
+            this.rectangleShape2 = new Microsoft.VisualBasic.PowerPacks.RectangleShape();
             this.panelFri = new System.Windows.Forms.Panel();
             this.lblFriday = new System.Windows.Forms.Label();
             this.panelSat = new System.Windows.Forms.Panel();
@@ -57,9 +65,9 @@
             this.lblWeek.AutoSize = true;
             this.lblWeek.Location = new System.Drawing.Point(386, 11);
             this.lblWeek.Name = "lblWeek";
-            this.lblWeek.Size = new System.Drawing.Size(96, 13);
+            this.lblWeek.Size = new System.Drawing.Size(90, 13);
             this.lblWeek.TabIndex = 0;
-            this.lblWeek.Text = "2/19/17 - 2/25/17";
+            this.lblWeek.Text = "2/26/17 - 3/4/17";
             // 
             // panelSun
             // 
@@ -100,11 +108,34 @@
             // panelTues
             // 
             this.panelTues.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelTues.Controls.Add(this.label2);
+            this.panelTues.Controls.Add(this.label1);
             this.panelTues.Controls.Add(this.lblTuesday);
+            this.panelTues.Controls.Add(this.shapeContainer1);
             this.panelTues.Location = new System.Drawing.Point(251, 38);
             this.panelTues.Name = "panelTues";
             this.panelTues.Size = new System.Drawing.Size(118, 186);
             this.panelTues.TabIndex = 3;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.label2.Location = new System.Drawing.Point(15, 60);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(84, 13);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "8:00PM - Library";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.label1.Location = new System.Drawing.Point(25, 35);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(66, 13);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "Appointment";
             // 
             // lblTuesday
             // 
@@ -114,6 +145,25 @@
             this.lblTuesday.Size = new System.Drawing.Size(48, 13);
             this.lblTuesday.TabIndex = 0;
             this.lblTuesday.Text = "Tuesday";
+            // 
+            // shapeContainer1
+            // 
+            this.shapeContainer1.Location = new System.Drawing.Point(0, 0);
+            this.shapeContainer1.Margin = new System.Windows.Forms.Padding(0);
+            this.shapeContainer1.Name = "shapeContainer1";
+            this.shapeContainer1.Shapes.AddRange(new Microsoft.VisualBasic.PowerPacks.Shape[] {
+            this.rectangleShape1});
+            this.shapeContainer1.Size = new System.Drawing.Size(116, 184);
+            this.shapeContainer1.TabIndex = 1;
+            this.shapeContainer1.TabStop = false;
+            // 
+            // rectangleShape1
+            // 
+            this.rectangleShape1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.rectangleShape1.BackStyle = Microsoft.VisualBasic.PowerPacks.BackStyle.Opaque;
+            this.rectangleShape1.Location = new System.Drawing.Point(7, 30);
+            this.rectangleShape1.Name = "rectangleShape1";
+            this.rectangleShape1.Size = new System.Drawing.Size(100, 50);
             // 
             // panelWed
             // 
@@ -136,11 +186,34 @@
             // panelThur
             // 
             this.panelThur.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelThur.Controls.Add(this.label4);
+            this.panelThur.Controls.Add(this.label3);
             this.panelThur.Controls.Add(this.lblThursday);
+            this.panelThur.Controls.Add(this.shapeContainer2);
             this.panelThur.Location = new System.Drawing.Point(499, 38);
             this.panelThur.Name = "panelThur";
             this.panelThur.Size = new System.Drawing.Size(118, 186);
             this.panelThur.TabIndex = 5;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.label4.Location = new System.Drawing.Point(17, 60);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(81, 13);
+            this.label4.TabIndex = 8;
+            this.label4.Text = "3:00PM - Stuart";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.label3.Location = new System.Drawing.Point(25, 35);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(66, 13);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "Appointment";
             // 
             // lblThursday
             // 
@@ -151,6 +224,25 @@
             this.lblThursday.TabIndex = 0;
             this.lblThursday.Text = "Thursday";
             this.lblThursday.Click += new System.EventHandler(this.lblThursday_Click);
+            // 
+            // shapeContainer2
+            // 
+            this.shapeContainer2.Location = new System.Drawing.Point(0, 0);
+            this.shapeContainer2.Margin = new System.Windows.Forms.Padding(0);
+            this.shapeContainer2.Name = "shapeContainer2";
+            this.shapeContainer2.Shapes.AddRange(new Microsoft.VisualBasic.PowerPacks.Shape[] {
+            this.rectangleShape2});
+            this.shapeContainer2.Size = new System.Drawing.Size(116, 184);
+            this.shapeContainer2.TabIndex = 1;
+            this.shapeContainer2.TabStop = false;
+            // 
+            // rectangleShape2
+            // 
+            this.rectangleShape2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.rectangleShape2.BackStyle = Microsoft.VisualBasic.PowerPacks.BackStyle.Opaque;
+            this.rectangleShape2.Location = new System.Drawing.Point(7, 30);
+            this.rectangleShape2.Name = "rectangleShape2";
+            this.rectangleShape2.Size = new System.Drawing.Size(100, 50);
             // 
             // panelFri
             // 
@@ -238,5 +330,13 @@
         private System.Windows.Forms.Label lblFriday;
         private System.Windows.Forms.Panel panelSat;
         private System.Windows.Forms.Label lblSaturday;
+        private Microsoft.VisualBasic.PowerPacks.ShapeContainer shapeContainer1;
+        private Microsoft.VisualBasic.PowerPacks.RectangleShape rectangleShape1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label3;
+        private Microsoft.VisualBasic.PowerPacks.ShapeContainer shapeContainer2;
+        private Microsoft.VisualBasic.PowerPacks.RectangleShape rectangleShape2;
     }
 }

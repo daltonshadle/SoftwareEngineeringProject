@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StartForm));
             this.label1 = new System.Windows.Forms.Label();
             this.btnSignIn = new System.Windows.Forms.Button();
             this.btnRegister = new System.Windows.Forms.Button();
@@ -46,7 +45,7 @@
             // btnSignIn
             // 
             this.btnSignIn.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnSignIn.Location = new System.Drawing.Point(88, 154);
+            this.btnSignIn.Location = new System.Drawing.Point(240, 263);
             this.btnSignIn.Name = "btnSignIn";
             this.btnSignIn.Size = new System.Drawing.Size(75, 23);
             this.btnSignIn.TabIndex = 1;
@@ -57,7 +56,7 @@
             // btnRegister
             // 
             this.btnRegister.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnRegister.Location = new System.Drawing.Point(223, 154);
+            this.btnRegister.Location = new System.Drawing.Point(375, 263);
             this.btnRegister.Name = "btnRegister";
             this.btnRegister.Size = new System.Drawing.Size(75, 23);
             this.btnRegister.TabIndex = 2;
@@ -70,7 +69,7 @@
             this.lblTutorMaster.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblTutorMaster.AutoSize = true;
             this.lblTutorMaster.Font = new System.Drawing.Font("Harlow Solid Italic", 36F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTutorMaster.Location = new System.Drawing.Point(40, 50);
+            this.lblTutorMaster.Location = new System.Drawing.Point(192, 159);
             this.lblTutorMaster.Name = "lblTutorMaster";
             this.lblTutorMaster.Size = new System.Drawing.Size(307, 61);
             this.lblTutorMaster.TabIndex = 3;
@@ -80,7 +79,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(384, 262);
+            this.ClientSize = new System.Drawing.Size(689, 481);
             this.Controls.Add(this.lblTutorMaster);
             this.Controls.Add(this.btnRegister);
             this.Controls.Add(this.btnSignIn);

@@ -122,6 +122,42 @@ namespace Tutor_Master
             }
         }
 
+        /*
+        public void isUsernameInDataBase(string user, bool isValid)
+        {
+            string query = "SELECT TOP username FROM profile WHERE username = @username";
+
+            if (this.OpenConnection())
+            {
+                SqlCeCommand cmd = new SqlCeCommand();
+                cmd.CommandText = query;
+                cmd.Parameters.Add("@username", user);
+                cmd.Connection = con;
+                try
+                {
+                    SqlCeDataReader dataReader = cmd.ExecuteReader();
+
+                    //Read the data and store them in the list
+                    while (dataReader.Read())
+                    {
+                        list.Add(dataReader["password"] + "");
+                    }
+
+                    //close Data Reader
+                    dataReader.Close();
+
+                }
+                catch
+                {
+                    isValid = false;
+                }
+
+                this.CloseConnection();
+            }
+            
+        }
+        */
+
         public void addAppointment(string meetingPlace, string course, DateTime startTime, DateTime endTime, Tutor tutor, Tutee tutee)
         {
             {

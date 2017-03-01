@@ -26,7 +26,8 @@ namespace Tutor_Master
             Graphics g = p.CreateGraphics();
             Brush b = new SolidBrush(Color.Red);
 
-            g.FillRectangle(b, 10, 25, p.Width - 20, 30);
+            g.FillRectangle(b, 10, 25, p.Width - 22, 30);
         }
+
     }
 }
