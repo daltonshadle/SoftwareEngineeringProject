@@ -38,7 +38,10 @@ namespace Tutor_Master
 
             if (username != "" && password != "" && passConfirm != "")
             {
+<<<<<<< HEAD
 
+=======
+>>>>>>> df7678b6d78b6f991da665212445aac917b9d46e
                 if (passesMatch)
                 {
                     Database db = new Database();

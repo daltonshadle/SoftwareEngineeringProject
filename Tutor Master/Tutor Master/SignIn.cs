@@ -18,6 +18,7 @@ namespace Tutor_Master
         public SignIn()
         {
             InitializeComponent();
+            this.Icon = Tutor_Master.Properties.Resources.favicon;
         }
 
         private void btnSignIn_Click(object sender, EventArgs e)
@@ -46,5 +47,13 @@ namespace Tutor_Master
                 //username doesn't match database, display error message
             }
         }
+
+        private void btnRegister_Click(object sender, EventArgs e)
+        {
+            var regis = new RegisterForm();
+            regis.Show();
+            this.Hide();
+        }
+
     }
 }
