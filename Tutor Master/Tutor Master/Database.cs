@@ -423,6 +423,8 @@ namespace Tutor_Master
             }
         }
 
+        //This function is called if the X button is hit during the register process to
+        //delete any information we may have put into the database
         public void deleteAccount(string username)
         {
             Database db = new Database();
@@ -463,10 +465,12 @@ namespace Tutor_Master
             }
         }
 
+        //Returns the first and last name, if the user is a tutor and/or tutee
+        //along with all of their courses
         public List<string> getProfileInfo(string username)
         {
             string query;
-            query = "SELECT profile.firstName, profile.lastName, tuteeCourses.course1 AS tuteeCourse1, tuteeCourses.course2 AS tuteeCourse2, tuteeCourses.course3 AS tuteeCourse3, tuteeCourses.course4 AS tuteeCourse4, tutorCourses.course1 AS tutorCourse1, tutorCourses.course2 AS tutorCourse2, tutorCourses.course3 AS tutorCourse3, tutorCourses.course4 AS tutorCourse4 FROM profile LEFT OUTER JOIN tuteeCourses ON profile.username = tuteeCourses.username LEFT OUTER JOIN tutorCourses ON profile.username = tutorCourses.username WHERE profile.username = @username";
+            query = "SELECT profile.firstName, profile.lastName, profile.isTutor, profile.isTutee, tuteeCourses.course1 AS tuteeCourse1, tuteeCourses.course2 AS tuteeCourse2, tuteeCourses.course3 AS tuteeCourse3, tuteeCourses.course4 AS tuteeCourse4, tutorCourses.course1 AS tutorCourse1, tutorCourses.course2 AS tutorCourse2, tutorCourses.course3 AS tutorCourse3, tutorCourses.course4 AS tutorCourse4 FROM profile LEFT OUTER JOIN tuteeCourses ON profile.username = tuteeCourses.username LEFT OUTER JOIN tutorCourses ON profile.username = tutorCourses.username WHERE profile.username = @username";
 
 
             List<string> list = new List<string>();
@@ -486,6 +490,8 @@ namespace Tutor_Master
                     {
                         list.Add(dataReader["firstName"] + "");
                         list.Add(dataReader["lastName"] + "");
+                        list.Add(dataReader["isTutor"] + "");
+                        list.Add(dataReader["isTutee"] + "");
                         list.Add(dataReader["tuteeCourse1"] + "");
                         list.Add(dataReader["tuteeCourse2"] + "");
                         list.Add(dataReader["tuteeCourse3"] + "");
@@ -513,5 +519,48 @@ namespace Tutor_Master
             else
                 return list;
         }
+
+        //create a message to send between users
+        public void sendMessage(string fromUser, string toUser, string subject, string message, bool? pending, DateTime sentTime)
+        {
+            string query;
+            query = "INSERT INTO messages (fromUserName, toUserName, subject, messages, pending, timeSent) VALUES (@fromUser, @toUser, @subject, @message, @pending, @sentTime)";
+
+            if (this.OpenConnection())
+            {
+                SqlCeCommand cmd = new SqlCeCommand();
+                cmd.CommandText = query;
+                cmd.Parameters.Add("@fromUser", fromUser);
+                cmd.Parameters.Add("@toUser", toUser);
+                cmd.Parameters.Add("@subject", subject);
+                cmd.Parameters.Add("@message", message);
+                if (pending == null)
+                    cmd.Parameters.Add("@pending", DBNull.Value);
+                else
+                    cmd.Parameters.Add("@pending", pending);
+                cmd.Parameters.Add("@sentTime", sentTime);
+                cmd.Connection = con;
+                try
+                {
+                    cmd.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+
+                this.CloseConnection();
+            }
+        }
+
+        //get inbox, received messages that were sent to user
+        //public List<Messages> getInbox(string username){} ---> Messages will have to be a new class
+        
+        //get sent, find all the messages send by user
+        //public List<Messages> getSentMail(string username){} ---> Messages will have to be a new class
+
+        //delete a message from your list
+        //public void deleteMessage(Messages messageToDelete) {} ---> Have to see if this is a way of finding a unique message
+
     }
 }
