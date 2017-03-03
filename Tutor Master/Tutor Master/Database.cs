@@ -463,13 +463,13 @@ namespace Tutor_Master
             }
         }
 
-        public List<string> getProfileInfo(string username)
+        public List<String> getProfileInfo(String username)
         {
-            string query;
+            String query;
             query = "SELECT profile.firstName, profile.lastName, tuteeCourses.course1 AS tuteeCourse1, tuteeCourses.course2 AS tuteeCourse2, tuteeCourses.course3 AS tuteeCourse3, tuteeCourses.course4 AS tuteeCourse4, tutorCourses.course1 AS tutorCourse1, tutorCourses.course2 AS tutorCourse2, tutorCourses.course3 AS tutorCourse3, tutorCourses.course4 AS tutorCourse4 FROM profile LEFT OUTER JOIN tuteeCourses ON profile.username = tuteeCourses.username LEFT OUTER JOIN tutorCourses ON profile.username = tutorCourses.username WHERE profile.username = @username";
 
 
-            List<string> list = new List<string>();
+            List<String> list = new List<String>();
 
             if (this.OpenConnection())
             {
