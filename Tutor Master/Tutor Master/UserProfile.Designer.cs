@@ -30,6 +30,7 @@
         {
             this.weekCalendar1 = new Tutor_Master.WeekCalendar();
             this.btnLogout = new System.Windows.Forms.Button();
+            this.lbTutor = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // weekCalendar1
@@ -49,17 +50,29 @@
             this.btnLogout.UseVisualStyleBackColor = true;
             this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
             // 
+            // lbTutor
+            // 
+            this.lbTutor.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lbTutor.AutoSize = true;
+            this.lbTutor.Location = new System.Drawing.Point(210, 83);
+            this.lbTutor.Name = "lbTutor";
+            this.lbTutor.Size = new System.Drawing.Size(101, 13);
+            this.lbTutor.TabIndex = 3;
+            this.lbTutor.Text = "Courses for tutoring:";
+            // 
             // UserProfile
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1066, 517);
+            this.Controls.Add(this.lbTutor);
             this.Controls.Add(this.btnLogout);
             this.Controls.Add(this.weekCalendar1);
             this.Name = "UserProfile";
             this.Text = "User Profile";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -67,5 +80,6 @@
 
         private WeekCalendar weekCalendar1;
         private System.Windows.Forms.Button btnLogout;
+        private System.Windows.Forms.Label lbTutor;
     }
 }

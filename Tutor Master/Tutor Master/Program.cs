@@ -15,12 +15,18 @@ namespace Tutor_Master
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+<<<<<<< HEAD
 
+=======
+>>>>>>> 9331f0fa2c7c50a2a4ded867482622d6eb435200
             //Application.Run(new StartForm());
 
             Database db = new Database();
             db.sendMessage("grbohach", "coolTerry7", "tutor request", "I want to tutor cs1", null, DateTime.Now);
+<<<<<<< HEAD
 
+=======
+>>>>>>> 9331f0fa2c7c50a2a4ded867482622d6eb435200
             Application.Run(new StartForm());
         }
     }

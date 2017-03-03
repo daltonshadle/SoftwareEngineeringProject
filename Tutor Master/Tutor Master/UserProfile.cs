@@ -48,8 +48,29 @@ namespace Tutor_Master
                 this.Text = username;
             }
 
-
             this.Icon = Tutor_Master.Properties.Resources.favicon;
+
+            // If so, loop through all checked items and print results. 
+            if (tutorCoursesList[0] != "")
+            {
+                var listBox = new ListBox();
+                for (int x = 0; x <= tutorCoursesList.Count - 1; x++)
+                {
+                    listBox.Items.Add(tutorCoursesList[x]);
+                }
+            }
+            else
+            {
+                var button = new Button();
+                button.Text = "Click here to add courses for tutoring.";
+            }
+        }
+
+        private void btnButton_Click(object sender, EventArgs e)
+        {
+            var form = new StartForm();
+            form.Show();
+            this.Hide();
         }
 
         //Function casts the first letter of the string to be capitalized...
@@ -70,6 +91,8 @@ namespace Tutor_Master
             form.Show();
             this.Hide();
         }
+
+
 
     }
 }
