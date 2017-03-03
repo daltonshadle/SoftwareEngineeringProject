@@ -60,7 +60,7 @@ namespace Tutor_Master
                 }
                 else
                 {
-                    MessageBox.Show("Invalid password- must be at least 6 characters, no spaces");
+                    MessageBox.Show("Invalid password. Passwords must match and be at least 6 characters, no spaces");
                     //password doesn't match, display error message
                 }
             }

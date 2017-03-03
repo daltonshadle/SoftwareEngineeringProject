@@ -302,8 +302,8 @@ namespace Tutor_Master
                     //Read the data and store them in the list
                     while (dataReader.Read())
                     {
-                        string tempString = dataReader.GetString(0);
-                        list.Add(tempString);
+                        string tempstring = dataReader.GetString(0);
+                        list.Add(tempstring);
                     }
 
                     //close Data Reader
