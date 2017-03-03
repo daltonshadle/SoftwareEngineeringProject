@@ -11,9 +11,95 @@ namespace Tutor_Master
 {
     public partial class AppointmentBlock : UserControl
     {
+
+        private string apptType;
+        private string apptPlace;
+        private string apptCourse;
+        private string apptTime;
+        private string otherProfileName;
+
         public AppointmentBlock()
         {
             InitializeComponent();
         }
+
+        public AppointmentBlock(string type, string place, DateTime time, string course, Profile user)
+        {
+            InitializeComponent();
+            apptCourse = course;
+            apptPlace = place;
+            apptTime = time.ToShortTimeString();
+            apptType = type;
+            otherProfileName = user.getUsername();
+
+            setViews();
+        }
+
+        private void setViews() {
+            lblAppointmentType.Text = apptType;
+            lblCourse.Text = apptCourse;
+            lblName.Text = otherProfileName;
+            lblTimeAndPlace.Text = apptTime + " " + apptPlace;
+
+            setBackColor();
+        }
+
+        private void setBackColor() {
+            if (apptType.Equals("Teaching"))
+            {
+                this.BackColor = Color.Aqua;
+            }
+            if (apptType.Equals("Learning"))
+            {
+                this.BackColor = Color.Green;
+            }
+            if (apptType.Equals("Freetime"))
+            {
+                this.BackColor = Color.Yellow;
+            }
+        }
+        
+        public string getAppointmentName() {
+            return apptType;
+        }
+
+        public void setAppointmentName(string type) {
+            lblAppointmentType.Text = type;
+            apptType = type;
+
+            setBackColor();
+        }
+
+        public string getTimeAndPlace()
+        {
+            return apptTime + " " + apptPlace;
+        }
+
+        public void setTimeAndPlace(string place, DateTime time)
+        {
+            lblTimeAndPlace.Text = time.ToShortTimeString() + " " + place;
+        }
+
+        public string getCourse()
+        {
+            return apptCourse;
+        }
+
+        public void setCourse(string course)
+        {
+            lblCourse.Text = course;
+        }
+
+        public string getName()
+        {
+            return otherProfileName;
+        }
+
+        public void setAppointmentName(Profile user)
+        {
+            string name = user.getUsername();
+            lblAppointmentType.Text = name;
+        }
+
     }
 }

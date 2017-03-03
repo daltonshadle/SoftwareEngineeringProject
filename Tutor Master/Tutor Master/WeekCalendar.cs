@@ -14,7 +14,7 @@ namespace Tutor_Master
         public WeekCalendar()
         {
             InitializeComponent();
-            drawAppoint(panelSun);
+            //drawAppoint(panelSun);
             updateWeekLabel();
         }
 
@@ -33,13 +33,44 @@ namespace Tutor_Master
         }
 
         public void drawAppoint(Panel p) {
-            Graphics g = p.CreateGraphics();
-            Brush b = new SolidBrush(Color.Red);
-
-            g.FillRectangle(b, 10, 25, p.Width - 22, 30);
-            AppointmentBlock a = new AppointmentBlock();
+            DateTime d = DateTime.Now;
+            Profile user = new Profile("Tommy", "asdfghj");
+            AppointmentBlock a = new AppointmentBlock("Learning", "Library", d, "CS1", user);
             a.Location = new Point(9, 30);
             p.Controls.Add(a);
+        }
+
+        public void drawAppointment(Appointment appt, string type) {
+            DateTime time = appt.getStartTime();
+            string course = appt.getCourse();
+            string place = appt.getMeetingPlace();
+            Profile user = appt.getTutee();
+
+
+            AppointmentBlock a = new AppointmentBlock(type, place, time, course, user);
+            a.Location = new Point(9, 30);
+            Panel panelDay = findRightPanel(time);
+            panelDay.Controls.Add(a);
+        }
+
+        private Panel findRightPanel(DateTime time) {
+            if (time.DayOfWeek == DayOfWeek.Sunday)
+                return panelSun;
+            if (time.DayOfWeek == DayOfWeek.Monday)
+                return panelMon;
+            if (time.DayOfWeek == DayOfWeek.Tuesday)
+                return panelTues;
+            if (time.DayOfWeek == DayOfWeek.Wednesday)
+                return panelWed;
+            if (time.DayOfWeek == DayOfWeek.Thursday)
+                return panelThur;
+            if (time.DayOfWeek == DayOfWeek.Friday)
+                return panelFri;
+            if (time.DayOfWeek == DayOfWeek.Saturday)
+                return panelSat;
+
+            Panel p = new Panel();
+            return p;
         }
 
     }

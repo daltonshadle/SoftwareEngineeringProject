@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Tutor_Master
 {
-    class Profile
+    public class Profile
     {
         //all the private data
         private string username;
@@ -35,6 +35,10 @@ namespace Tutor_Master
             //runs through profile sign in process
             Database db = new Database();
             db.isValidSignIn(user, password, ref isValid);
+        }
+
+        public string getUsername() {
+            return username;
         }
     }
 }

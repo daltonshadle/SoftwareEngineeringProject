@@ -67,6 +67,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Administrator.cs" />
+    <Compile Include="AppointmentBlock.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="AppointmentBlock.Designer.cs">
+      <DependentUpon>AppointmentBlock.cs</DependentUpon>
+    </Compile>
     <Compile Include="Faculty.cs" />
     <Compile Include="Appointment.cs" />
     <Compile Include="Database.cs" />
@@ -130,6 +136,9 @@
     <Compile Include="WeekCalendar.designer.cs">
       <DependentUpon>WeekCalendar.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="AppointmentBlock.resx">
+      <DependentUpon>AppointmentBlock.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

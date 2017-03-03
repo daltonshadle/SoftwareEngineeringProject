@@ -6,7 +6,7 @@ using System.Collections;
 
 namespace Tutor_Master
 {
-    class Schedule
+    public class Schedule
     {
         //all the private data
         private SortedList<DateTime, Appointment> profileSchedule;
