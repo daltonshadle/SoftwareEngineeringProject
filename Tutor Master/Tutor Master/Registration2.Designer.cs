@@ -48,14 +48,6 @@
             // 
             this.checkedListBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.checkedListBox1.FormattingEnabled = true;
-            this.checkedListBox1.Items.AddRange(new object[] {
-            "Calc 1",
-            "Calc 2",
-            "Calc 3",
-            "FOAM",
-            "CS1",
-            "CS2",
-            "Foundations of CS"});
             this.checkedListBox1.Location = new System.Drawing.Point(81, 50);
             this.checkedListBox1.Name = "checkedListBox1";
             this.checkedListBox1.Size = new System.Drawing.Size(120, 94);

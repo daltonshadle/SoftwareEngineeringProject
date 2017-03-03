@@ -11,20 +11,42 @@ namespace Tutor_Master
 {
     public partial class UserProfile : Form
     {
-        String first, last;
-
+        private string first;
+        private string last;
+       
         private bool tutorAcc, tuteeAcc;
 
-        public UserProfile(string Title)
+        public UserProfile(string username)
         {
             InitializeComponent();
 
-            //Database db = new Database();
-            //Garrett: db.retrieveInfo(string first, string last, .... )
+            List<string> tuteeCoursesList = new List<string>();
+            List<string> tutorCoursesList = new List<string>();
 
-            first = "dalton";
-            last = "shadle";
-            this.Text = FirstLetterToUpper(first) + " " + FirstLetterToUpper(last);
+            List<string> listOfProfileInfo;
+            Database db = new Database();
+            listOfProfileInfo = db.getProfileInfo(username);
+            first = listOfProfileInfo[0];
+            last = listOfProfileInfo[1];
+
+            tuteeCoursesList.Add(listOfProfileInfo[2]);
+            tuteeCoursesList.Add(listOfProfileInfo[3]);
+            tuteeCoursesList.Add(listOfProfileInfo[4]);
+            tuteeCoursesList.Add(listOfProfileInfo[5]);
+            tutorCoursesList.Add(listOfProfileInfo[6]); 
+            tutorCoursesList.Add(listOfProfileInfo[7]);
+            tutorCoursesList.Add(listOfProfileInfo[8]);
+            tutorCoursesList.Add(listOfProfileInfo[9]);
+
+
+            if (first != "")
+            {
+                this.Text = FirstLetterToUpper(first) + " " + FirstLetterToUpper(last);
+            }
+            else
+            {
+                this.Text = username;
+            }
 
 
             this.Icon = Tutor_Master.Properties.Resources.favicon;

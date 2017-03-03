@@ -13,7 +13,9 @@ namespace Tutor_Master
     {
         bool tutorAcc, tuteeAcc;
         string username;
-        List<String> tuteeClassesList;
+        List<string> tuteeClassesList;
+
+        Database db = new Database();
 
         public Registration3(string user)  //If this constructor is run, it means the profile is only a tutee.
         {
@@ -23,6 +25,15 @@ namespace Tutor_Master
             tuteeAcc = true;
             username = user;
             tuteeClassesList = new List<string>();
+
+            //Here we will try to fill the checkboxes
+            List<string> courses = db.getAllCourses();
+
+            var checkBox = (CheckedListBox)checkedListBox1;
+            for (int i = 0; i < courses.Count(); i++)
+            {
+                checkBox.Items.Add(courses[i]);
+            }
         }
           
         public Registration3(string user, bool isTutor, bool isTutee)    //if this file is run, it means profile is both tutor and tutee
@@ -33,6 +44,15 @@ namespace Tutor_Master
             tuteeAcc = isTutee;
             username = user;
             tuteeClassesList = new List<string>();
+
+            //Here we will try to fill the checkboxes
+            List<string> courses = db.getAllCourses();
+
+            var checkBox = (CheckedListBox)checkedListBox1;
+            for (int i = 0; i < courses.Count(); i++)
+            {
+                checkBox.Items.Add(courses[i]);
+            }
         }
 
         protected override void OnFormClosing(FormClosingEventArgs e)

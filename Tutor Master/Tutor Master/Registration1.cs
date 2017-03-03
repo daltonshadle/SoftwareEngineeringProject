@@ -66,7 +66,7 @@ namespace Tutor_Master
                 //Garrett write a query: update base Profile to tutee
                 Database db = new Database();
                 db.setTuteeStatus(username, isTutee);
-                //username is a String, isTutee is a bool
+                //username is a string, isTutee is a bool
 
                 var next = new Registration3(username);
                 this.Hide();
