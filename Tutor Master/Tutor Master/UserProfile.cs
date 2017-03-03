@@ -11,8 +11,8 @@ namespace Tutor_Master
 {
     public partial class UserProfile : Form
     {
-        private String first;
-        private String last;
+        private string first;
+        private string last;
        
         private bool tutorAcc, tuteeAcc;
 
@@ -20,10 +20,10 @@ namespace Tutor_Master
         {
             InitializeComponent();
 
-            List<String> tuteeCoursesList = new List<String>();
-            List<String> tutorCoursesList = new List<String>();
+            List<string> tuteeCoursesList = new List<string>();
+            List<string> tutorCoursesList = new List<string>();
 
-            List<String> listOfProfileInfo;
+            List<string> listOfProfileInfo;
             Database db = new Database();
             listOfProfileInfo = db.getProfileInfo(username);
             first = listOfProfileInfo[0];

@@ -13,7 +13,7 @@ namespace Tutor_Master
     {
         bool tutorAcc, tuteeAcc;
         string username;
-        List<String> tutorClassesList;
+        List<string> tutorClassesList;
 
         Database db = new Database();
 
@@ -23,7 +23,13 @@ namespace Tutor_Master
             this.Icon = Tutor_Master.Properties.Resources.favicon;
 
             //Here we will try to fill the checkboxes
-            //db.getAllCourses();
+            List<string> courses = db.getAllCourses();
+
+            var checkBox = (CheckedListBox)checkedListBox1;
+            for (int i = 0; i < courses.Count(); i++)
+            {
+                checkBox.Items.Add(courses[i]);
+            }
         }
 
         public Registration2(string user, bool isTutor, bool isTutee)
@@ -36,13 +42,13 @@ namespace Tutor_Master
             tutorClassesList = new List<string>();
 
             //Here we will try to fill the checkboxes
-            //List<String> courses = db.getAllCourses();
+            List<string> courses = db.getAllCourses();
 
-            //var checkBox = (CheckedListBox)checkedListBox1;
-            //for (int i = 0; i < 7; i++)
-            //{
-            //    checkBox.Text = "Hello";
-            //}
+            var checkBox = (CheckedListBox)checkedListBox1;
+            for (int i = 0; i < courses.Count(); i++)
+            {
+                checkBox.Items.Add(courses[i]);
+            }
         }
 
         protected override void OnFormClosing(FormClosingEventArgs e)
@@ -76,7 +82,7 @@ namespace Tutor_Master
                     //Garrett: update base Profile to tutee
                    
                     db.setTuteeStatus(username, tuteeAcc);
-                    //username is a String, isTutee is a bool
+                    //username is a string, isTutee is a bool
 
                     var next = new Registration3(username, tutorAcc, tuteeAcc);
                     this.Hide();
