@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Tutor_Master
 {
-    class Appointment
+    public class Appointment
     {
         //all the private data
         private string meetingPlace;
