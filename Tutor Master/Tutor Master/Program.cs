@@ -18,10 +18,11 @@ namespace Tutor_Master
 
 
             Database db = new Database();
+            Application.Run(new StartForm());
             //db.sendMessage("grbohach", "coolTerry7", "tutor request", "I want to tutor cs1", null, DateTime.Now);
-            db.getInbox("grbohach");
+            //db.getInbox("grbohach");
             //Application.Run(new StartForm());
-            db.sendMessage("grbohach", "coolTerry7", "tutor request", "I want to tutor cs1", null, DateTime.Now);
+            //db.sendMessage("grbohach", "coolTerry7", "tutor request", "I want to tutor cs1", null, DateTime.Now);
 
         }
     }

@@ -11,10 +11,9 @@ namespace Tutor_Master
 {
     public partial class UserProfile : Form
     {
-        private string first;
-        private string last;
+        private string first, last;
        
-        private bool tutorAcc, tuteeAcc;
+        private string tutorAcc, tuteeAcc;
 
         public UserProfile(string username)
         {
@@ -28,16 +27,17 @@ namespace Tutor_Master
             listOfProfileInfo = db.getProfileInfo(username);
             first = listOfProfileInfo[0];
             last = listOfProfileInfo[1];
+            tutorAcc = listOfProfileInfo[2];
+            tuteeAcc = listOfProfileInfo[3];
 
-            tuteeCoursesList.Add(listOfProfileInfo[2]);
-            tuteeCoursesList.Add(listOfProfileInfo[3]);
             tuteeCoursesList.Add(listOfProfileInfo[4]);
             tuteeCoursesList.Add(listOfProfileInfo[5]);
-            tutorCoursesList.Add(listOfProfileInfo[6]); 
-            tutorCoursesList.Add(listOfProfileInfo[7]);
-            tutorCoursesList.Add(listOfProfileInfo[8]);
+            tuteeCoursesList.Add(listOfProfileInfo[6]);
+            tuteeCoursesList.Add(listOfProfileInfo[7]);
+            tutorCoursesList.Add(listOfProfileInfo[8]); 
             tutorCoursesList.Add(listOfProfileInfo[9]);
-
+            tutorCoursesList.Add(listOfProfileInfo[10]);
+            tutorCoursesList.Add(listOfProfileInfo[11]);
 
             if (first != "")
             {
@@ -50,35 +50,49 @@ namespace Tutor_Master
 
             this.Icon = Tutor_Master.Properties.Resources.favicon;
 
+            MessageBox.Show(tutorCoursesList[0] + tutorCoursesList[1] + tutorCoursesList[2] + tutorCoursesList[3]);
+
             // If so, loop through all checked items and print results. 
             if (tutorCoursesList[0] != "")
             {
                 var tutorListView = listView1;
                 for (int x = 0; x < tutorCoursesList.Count; x++)
                 {
-                    tutorListView.Items.Add(tutorCoursesList[x]);
+                    if (tutorCoursesList[x] != "")
+                    {
+                        tutorListView.Items.Add(tutorCoursesList[x]);
+                    }
                 }
                 tutorListView.Visible = true;
             }
             else
             {
-                var button = new Button();
-                button.Text = "Click here to add courses for tutoring.";
+                Button button = new Button();
+                button.Text = "Add courses";
+                button.Left = listView1.Left;
+                button.Top = listView1.Top + 50;
+                this.Controls.Add(button);
             }
 
             if (tuteeCoursesList[0] != "")
             {
                 var tuteeListView = listView2;
-                for (int x = 0; x < tutorCoursesList.Count; x++)
+                for (int x = 0; x < tuteeCoursesList.Count; x++)
                 {
-                    tuteeListView.Items.Add(tuteeCoursesList[x]);
+                    if (tuteeCoursesList[x] != "")
+                    {
+                        tuteeListView.Items.Add(tuteeCoursesList[x]);
+                    }
                 }
                 tuteeListView.Visible = true;
             }
             else
             {
-                var button = new Button();
-                button.Text = "Click here to add courses for tutoring.";
+                Button button = new Button();
+                button.Text = "Add courses";
+                button.Left = listView2.Left;
+                button.Top = listView2.Top + 50;
+                this.Controls.Add(button);
             }
         }
 

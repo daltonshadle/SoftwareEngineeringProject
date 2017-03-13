@@ -1,4 +1,6 @@
 F:\Software Engineering\Tutor Master\Tutor Master\Tutor Master\bin\Debug\Tutor Master.exe
+F:\Software Engineering\Tutor Master\Tutor Master\Tutor Master\bin\Debug\Tutor Master.pdb
+F:\Software Engineering\Tutor Master\Tutor Master\Tutor Master\obj\x86\Debug\Tutor_Master.AppointmentBlock.resources
 F:\Software Engineering\Tutor Master\Tutor Master\Tutor Master\obj\x86\Debug\Tutor_Master.Properties.Resources.resources
 F:\Software Engineering\Tutor Master\Tutor Master\Tutor Master\obj\x86\Debug\Tutor_Master.RegisterForm.resources
 F:\Software Engineering\Tutor Master\Tutor Master\Tutor Master\obj\x86\Debug\Tutor_Master.Registration.resources
@@ -10,24 +12,4 @@ F:\Software Engineering\Tutor Master\Tutor Master\Tutor Master\obj\x86\Debug\Tut
 F:\Software Engineering\Tutor Master\Tutor Master\Tutor Master\obj\x86\Debug\Tutor Master.csproj.GenerateResource.Cache
 F:\Software Engineering\Tutor Master\Tutor Master\Tutor Master\obj\x86\Debug\Tutor Master.exe
 F:\Software Engineering\Tutor Master\Tutor Master\Tutor Master\obj\x86\Debug\Tutor Master.pdb
-F:\Software Engineering\Tutor Master\Tutor Master\Tutor Master\bin\Debug\Tutor Master.pdb
-<<<<<<< HEAD
-F:\cs-225 project\SoftwareEngineering\Tutor Master\Tutor Master\obj\x86\Debug\Tutor Master.csprojResolveAssemblyReference.cache
-F:\cs-225 project\SoftwareEngineering\Tutor Master\Tutor Master\obj\x86\Debug\Tutor_Master.Properties.Resources.resources
-F:\cs-225 project\SoftwareEngineering\Tutor Master\Tutor Master\obj\x86\Debug\Tutor_Master.RegisterForm.resources
-F:\cs-225 project\SoftwareEngineering\Tutor Master\Tutor Master\obj\x86\Debug\Tutor_Master.Registration.resources
-F:\cs-225 project\SoftwareEngineering\Tutor Master\Tutor Master\obj\x86\Debug\Tutor_Master.Registration2.resources
-F:\cs-225 project\SoftwareEngineering\Tutor Master\Tutor Master\obj\x86\Debug\Tutor_Master.Registration3.resources
-F:\cs-225 project\SoftwareEngineering\Tutor Master\Tutor Master\obj\x86\Debug\Tutor_Master.SignIn.resources
-F:\cs-225 project\SoftwareEngineering\Tutor Master\Tutor Master\obj\x86\Debug\Tutor_Master.UserProfile.resources
-F:\cs-225 project\SoftwareEngineering\Tutor Master\Tutor Master\obj\x86\Debug\Tutor_Master.WeekCalendar.resources
-F:\cs-225 project\SoftwareEngineering\Tutor Master\Tutor Master\obj\x86\Debug\Tutor Master.csproj.GenerateResource.Cache
-F:\cs-225 project\SoftwareEngineering\Tutor Master\Tutor Master\obj\x86\Debug\Tutor Master.exe
-F:\cs-225 project\SoftwareEngineering\Tutor Master\Tutor Master\bin\Debug\Tutor Master.exe
-F:\cs-225 project\SoftwareEngineering\Tutor Master\Tutor Master\bin\Debug\Tutor Master.pdb
-F:\cs-225 project\SoftwareEngineering\Tutor Master\Tutor Master\obj\x86\Debug\Tutor Master.pdb
-=======
-F:\Software Engineering\Tutor Master\Tutor Master\Tutor Master\obj\x86\Debug\Tutor_Master.AppointmentBlock.resources
-F:\Software Engineering\Tutor Master\Tutor Master\Tutor Master\obj\x86\Debug\Tutor Master.csprojResolveAssemblyReference.cache
->>>>>>> 577057e22e4e7c465ce1fb95987365ac13d0be94
->>>>>>> cddf5b935d660f60416cc51efcfcf3a471f2d43c
+F:\Software Engineering\Tutor Master\Tutor Master\Tutor Master\obj\x86\Debug\Tutor_Master.StartForm.resources

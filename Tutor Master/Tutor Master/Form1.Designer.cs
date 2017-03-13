@@ -32,7 +32,6 @@
             this.btnSignIn = new System.Windows.Forms.Button();
             this.btnRegister = new System.Windows.Forms.Button();
             this.lblTutorMaster = new System.Windows.Forms.Label();
-            this.weekCalendar1 = new Tutor_Master.WeekCalendar();
             this.SuspendLayout();
             // 
             // label1
@@ -76,19 +75,11 @@
             this.lblTutorMaster.TabIndex = 3;
             this.lblTutorMaster.Text = "Tutor Master";
             // 
-            // weekCalendar1
-            // 
-            this.weekCalendar1.Location = new System.Drawing.Point(40, 28);
-            this.weekCalendar1.Name = "weekCalendar1";
-            this.weekCalendar1.Size = new System.Drawing.Size(870, 351);
-            this.weekCalendar1.TabIndex = 4;
-            // 
             // StartForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(689, 481);
-            this.Controls.Add(this.weekCalendar1);
             this.Controls.Add(this.lblTutorMaster);
             this.Controls.Add(this.btnRegister);
             this.Controls.Add(this.btnSignIn);
@@ -107,7 +98,6 @@
         private System.Windows.Forms.Button btnSignIn;
         private System.Windows.Forms.Button btnRegister;
         private System.Windows.Forms.Label lblTutorMaster;
-        private WeekCalendar weekCalendar1;
     }
 }
 
