@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Tutor_Master
 {
-    class Tutee : Profile
+    public class Tutee : Profile
     {
         //all the private data
         private string[] courses;
