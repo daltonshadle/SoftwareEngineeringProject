@@ -53,11 +53,27 @@ namespace Tutor_Master
             // If so, loop through all checked items and print results. 
             if (tutorCoursesList[0] != "")
             {
-                var listBox = new ListBox();
-                for (int x = 0; x <= tutorCoursesList.Count - 1; x++)
+                var tutorListView = listView1;
+                for (int x = 0; x < tutorCoursesList.Count; x++)
                 {
-                    listBox.Items.Add(tutorCoursesList[x]);
+                    tutorListView.Items.Add(tutorCoursesList[x]);
                 }
+                tutorListView.Visible = true;
+            }
+            else
+            {
+                var button = new Button();
+                button.Text = "Click here to add courses for tutoring.";
+            }
+
+            if (tuteeCoursesList[0] != "")
+            {
+                var tuteeListView = listView2;
+                for (int x = 0; x < tutorCoursesList.Count; x++)
+                {
+                    tuteeListView.Items.Add(tuteeCoursesList[x]);
+                }
+                tuteeListView.Visible = true;
             }
             else
             {
