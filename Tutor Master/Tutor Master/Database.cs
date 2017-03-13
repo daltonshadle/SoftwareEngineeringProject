@@ -11,7 +11,7 @@ namespace Tutor_Master
     {
         private SqlCeConnection con;
 
-        private string connection = @"Data Source=C:\TutorMaster.sdf";
+        private string connection = @"Data Source=C:\TutorMaster (2).sdf";
 
         //private string connection = @"Data Source=F:\New Software Engineering\Tutor Master\Tutor Master\TutorMaster.sdf";
         //private string connection = @"Data Source=C:\Users\grbohach\Documents\SoftwareEngineering\Tutor Master\Tutor Master\TutorMaster.sdf";
@@ -554,7 +554,55 @@ namespace Tutor_Master
         }
 
         //get inbox, received messages that were sent to user
-        //public List<Messages> getInbox(string username){} ---> Messages will have to be a new class
+        public List<Messages> getInbox(string username)
+        {
+            List<Messages> messageList = new List<Messages>();
+
+            string query;
+            query = "SELECT fromUserName, toUserName, subject, messages, pending, timeSent FROM messages WHERE messages.toUserName = @username";
+
+
+            List<string> list = new List<string>();
+
+            if (this.OpenConnection())
+            {
+                SqlCeCommand cmd = new SqlCeCommand();
+                cmd.CommandText = query;
+                cmd.Parameters.Add("@username", username);
+                cmd.Connection = con;
+                try
+                {
+                    SqlCeDataReader dataReader = cmd.ExecuteReader();
+
+                    //Read the data and store them in the list
+                    while (dataReader.Read())
+                    { //have to make catches for all of the nulls that might be in the database
+                        Messages newMessage = new Messages();
+                        newMessage.setFromUser((dataReader["fromUserName"] + "").ToString());
+                        newMessage.setToUser((dataReader["toUserName"] + "").ToString());
+                        newMessage.setSubject((dataReader["subject"] + "").ToString());
+                        newMessage.setMessage((dataReader["messages"] + "").ToString());
+                        newMessage.setPending((bool?) dataReader["pending"]);
+                        newMessage.setDateTime((DateTime)dataReader["timeSent"]);
+                        messageList.Add(newMessage);
+                    }
+
+                    //close Data Reader
+                    dataReader.Close();
+                    this.CloseConnection();
+                    return messageList;
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    list.Clear();
+                    this.CloseConnection();
+                    return messageList;
+                }
+            }
+            return messageList;
+        }
         
         //get sent, find all the messages send by user
         //public List<Messages> getSentMail(string username){} ---> Messages will have to be a new class
