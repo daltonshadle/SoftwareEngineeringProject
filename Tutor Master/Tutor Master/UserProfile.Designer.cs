@@ -60,7 +60,7 @@
             this.listView1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.listView1.Location = new System.Drawing.Point(203, 56);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(150, 101);
+            this.listView1.Size = new System.Drawing.Size(119, 101);
             this.listView1.TabIndex = 4;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.Visible = false;
@@ -70,7 +70,7 @@
             this.listView2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.listView2.Location = new System.Drawing.Point(456, 56);
             this.listView2.Name = "listView2";
-            this.listView2.Size = new System.Drawing.Size(150, 101);
+            this.listView2.Size = new System.Drawing.Size(119, 101);
             this.listView2.TabIndex = 6;
             this.listView2.UseCompatibleStateImageBehavior = false;
             this.listView2.Visible = false;
