@@ -14,6 +14,7 @@ namespace Tutor_Master
         bool tutorAcc, tuteeAcc;
         string username;
         List<string> tutorClassesList;
+        int code = 0;
 
         Database db = new Database();
 
@@ -32,7 +33,7 @@ namespace Tutor_Master
             }
         }
 
-        public Registration2(string user, bool isTutor, bool isTutee)
+        public Registration2(string user, bool isTutor, bool isTutee, int code)
         {
             InitializeComponent();
             this.Icon = Tutor_Master.Properties.Resources.favicon;

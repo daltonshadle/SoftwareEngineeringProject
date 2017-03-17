@@ -1,5 +1,6 @@
 C:\Software\Tutor Master\Tutor Master\bin\Debug\Tutor Master.exe
 C:\Software\Tutor Master\Tutor Master\bin\Debug\Tutor Master.pdb
+C:\Software\Tutor Master\Tutor Master\obj\x86\Debug\Tutor Master.csprojResolveAssemblyReference.cache
 C:\Software\Tutor Master\Tutor Master\obj\x86\Debug\Tutor_Master.AppointmentBlock.resources
 C:\Software\Tutor Master\Tutor Master\obj\x86\Debug\Tutor_Master.StartForm.resources
 C:\Software\Tutor Master\Tutor Master\obj\x86\Debug\Tutor_Master.Properties.Resources.resources
