@@ -18,8 +18,9 @@ namespace Tutor_Master
 
         Database db = new Database();
 
-        public Registration2()
+        public Registration2(int fromCode)
         {
+            code = fromCode;
             InitializeComponent();
             this.Icon = Tutor_Master.Properties.Resources.favicon;
 
@@ -33,8 +34,9 @@ namespace Tutor_Master
             }
         }
 
-        public Registration2(string user, bool isTutor, bool isTutee, int code)
+        public Registration2(string user, bool isTutor, bool isTutee, int fromCode)
         {
+            code = fromCode;
             InitializeComponent();
             this.Icon = Tutor_Master.Properties.Resources.favicon;
             tutorAcc = isTutor;
@@ -84,10 +86,16 @@ namespace Tutor_Master
                    
                     db.setTuteeStatus(username, tuteeAcc);
                     //username is a string, isTutee is a bool
-
-                    var next = new Registration3(username, tutorAcc, tuteeAcc);
-                    this.Hide();
-                    next.Show();
+                    if (code == 1000) {
+                        var next = new Registration3(username, tutorAcc, tuteeAcc);
+                        this.Hide();
+                        next.Show();
+                    }
+                    else if (code == 2000) {
+                        var next = new UserProfile(username);
+                        this.Hide();
+                        next.Show();
+                    }
                 }
                 else
                 {

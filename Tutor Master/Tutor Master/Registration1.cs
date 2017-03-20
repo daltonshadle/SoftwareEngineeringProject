@@ -52,7 +52,7 @@ namespace Tutor_Master
                 Database db = new Database();
                 db.setTutorStatus(username, isTutor);
 
-                var next = new Registration2(username, isTutor, isTutee);
+                var next = new Registration2(username, isTutor, isTutee, 1000); //1000 is the code for coming from registration 1
                 this.Hide();
                 next.Show();
             }

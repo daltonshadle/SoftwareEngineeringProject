@@ -14,6 +14,7 @@ namespace Tutor_Master
         bool tutorAcc, tuteeAcc;
         string username;
         List<string> tuteeClassesList;
+        //int code = 0;     //not needed for this page because the userProfile page is the destination regardless
 
         Database db = new Database();
 

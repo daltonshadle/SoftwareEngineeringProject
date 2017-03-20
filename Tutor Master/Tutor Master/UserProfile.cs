@@ -12,7 +12,6 @@ namespace Tutor_Master
     public partial class UserProfile : Form
     {
         private string first, last, user;
-        private int counter = 0;
         private bool tutorAcc, tuteeAcc;
 
         public UserProfile(string username)
@@ -84,19 +83,13 @@ namespace Tutor_Master
             else
             {
                 Button button = new Button();
-                button.Name = "butt" + counter;
-                counter++;
+                button.Name = "buttAddTutor";
                 button.Text = "Add courses";
                 button.Left = listView1.Left + 160;
                 button.Top = listView1.Top + 100;
-                //button.Location = new Point(100, 100);  
                 this.Controls.Add(button);
-                //button2
 
-
-                var next = new Registration2(username, tutorAcc, tuteeAcc);
-                this.Hide();
-                next.Show();
+                button.Click += new EventHandler(NewButton_Click);
             }
 
             var tuteeListView = listView2;
@@ -117,17 +110,15 @@ namespace Tutor_Master
             }
             else
             {
-                Button button3 = new Button();
-                button3.Name = "butt" + counter;
-                counter++;
-                button3.Text = "Add courses";
-                button3.Left = listView2.Left + 170;
-                button3.Top = listView2.Top + 100;
-                //button.Location = new Point(100, 100);  
-                this.Controls.Add(button3);
+                Button button = new Button();
+                button.Name = "buttAddTutee";
+                button.Text = "Add courses";
+                button.Left = listView2.Left + 170;
+                button.Top = listView2.Top + 100;
+                this.Controls.Add(button);
 
 
-                button3.Click += new EventHandler(NewButton_Click);
+                button.Click += new EventHandler(NewButton_Click);
             }
         }
    
@@ -136,33 +127,26 @@ namespace Tutor_Master
     private void NewButton_Click(object sender, EventArgs e)
     {
         Button btn = (Button) sender;
-        //Database db = new Database();
 
-        for (int i = 0; i < counter; i++)
+        // Find the programatically created button and assign its onClick event
+        if (btn.Name == ("buttAddTutor"))
         {
-            //List<string> newList = new List<string>();
-            //newList = db.getProfileInfo(username);
-
-            if (btn.Name == ("butt" + 1))
-            {
-                // When find specific button do what do you want.
-                //Then exit from loop by break.
-                var next = new Registration2(user, tutorAcc, tuteeAcc);
-                this.Hide();
-                next.Show();
-                break;
-            }
-            if (btn.Name == ("butt" + 0))
-            {
-                var next = new Registration3(user);
-                this.Hide();
-                next.Show();
-                break;
-            }
+            var next = new Registration2(user, tutorAcc, tuteeAcc, 2000);   //2000 is the id for coming from userprofile
+            this.Hide();
+            next.Show();
+           
         }
+        if (btn.Name == ("buttAddTutee"))
+        {
+            var next = new Registration3(user);
+            this.Hide();
+            next.Show();
+            
+        }
+        
     }
 
-        protected void button2_Click (object sender, EventArgs e, string username) 
+        /*protected void button2_Click (object sender, EventArgs e, string username) 
         {
             //Button button = sender as Button;
 
@@ -175,10 +159,10 @@ namespace Tutor_Master
         {
             //Button button = sender as Button;
 
-            var next = new Registration2(username, tutorAcc, tuteeAcc);
+            var next = new Registration2(username, tutorAcc, tuteeAcc, 2000);
             this.Hide();
             next.Show();
-        }
+        }*/
 
 
         //Function casts the first letter of the string to be capitalized...
