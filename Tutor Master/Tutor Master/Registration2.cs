@@ -72,10 +72,16 @@ namespace Tutor_Master
                     tutorClassesList.Add(checkedListBox1.CheckedItems[x].ToString());
                 }
 
-                //Faculty gets emailed here.
-
                 Database db = new Database();
                 db.addNewCourseList(username, tutorClassesList, true);
+
+                //Faculty gets emailed here.
+                string facultyApprover = "";
+                for (int x = 0; x < tutorClassesList.Count(); x++)
+                {
+                    facultyApprover = db.getFacultyApprover(tutorClassesList[x]);
+                    db.sendMessage(username, facultyApprover, "Tutor Request", username+" is requesting to tutor "+tutorClassesList[x], false, DateTime.Now);
+                }
 
                 if (tuteeAcc)
                 {
@@ -83,6 +89,7 @@ namespace Tutor_Master
                    
                     db.setTuteeStatus(username, tuteeAcc);
                     //username is a string, isTutee is a bool
+                    
 
                     var next = new Registration3(username, tutorAcc, tuteeAcc);
                     this.Hide();

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Data;
 using System.Data.SqlServerCe;
 using System.Windows.Forms;
 
@@ -11,7 +12,7 @@ namespace Tutor_Master
     {
         private SqlCeConnection con;
 
-        private string connection = @"Data Source=C:\TutorMaster.sdf";
+        private string connection = @"Data Source=C:\TutorMaster (2).sdf";
 
         //private string connection = @"Data Source=F:\New Software Engineering\Tutor Master\Tutor Master\TutorMaster.sdf";
         //private string connection = @"Data Source=C:\Users\grbohach\Documents\SoftwareEngineering\Tutor Master\Tutor Master\TutorMaster.sdf";
@@ -521,28 +522,52 @@ namespace Tutor_Master
         }
 
         //create a message to send between users
-        public void sendMessage(string fromUser, string toUser, string subject, string message, bool? pending, DateTime sentTime)
+        public void sendMessage(string fromUser, string toUser, string subject, string message, bool? approved, DateTime sentTime)
         {
-            string query;
-            query = "INSERT INTO messages (fromUserName, toUserName, subject, messages, pending, timeSent) VALUES (@fromUser, @toUser, @subject, @message, @pending, @sentTime)";
+            string querySent, queryReceived;
+            querySent = "INSERT INTO sentMessages (fromUserName, toUserName, subject, message, approved, timeSent) VALUES (@fromUser, @toUser, @subject, @message, @approved, @sentTime)";
+            queryReceived = "INSERT INTO receivedMessages (fromUserName, toUserName, subject, message, approved, timeSent) VALUES (@fromUser, @toUser, @subject, @message, @approved, @sentTime)";
 
             if (this.OpenConnection())
             {
-                SqlCeCommand cmd = new SqlCeCommand();
-                cmd.CommandText = query;
-                cmd.Parameters.Add("@fromUser", fromUser);
-                cmd.Parameters.Add("@toUser", toUser);
-                cmd.Parameters.Add("@subject", subject);
-                cmd.Parameters.Add("@message", message);
-                if (pending == null)
-                    cmd.Parameters.Add("@pending", DBNull.Value);
+                SqlCeCommand cmdSent = new SqlCeCommand();
+                SqlCeCommand cmdReceived = new SqlCeCommand();
+
+                cmdSent.CommandText = querySent;
+                cmdReceived.CommandText = queryReceived;
+
+                cmdSent.Parameters.Add("@fromUser", fromUser);
+                cmdReceived.Parameters.Add("@fromUser", fromUser);
+
+                cmdSent.Parameters.Add("@toUser", toUser);
+                cmdReceived.Parameters.Add("@toUser", toUser);
+
+                cmdSent.Parameters.Add("@subject", subject);
+                cmdReceived.Parameters.Add("@subject", subject);
+
+                cmdSent.Parameters.Add("@message", message);
+                cmdReceived.Parameters.Add("@message", message);
+
+                if (approved == null)
+                {
+                    cmdSent.Parameters.Add("@approved", DBNull.Value);
+                    cmdReceived.Parameters.Add("@approved", DBNull.Value);
+                }
                 else
-                    cmd.Parameters.Add("@pending", pending);
-                cmd.Parameters.Add("@sentTime", sentTime);
-                cmd.Connection = con;
+                {
+                    cmdSent.Parameters.Add("@pending", approved);
+                    cmdReceived.Parameters.Add("@pending", approved);
+                }
+              
+                cmdSent.Parameters.Add("@sentTime", sentTime);
+                cmdReceived.Parameters.Add("@sentTime", sentTime);
+
+                cmdSent.Connection = con;
+                cmdReceived.Connection = con;
                 try
                 {
-                    cmd.ExecuteNonQuery();
+                    cmdSent.ExecuteNonQuery();
+                    cmdReceived.ExecuteNonQuery();
                 }
                 catch (Exception ex)
                 {
@@ -559,7 +584,7 @@ namespace Tutor_Master
             List<Messages> messageList = new List<Messages>();
 
             string query;
-            query = "SELECT fromUserName, toUserName, subject, messages, pending, timeSent FROM messages WHERE messages.toUserName = @username";
+            query = "SELECT * FROM receivedMessages WHERE receivedMessages.toUserName = @username";
 
 
             List<string> list = new List<string>();
@@ -578,11 +603,17 @@ namespace Tutor_Master
                     while (dataReader.Read())
                     { //have to make catches for all of the nulls that might be in the database
                         Messages newMessage = new Messages();
+                        newMessage.setIdNum((int) dataReader["id number"]);
                         newMessage.setFromUser((dataReader["fromUserName"] + "").ToString());
                         newMessage.setToUser((dataReader["toUserName"] + "").ToString());
                         newMessage.setSubject((dataReader["subject"] + "").ToString());
-                        newMessage.setMessage((dataReader["messages"] + "").ToString());
-                        newMessage.setPending((bool?) dataReader["pending"]);
+                        newMessage.setMessage((dataReader["message"] + "").ToString());
+                        if (dataReader["approved"] == DBNull.Value)
+                        {
+                            newMessage.setPending(null);
+                        }
+                        else
+                            newMessage.setPending((bool?)dataReader["pending"]);
                         newMessage.setDateTime((DateTime)dataReader["timeSent"]);
                         messageList.Add(newMessage);
                     }
@@ -605,10 +636,156 @@ namespace Tutor_Master
         }
         
         //get sent, find all the messages send by user
-        //public List<Messages> getSentMail(string username){} ---> Messages will have to be a new class
+        public List<Messages> getSentMail(string username)
+        {
+            List<Messages> messageList = new List<Messages>();
 
-        //delete a message from your list
-        //public void deleteMessage(Messages messageToDelete) {} ---> Have to see if this is a way of finding a unique message
+            string query;
+            query = "SELECT * FROM sentMessages WHERE sentMessages.fromUserName = @username";
+
+
+            List<string> list = new List<string>();
+
+            if (this.OpenConnection())
+            {
+                SqlCeCommand cmd = new SqlCeCommand();
+                cmd.CommandText = query;
+                cmd.Parameters.Add("@username", username);
+                cmd.Connection = con;
+                try
+                {
+                    SqlCeDataReader dataReader = cmd.ExecuteReader();
+
+                    //Read the data and store them in the list
+                    while (dataReader.Read())
+                    { //have to make catches for all of the nulls that might be in the database
+                        Messages newMessage = new Messages();
+                        newMessage.setIdNum((int)dataReader["id number"]);
+                        newMessage.setFromUser((dataReader["fromUserName"] + "").ToString());
+                        newMessage.setToUser((dataReader["toUserName"] + "").ToString());
+                        newMessage.setSubject((dataReader["subject"] + "").ToString());
+                        newMessage.setMessage((dataReader["message"] + "").ToString());
+                        if (dataReader["approved"] == DBNull.Value)
+                        {
+                            newMessage.setPending(null);
+                        }
+                        else
+                            newMessage.setPending((bool?)dataReader["pending"]);
+                        newMessage.setDateTime((DateTime)dataReader["timeSent"]);
+                        messageList.Add(newMessage);
+                    }
+
+                    //close Data Reader
+                    dataReader.Close();
+                    this.CloseConnection();
+                    return messageList;
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    list.Clear();
+                    this.CloseConnection();
+                    return messageList;
+                }
+            }
+            return messageList;
+        } //---> Messages will have to be a new class
+
+        //delete a message from your inbox
+        public void deleteMessageFromInbox(int messageId)
+        {
+            string queryMessage = "DELETE FROM receivedMessages WHERE [id number] = @messageID";
+
+            if (this.OpenConnection())
+            {
+                SqlCeCommand cmdDeleteMessage = new SqlCeCommand();
+                
+                cmdDeleteMessage.CommandText = queryMessage;
+                cmdDeleteMessage.Parameters.Add("@messageID", messageId);
+
+                cmdDeleteMessage.Connection = con;
+                try
+                {
+                    cmdDeleteMessage.ExecuteNonQuery();                    
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+
+                this.CloseConnection();
+
+            }
+        } //---> Have to see if this is a way of finding a unique message
+
+        //delete a message you sent
+        public void deleteMessageFromSentMail(int messageId)
+        {
+            string queryMessage = "DELETE FROM sentMessages WHERE [id number] = @messageID";
+
+            if (this.OpenConnection())
+            {
+                SqlCeCommand cmdDeleteMessage = new SqlCeCommand();
+
+                cmdDeleteMessage.CommandText = queryMessage;
+                cmdDeleteMessage.Parameters.Add("@messageID", messageId);
+
+                cmdDeleteMessage.Connection = con;
+                try
+                {
+                    cmdDeleteMessage.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+
+                this.CloseConnection();
+
+            }
+        }
+
+        public string getFacultyApprover(string courseName) 
+        {
+            List<Messages> messageList = new List<Messages>();
+
+            string query;
+            query = "SELECT facultyApprover FROM courses WHERE name = @courseName";
+
+            string facultyName = "";
+
+            if (this.OpenConnection())
+            {
+                SqlCeCommand cmd = new SqlCeCommand();
+                cmd.CommandText = query;
+                cmd.Parameters.Add("@courseName", courseName);
+                cmd.Connection = con;
+                try
+                {
+                    SqlCeDataReader dataReader = cmd.ExecuteReader();
+
+                    //Read the data and store them in the list
+                    while (dataReader.Read())
+                    {
+                        facultyName = dataReader.GetString(0);
+                    }
+
+                    //close Data Reader
+                    dataReader.Close();
+                    this.CloseConnection();
+                    return facultyName;
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    this.CloseConnection();
+                    return facultyName;
+                }
+            }
+            return facultyName;
+        }
 
     }
 }
