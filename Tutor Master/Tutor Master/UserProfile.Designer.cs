@@ -30,7 +30,6 @@
         {
             this.btnLogout = new System.Windows.Forms.Button();
             this.lbTutor = new System.Windows.Forms.Label();
-            this.weekCalendar1 = new Tutor_Master.WeekCalendar();
             this.listView1 = new System.Windows.Forms.ListView();
             this.listView2 = new System.Windows.Forms.ListView();
             this.label1 = new System.Windows.Forms.Label();
@@ -56,20 +55,12 @@
             this.lbTutor.TabIndex = 3;
             this.lbTutor.Text = "Courses for tutoring:";
             // 
-            // weekCalendar1
-            // 
-            this.weekCalendar1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.weekCalendar1.Location = new System.Drawing.Point(100, 252);
-            this.weekCalendar1.Name = "weekCalendar1";
-            this.weekCalendar1.Size = new System.Drawing.Size(869, 240);
-            this.weekCalendar1.TabIndex = 0;
-            // 
             // listView1
             // 
             this.listView1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.listView1.Location = new System.Drawing.Point(203, 56);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(177, 170);
+            this.listView1.Size = new System.Drawing.Size(119, 101);
             this.listView1.TabIndex = 4;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.Visible = false;
@@ -79,7 +70,7 @@
             this.listView2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.listView2.Location = new System.Drawing.Point(456, 56);
             this.listView2.Name = "listView2";
-            this.listView2.Size = new System.Drawing.Size(178, 170);
+            this.listView2.Size = new System.Drawing.Size(119, 101);
             this.listView2.TabIndex = 6;
             this.listView2.UseCompatibleStateImageBehavior = false;
             this.listView2.Visible = false;
@@ -104,7 +95,6 @@
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.lbTutor);
             this.Controls.Add(this.btnLogout);
-            this.Controls.Add(this.weekCalendar1);
             this.Name = "UserProfile";
             this.Text = "User Profile";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
@@ -115,7 +105,6 @@
 
         #endregion
 
-        private WeekCalendar weekCalendar1;
         private System.Windows.Forms.Button btnLogout;
         private System.Windows.Forms.Label lbTutor;
         private System.Windows.Forms.ListView listView1;

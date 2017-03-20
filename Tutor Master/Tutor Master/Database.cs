@@ -12,7 +12,11 @@ namespace Tutor_Master
     {
         private SqlCeConnection con;
 
+<<<<<<< HEAD
         private string connection = @"Data Source=C:\TutorMaster (2).sdf";
+=======
+        private string connection = @"Data Source=C:\Software\Tutor Master\Tutor Master\TutorMaster.sdf";
+>>>>>>> 5a1a5d5dfd28726e27cff53b7c72b8553a7f973c
 
         //private string connection = @"Data Source=F:\New Software Engineering\Tutor Master\Tutor Master\TutorMaster.sdf";
         //private string connection = @"Data Source=C:\Users\grbohach\Documents\SoftwareEngineering\Tutor Master\Tutor Master\TutorMaster.sdf";
