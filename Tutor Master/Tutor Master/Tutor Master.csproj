@@ -73,6 +73,12 @@
     <Compile Include="AppointmentBlock.Designer.cs">
       <DependentUpon>AppointmentBlock.cs</DependentUpon>
     </Compile>
+    <Compile Include="AppointmentBuilderForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AppointmentBuilderForm.Designer.cs">
+      <DependentUpon>AppointmentBuilderForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Faculty.cs" />
     <Compile Include="Appointment.cs" />
     <Compile Include="Database.cs" />
@@ -87,6 +93,18 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Model2.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="MonthCalendar.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MonthCalendar.Designer.cs">
+      <DependentUpon>MonthCalendar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MonthCalendarForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MonthCalendarForm.Designer.cs">
+      <DependentUpon>MonthCalendarForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Profile.cs" />
     <Compile Include="Program.cs" />
@@ -139,8 +157,17 @@
     <EmbeddedResource Include="AppointmentBlock.resx">
       <DependentUpon>AppointmentBlock.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="AppointmentBuilderForm.resx">
+      <DependentUpon>AppointmentBuilderForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MonthCalendar.resx">
+      <DependentUpon>MonthCalendar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MonthCalendarForm.resx">
+      <DependentUpon>MonthCalendarForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
