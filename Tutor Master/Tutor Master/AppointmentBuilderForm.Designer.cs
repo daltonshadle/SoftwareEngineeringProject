@@ -29,22 +29,24 @@
         private void InitializeComponent()
         {
             this.panelTime = new System.Windows.Forms.Panel();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.dateTimeDay2 = new System.Windows.Forms.DateTimePicker();
+            this.dateTimeDay1 = new System.Windows.Forms.DateTimePicker();
             this.lblEndTime = new System.Windows.Forms.Label();
             this.lblStartTime = new System.Windows.Forms.Label();
             this.panelCourseAndPlace = new System.Windows.Forms.Panel();
-            this.lblCourse = new System.Windows.Forms.Label();
-            this.cbxCourseList = new System.Windows.Forms.ComboBox();
-            this.lblMeetingPlace = new System.Windows.Forms.Label();
             this.txtPlace = new System.Windows.Forms.TextBox();
+            this.lblMeetingPlace = new System.Windows.Forms.Label();
+            this.cbxCourseList = new System.Windows.Forms.ComboBox();
+            this.lblCourse = new System.Windows.Forms.Label();
             this.panelOtherProfile = new System.Windows.Forms.Panel();
-            this.lblOtherProfile = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
+            this.lblOtherProfile = new System.Windows.Forms.Label();
             this.panelApptType = new System.Windows.Forms.Panel();
-            this.lblTypeAppt = new System.Windows.Forms.Label();
             this.cbxTypeAppt = new System.Windows.Forms.ComboBox();
+            this.lblTypeAppt = new System.Windows.Forms.Label();
             this.btnAdd = new System.Windows.Forms.Button();
+            this.dateTimeTime1 = new System.Windows.Forms.DateTimePicker();
+            this.dateTimeTime2 = new System.Windows.Forms.DateTimePicker();
             this.panelTime.SuspendLayout();
             this.panelCourseAndPlace.SuspendLayout();
             this.panelOtherProfile.SuspendLayout();
@@ -53,28 +55,32 @@
             // 
             // panelTime
             // 
-            this.panelTime.Controls.Add(this.dateTimePicker2);
-            this.panelTime.Controls.Add(this.dateTimePicker1);
+            this.panelTime.Controls.Add(this.dateTimeTime2);
+            this.panelTime.Controls.Add(this.dateTimeTime1);
+            this.panelTime.Controls.Add(this.dateTimeDay2);
+            this.panelTime.Controls.Add(this.dateTimeDay1);
             this.panelTime.Controls.Add(this.lblEndTime);
             this.panelTime.Controls.Add(this.lblStartTime);
-            this.panelTime.Location = new System.Drawing.Point(12, 12);
+            this.panelTime.Location = new System.Drawing.Point(9, 51);
             this.panelTime.Name = "panelTime";
-            this.panelTime.Size = new System.Drawing.Size(273, 61);
+            this.panelTime.Size = new System.Drawing.Size(291, 61);
             this.panelTime.TabIndex = 0;
             // 
-            // dateTimePicker2
+            // dateTimeDay2
             // 
-            this.dateTimePicker2.Location = new System.Drawing.Point(70, 36);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(200, 20);
-            this.dateTimePicker2.TabIndex = 3;
+            this.dateTimeDay2.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimeDay2.Location = new System.Drawing.Point(70, 36);
+            this.dateTimeDay2.Name = "dateTimeDay2";
+            this.dateTimeDay2.Size = new System.Drawing.Size(101, 20);
+            this.dateTimeDay2.TabIndex = 3;
             // 
-            // dateTimePicker1
+            // dateTimeDay1
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(70, 5);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
-            this.dateTimePicker1.TabIndex = 2;
+            this.dateTimeDay1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimeDay1.Location = new System.Drawing.Point(70, 5);
+            this.dateTimeDay1.Name = "dateTimeDay1";
+            this.dateTimeDay1.Size = new System.Drawing.Size(101, 20);
+            this.dateTimeDay1.TabIndex = 2;
             // 
             // lblEndTime
             // 
@@ -102,27 +108,17 @@
             this.panelCourseAndPlace.Controls.Add(this.lblMeetingPlace);
             this.panelCourseAndPlace.Controls.Add(this.cbxCourseList);
             this.panelCourseAndPlace.Controls.Add(this.lblCourse);
-            this.panelCourseAndPlace.Location = new System.Drawing.Point(12, 96);
+            this.panelCourseAndPlace.Location = new System.Drawing.Point(9, 118);
             this.panelCourseAndPlace.Name = "panelCourseAndPlace";
-            this.panelCourseAndPlace.Size = new System.Drawing.Size(273, 61);
+            this.panelCourseAndPlace.Size = new System.Drawing.Size(291, 61);
             this.panelCourseAndPlace.TabIndex = 1;
             // 
-            // lblCourse
+            // txtPlace
             // 
-            this.lblCourse.AutoSize = true;
-            this.lblCourse.Location = new System.Drawing.Point(6, 11);
-            this.lblCourse.Name = "lblCourse";
-            this.lblCourse.Size = new System.Drawing.Size(46, 13);
-            this.lblCourse.TabIndex = 0;
-            this.lblCourse.Text = "Course: ";
-            // 
-            // cbxCourseList
-            // 
-            this.cbxCourseList.FormattingEnabled = true;
-            this.cbxCourseList.Location = new System.Drawing.Point(149, 8);
-            this.cbxCourseList.Name = "cbxCourseList";
-            this.cbxCourseList.Size = new System.Drawing.Size(121, 21);
-            this.cbxCourseList.TabIndex = 1;
+            this.txtPlace.Location = new System.Drawing.Point(161, 35);
+            this.txtPlace.Name = "txtPlace";
+            this.txtPlace.Size = new System.Drawing.Size(121, 20);
+            this.txtPlace.TabIndex = 3;
             // 
             // lblMeetingPlace
             // 
@@ -133,21 +129,38 @@
             this.lblMeetingPlace.TabIndex = 2;
             this.lblMeetingPlace.Text = "Meeting Place:";
             // 
-            // txtPlace
+            // cbxCourseList
             // 
-            this.txtPlace.Location = new System.Drawing.Point(149, 35);
-            this.txtPlace.Name = "txtPlace";
-            this.txtPlace.Size = new System.Drawing.Size(121, 20);
-            this.txtPlace.TabIndex = 3;
+            this.cbxCourseList.FormattingEnabled = true;
+            this.cbxCourseList.Location = new System.Drawing.Point(161, 8);
+            this.cbxCourseList.Name = "cbxCourseList";
+            this.cbxCourseList.Size = new System.Drawing.Size(121, 21);
+            this.cbxCourseList.TabIndex = 1;
+            // 
+            // lblCourse
+            // 
+            this.lblCourse.AutoSize = true;
+            this.lblCourse.Location = new System.Drawing.Point(6, 11);
+            this.lblCourse.Name = "lblCourse";
+            this.lblCourse.Size = new System.Drawing.Size(46, 13);
+            this.lblCourse.TabIndex = 0;
+            this.lblCourse.Text = "Course: ";
             // 
             // panelOtherProfile
             // 
             this.panelOtherProfile.Controls.Add(this.textBox1);
             this.panelOtherProfile.Controls.Add(this.lblOtherProfile);
-            this.panelOtherProfile.Location = new System.Drawing.Point(12, 173);
+            this.panelOtherProfile.Location = new System.Drawing.Point(9, 185);
             this.panelOtherProfile.Name = "panelOtherProfile";
-            this.panelOtherProfile.Size = new System.Drawing.Size(273, 30);
+            this.panelOtherProfile.Size = new System.Drawing.Size(291, 30);
             this.panelOtherProfile.TabIndex = 2;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(161, 6);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(120, 20);
+            this.textBox1.TabIndex = 1;
             // 
             // lblOtherProfile
             // 
@@ -158,21 +171,27 @@
             this.lblOtherProfile.TabIndex = 0;
             this.lblOtherProfile.Text = "Other Profile:";
             // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(149, 4);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(120, 20);
-            this.textBox1.TabIndex = 1;
-            // 
             // panelApptType
             // 
             this.panelApptType.Controls.Add(this.cbxTypeAppt);
             this.panelApptType.Controls.Add(this.lblTypeAppt);
-            this.panelApptType.Location = new System.Drawing.Point(12, 220);
+            this.panelApptType.Location = new System.Drawing.Point(9, 12);
             this.panelApptType.Name = "panelApptType";
-            this.panelApptType.Size = new System.Drawing.Size(273, 33);
+            this.panelApptType.Size = new System.Drawing.Size(291, 33);
             this.panelApptType.TabIndex = 3;
+            // 
+            // cbxTypeAppt
+            // 
+            this.cbxTypeAppt.FormattingEnabled = true;
+            this.cbxTypeAppt.Items.AddRange(new object[] {
+            "Free Time",
+            "Teaching (Tutoring)",
+            "Learning (Tuteeing)"});
+            this.cbxTypeAppt.Location = new System.Drawing.Point(161, 6);
+            this.cbxTypeAppt.Name = "cbxTypeAppt";
+            this.cbxTypeAppt.Size = new System.Drawing.Size(121, 21);
+            this.cbxTypeAppt.TabIndex = 1;
+            this.cbxTypeAppt.SelectedIndexChanged += new System.EventHandler(this.cbxTypeAppt_SelectedIndexChanged);
             // 
             // lblTypeAppt
             // 
@@ -183,28 +202,37 @@
             this.lblTypeAppt.TabIndex = 0;
             this.lblTypeAppt.Text = "Type of Appointment:";
             // 
-            // cbxTypeAppt
-            // 
-            this.cbxTypeAppt.FormattingEnabled = true;
-            this.cbxTypeAppt.Location = new System.Drawing.Point(149, 6);
-            this.cbxTypeAppt.Name = "cbxTypeAppt";
-            this.cbxTypeAppt.Size = new System.Drawing.Size(121, 21);
-            this.cbxTypeAppt.TabIndex = 1;
-            // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(105, 281);
+            this.btnAdd.Location = new System.Drawing.Point(117, 237);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(75, 23);
             this.btnAdd.TabIndex = 4;
             this.btnAdd.Text = "Add";
             this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            // 
+            // dateTimeTime1
+            // 
+            this.dateTimeTime1.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.dateTimeTime1.Location = new System.Drawing.Point(177, 5);
+            this.dateTimeTime1.Name = "dateTimeTime1";
+            this.dateTimeTime1.Size = new System.Drawing.Size(105, 20);
+            this.dateTimeTime1.TabIndex = 4;
+            // 
+            // dateTimeTime2
+            // 
+            this.dateTimeTime2.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.dateTimeTime2.Location = new System.Drawing.Point(178, 36);
+            this.dateTimeTime2.Name = "dateTimeTime2";
+            this.dateTimeTime2.Size = new System.Drawing.Size(104, 20);
+            this.dateTimeTime2.TabIndex = 5;
             // 
             // AppointmentBuilderForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(298, 359);
+            this.ClientSize = new System.Drawing.Size(310, 270);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.panelApptType);
             this.Controls.Add(this.panelOtherProfile);
@@ -229,8 +257,8 @@
         #endregion
 
         private System.Windows.Forms.Panel panelTime;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker dateTimeDay2;
+        private System.Windows.Forms.DateTimePicker dateTimeDay1;
         private System.Windows.Forms.Label lblEndTime;
         private System.Windows.Forms.Label lblStartTime;
         private System.Windows.Forms.Panel panelCourseAndPlace;
@@ -245,5 +273,7 @@
         private System.Windows.Forms.ComboBox cbxTypeAppt;
         private System.Windows.Forms.Label lblTypeAppt;
         private System.Windows.Forms.Button btnAdd;
+        private System.Windows.Forms.DateTimePicker dateTimeTime1;
+        private System.Windows.Forms.DateTimePicker dateTimeTime2;
     }
 }

@@ -13,6 +13,7 @@ namespace Tutor_Master
         private DateTime startTime, endTime;
         private Tutor tutor;
         private Tutee tutee;
+        private string meetingType;
 
 
         //all the public functions
@@ -25,8 +26,9 @@ namespace Tutor_Master
             endTime = new DateTime();
             tutor = new Tutor();
             tutee = new Tutee();
+            meetingType = "";
         }
-        public Appointment(string tempPlace, string tempCourse, DateTime tempStartTime, DateTime tempEndTime, Tutor tempTutor, Tutee tempTutee)
+        public Appointment(string tempMeetingType, string tempPlace, string tempCourse, DateTime tempStartTime, DateTime tempEndTime, Tutor tempTutor, Tutee tempTutee)
         {
             //validation of these parameters can be done before the creation of the appointment object
             meetingPlace = tempPlace;
@@ -35,7 +37,15 @@ namespace Tutor_Master
             endTime = tempEndTime;
             tutor = tempTutor;
             tutee = tempTutee;
+            meetingType = tempMeetingType;
         }
+        public Appointment(string tempMeetingType, DateTime tempStartTime, DateTime tempEndTime, Profile p) {
+            startTime = tempStartTime;
+            endTime = tempEndTime;
+            meetingType = tempMeetingType;
+            //have to find something for profile and cast to a tutor or tutee
+        }
+
 
         //I don't know if we need this, we have a constructor to do this
         public void createAppt(string tempPlace, string tempCourse, DateTime tempStartTime, DateTime tempEndTime, Tutor tempTutor, Tutee tempTutee) {
