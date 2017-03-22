@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 F:\Software Engineering\Tutor Master\Tutor Master\Tutor Master\obj\x86\Debug\Tutor Master.csprojResolveAssemblyReference.cache
 F:\Software Engineering\Tutor Master\Tutor Master\Tutor Master\obj\x86\Debug\Tutor_Master.AppointmentBlock.resources
 F:\Software Engineering\Tutor Master\Tutor Master\Tutor Master\obj\x86\Debug\Tutor_Master.StartForm.resources
@@ -19,6 +20,8 @@ F:\Software Engineering\Tutor Master\Tutor Master\Tutor Master\obj\x86\Debug\Tut
 F:\Software Engineering\Tutor Master\Tutor Master\Tutor Master\obj\x86\Debug\Tutor_Master.MonthCalendar.resources
 F:\Software Engineering\Tutor Master\Tutor Master\Tutor Master\obj\x86\Debug\Tutor_Master.MonthCalendarForm.resources
 =======
+=======
+>>>>>>> 856e1c4b4916535678bb29da3a93b32875344898
 C:\Software\Tutor Master\Tutor Master\bin\Debug\Tutor Master.exe
 C:\Software\Tutor Master\Tutor Master\bin\Debug\Tutor Master.pdb
 C:\Software\Tutor Master\Tutor Master\obj\x86\Debug\Tutor_Master.AppointmentBlock.resources
@@ -52,4 +55,7 @@ F:\SoftwareEngineering\Tutor Master\Tutor Master\obj\x86\Debug\Tutor_Master.User
 F:\SoftwareEngineering\Tutor Master\Tutor Master\obj\x86\Debug\Tutor_Master.WeekCalendar.resources
 F:\SoftwareEngineering\Tutor Master\Tutor Master\obj\x86\Debug\Tutor Master.csproj.GenerateResource.Cache
 F:\SoftwareEngineering\Tutor Master\Tutor Master\obj\x86\Debug\Tutor Master.csprojResolveAssemblyReference.cache
+<<<<<<< HEAD
+>>>>>>> 856e1c4b4916535678bb29da3a93b32875344898
+=======
 >>>>>>> 856e1c4b4916535678bb29da3a93b32875344898
