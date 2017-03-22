@@ -172,7 +172,7 @@ namespace Tutor_Master
         {
             var appBuilder = new AppointmentBuilderForm();
             appBuilder.Show();
-            this.Hide();
+            //this.Hide();
         }
 
         private void btnViewCal_Click(object sender, EventArgs e)

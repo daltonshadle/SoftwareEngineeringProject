@@ -89,7 +89,6 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Messages.cs" />
-    <Compile Include="Model1.Designer.cs" />
     <Compile Include="Model2.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -100,6 +99,12 @@
     </Compile>
     <Compile Include="MonthCalendar.Designer.cs">
       <DependentUpon>MonthCalendar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MonthCalendarForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MonthCalendarForm.Designer.cs">
+      <DependentUpon>MonthCalendarForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Profile.cs" />
     <Compile Include="Program.cs" />
@@ -160,6 +165,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MonthCalendar.resx">
       <DependentUpon>MonthCalendar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MonthCalendarForm.resx">
+      <DependentUpon>MonthCalendarForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

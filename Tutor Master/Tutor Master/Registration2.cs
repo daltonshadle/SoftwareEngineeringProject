@@ -93,12 +93,10 @@ namespace Tutor_Master
                     db.setTuteeStatus(username, tuteeAcc);
                     //username is a string, isTutee is a bool
 
-<<<<<<< HEAD
+
                     //var next = new Registration3(username, tutorAcc, tuteeAcc);
                     //this.Hide();
                     //next.Show();
-=======
->>>>>>> 856e1c4b4916535678bb29da3a93b32875344898
                     if (code == 1000) {
                         var next = new Registration3(username, tutorAcc, tuteeAcc);
                         this.Hide();
