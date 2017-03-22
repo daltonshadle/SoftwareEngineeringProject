@@ -16,6 +16,9 @@ namespace Tutor_Master
         private const String TEACH = "Teaching (Tutoring)";
         private const String FREE = "Free Time";
         private Profile builderProf;
+        private Profile otherProf;
+        private DateTime firstDate;
+        private DateTime secondDate;
 
         public AppointmentBuilderForm()
         {
@@ -37,36 +40,33 @@ namespace Tutor_Master
             panelOtherProfile.Visible = false;
             dateTimeTime1.ShowUpDown = true;
             dateTimeTime2.ShowUpDown = true;
-        }
 
-        private bool correctTimes() {
-            bool good = false;
-
-            DateTime firstDate = dateTimeDay1.Value.Date + dateTimeTime1.Value.TimeOfDay;
-            DateTime secondDate = dateTimeDay2.Value.Date + dateTimeTime2.Value.TimeOfDay;
-
-            good = (firstDate > DateTime.Now && secondDate > DateTime.Now &&
-                firstDate < secondDate && (secondDate.Hour - firstDate.Hour) < 3);
-
-            return good;
+            initializeCourseCollection();
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            DateTime firstDate = dateTimeDay1.Value.Date + dateTimeTime1.Value.TimeOfDay;
-            DateTime secondDate = dateTimeDay2.Value.Date + dateTimeTime2.Value.TimeOfDay;
+            firstDate = dateTimeDay1.Value.Date + dateTimeTime1.Value.TimeOfDay;
+            secondDate = dateTimeDay2.Value.Date + dateTimeTime2.Value.TimeOfDay;
             string type = cbxTypeAppt.Text.ToString();
 
-            if (type.Equals(FREE)) { 
-                //move on and check dates for free time
-                if (correctTimes()) {
-                    Appointment a = new Appointment(type, firstDate, secondDate, builderProf);
+            if (verifyEverything())
+            {
+
+                if (type.Equals(FREE))
+                {
+                    //move on and check dates for free time
+                    if (verifyTimes())
+                    {
+                        Appointment a = new Appointment(type, firstDate, secondDate, builderProf);
+                    }
+
                 }
+                else if (type.Equals(LEARN))
+                {
+                    //check dates and times, courses, meeting place, profile
 
-            }
-            else if (type.Equals(LEARN)) { 
-                //check dates and times, courses, meeting place, profile
-
+                }
             }
         }
 
@@ -97,6 +97,78 @@ namespace Tutor_Master
                 cbxCourseList.Items.Add(course);   
             }
 
+        }
+
+        private bool verifyApptType() 
+        {
+            String tempType = cbxTypeAppt.SelectedText.ToString();
+            return (!tempType.Equals(""));
+        }
+
+        private bool verifyOtherProfile() 
+        { 
+            bool good = true;
+            //Garrett need a fucntion to check if profile is in database
+
+            return good;
+        }
+
+        private bool verifyMeetingPlace() 
+        {
+            String tempPlace = txtMeetingPlace.Text.ToString();
+            return (!tempPlace.Equals(""));
+        }
+
+        private bool verifyTimes()
+        {
+            bool good = false;
+
+            DateTime firstDate = dateTimeDay1.Value.Date + dateTimeTime1.Value.TimeOfDay;
+            DateTime secondDate = dateTimeDay2.Value.Date + dateTimeTime2.Value.TimeOfDay;
+
+            good = (firstDate > DateTime.Now && secondDate > DateTime.Now &&
+                firstDate < secondDate && (secondDate.Hour - firstDate.Hour) < 3);
+
+            return good;
+        }
+
+        private bool verifyCourse()
+        {
+            String tempCourse = cbxCourseList.SelectedText.ToString();
+            return (!tempCourse.Equals(""));
+        }
+
+        private bool verifyEverything()
+        {
+            bool good = true;
+
+            if (!verifyApptType())
+            {
+                good = false;
+                MessageBox.Show("Please choose an appointment type.");
+            }
+            if (!verifyCourse())
+            {
+                good = false;
+                MessageBox.Show("Please enter a course.");
+            }
+            if (!verifyMeetingPlace())
+            {
+                good = false;
+                MessageBox.Show("Please enter a meeting place.");
+            }
+            if (!verifyOtherProfile())
+            {
+                good = false;
+                MessageBox.Show("Please enter a valid profile.");
+            }
+            if (!verifyTimes())
+            {
+                good = false;
+                MessageBox.Show("Please enter valid times.");
+            }
+
+            return good;
         }
 
     }

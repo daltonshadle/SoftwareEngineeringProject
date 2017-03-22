@@ -29,12 +29,14 @@
         private void InitializeComponent()
         {
             this.panelTime = new System.Windows.Forms.Panel();
+            this.dateTimeTime2 = new System.Windows.Forms.DateTimePicker();
+            this.dateTimeTime1 = new System.Windows.Forms.DateTimePicker();
             this.dateTimeDay2 = new System.Windows.Forms.DateTimePicker();
             this.dateTimeDay1 = new System.Windows.Forms.DateTimePicker();
             this.lblEndTime = new System.Windows.Forms.Label();
             this.lblStartTime = new System.Windows.Forms.Label();
             this.panelCourseAndPlace = new System.Windows.Forms.Panel();
-            this.txtPlace = new System.Windows.Forms.TextBox();
+            this.txtMeetingPlace = new System.Windows.Forms.TextBox();
             this.lblMeetingPlace = new System.Windows.Forms.Label();
             this.cbxCourseList = new System.Windows.Forms.ComboBox();
             this.lblCourse = new System.Windows.Forms.Label();
@@ -45,8 +47,6 @@
             this.cbxTypeAppt = new System.Windows.Forms.ComboBox();
             this.lblTypeAppt = new System.Windows.Forms.Label();
             this.btnAdd = new System.Windows.Forms.Button();
-            this.dateTimeTime1 = new System.Windows.Forms.DateTimePicker();
-            this.dateTimeTime2 = new System.Windows.Forms.DateTimePicker();
             this.panelTime.SuspendLayout();
             this.panelCourseAndPlace.SuspendLayout();
             this.panelOtherProfile.SuspendLayout();
@@ -65,6 +65,22 @@
             this.panelTime.Name = "panelTime";
             this.panelTime.Size = new System.Drawing.Size(291, 61);
             this.panelTime.TabIndex = 0;
+            // 
+            // dateTimeTime2
+            // 
+            this.dateTimeTime2.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.dateTimeTime2.Location = new System.Drawing.Point(178, 36);
+            this.dateTimeTime2.Name = "dateTimeTime2";
+            this.dateTimeTime2.Size = new System.Drawing.Size(104, 20);
+            this.dateTimeTime2.TabIndex = 5;
+            // 
+            // dateTimeTime1
+            // 
+            this.dateTimeTime1.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.dateTimeTime1.Location = new System.Drawing.Point(177, 5);
+            this.dateTimeTime1.Name = "dateTimeTime1";
+            this.dateTimeTime1.Size = new System.Drawing.Size(105, 20);
+            this.dateTimeTime1.TabIndex = 4;
             // 
             // dateTimeDay2
             // 
@@ -104,7 +120,7 @@
             // 
             // panelCourseAndPlace
             // 
-            this.panelCourseAndPlace.Controls.Add(this.txtPlace);
+            this.panelCourseAndPlace.Controls.Add(this.txtMeetingPlace);
             this.panelCourseAndPlace.Controls.Add(this.lblMeetingPlace);
             this.panelCourseAndPlace.Controls.Add(this.cbxCourseList);
             this.panelCourseAndPlace.Controls.Add(this.lblCourse);
@@ -113,12 +129,12 @@
             this.panelCourseAndPlace.Size = new System.Drawing.Size(291, 61);
             this.panelCourseAndPlace.TabIndex = 1;
             // 
-            // txtPlace
+            // txtMeetingPlace
             // 
-            this.txtPlace.Location = new System.Drawing.Point(161, 35);
-            this.txtPlace.Name = "txtPlace";
-            this.txtPlace.Size = new System.Drawing.Size(121, 20);
-            this.txtPlace.TabIndex = 3;
+            this.txtMeetingPlace.Location = new System.Drawing.Point(161, 35);
+            this.txtMeetingPlace.Name = "txtMeetingPlace";
+            this.txtMeetingPlace.Size = new System.Drawing.Size(121, 20);
+            this.txtMeetingPlace.TabIndex = 3;
             // 
             // lblMeetingPlace
             // 
@@ -212,22 +228,6 @@
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
-            // dateTimeTime1
-            // 
-            this.dateTimeTime1.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.dateTimeTime1.Location = new System.Drawing.Point(177, 5);
-            this.dateTimeTime1.Name = "dateTimeTime1";
-            this.dateTimeTime1.Size = new System.Drawing.Size(105, 20);
-            this.dateTimeTime1.TabIndex = 4;
-            // 
-            // dateTimeTime2
-            // 
-            this.dateTimeTime2.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.dateTimeTime2.Location = new System.Drawing.Point(178, 36);
-            this.dateTimeTime2.Name = "dateTimeTime2";
-            this.dateTimeTime2.Size = new System.Drawing.Size(104, 20);
-            this.dateTimeTime2.TabIndex = 5;
-            // 
             // AppointmentBuilderForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -265,7 +265,7 @@
         private System.Windows.Forms.Label lblCourse;
         private System.Windows.Forms.Label lblMeetingPlace;
         private System.Windows.Forms.ComboBox cbxCourseList;
-        private System.Windows.Forms.TextBox txtPlace;
+        private System.Windows.Forms.TextBox txtMeetingPlace;
         private System.Windows.Forms.Panel panelOtherProfile;
         private System.Windows.Forms.Label lblOtherProfile;
         private System.Windows.Forms.TextBox textBox1;
