@@ -14,11 +14,13 @@ namespace Tutor_Master
         bool tutorAcc, tuteeAcc;
         string username;
         List<string> tutorClassesList;
+        int code = 0;
 
         Database db = new Database();
 
-        public Registration2()
+        public Registration2(int fromCode)
         {
+            code = fromCode;
             InitializeComponent();
             this.Icon = Tutor_Master.Properties.Resources.favicon;
 
@@ -32,8 +34,9 @@ namespace Tutor_Master
             }
         }
 
-        public Registration2(string user, bool isTutor, bool isTutee)
+        public Registration2(string user, bool isTutor, bool isTutee, int fromCode)
         {
+            code = fromCode;
             InitializeComponent();
             this.Icon = Tutor_Master.Properties.Resources.favicon;
             tutorAcc = isTutor;
@@ -72,10 +75,16 @@ namespace Tutor_Master
                     tutorClassesList.Add(checkedListBox1.CheckedItems[x].ToString());
                 }
 
-                //Faculty gets emailed here.
-
                 Database db = new Database();
                 db.addNewCourseList(username, tutorClassesList, true);
+
+                //Faculty gets emailed here.
+                string facultyApprover = "";
+                for (int x = 0; x < tutorClassesList.Count(); x++)
+                {
+                    facultyApprover = db.getFacultyApprover(tutorClassesList[x]);
+                    db.sendMessage(username, facultyApprover, "Tutor Request", username+" is requesting to tutor "+tutorClassesList[x], false, DateTime.Now);
+                }
 
                 if (tuteeAcc)
                 {
@@ -83,10 +92,24 @@ namespace Tutor_Master
                    
                     db.setTuteeStatus(username, tuteeAcc);
                     //username is a string, isTutee is a bool
+<<<<<<< HEAD
+                    
 
                     var next = new Registration3(username, tutorAcc, tuteeAcc);
                     this.Hide();
                     next.Show();
+=======
+                    if (code == 1000) {
+                        var next = new Registration3(username, tutorAcc, tuteeAcc);
+                        this.Hide();
+                        next.Show();
+                    }
+                    else if (code == 2000) {
+                        var next = new UserProfile(username);
+                        this.Hide();
+                        next.Show();
+                    }
+>>>>>>> 5a1a5d5dfd28726e27cff53b7c72b8553a7f973c
                 }
                 else
                 {

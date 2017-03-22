@@ -11,9 +11,8 @@ namespace Tutor_Master
 {
     public partial class UserProfile : Form
     {
-        private string first, last;
-       
-        private string tutorAcc, tuteeAcc;
+        private string first, last, user;
+        private bool tutorAcc, tuteeAcc;
 
         public UserProfile(string username)
         {
@@ -25,16 +24,27 @@ namespace Tutor_Master
             List<string> listOfProfileInfo;
             Database db = new Database();
             listOfProfileInfo = db.getProfileInfo(username);
+            user = username;
             first = listOfProfileInfo[0];
             last = listOfProfileInfo[1];
-            tutorAcc = listOfProfileInfo[2];
-            tuteeAcc = listOfProfileInfo[3];
+
+            string tutora = listOfProfileInfo[2];
+            if (tutora == "true")
+                tutorAcc = true;
+            else
+                tutorAcc = false;
+
+            string tuteea = listOfProfileInfo[3];
+            if (tuteea == "true")
+                tuteeAcc = true;
+            else
+                tuteeAcc = false;
 
             tuteeCoursesList.Add(listOfProfileInfo[4]);
             tuteeCoursesList.Add(listOfProfileInfo[5]);
             tuteeCoursesList.Add(listOfProfileInfo[6]);
             tuteeCoursesList.Add(listOfProfileInfo[7]);
-            tutorCoursesList.Add(listOfProfileInfo[8]); 
+            tutorCoursesList.Add(listOfProfileInfo[8]);
             tutorCoursesList.Add(listOfProfileInfo[9]);
             tutorCoursesList.Add(listOfProfileInfo[10]);
             tutorCoursesList.Add(listOfProfileInfo[11]);
@@ -50,17 +60,22 @@ namespace Tutor_Master
 
             this.Icon = Tutor_Master.Properties.Resources.favicon;
 
-            MessageBox.Show(tutorCoursesList[0] + tutorCoursesList[1] + tutorCoursesList[2] + tutorCoursesList[3]);
+            //MessageBox.Show(tutorCoursesList[0] + tutorCoursesList[1] + tutorCoursesList[2] + tutorCoursesList[3]);
+
+
+            var tutorListView = listView1;
+            //Point a = tutorListView.Location;
+            //MessageBox.Show("tutor list box " + a.X + " " + a.Y);
+
 
             // If so, loop through all checked items and print results. 
             if (tutorCoursesList[0] != "")
             {
-                var tutorListView = listView1;
                 for (int x = 0; x < tutorCoursesList.Count; x++)
                 {
                     if (tutorCoursesList[x] != "")
                     {
-                        tutorListView.Items.Add(tutorCoursesList[x]);
+                        tutorListView.Items.Add(tutorCoursesList[x] + "\n");
                     }
                 }
                 tutorListView.Visible = true;
@@ -68,20 +83,27 @@ namespace Tutor_Master
             else
             {
                 Button button = new Button();
+                button.Name = "buttAddTutor";
                 button.Text = "Add courses";
-                button.Left = listView1.Left;
-                button.Top = listView1.Top + 50;
+                button.Left = listView1.Left + 160;
+                button.Top = listView1.Top + 100;
                 this.Controls.Add(button);
+
+                button.Click += new EventHandler(NewButton_Click);
             }
+
+            var tuteeListView = listView2;
+            //Point b = tuteeListView.Location;
+            //MessageBox.Show("tutee list box " + b.X + " " + b.Y);
+
 
             if (tuteeCoursesList[0] != "")
             {
-                var tuteeListView = listView2;
                 for (int x = 0; x < tuteeCoursesList.Count; x++)
                 {
                     if (tuteeCoursesList[x] != "")
                     {
-                        tuteeListView.Items.Add(tuteeCoursesList[x]);
+                        tuteeListView.Items.Add(tuteeCoursesList[x] + "\n");
                     }
                 }
                 tuteeListView.Visible = true;
@@ -89,19 +111,59 @@ namespace Tutor_Master
             else
             {
                 Button button = new Button();
+                button.Name = "buttAddTutee";
                 button.Text = "Add courses";
-                button.Left = listView2.Left;
-                button.Top = listView2.Top + 50;
+                button.Left = listView2.Left + 170;
+                button.Top = listView2.Top + 100;
                 this.Controls.Add(button);
+
+
+                button.Click += new EventHandler(NewButton_Click);
             }
         }
+   
 
-        private void btnButton_Click(object sender, EventArgs e)
+    // In event method.
+    private void NewButton_Click(object sender, EventArgs e)
+    {
+        Button btn = (Button) sender;
+
+        // Find the programatically created button and assign its onClick event
+        if (btn.Name == ("buttAddTutor"))
         {
-            var form = new StartForm();
-            form.Show();
+            var next = new Registration2(user, tutorAcc, tuteeAcc, 2000);   //2000 is the id for coming from userprofile
             this.Hide();
+            next.Show();
+           
         }
+        if (btn.Name == ("buttAddTutee"))
+        {
+            var next = new Registration3(user);
+            this.Hide();
+            next.Show();
+            
+        }
+        
+    }
+
+        /*protected void button2_Click (object sender, EventArgs e, string username) 
+        {
+            //Button button = sender as Button;
+
+            var next = new Registration3(username);
+            this.Hide();
+            next.Show();
+        }
+
+        protected void button3_Click(string username, object sender, EventArgs e)
+        {
+            //Button button = sender as Button;
+
+            var next = new Registration2(username, tutorAcc, tuteeAcc, 2000);
+            this.Hide();
+            next.Show();
+        }*/
+
 
         //Function casts the first letter of the string to be capitalized...
         //But not sure if we really want that honestly.

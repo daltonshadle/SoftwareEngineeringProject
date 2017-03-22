@@ -16,14 +16,12 @@ namespace Tutor_Master
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-
             Database db = new Database();
             Application.Run(new StartForm());
             //db.sendMessage("grbohach", "coolTerry7", "tutor request", "I want to tutor cs1", null, DateTime.Now);
             //db.getInbox("grbohach");
             //Application.Run(new StartForm());
             //db.sendMessage("grbohach", "coolTerry7", "tutor request", "I want to tutor cs1", null, DateTime.Now);
-
         }
     }
 }

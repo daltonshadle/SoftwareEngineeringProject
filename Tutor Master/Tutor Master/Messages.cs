@@ -7,12 +7,14 @@ namespace Tutor_Master
 {
     class Messages
     {
+        private int id;
         private string toUser, fromUser, subject, message;
         private bool? pending;
         private DateTime timeSent;
 
         public Messages() 
         {
+            id = -1;
             toUser = "";
             fromUser = "";
             subject = "";
@@ -21,8 +23,9 @@ namespace Tutor_Master
             timeSent = DateTime.Now;
         }
 
-        public Messages(string toUserName, string fromUserName, string subj, string mess, bool pend, DateTime sent)
+        public Messages(int idNum, string toUserName, string fromUserName, string subj, string mess, bool pend, DateTime sent)
         {
+            id = idNum;
             toUser = toUserName;
             fromUser = fromUserName;
             subject = subj;
@@ -30,6 +33,9 @@ namespace Tutor_Master
             pending = pend;
             timeSent = sent;
         }
+
+        public int getIdNum() { return id; }
+        public void setIdNum(int idNum) { id = idNum; }
 
         public string getToUser() {return toUser; }
         public void setToUser(string toUserName) { toUser = toUserName; }
