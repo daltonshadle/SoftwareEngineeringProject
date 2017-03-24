@@ -11,17 +11,7 @@ namespace Tutor_Master
     class Database
     {
         private SqlCeConnection con;
-
-
         private string connection = @"Data Source=C:\TutorMaster.sdf";
-
-        //private string connection = @"Data Source=C:\TutorMaster (2).sdf";
-
-        //private string connection = @"Data Source=C:\Software\Tutor Master\Tutor Master\TutorMaster.sdf";
-
-
-        //private string connection = @"Data Source=F:\New Software Engineering\Tutor Master\Tutor Master\TutorMaster.sdf";
-        //private string connection = @"Data Source=C:\Users\grbohach\Documents\SoftwareEngineering\Tutor Master\Tutor Master\TutorMaster.sdf";
 
         public Database()
         {
@@ -128,17 +118,17 @@ namespace Tutor_Master
                 this.CloseConnection();
             }
         }
-
-        /*
-        public void isUsernameInDataBase(string user, bool isValid)
+   
+        public bool isUsernameInDataBase(string user)
         {
-            string query = "SELECT TOP username FROM profile WHERE username = @username";
+            string query = "SELECT Count(username) AS Count FROM profile WHERE username = @username";
 
             if (this.OpenConnection())
             {
                 SqlCeCommand cmd = new SqlCeCommand();
                 cmd.CommandText = query;
                 cmd.Parameters.Add("@username", user);
+                int userCount = -1;
                 cmd.Connection = con;
                 try
                 {
@@ -147,30 +137,36 @@ namespace Tutor_Master
                     //Read the data and store them in the list
                     while (dataReader.Read())
                     {
-                        list.Add(dataReader["password"] + "");
+                        userCount = (int)dataReader["Count"]; 
                     }
 
                     //close Data Reader
                     dataReader.Close();
+                    this.CloseConnection();
+
+                    if (userCount == 1)
+                        return true;
+                    else
+                        return false;
 
                 }
-                catch
+                catch (Exception ex)
                 {
-                    isValid = false;
+                    MessageBox.Show(ex.Message);
+                    this.CloseConnection();
+                    return false;
                 }
-
-                this.CloseConnection();
             }
+            else
+                return false;
             
         }
-        */
 
-        public void addAppointment(string meetingPlace, string course, DateTime startTime, DateTime endTime, Tutor tutor, Tutee tutee)
+        //adds an appointment to the appointments table
+        public void addAppointment(string free, string meetingPlace, string course, DateTime startTime, DateTime endTime, Tutor tutor, Tutee tutee)
         {
             {
-
-                string query = "INSERT INTO appointments (tutorUsername, tuteeUsername, meetingPlace, course, starTime, endTime) VALUES (@tutor, @tutuee, @meetingPlace, @course, @startTime, @endTime)";
-
+                string query = "INSERT INTO appointments ([free time], tutor, tutee, courseName, meetingPlace, startTime, endTime) VALUES (@freeTime, @tutor, @tutee, @courseName, @meetingPlace, @startTime, @endTime)";
 
                 if (this.OpenConnection())
                 {
@@ -178,10 +174,40 @@ namespace Tutor_Master
                     //Finish writing query
                     SqlCeCommand cmd = new SqlCeCommand();
                     cmd.CommandText = query;
-                    cmd.Parameters.Add("@tutor", tutor);
-                    cmd.Parameters.Add("@tutee", tutee);
-                    cmd.Parameters.Add("@meetingPlace", meetingPlace);
-                    cmd.Parameters.Add("@course", course);
+                    if (free == null)
+                    {
+                        cmd.Parameters.Add("@freeTime", DBNull.Value);
+                    }
+                    else
+                        cmd.Parameters.Add("@freeTime", free);
+
+                    if (tutor == null)
+                    {
+                        cmd.Parameters.Add("@tutor", DBNull.Value);
+                    }
+                    else
+                        cmd.Parameters.Add("@tutor", tutor.getUsername());
+
+                    if (tutee == null)
+                    {
+                        cmd.Parameters.Add("@tutee", DBNull.Value);
+                    }
+                    else
+                        cmd.Parameters.Add("@tutee", tutee.getUsername());
+
+                    if (meetingPlace == null)
+                    {
+                        cmd.Parameters.Add("@meetingPlace", DBNull.Value); ;
+                    }
+                    else
+                        cmd.Parameters.Add("@meetingPlace", meetingPlace); ;
+                    if (course == null)
+                    {
+                        cmd.Parameters.Add("@courseName", DBNull.Value);
+                    }
+                    else
+                        cmd.Parameters.Add("@courseName", course);
+
                     cmd.Parameters.Add("@startTime", startTime);
                     cmd.Parameters.Add("@endTime", endTime);
                     cmd.Connection = con;
@@ -289,7 +315,7 @@ namespace Tutor_Master
             }
         }
 
-        //gets all of the courses to fill the check boxes during registration process
+        //gets all of the courses, returned in a list of strings
         public List<string> getAllCourses()
         {
             string query;
@@ -752,6 +778,7 @@ namespace Tutor_Master
             }
         }
 
+        //figures out which faculty goes username goes with a course
         public string getFacultyApprover(string courseName) 
         {
             List<Messages> messageList = new List<Messages>();
@@ -792,6 +819,5 @@ namespace Tutor_Master
             }
             return facultyName;
         }
-
     }
 }
