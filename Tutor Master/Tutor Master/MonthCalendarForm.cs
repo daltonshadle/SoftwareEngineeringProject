@@ -26,6 +26,19 @@ namespace Tutor_Master
             now = DateTime.Now;
 
 
+            
+        
+        }
+
+        private void profileMonthCalendar_DateSelected(object sender, System.Windows.Forms.DateRangeEventArgs e)
+        {
+            // Show the start and end dates in the text box.
+            monthCalendar1.lblTempDate.Text = e.Start.ToShortDateString();
+
+            MessageBox.Show("Date Selected: Start = " +
+            e.Start.ToShortDateString() + " : End = " + e.End.ToShortDateString() + "for " + username);
+
+
             //The vision for this:
             //Garrett write a function. public List<Appointment> getDailyAppointments(string username, DateTime date)
             //Pre: username in database and date is not NULL
@@ -42,16 +55,6 @@ namespace Tutor_Master
                     newLV.Items.Add(appointmentList.get(i));
                 }
             }*/
-        
-        }
-
-        private void profileMonthCalendar_DateSelected(object sender, System.Windows.Forms.DateRangeEventArgs e)
-        {
-            // Show the start and end dates in the text box.
-            monthCalendar1.lblTempDate.Text = e.Start.ToShortDateString();
-
-            MessageBox.Show("Date Selected: Start = " +
-            e.Start.ToShortDateString() + " : End = " + e.End.ToShortDateString() + "for " + username);
 
         }     
 
