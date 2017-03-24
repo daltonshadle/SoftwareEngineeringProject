@@ -20,72 +20,42 @@ namespace Tutor_Master
             profileSchedule = new SortedList<DateTime, Appointment>();
         }
 
-        //public void addAppt(Appointment a) { 
-        //    //function for adding an appt to the schedule
+        public void addAppt(Appointment a)
+        {
+            //function for adding an appt to the schedule
 
-        //    //validation of the appointment is done when the appointment is created
+            //validation of the appointment is done when the appointment is created
 
-        //    //check for overlapping appointment datetime
-        //    //profileSchedule.Add(a.getDateTime(), a);
-        //}
+            //check for overlapping appointment datetime
+            profileSchedule.Add(a.getStartTime(), a);
+        }
 
-        //public void removeAppt(Appointment a) { 
-        //    //function for removing an appt from the schedule
-        //    Appointment temp;
-        //    if (profileSchedule.TryGetValue(a.getDateTime(), out temp)) {
-        //        profileSchedule.Remove(a.getDateTime());
-        //    }
-        //}
+        public void removeAppt(Appointment a)
+        {
+            //function for removing an appt from the schedule
+            Appointment temp;
+            if (profileSchedule.TryGetValue(a.getStartTime(), out temp))
+            {
+                profileSchedule.Remove(a.getStartTime());
+            }
+        }
 
-        //public Appointment getAppt(Appointment a) {
-        //    Appointment temp;
-        //    if (profileSchedule.TryGetValue(a.getDateTime(), out temp)) {
-        //        temp = a;
-        //    }
+        public Appointment getAppt(Appointment a)
+        {
+            Appointment temp;
+            if (profileSchedule.TryGetValue(a.getStartTime(), out temp))
+            {
+                temp = a;
+            }
 
-        //    return temp;
-        //}
-        //    profileSchedule.Add(a.getStartTime(), a);
-        //}
+            return temp;
+        }
 
-        //validation of the appointment is done when the appointment is create
-        //    profileSchedule.Add(a.getStartTime(), a);
-        //}
+        public void editAppt(Appointment a)
+        {
+            //function for editting information in the schedule
 
-
-        //public void removeAppt(Appointment a) { 
-        //    //function for removing an appt from the schedule
-        //    Appointment temp;
-        //    if (profileSchedule.TryGetValue(a.getStartTime(), out temp)) {
-        //        profileSchedule.Remove(a.getStartTime());
-        //    }
-
-
-        //    //validation of the appointment is done when the appointment is create
-        //    //profileSchedule.Add(a.getStartTime(), a);
-        //}
-
-
-        //public void removeAppt(Appointment a) { 
-        //    //function for removing an appt from the schedule
-        //    Appointment temp;
-        //    if (profileSchedule.TryGetValue(a.getStartTime(), out temp)) {
-        //        profileSchedule.Remove(a.getStartTime());
-        //    }
-        //}
-
-        //public Appointment getAppt(Appointment a) {
-        //    Appointment temp;
-        //    if (profileSchedule.TryGetValue(a.getStartTime(), out temp)) {
-        //        temp = a;
-        //    }
-
-        //    return temp;
-        //}
-
-        //public void editAppt(Appointment a) { 
-        //function for editting information in the schedule
-
+        }
     }
 }
 

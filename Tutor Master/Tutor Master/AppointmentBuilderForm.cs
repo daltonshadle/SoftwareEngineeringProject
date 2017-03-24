@@ -19,6 +19,8 @@ namespace Tutor_Master
         private Profile otherProf;
         private DateTime firstDate;
         private DateTime secondDate;
+        private bool isTutor;
+        private bool isTutee;
 
         public AppointmentBuilderForm()
         {
@@ -27,12 +29,16 @@ namespace Tutor_Master
             this.Icon = Tutor_Master.Properties.Resources.favicon;
         }
 
-        public AppointmentBuilderForm(Profile buildingProfile)
+        public AppointmentBuilderForm(Profile buildingProfile, bool isTutor, bool isTutee)
         {
             InitializeComponent();
             initViews();
             this.Icon = Tutor_Master.Properties.Resources.favicon;
+
             builderProf = buildingProfile;
+            this.isTutor = isTutor;
+            this.isTutee = isTutee;
+
         }
 
         private void initViews() {
@@ -58,7 +64,18 @@ namespace Tutor_Master
                     //move on and check dates for free time
                     if (verifyTimes())
                     {
-                        Appointment a = new Appointment(type, firstDate, secondDate, builderProf);
+                        if (isTutee)
+                        {
+                            Appointment a = new Appointment(type, firstDate, secondDate, (Tutee)builderProf);
+                            Tutee temp = (Tutee)builderProf;
+                            temp.addApptToTuteeSchedule(a);
+                        }
+                        else 
+                        {
+                            Appointment a = new Appointment(type, firstDate, secondDate, (Tutor)builderProf);
+                            Tutor temp = (Tutor)builderProf;
+                            temp.addApptToTutorSchedule(a);
+                        }
                     }
 
                 }
@@ -66,6 +83,10 @@ namespace Tutor_Master
                 {
                     //check dates and times, courses, meeting place, profile
 
+                }
+                else if (type.Equals(TEACH)) 
+                {
+                
                 }
             }
         }
@@ -107,10 +128,10 @@ namespace Tutor_Master
 
         private bool verifyOtherProfile() 
         { 
-            bool good = true;
-            //Garrett need a fucntion to check if profile is in database
+            //Garrett need a function to check if profile is in database
+            String tempProf = txtOtherProf.Text.ToString();
 
-            return good;
+            return (!tempProf.Equals(""));
         }
 
         private bool verifyMeetingPlace() 
@@ -147,17 +168,17 @@ namespace Tutor_Master
                 good = false;
                 MessageBox.Show("Please choose an appointment type.");
             }
-            if (!verifyCourse())
+            if (courseAndProfilePanelVisisbile() && !verifyCourse())
             {
                 good = false;
                 MessageBox.Show("Please enter a course.");
             }
-            if (!verifyMeetingPlace())
+            if (courseAndProfilePanelVisisbile() && !verifyMeetingPlace())
             {
                 good = false;
                 MessageBox.Show("Please enter a meeting place.");
             }
-            if (!verifyOtherProfile())
+            if (courseAndProfilePanelVisisbile() && !verifyOtherProfile())
             {
                 good = false;
                 MessageBox.Show("Please enter a valid profile.");
@@ -170,6 +191,11 @@ namespace Tutor_Master
 
             return good;
         }
-
+        
+        private bool courseAndProfilePanelVisisbile(){
+            return panelCourseAndPlace.Visible && panelOtherProfile.Visible;
+        }
     }
+
+    
 }
