@@ -64,6 +64,7 @@ namespace Tutor_Master
 
 
             var tutorListView = listView1;
+            
             //Point a = tutorListView.Location;
             //MessageBox.Show("tutor list box " + a.X + " " + a.Y);
 
@@ -93,6 +94,7 @@ namespace Tutor_Master
             }
 
             var tuteeListView = listView2;
+            ;
             //Point b = tuteeListView.Location;
             //MessageBox.Show("tutee list box " + b.X + " " + b.Y);
 
@@ -146,24 +148,6 @@ namespace Tutor_Master
         
     }
 
-        /*protected void button2_Click (object sender, EventArgs e, string username) 
-        {
-            //Button button = sender as Button;
-
-            var next = new Registration3(username);
-            this.Hide();
-            next.Show();
-        }
-
-        protected void button3_Click(string username, object sender, EventArgs e)
-        {
-            //Button button = sender as Button;
-
-            var next = new Registration2(username, tutorAcc, tuteeAcc, 2000);
-            this.Hide();
-            next.Show();
-        }*/
-
 
         //Function casts the first letter of the string to be capitalized...
         //But not sure if we really want that honestly.
@@ -182,6 +166,20 @@ namespace Tutor_Master
             var form = new StartForm();
             form.Show();
             this.Hide();
+        }
+
+        private void btnAddApp_Click(object sender, EventArgs e)
+        {
+            var appBuilder = new AppointmentBuilderForm();
+            appBuilder.Show();
+            //this.Hide();
+        }
+
+        private void btnViewCal_Click(object sender, EventArgs e)
+        {
+            var monthCal = new MonthCalendarForm();
+            monthCal.Show();
+            //this.Hide();
         }
 
 
