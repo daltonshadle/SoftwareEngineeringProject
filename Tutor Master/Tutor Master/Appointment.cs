@@ -28,23 +28,34 @@ namespace Tutor_Master
             tutee = new Tutee();
             meetingType = "";
         }
-        public Appointment(string tempMeetingType, string tempPlace, string tempCourse, DateTime tempStartTime, DateTime tempEndTime, Profile tempTutor, Profile tempTutee)
+        public Appointment(string tempMeetingType, string tempPlace, string tempCourse, DateTime tempStartTime, DateTime tempEndTime, Tutor tempTutor, Tutee tempTutee)
         {
             //validation of these parameters can be done before the creation of the appointment object
             meetingPlace = tempPlace;
             course = tempCourse;
             startTime = tempStartTime;
             endTime = tempEndTime;
-            tutor = (Tutor) tempTutor;
-            tutee = (Tutee) tempTutee;
+            tutor = tempTutor;
+            tutee = tempTutee;
             meetingType = tempMeetingType;
         }
-        public Appointment(string tempMeetingType, DateTime tempStartTime, DateTime tempEndTime, Profile owner) {
-            //Freetime appointment constructor
+        public Appointment(string tempMeetingType, DateTime tempStartTime, DateTime tempEndTime, Tutor owner) {
+            //Freetime appointment constructor for tutor
             
             startTime = tempStartTime;
             endTime = tempEndTime;
             meetingType = tempMeetingType;
+            tutor = owner;
+            //have to find something for profile and cast to a tutor or tutee
+        }
+        public Appointment(string tempMeetingType, DateTime tempStartTime, DateTime tempEndTime, Tutee owner)
+        {
+            //Freetime appointment constructor for tutee
+
+            startTime = tempStartTime;
+            endTime = tempEndTime;
+            meetingType = tempMeetingType;
+            tutee = owner;
             //have to find something for profile and cast to a tutor or tutee
         }
 
@@ -67,7 +78,7 @@ namespace Tutor_Master
             startTime = dt;
         }
 
-        public DateTime getendTime() {
+        public DateTime getEndTime() {
             return endTime;
         }
         public void setEndTime(DateTime dt) {

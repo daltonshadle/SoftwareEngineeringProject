@@ -41,7 +41,7 @@
             this.cbxCourseList = new System.Windows.Forms.ComboBox();
             this.lblCourse = new System.Windows.Forms.Label();
             this.panelOtherProfile = new System.Windows.Forms.Panel();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtOtherProf = new System.Windows.Forms.TextBox();
             this.lblOtherProfile = new System.Windows.Forms.Label();
             this.panelApptType = new System.Windows.Forms.Panel();
             this.cbxTypeAppt = new System.Windows.Forms.ComboBox();
@@ -164,19 +164,19 @@
             // 
             // panelOtherProfile
             // 
-            this.panelOtherProfile.Controls.Add(this.textBox1);
+            this.panelOtherProfile.Controls.Add(this.txtOtherProf);
             this.panelOtherProfile.Controls.Add(this.lblOtherProfile);
             this.panelOtherProfile.Location = new System.Drawing.Point(9, 185);
             this.panelOtherProfile.Name = "panelOtherProfile";
             this.panelOtherProfile.Size = new System.Drawing.Size(291, 30);
             this.panelOtherProfile.TabIndex = 2;
             // 
-            // textBox1
+            // txtOtherProf
             // 
-            this.textBox1.Location = new System.Drawing.Point(161, 6);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(120, 20);
-            this.textBox1.TabIndex = 1;
+            this.txtOtherProf.Location = new System.Drawing.Point(161, 6);
+            this.txtOtherProf.Name = "txtOtherProf";
+            this.txtOtherProf.Size = new System.Drawing.Size(120, 20);
+            this.txtOtherProf.TabIndex = 1;
             // 
             // lblOtherProfile
             // 
@@ -268,7 +268,7 @@
         private System.Windows.Forms.TextBox txtMeetingPlace;
         private System.Windows.Forms.Panel panelOtherProfile;
         private System.Windows.Forms.Label lblOtherProfile;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtOtherProf;
         private System.Windows.Forms.Panel panelApptType;
         private System.Windows.Forms.ComboBox cbxTypeAppt;
         private System.Windows.Forms.Label lblTypeAppt;

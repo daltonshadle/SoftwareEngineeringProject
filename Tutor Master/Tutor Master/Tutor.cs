@@ -43,5 +43,9 @@ namespace Tutor_Master
         
         }
 
+        public void addApptToTutorSchedule(Appointment a)
+        {
+            tutorSchedule.addAppt(a);
+        }
     }
 }
