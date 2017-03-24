@@ -177,7 +177,7 @@ namespace Tutor_Master
 
         private void btnViewCal_Click(object sender, EventArgs e)
         {
-            var monthCal = new MonthCalendarForm();
+            var monthCal = new MonthCalendarForm(user);
             monthCal.Show();
             //this.Hide();
         }

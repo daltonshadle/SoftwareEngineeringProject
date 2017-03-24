@@ -38,7 +38,6 @@
             this.profileMonthCalendar.Location = new System.Drawing.Point(9, 58);
             this.profileMonthCalendar.Name = "profileMonthCalendar";
             this.profileMonthCalendar.TabIndex = 0;
-            this.profileMonthCalendar.DateSelected += new System.Windows.Forms.DateRangeEventHandler(this.profileMonthCalendar_DateSelected);
             // 
             // lblTitle
             // 
@@ -52,7 +51,7 @@
             // lblTempDate
             // 
             this.lblTempDate.AutoSize = true;
-            this.lblTempDate.Location = new System.Drawing.Point(104, 36);
+            this.lblTempDate.Location = new System.Drawing.Point(89, 36);
             this.lblTempDate.Name = "lblTempDate";
             this.lblTempDate.Size = new System.Drawing.Size(26, 13);
             this.lblTempDate.TabIndex = 4;
@@ -74,8 +73,8 @@
 
         #endregion
 
-        private System.Windows.Forms.MonthCalendar profileMonthCalendar;
-        private System.Windows.Forms.Label lblTitle;
-        private System.Windows.Forms.Label lblTempDate;
+        public System.Windows.Forms.Label lblTitle;
+        public System.Windows.Forms.MonthCalendar profileMonthCalendar;
+        public System.Windows.Forms.Label lblTempDate;
     }
 }

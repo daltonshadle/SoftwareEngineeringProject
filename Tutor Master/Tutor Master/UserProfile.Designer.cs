@@ -40,6 +40,7 @@
             // 
             // btnLogout
             // 
+            this.btnLogout.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btnLogout.Location = new System.Drawing.Point(979, 12);
             this.btnLogout.Name = "btnLogout";
             this.btnLogout.Size = new System.Drawing.Size(75, 23);
@@ -93,8 +94,8 @@
             // 
             // btnAddApp
             // 
-            this.btnAddApp.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnAddApp.Location = new System.Drawing.Point(766, 43);
+            this.btnAddApp.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btnAddApp.Location = new System.Drawing.Point(737, 12);
             this.btnAddApp.Name = "btnAddApp";
             this.btnAddApp.Size = new System.Drawing.Size(97, 23);
             this.btnAddApp.TabIndex = 8;
@@ -104,8 +105,8 @@
             // 
             // btnViewCal
             // 
-            this.btnViewCal.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnViewCal.Location = new System.Drawing.Point(766, 73);
+            this.btnViewCal.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btnViewCal.Location = new System.Drawing.Point(859, 12);
             this.btnViewCal.Name = "btnViewCal";
             this.btnViewCal.Size = new System.Drawing.Size(97, 23);
             this.btnViewCal.TabIndex = 9;

@@ -33,8 +33,8 @@
             // 
             // monthCalendar1
             // 
-            this.monthCalendar1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.monthCalendar1.Location = new System.Drawing.Point(243, 85);
+            this.monthCalendar1.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.monthCalendar1.Location = new System.Drawing.Point(231, 12);
             this.monthCalendar1.Name = "monthCalendar1";
             this.monthCalendar1.Size = new System.Drawing.Size(245, 229);
             this.monthCalendar1.TabIndex = 0;

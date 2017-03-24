@@ -11,19 +11,12 @@ namespace Tutor_Master
 {
     public partial class MonthCalendar : UserControl
     {
+
         public MonthCalendar()
         {
             InitializeComponent();
-
+            this.lblTempDate.Text = DateTime.Now.Month + "/" + DateTime.Now.Day + "/" + DateTime.Now.Year;
         }
 
-        private void profileMonthCalendar_DateSelected(object sender, DateRangeEventArgs e)
-        {
-            lblTempDate.Text = profileMonthCalendar.SelectionRange.Start.ToShortDateString();
-            
-
-        }
-
-        
     }
 }
