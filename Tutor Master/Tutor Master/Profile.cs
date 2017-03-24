@@ -20,6 +20,12 @@ namespace Tutor_Master
             password = "";
         }
 
+        public Profile(string name)
+        {
+            username = name;
+            password = "";
+        }
+
         public Profile(string name, string pass){
             username = name;
             password = pass;

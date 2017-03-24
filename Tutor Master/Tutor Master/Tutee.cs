@@ -24,6 +24,16 @@ namespace Tutor_Master
         }
 
         public Tutee(string username, string password) : base(username, password) { }
+
+        public Tutee(string username, string[] courseArray)
+            : base(username)
+        {
+            courses = courseArray;
+            //4 is just a placeholder
+            //base is calling the base class constructor
+            tuteeSchedule = new Schedule();
+        }
+
         public Tutee(string username, string password, string[] courseArray) : base(username, password) {
             courses = courseArray;
             //4 is just a placeholder

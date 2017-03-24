@@ -16,7 +16,10 @@ namespace Tutor_Master
         private const String TEACH = "Teaching (Tutoring)";
         private const String FREE = "Free Time";
         private Profile builderProf;
-        private Profile otherProf;
+        private Tutor builderTutorProf;
+        private Tutee builderTuteeProf;
+        private Tutor otherTutorProf;
+        private Tutee otherTuteeProf;
         private DateTime firstDate;
         private DateTime secondDate;
         private bool isTutor;
@@ -55,6 +58,9 @@ namespace Tutor_Master
             firstDate = dateTimeDay1.Value.Date + dateTimeTime1.Value.TimeOfDay;
             secondDate = dateTimeDay2.Value.Date + dateTimeTime2.Value.TimeOfDay;
             string type = cbxTypeAppt.Text.ToString();
+            string place = txtMeetingPlace.Text.ToString();
+            string otherProfName = txtOtherProf.Text.ToString();
+            string course = cbxCourseList.Text.ToString();
 
             if (verifyEverything())
             {
@@ -62,30 +68,59 @@ namespace Tutor_Master
                 if (type.Equals(FREE))
                 {
                     //move on and check dates for free time
-                    if (verifyTimes())
+                    if (isTutee)
                     {
-                        if (isTutee)
-                        {
-                            Appointment a = new Appointment(type, firstDate, secondDate, (Tutee)builderProf);
-                            Tutee temp = (Tutee)builderProf;
-                            temp.addApptToTuteeSchedule(a);
-                        }
-                        else 
-                        {
-                            Appointment a = new Appointment(type, firstDate, secondDate, (Tutor)builderProf);
-                            Tutor temp = (Tutor)builderProf;
-                            temp.addApptToTutorSchedule(a);
-                        }
+                        Appointment a = new Appointment(type, firstDate, secondDate, (Tutee)builderProf);
+                        Tutee temp = (Tutee)builderProf;
+                        temp.addApptToTuteeSchedule(a);
+                        a.addAppointmentToDatabase();
                     }
-
+                    else 
+                    {
+                        Appointment a = new Appointment(type, firstDate, secondDate, (Tutor)builderProf);
+                        Tutor temp = (Tutor)builderProf;
+                        temp.addApptToTutorSchedule(a);
+                        a.addAppointmentToDatabase();
+                    }
                 }
                 else if (type.Equals(LEARN))
                 {
                     //check dates and times, courses, meeting place, profile
+                    if (verifyEverything()) 
+                    {
+                        Database db = new Database();
+                        List<string> info = db.getProfileInfo(otherProfName);
+                        string[] courses = new string[4];
 
+                        //maybe write a for loop for it later
+                        course.Insert(0, info[8]);
+                        course.Insert(1, info[9]);
+                        course.Insert(2, info[10]);
+                        course.Insert(3, info[11]);
+
+                        otherTutorProf = new Tutor(otherProfName, courses);
+
+                        Tutee temp = (Tutee)builderProf;
+                        //Dalton, yo really fricked the pooch on this one. Need to go through this again and sort shit out.
+                        Appointment a = new Appointment(type, place, course, firstDate, secondDate, otherTutorProf, temp);
+                    }
                 }
-                else if (type.Equals(TEACH)) 
-                {
+                else {
+                    Database db = new Database();
+                    List<string> info = db.getProfileInfo(otherProfName);
+                    string[] courses = new string[4];
+
+                    //maybe write a for loop for it later
+                    course.Insert(0, info[4]);
+                    course.Insert(1, info[5]);
+                    course.Insert(2, info[6]);
+                    course.Insert(3, info[7]);
+
+                    otherTuteeProf = new Tutee(otherProfName, courses);
+
+                    Tutor temp = (Tutor)builderProf;
+                    //Dalton, yo really fricked the pooch on this one. Need to go through this again and sort shit out.
+                    Appointment a = new Appointment(type, place, course, firstDate, secondDate, temp, otherTuteeProf);
                 
                 }
             }
@@ -122,7 +157,7 @@ namespace Tutor_Master
 
         private bool verifyApptType() 
         {
-            String tempType = cbxTypeAppt.SelectedText.ToString();
+            String tempType = cbxTypeAppt.Text.ToString();
             return (!tempType.Equals(""));
         }
 
@@ -155,7 +190,7 @@ namespace Tutor_Master
 
         private bool verifyCourse()
         {
-            String tempCourse = cbxCourseList.SelectedText.ToString();
+            String tempCourse = cbxCourseList.Text.ToString();
             return (!tempCourse.Equals(""));
         }
 
