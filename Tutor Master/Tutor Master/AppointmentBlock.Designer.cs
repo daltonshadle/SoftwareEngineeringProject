@@ -31,7 +31,8 @@
             this.lblAppointmentType = new System.Windows.Forms.Label();
             this.lblTimeAndPlace = new System.Windows.Forms.Label();
             this.lblCourse = new System.Windows.Forms.Label();
-            this.lblName = new System.Windows.Forms.Label();
+            this.lblFirst = new System.Windows.Forms.Label();
+            this.lblSecond = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblAppointmentType
@@ -64,22 +65,32 @@
             this.lblCourse.TabIndex = 2;
             this.lblCourse.Text = "Course";
             // 
-            // lblName
+            // lblFirst
             // 
-            this.lblName.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.lblName.AutoSize = true;
-            this.lblName.Location = new System.Drawing.Point(32, 50);
-            this.lblName.Name = "lblName";
-            this.lblName.Size = new System.Drawing.Size(35, 13);
-            this.lblName.TabIndex = 3;
-            this.lblName.Text = "Name";
+            this.lblFirst.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lblFirst.AutoSize = true;
+            this.lblFirst.Location = new System.Drawing.Point(32, 50);
+            this.lblFirst.Name = "lblFirst";
+            this.lblFirst.Size = new System.Drawing.Size(32, 13);
+            this.lblFirst.TabIndex = 3;
+            this.lblFirst.Text = "Tutor";
+            // 
+            // lblSecond
+            // 
+            this.lblSecond.AutoSize = true;
+            this.lblSecond.Location = new System.Drawing.Point(30, 63);
+            this.lblSecond.Name = "lblSecond";
+            this.lblSecond.Size = new System.Drawing.Size(35, 13);
+            this.lblSecond.TabIndex = 4;
+            this.lblSecond.Text = "Tutee";
             // 
             // AppointmentBlock
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.Controls.Add(this.lblName);
+            this.Controls.Add(this.lblSecond);
+            this.Controls.Add(this.lblFirst);
             this.Controls.Add(this.lblCourse);
             this.Controls.Add(this.lblTimeAndPlace);
             this.Controls.Add(this.lblAppointmentType);
@@ -95,6 +106,7 @@
         private System.Windows.Forms.Label lblAppointmentType;
         private System.Windows.Forms.Label lblTimeAndPlace;
         private System.Windows.Forms.Label lblCourse;
-        private System.Windows.Forms.Label lblName;
+        private System.Windows.Forms.Label lblFirst;
+        private System.Windows.Forms.Label lblSecond;
     }
 }

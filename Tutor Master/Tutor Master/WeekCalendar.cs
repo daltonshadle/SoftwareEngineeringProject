@@ -101,7 +101,7 @@ namespace Tutor_Master
                 Button button = new Button();
                 button.Name = "btnSeeMore";
                 button.Text = "See More";
-                button.Location = new Point(45, 300);
+                button.Location = new Point(22, 300);
                 this.Controls.Add(button);
                 p.Controls.Add(button);
                 button.Click += new EventHandler(NewButton_Click);
@@ -120,6 +120,7 @@ namespace Tutor_Master
             if (btn.Name == ("btnSeeMore"))
             {
                 var monthCal = new MonthCalendarForm(username);
+                monthCal.StartPosition = FormStartPosition.CenterParent;
                 monthCal.Show();
             }
         }
@@ -138,7 +139,7 @@ namespace Tutor_Master
             lblWeek.Text = startDate.ToShortDateString() + " - " + endDate.ToShortDateString();
         }
 
-        public void drawAppoint(Panel p) {
+        /*public void drawAppoint(Panel p) {
             DateTime d = DateTime.Now;
             Profile user = new Profile("Tommy", "asdfghj");
             AppointmentBlock a = new AppointmentBlock("Learning", "Library", d, "CS1", user);
@@ -150,7 +151,7 @@ namespace Tutor_Master
             DateTime time = appt.getStartTime();
             string course = appt.getCourse();
             string place = appt.getMeetingPlace();
-            Profile user = appt.getTutee();
+            string user = appt.getTutee();
 
 
             AppointmentBlock a = new AppointmentBlock(type, place, time, course, user);
@@ -177,7 +178,7 @@ namespace Tutor_Master
 
             Panel p = new Panel();
             return p;
-        }
+        }*/
 
     }
 }

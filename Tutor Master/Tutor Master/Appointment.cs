@@ -15,9 +15,9 @@ namespace Tutor_Master
         private string meetingPlace;
         private string course;
         private DateTime startTime, endTime;
-        private Profile tutorProf;
-        private Profile tuteeProf;
-        private Profile freeTimeProf;
+        private string tutorProf;
+        private string tuteeProf;
+        private string freeTimeProf;
         private bool isFreeTimeSession;
         private int apptID;
 
@@ -30,13 +30,13 @@ namespace Tutor_Master
             course = "";
             startTime = new DateTime();
             endTime = new DateTime();
-            tutorProf = new Profile();
-            tuteeProf = new Profile();
-            freeTimeProf = new Profile();
+            tutorProf = "";//new Profile();
+            tuteeProf = ""; //new Profile();
+            freeTimeProf = ""; //new Profile();
             isFreeTimeSession = false;
             apptID = -1;
         }
-        public Appointment(string tempMeetingType, string tempPlace, string tempCourse, DateTime tempStartTime, DateTime tempEndTime, Tutor tempTutor,  Tutee tempTutee)
+        public Appointment(string tempMeetingType, string tempPlace, string tempCourse, DateTime tempStartTime, DateTime tempEndTime, string tempTutor,  string tempTutee)
         {
             //validation of these parameters can be done before the creation of the appointment object
             //appointment constructor for tutoring or tuteeing sessions
@@ -49,7 +49,7 @@ namespace Tutor_Master
             isFreeTimeSession = meetingTypeStringToBool(tempMeetingType);
             apptID = -1;
         }
-        public Appointment(DateTime tempStartTime, DateTime tempEndTime, Profile owner)
+        public Appointment(DateTime tempStartTime, DateTime tempEndTime, string owner)
         {
             //Freetime appointment constructor
 
@@ -115,7 +115,7 @@ namespace Tutor_Master
             course = c;
         }
 
-        public Profile getTutor()
+        public string getTutor()
         {
             return tutorProf;
         }
@@ -125,7 +125,7 @@ namespace Tutor_Master
             tutorProf = t;
         }
 
-        public Profile getTutee()
+        public string getTutee()
         {
             return tuteeProf;
         }
@@ -135,7 +135,7 @@ namespace Tutor_Master
             tuteeProf = t;
         }
 
-        public Profile getFreeTimeProf()
+        public string getFreeTimeProf()
         {
             return freeTimeProf;
         }
