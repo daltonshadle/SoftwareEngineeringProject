@@ -180,6 +180,7 @@ namespace Tutor_Master
             if (isFreeTimeSession)
             {
                 //add freetime appt
+
             }
             else
             { 

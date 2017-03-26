@@ -42,7 +42,7 @@ namespace Tutor_Master
             this.isTutor = isTutor;
             this.isTutee = isTutee;
 
-            buildingProf = buildingProfile;
+            builderProf = buildingProfile;
         }
 
         private void initViews() {
@@ -56,8 +56,8 @@ namespace Tutor_Master
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            firstDate = dateTimeDay1.Value.Date + dateTimeTime1.Value.TimeOfDay;
-            secondDate = dateTimeDay2.Value.Date + dateTimeTime2.Value.TimeOfDay;
+            startTime = dateTimeDay1.Value.Date + dateTimeTime1.Value.TimeOfDay;
+            endTime = dateTimeDay2.Value.Date + dateTimeTime2.Value.TimeOfDay;
             string type = cbxTypeAppt.Text.ToString();
             string place = txtMeetingPlace.Text.ToString();
             string otherProfName = txtOtherProf.Text.ToString();
@@ -65,64 +65,26 @@ namespace Tutor_Master
 
             if (verifyEverything())
             {
-
-                if (type.Equals(FREE))
+                if (isFreeTime(type))
                 {
-                    //move on and check dates for free time
-                    if (isTutee)
-                    {
-                        Appointment a = new Appointment(type, firstDate, secondDate, (Tutee)builderProf);
-                        Tutee temp = (Tutee)builderProf;
-                        temp.addApptToTuteeSchedule(a);
-                        a.addAppointmentToDatabase();
-                    }
-                    else 
-                    {
-                        Appointment a = new Appointment(type, firstDate, secondDate, (Tutor)builderProf);
-                        Tutor temp = (Tutor)builderProf;
-                        temp.addApptToTutorSchedule(a);
-                        a.addAppointmentToDatabase();
-                    }
+                    Appointment a = new Appointment(startTime, endTime, builderProf);
+                    a.addAppointmentToDatabase();
                 }
-                else if (type.Equals(LEARN))
-                {
-                    //check dates and times, courses, meeting place, profile
-                    if (verifyEverything()) 
+                else 
+                { 
+                    if (isBuilderTheTutor(type))
                     {
-                        Database db = new Database();
-                        List<string> info = db.getProfileInfo(otherProfName);
-                        string[] courses = new string[4];
-
-                        //maybe write a for loop for it later
-                        course.Insert(0, info[8]);
-                        course.Insert(1, info[9]);
-                        course.Insert(2, info[10]);
-                        course.Insert(3, info[11]);
-
-                        otherTutorProf = new Tutor(otherProfName, courses);
-
-                        Tutee temp = (Tutee)builderProf;
-                        //Dalton, yo really fricked the pooch on this one. Need to go through this again and sort shit out.
-                        Appointment a = new Appointment(type, place, course, firstDate, secondDate, otherTutorProf, temp);
+                        tuteeProf = new Profile(otherProfName);
+                        tutorProf = builderProf;
                     }
-                }
-                else {
-                    Database db = new Database();
-                    List<string> info = db.getProfileInfo(otherProfName);
-                    string[] courses = new string[4];
+                    else
+                    {
+                        tuteeProf = builderProf;
+                        tutorProf = new Profile(otherProfName);
+                    }
 
-                    //maybe write a for loop for it later
-                    course.Insert(0, info[4]);
-                    course.Insert(1, info[5]);
-                    course.Insert(2, info[6]);
-                    course.Insert(3, info[7]);
-
-                    otherTuteeProf = new Tutee(otherProfName, courses);
-
-                    Tutor temp = (Tutor)builderProf;
-                    //Dalton, yo really fricked the pooch on this one. Need to go through this again and sort shit out.
-                    Appointment a = new Appointment(type, place, course, firstDate, secondDate, temp, otherTuteeProf);
-                
+                    Appointment a = new Appointment(type, place, course, startTime, endTime, (Tutor)tutorProf, (Tutee)tuteeProf);
+                    a.addAppointmentToDatabase();
                 }
             }
         }
@@ -144,7 +106,8 @@ namespace Tutor_Master
         }
 
         private void initializeCourseCollection() {
-            //Garrett need a function to get all courses preferably to string
+            //Garrett need a function to get all tutee and tutor courses for builder preferably to string
+
             int totalNumCourses = 0;
 
             //intialize totalNumCourses
@@ -191,6 +154,7 @@ namespace Tutor_Master
 
         private bool verifyCourse()
         {
+            //verify that the course is available for both the tutor and the tutee
             String tempCourse = cbxCourseList.Text.ToString();
             return (!tempCourse.Equals(""));
         }
@@ -231,7 +195,14 @@ namespace Tutor_Master
         private bool courseAndProfilePanelVisisbile(){
             return panelCourseAndPlace.Visible && panelOtherProfile.Visible;
         }
-    }
 
-    
+        private bool isFreeTime(string meetingType) {
+            return (meetingType.Equals(FREETYPE));
+        }
+
+        private bool isBuilderTheTutor(string meetingType)
+        {
+            return (meetingType.Equals(TEACHTYPE) && !meetingType.Equals(FREETYPE));
+        }
+    }
 }
