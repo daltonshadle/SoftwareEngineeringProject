@@ -35,6 +35,26 @@ namespace Tutor_Master
             setViews();
         }
 
+        public AppointmentBlock(Appointment a)
+        {
+            InitializeComponent();
+            apptCourse = a.getCourse();
+            apptPlace = a.getMeetingPlace();
+            apptTime = a.getStartTime().ToShortTimeString();
+            //apptType = type;
+            bool b = a.getIsFreeTimeSession();
+            if (b) {
+                apptType = "Free Time";
+            }
+            else {
+                apptType = "Learning";
+            }
+
+            otherProfileName = "temp name"; //NEEDS TO BE REWORKED.
+
+            setViews();
+        }
+
         private void setViews() {
             lblAppointmentType.Text = apptType;
             lblCourse.Text = apptCourse;
