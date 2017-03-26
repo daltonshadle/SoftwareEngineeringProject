@@ -122,6 +122,9 @@ namespace Tutor_Master
 
                 button.Click += new EventHandler(NewButton_Click);
             }
+
+            //Update the week calendar
+            weekCalendar.assignWeeklyAppointments(username);
         }
    
 

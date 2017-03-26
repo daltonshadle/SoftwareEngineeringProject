@@ -30,7 +30,7 @@ namespace Tutor_Master
             apptPlace = place;
             apptTime = time.ToShortTimeString();
             apptType = type;
-            otherProfileName = user.getUsername();
+            otherProfileName = "temp name"; //NEEDS TO BE REWORKED.
 
             setViews();
         }
