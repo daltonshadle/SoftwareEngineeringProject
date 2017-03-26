@@ -30,6 +30,7 @@ namespace Tutor_Master
             course = "";
             startTime = new DateTime();
             endTime = new DateTime();
+<<<<<<< HEAD
             tutorProf = "";//new Profile();
             tuteeProf = ""; //new Profile();
             freeTimeProf = ""; //new Profile();
@@ -37,6 +38,15 @@ namespace Tutor_Master
             apptID = -1;
         }
         public Appointment(string tempMeetingType, string tempPlace, string tempCourse, DateTime tempStartTime, DateTime tempEndTime, string tempTutor,  string tempTutee)
+=======
+            tutorProf = "";
+            tuteeProf = "";
+            freeTimeProf = "";
+            isFreeTimeSession = false;
+            apptID = -1;
+        }
+        public Appointment(string tempMeetingType, string tempPlace, string tempCourse, DateTime tempStartTime, DateTime tempEndTime, Profile tempTutor,  Profile tempTutee)
+>>>>>>> ba4c67a7a20a9e92b5579658fb5894cf31e3c622
         {
             //validation of these parameters can be done before the creation of the appointment object
             //appointment constructor for tutoring or tuteeing sessions
@@ -44,8 +54,21 @@ namespace Tutor_Master
             course = tempCourse;
             startTime = tempStartTime;
             endTime = tempEndTime;
-            tutorProf = tempTutor;
-            tuteeProf = tempTutee;
+            tutorProf = tempTutor.getUsername();
+            tuteeProf = tempTutee.getUsername();
+            isFreeTimeSession = meetingTypeStringToBool(tempMeetingType);
+            apptID = -1;
+        }
+        public Appointment(string tempMeetingType, string tempPlace, string tempCourse, DateTime tempStartTime, DateTime tempEndTime, string tempTutorUsername, string tempTuteeUsername)
+        {
+            //validation of these parameters can be done before the creation of the appointment object
+            //appointment constructor for tutoring or tuteeing sessions
+            meetingPlace = tempPlace;
+            course = tempCourse;
+            startTime = tempStartTime;
+            endTime = tempEndTime;
+            tutorProf = tempTutorUsername;
+            tuteeProf = tempTuteeUsername;
             isFreeTimeSession = meetingTypeStringToBool(tempMeetingType);
             apptID = -1;
         }
@@ -56,7 +79,7 @@ namespace Tutor_Master
             startTime = tempStartTime;
             endTime = tempEndTime;
             isFreeTimeSession = true;
-            freeTimeProf = owner;
+            freeTimeProf = owner.getUsername();
             apptID = -1;
         }
 
@@ -119,7 +142,7 @@ namespace Tutor_Master
         {
             return tutorProf;
         }
-        public void setTutor(Tutor t)
+        public void setTutor(string t)
         {
             //needs validation for the tutor object t
             tutorProf = t;
@@ -129,7 +152,7 @@ namespace Tutor_Master
         {
             return tuteeProf;
         }
-        public void setTutee(Tutee t)
+        public void setTutee(string t)
         {
             //needs validaiton for the tutee object t
             tuteeProf = t;
@@ -139,7 +162,7 @@ namespace Tutor_Master
         {
             return freeTimeProf;
         }
-        public void setFreeTimeProf(Profile freeTime)
+        public void setFreeTimeProf(string freeTime)
         {
             //needs validaiton for the tutee object t
             freeTimeProf = freeTime;
@@ -182,11 +205,12 @@ namespace Tutor_Master
             if (isFreeTimeSession)
             {
                 //add freetime appt
-
+                db.addAppointment(freeTimeProf, null, null, startTime, endTime, null, null, isFreeTimeSession); 
             }
             else
             { 
                 //add tutor/tutee appt
+                db.addAppointment(null, meetingPlace, course, startTime, endTime, tutorProf, tuteeProf, isFreeTimeSession);
             }
         }
     }

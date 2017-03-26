@@ -139,6 +139,7 @@ namespace Tutor_Master
             lblWeek.Text = startDate.ToShortDateString() + " - " + endDate.ToShortDateString();
         }
 
+<<<<<<< HEAD
         /*public void drawAppoint(Panel p) {
             DateTime d = DateTime.Now;
             Profile user = new Profile("Tommy", "asdfghj");
@@ -147,6 +148,8 @@ namespace Tutor_Master
             p.Controls.Add(a);
         }
 
+=======
+>>>>>>> ba4c67a7a20a9e92b5579658fb5894cf31e3c622
         public void drawAppointment(Appointment appt, string type) {
             DateTime time = appt.getStartTime();
             string course = appt.getCourse();

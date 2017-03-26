@@ -31,6 +31,12 @@ namespace Tutor_Master
             password = pass;
         }
 
+        public Profile(Profile previousPerson)
+        {
+            username = previousPerson.username;
+            password = previousPerson.password;
+        }
+
         public void register() 
         { 
             //runs through profile registration process
