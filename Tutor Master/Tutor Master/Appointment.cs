@@ -7,142 +7,153 @@ namespace Tutor_Master
 {
     public class Appointment
     {
+       
+        //NEW APPOINTMENT CLASS
         private const string FREETYPE = "Free Time", LEARNTYPE = "Learning (Tuteeing)", TEACHTYPE = "Teaching (Tutoring)";
 
         //all the private data
         private string meetingPlace;
         private string course;
         private DateTime startTime, endTime;
-        private Tutor tutor;
-        private Tutee tutee;
-        private string meetingType;
-
+        private Profile tutorProf;
+        private Profile tuteeProf;
+        private Profile freeTimeProf;
+        private bool isFreeTimeSession;
+        private int apptID;
 
         //all the public functions
 
         //constructors
-        public Appointment() {
+        public Appointment()
+        {
             meetingPlace = "";
             course = "";
             startTime = new DateTime();
             endTime = new DateTime();
-            tutor = new Tutor();
-            tutee = new Tutee();
-            meetingType = "";
+            tutorProf = new Profile();
+            tuteeProf = new Profile();
+            freeTimeProf = new Profile();
+            isFreeTimeSession = false;
+            apptID = -1;
         }
-        public Appointment(string tempMeetingType, string tempPlace, string tempCourse, DateTime tempStartTime, DateTime tempEndTime, Tutor tempTutor, Tutee tempTutee)
+        public Appointment(string tempMeetingType, string tempPlace, string tempCourse, DateTime tempStartTime, DateTime tempEndTime, Tutor tempTutor,  Tutee tempTutee)
         {
             //validation of these parameters can be done before the creation of the appointment object
+            //appointment constructor for tutoring or tuteeing sessions
             meetingPlace = tempPlace;
             course = tempCourse;
             startTime = tempStartTime;
             endTime = tempEndTime;
-            tutor = tempTutor;
-            tutee = tempTutee;
-            meetingType = tempMeetingType;
+            tutorProf = tempTutor;
+            tuteeProf = tempTutee;
+            isFreeTimeSession = meetingTypeStringToBool(tempMeetingType);
         }
-        public Appointment(string tempMeetingType, DateTime tempStartTime, DateTime tempEndTime, Tutor owner) {
-            //Freetime appointment constructor for tutor
-            
-            startTime = tempStartTime;
-            endTime = tempEndTime;
-            meetingType = tempMeetingType;
-            tutor = owner;
-            //have to find something for profile and cast to a tutor or tutee
-        }
-        public Appointment(string tempMeetingType, DateTime tempStartTime, DateTime tempEndTime, Tutee owner)
+        public Appointment(DateTime tempStartTime, DateTime tempEndTime, Profile owner)
         {
-            //Freetime appointment constructor for tutee
+            //Freetime appointment constructor
 
             startTime = tempStartTime;
             endTime = tempEndTime;
-            meetingType = tempMeetingType;
-            tutee = owner;
-            //have to find something for profile and cast to a tutor or tutee
+            isFreeTimeSession = true;
+            freeTimeProf = owner;
+        }
+
+        private bool meetingTypeStringToBool(string type) {
+            return (type.Equals(FREETYPE));
         }
 
         //setters and getters for appointment
-        public DateTime getStartTime() {
+        public DateTime getStartTime()
+        {
             return startTime;
         }
-        public void setStartTime(DateTime dt) {
+        public void setStartTime(DateTime dt)
+        {
             //needs validaiton of the DateTime object
             startTime = dt;
         }
 
-        public DateTime getEndTime() {
+        public DateTime getEndTime()
+        {
             return endTime;
         }
-        public void setEndTime(DateTime dt) {
+        public void setEndTime(DateTime dt)
+        {
             //needs validaiton of the DateTime object
             endTime = dt;
         }
 
-        public String getMeetingPlace() {
+        public String getMeetingPlace()
+        {
             return meetingPlace;
         }
-        public void setMeetingPlace(String p) {
+        public void setMeetingPlace(String p)
+        {
             //needs validation of the meeting place p
             meetingPlace = p;
         }
 
-        public String getCourse() {
+        public String getCourse()
+        {
             return course;
         }
-        public void setCourse(String c) {
+        public void setCourse(String c)
+        {
             //needs validation of the course c
             course = c;
         }
 
-        public Tutor getTutor() {
-            return tutor;
+        public Profile getTutor()
+        {
+            return tutorProf;
         }
-        public void setTutor(Tutor t) { 
+        public void setTutor(Tutor t)
+        {
             //needs validation for the tutor object t
-            tutor = t;
+            tutorProf = t;
         }
 
-        public Tutee getTutee() {
-            return tutee;
+        public Profile getTutee()
+        {
+            return tuteeProf;
         }
-        public void setTutee(Tutee t) {
+        public void setTutee(Tutee t)
+        {
             //needs validaiton for the tutee object t
-            tutee = t;
+            tuteeProf = t;
         }
 
-        public void setMeetingType(int type) {
-            switch (type) { 
+        public void setMeetingType(int type)
+        {
+            switch (type)
+            {
                 case 1:
-                    meetingType = FREETYPE;
+                    isFreeTimeSession = true;
                     break;
                 case 2:
-                    meetingType = LEARNTYPE;
-                    break;
                 case 3:
-                    meetingType = TEACHTYPE;
+                    isFreeTimeSession = false;
                     break;
                 default:
                     //shit didn't work
                     break;
             }
         }
-        
 
-        public void addAppointmentToDatabase() {
+
+        public void addAppointmentToDatabase()
+        {
+            //db.addAppointment(null, getMeetingPlace(), getCourse(), getStartTime(), getEndTime(), getTutor(), getTutee());
             Database db = new Database();
 
-            if (meetingType.Equals(FREETYPE)) {
-                if(tutor==null){
-                    db.addAppointment(tutee.getUsername(), getMeetingPlace(), getCourse(), getStartTime(), getEndTime(), null, null);
-                } else {
-                    db.addAppointment(tutor.getUsername(), getMeetingPlace(), getCourse(), getStartTime(), getEndTime(), null, null);
-                }
+            if (isFreeTimeSession)
+            {
+                //add freetime appt
             }
-            else {
-                db.addAppointment(null, getMeetingPlace(), getCourse(), getStartTime(), getEndTime(), getTutor(), getTutee());
+            else
+            { 
+                //add tutor/tutee appt
             }
         }
-
-        
     }
 }
