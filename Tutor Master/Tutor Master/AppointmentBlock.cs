@@ -30,7 +30,31 @@ namespace Tutor_Master
             apptPlace = place;
             apptTime = time.ToShortTimeString();
             apptType = type;
+<<<<<<< HEAD
             otherProfileName = user;
+=======
+            otherProfileName = "temp name"; //NEEDS TO BE REWORKED.
+
+            setViews();
+        }
+
+        public AppointmentBlock(Appointment a)
+        {
+            InitializeComponent();
+            apptCourse = a.getCourse();
+            apptPlace = a.getMeetingPlace();
+            apptTime = a.getStartTime().ToShortTimeString();
+            //apptType = type;
+            bool b = a.getIsFreeTimeSession();
+            if (b) {
+                apptType = "Free Time";
+            }
+            else {
+                apptType = "Learning";
+            }
+
+            otherProfileName = "temp name"; //NEEDS TO BE REWORKED.
+>>>>>>> 35be280fbf29fe9d8e2ab8aae66acde70afa9c65
 
             setViews();
         }

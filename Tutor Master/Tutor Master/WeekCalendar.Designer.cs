@@ -67,7 +67,7 @@
             this.panelSun.Controls.Add(this.lblSunday);
             this.panelSun.Location = new System.Drawing.Point(3, 38);
             this.panelSun.Name = "panelSun";
-            this.panelSun.Size = new System.Drawing.Size(120, 310);
+            this.panelSun.Size = new System.Drawing.Size(120, 330);
             this.panelSun.TabIndex = 1;
             // 
             // lblSunday
@@ -85,7 +85,7 @@
             this.panelMon.Controls.Add(this.lblMonday);
             this.panelMon.Location = new System.Drawing.Point(127, 38);
             this.panelMon.Name = "panelMon";
-            this.panelMon.Size = new System.Drawing.Size(120, 310);
+            this.panelMon.Size = new System.Drawing.Size(120, 330);
             this.panelMon.TabIndex = 2;
             // 
             // lblMonday
@@ -103,7 +103,7 @@
             this.panelTues.Controls.Add(this.lblTuesday);
             this.panelTues.Location = new System.Drawing.Point(251, 38);
             this.panelTues.Name = "panelTues";
-            this.panelTues.Size = new System.Drawing.Size(120, 310);
+            this.panelTues.Size = new System.Drawing.Size(120, 330);
             this.panelTues.TabIndex = 3;
             // 
             // lblTuesday
@@ -121,7 +121,7 @@
             this.panelWed.Controls.Add(this.lblWednesday);
             this.panelWed.Location = new System.Drawing.Point(375, 38);
             this.panelWed.Name = "panelWed";
-            this.panelWed.Size = new System.Drawing.Size(120, 310);
+            this.panelWed.Size = new System.Drawing.Size(120, 330);
             this.panelWed.TabIndex = 4;
             // 
             // lblWednesday
@@ -139,7 +139,7 @@
             this.panelThur.Controls.Add(this.lblThursday);
             this.panelThur.Location = new System.Drawing.Point(499, 38);
             this.panelThur.Name = "panelThur";
-            this.panelThur.Size = new System.Drawing.Size(120, 310);
+            this.panelThur.Size = new System.Drawing.Size(120, 330);
             this.panelThur.TabIndex = 5;
             // 
             // lblThursday
@@ -157,7 +157,7 @@
             this.panelFri.Controls.Add(this.lblFriday);
             this.panelFri.Location = new System.Drawing.Point(623, 38);
             this.panelFri.Name = "panelFri";
-            this.panelFri.Size = new System.Drawing.Size(120, 310);
+            this.panelFri.Size = new System.Drawing.Size(120, 330);
             this.panelFri.TabIndex = 6;
             // 
             // lblFriday
@@ -175,7 +175,7 @@
             this.panelSat.Controls.Add(this.lblSaturday);
             this.panelSat.Location = new System.Drawing.Point(747, 38);
             this.panelSat.Name = "panelSat";
-            this.panelSat.Size = new System.Drawing.Size(120, 310);
+            this.panelSat.Size = new System.Drawing.Size(120, 330);
             this.panelSat.TabIndex = 7;
             // 
             // lblSaturday

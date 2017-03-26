@@ -14,7 +14,7 @@ namespace Tutor_Master
 
         private string username;
         DateTime now;
-        //List<Appointment> appointmentList;
+        List<Appointment> appointmentList;
 
         public MonthCalendarForm(string user)
         {
@@ -25,70 +25,108 @@ namespace Tutor_Master
 
             now = DateTime.Now;
 
-            //The vision for this:
-            //Garrett write a function. public List<Appointment> getDailyAppointments(string username, DateTime date)
-            //Pre: username in database and date is not NULL
-            //Post: returns list of all appointments on a given date for any user
-
-            /*appointmentList = getDailyAppointments(username, now);
-            if (!appointmentList.IsEmpty()) {
-                ListView newLV = new ListView;
-                newLV.Left = monthCalendar1.profileMonthCalendar.Left + 50;
-                newLV.Top = monthCalendar1.profileMonthCalendar.Top;
-
-                for (int i = 0; i < appointmentList.size(); i++)
-                {
-                    newLV.Items.Add(appointmentList.get(i));
-                }
-            }*/
+            Database db = new Database();
+            appointmentList = db.getDailyAppointments(username);
 
             //Fill the calendar with bolded dates
-            //monthCalendar1.profileMonthCalendar.BoldedDates = new System.DateTime[] { };
-            //for (int i = 0; i < appointmentList.size(); i++)
-            //{
-            //    DateTime appointmentDate = appointmentList.get(i).getDate();
-            //    monthCalendar1.profileMonthCalendar.AddBoldedDate(appointmentDate);
-            //}
+            monthCalendar1.profileMonthCalendar.BoldedDates = new System.DateTime[] { };
+            for (int i = 0; i < appointmentList.Count; i++)
+            {
+                DateTime appointmentDate = appointmentList[i].getStartTime();
+                monthCalendar1.profileMonthCalendar.AddBoldedDate(appointmentDate);
+            }
 
-            //monthCalendar1.profileMonthCalendar.BoldedDates = new System.DateTime[] { new System.DateTime(2017, 3, 5, 0, 0, 0, 0) };
-            //monthCalendar1.profileMonthCalendar.AddBoldedDate(new System.DateTime(2017, 3, 15, 0, 0, 0, 0));
-            
-            
-        
+
+            //Set the panel to display once the calendar is pulled up
+            //would clean up code a shit-ton if i could make a function, but e.Start is the problem.
+
+            //Fill up the list for each day.
+            List<Appointment> dailyAppointments = new List<Appointment>();
+            for (int i = 0; i < appointmentList.Count; i++)
+            {
+                if (appointmentList[i].getStartTime().Date == DateTime.Now.Date)
+                {
+                    dailyAppointments.Add(appointmentList[i]);
+                }
+            }
+
+            //Display all of the daily apps
+            if (dailyAppointments.Count > 0)
+            {
+
+                AppointmentBlock a;
+                for (int j = 0; j < dailyAppointments.Count; j++)
+                {
+                    a = new AppointmentBlock(appointmentList[j]);
+                    int x = makeX(j);
+                    int y = makeY(j);
+                    a.Location = new Point(x, y);
+                    panel1.Controls.Add(a);
+                }
+                panel1.Visible = true;
+            }
+            else
+                panel1.Visible = false;
+
         }
 
         private void profileMonthCalendar_DateSelected(object sender, System.Windows.Forms.DateRangeEventArgs e)
         {
-            // Show the start and end dates in the text box.
+            //Display the date of the selected date
             monthCalendar1.lblTempDate.Text = e.Start.ToShortDateString();
+        
 
-            MessageBox.Show("Date Selected: Start = " +
-            e.Start.ToShortDateString() + " : End = " + e.End.ToShortDateString() + "for " + username);
 
-            /*if (appointmentList.size() != 0)
+            Database db = new Database();
+            appointmentList = db.getDailyAppointments(username);
+
+            //Fill up the list for each day.
+            List<Appointment> dailyAppointments = new List<Appointment>();
+            for (int i = 0; i < appointmentList.Count; i++)
             {
-                List<Appointment> dailyAppointments = new List<Appointment>();
-                for (int i = 0; i < appointmentList.size(); i++)
+                if (appointmentList[i].getStartTime().Date == e.Start.Date)
                 {
-                    if (appointmentList.get(i).getDate() == e.Start)
-                    {
-                        dailyAppointments.Add(appointmentList.get(i));
-                    }
+                    dailyAppointments.Add(appointmentList[i]);
                 }
             }
-
-            if (dailyAppointments.size() > 0)
+            
+            //Display all of the daily apps
+            if (dailyAppointments.Count > 0)
             {
-                ListView dailyAppLV = new ListView();
-                for (int j = 0; j < dailyAppointments.size(); j++)
+                
+                AppointmentBlock a;
+                for (int j = 0; j < dailyAppointments.Count; j++)
                 {
-                    dailyAppLV.Items.Add(dailyAppointments.get(j));
+                    a = new AppointmentBlock(appointmentList[j]);
+                    int x = makeX(j);
+                    int y = makeY(j);
+                    a.Location = new Point(x, y);
+                    panel1.Controls.Add(a);
                 }
-                dailyAppLV.Left = monthCalendar1.Left + 200;
-                dailyAppLV.Top = monthCalendar1.Top;
-            }*/
+                panel1.Visible = true;
+            }
+            else
+                panel1.Visible = false;
 
-        }     
+        }
+
+        public int makeX( int iteration)
+        {
+            int x;
+            int col = iteration/5;
+            x = (col*120);
+
+            return x;
+        }
+
+        public int makeY(int iteration)
+        {
+            int y;
+            int row = iteration % 5;
+            y = ((row) * 100);
+
+            return y;
+        }
 
     }
 }
