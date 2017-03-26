@@ -14,7 +14,7 @@ namespace Tutor_Master
 
         private string username;
         DateTime now;
-        //List<Appointment> appointmentList;
+        List<Appointment> appointmentList;
 
         public MonthCalendarForm(string user)
         {
@@ -30,7 +30,8 @@ namespace Tutor_Master
             //Pre: username in database and date is not NULL
             //Post: returns list of all appointments on a given date for any user
 
-            /*appointmentList = getDailyAppointments(username, now);
+            /*Database db = new Database();
+             appointmentList = db.getDailyAppointments(username, now);
             if (!appointmentList.IsEmpty()) {
                 ListView newLV = new ListView;
                 newLV.Left = monthCalendar1.profileMonthCalendar.Left + 50;

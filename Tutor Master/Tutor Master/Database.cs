@@ -230,7 +230,7 @@ namespace Tutor_Master
         Post-conditions: List of all of the appointments on the date (date) for that user (username) are returned.
         If no matches are found, returns NULL.
         Function: Fetches all of the appointments for a user on a given date.*/
-        public List<Appointment> getDailyAppointments(string username, DateTime date)
+        public List<Appointment> getDailyAppointments(string username)
         {
             List<Appointment> appointmentList = new List<Appointment>();
 

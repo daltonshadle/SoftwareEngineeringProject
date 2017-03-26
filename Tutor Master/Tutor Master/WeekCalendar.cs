@@ -11,12 +11,39 @@ namespace Tutor_Master
 {
     public partial class WeekCalendar : UserControl
     {
+
+        List<Appointment> appointmentList;
+
         public WeekCalendar()
         {
             InitializeComponent();
             //drawAppoint(panelSun);
             updateWeekLabel();
         }
+
+        public void assignWeeklyAppointments(string user)
+        {
+            //fetch the appointments
+            Database db = new Database();
+            appointmentList = db.getDailyAppointments(user);
+
+            //fetch the dates of the week
+            DateTime date = DateTime.Now;
+            while (date.DayOfWeek != DayOfWeek.Saturday)
+            {
+                date = date.AddDays(-1);
+            }
+            DateTime Sunday = date;
+            DateTime Monday = date.AddDays(1);
+            DateTime Tuesday = date.AddDays(2);
+            DateTime Wednesday = date.AddDays(3);
+            DateTime Thursday = date.AddDays(4);
+            DateTime Friday = date.AddDays(5);
+            DateTime Saturday = date.AddDays(6);
+
+
+        }
+
 
         public void updateWeekLabel() {
 
