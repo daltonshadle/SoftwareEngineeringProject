@@ -24,17 +24,15 @@ namespace Tutor_Master
             InitializeComponent();
         }
 
-<<<<<<< HEAD
+
         /*public AppointmentBlock(string type, string place, DateTime time, string course, Profile user)
-=======
+
         public AppointmentBlock(string type, string place, DateTime time, string course, string user)
->>>>>>> ba4c67a7a20a9e92b5579658fb5894cf31e3c622
         {
             InitializeComponent();
             apptCourse = course;
             apptPlace = place;
             apptTime = time.ToShortTimeString();
-<<<<<<< HEAD
             
 
             if (b)
@@ -45,12 +43,11 @@ namespace Tutor_Master
             {
                 apptType = "Learning";
             }
-=======
+
             apptType = type;
-<<<<<<< HEAD
+
             otherProfileName = user;
-=======
->>>>>>> ba4c67a7a20a9e92b5579658fb5894cf31e3c622
+
             otherProfileName = "temp name"; //NEEDS TO BE REWORKED.
 
             setViews();
@@ -77,11 +74,6 @@ namespace Tutor_Master
                 secondName = a.getTutee();
             }
 
-<<<<<<< HEAD
-=======
-            otherProfileName = "temp name"; //NEEDS TO BE REWORKED.
->>>>>>> 35be280fbf29fe9d8e2ab8aae66acde70afa9c65
->>>>>>> ba4c67a7a20a9e92b5579658fb5894cf31e3c622
 
             setViews();
         }
@@ -99,7 +91,7 @@ namespace Tutor_Master
         private void setBackColor() {
             if (apptType.Equals("Learning"))
             {
-                this.BackColor = Color.Green;
+                this.BackColor = Color.Cyan;
             }
             if (apptType.Equals("Freetime"))
             {
