@@ -225,6 +225,90 @@ namespace Tutor_Master
             }
         }
 
+        /*private List<Appointment> getDailyAppointments(string username, DateTime date);
+        Preconditions: Username exists and the date is found already. Function will only be called after a date is selected.
+        Post-conditions: List of all of the appointments on the date (date) for that user (username) are returned.
+        If no matches are found, returns NULL.
+        Function: Fetches all of the appointments for a user on a given date.*/
+        public List<Appointment> getDailyAppointments(string username, DateTime date)
+        {
+            List<Appointment> appointmentList = new List<Appointment>();
+
+            string query;
+            query = "SELECT * FROM appointments WHERE  ([free time] = @username OR tutor = @username OR tutee = @username)";
+
+            if (this.OpenConnection())
+            {
+                SqlCeCommand cmd = new SqlCeCommand();
+                cmd.CommandText = query;
+                cmd.Parameters.Add("@username", username);
+                cmd.Parameters.Add("@date", date);
+                cmd.Connection = con;
+                try
+                {
+                    SqlCeDataReader dataReader = cmd.ExecuteReader();
+
+                    //Read the data and store them in the list
+                    while (dataReader.Read())
+                    { //have to make catches for all of the nulls that might be in the database
+                        string temp = "";
+                        Appointment newAppointment = new Appointment();
+                        newAppointment.setId((int)dataReader["id number"]);
+                        if(dataReader["free time"] ==DBNull.Value) {
+                            temp = "";
+                        }
+                        else
+                            temp = "";
+                        if(dataReader["tutor"] == DBNull.Value){
+                            newAppointment.setTutor(null);
+                        }
+                        else {
+                            string[] stringTemp = new string[4];
+                            Tutor tut = new Tutor(dataReader["tutor"].ToString(), "",  stringTemp);
+                            newAppointment.setTutor(tut);
+                        }
+                        if(dataReader["tutee"] == DBNull.Value) {
+                            newAppointment.setTutee(null);
+                        }
+                        else {
+                            string[] tempString = new string[4];
+                            Tutee tee = new Tutee(dataReader["tutee"].ToString(), "", tempString);
+                            newAppointment.setTutee(tee);
+                        }
+                        if(dataReader["courseName"] == DBNull.Value){
+                            newAppointment.setCourse(null);
+                        }
+                        else {
+                            newAppointment.setCourse(dataReader["courseName"].ToString());
+                        }
+                        if(dataReader["meetingPlace"] == DBNull.Value){
+                            newAppointment.setMeetingPlace(null);
+                        }
+                        else {
+                            newAppointment.setMeetingPlace(dataReader["meetingPlace"].ToString());
+                        }
+                        newAppointment.setStartTime((DateTime)dataReader["startTime"]);
+                        newAppointment.setEndTime((DateTime)dataReader["endTime"]);
+                        appointmentList.Add(newAppointment);
+                    }
+
+                    //close Data Reader
+                    dataReader.Close();
+                    this.CloseConnection();
+                    return appointmentList;
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    appointmentList.Clear();
+                    this.CloseConnection();
+                    return appointmentList;
+                }
+            }
+            return appointmentList;
+        }
+
         //if you want the list of course someone tutors, pass in true
         //if you want the list of courses someone is a tutee for, pass false
         public List<string> getCourseList(string username, bool isTutor)

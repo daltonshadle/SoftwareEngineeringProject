@@ -11,19 +11,20 @@ namespace Tutor_Master
 {
     public partial class AppointmentBuilderForm : Form
     {
+        private const string FREETYPE = "Free Time", LEARNTYPE = "Learning (Tuteeing)", TEACHTYPE = "Teaching (Tutoring)";
 
-        private const String LEARN = "Learning (Tuteeing)";
-        private const String TEACH = "Teaching (Tutoring)";
-        private const String FREE = "Free Time";
+        //all the private data
+        private string meetingPlace;
+        private string course;
+        private DateTime startTime, endTime;
+        private Profile tutorProf;
+        private Profile tuteeProf;
+        private Profile freeTimeProf;
         private Profile builderProf;
-        private Tutor builderTutorProf;
-        private Tutee builderTuteeProf;
-        private Tutor otherTutorProf;
-        private Tutee otherTuteeProf;
-        private DateTime firstDate;
-        private DateTime secondDate;
-        private bool isTutor;
-        private bool isTutee;
+        private bool isFreeTimeSession;
+        private int apptID;
+
+        private bool isTutee, isTutor;
 
         public AppointmentBuilderForm()
         {
@@ -38,10 +39,10 @@ namespace Tutor_Master
             initViews();
             this.Icon = Tutor_Master.Properties.Resources.favicon;
 
-            builderProf = buildingProfile;
             this.isTutor = isTutor;
             this.isTutee = isTutee;
 
+            buildingProf = buildingProfile;
         }
 
         private void initViews() {
