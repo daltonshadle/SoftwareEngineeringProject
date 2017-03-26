@@ -11,7 +11,7 @@ namespace Tutor_Master
     class Database
     {
         private SqlCeConnection con;
-        private string connection = @"Data Source=C:\Software\Tutor Master\Tutor Master\TutorMaster.sdf";
+        private string connection = @"Data Source=C:\TutorMaster.sdf";
 
         public Database()
         {
@@ -163,10 +163,10 @@ namespace Tutor_Master
         }
 
         //adds an appointment to the appointments table
-        public void addAppointment(string free, string meetingPlace, string course, DateTime startTime, DateTime endTime, Tutor tutor, Tutee tutee)
+        public void addAppointment(string free, string meetingPlace, string course, DateTime startTime, DateTime endTime, Tutor tutor, Tutee tutee, bool isFreeTime)
         {
             {
-                string query = "INSERT INTO appointments ([free time], tutor, tutee, courseName, meetingPlace, startTime, endTime) VALUES (@freeTime, @tutor, @tutee, @courseName, @meetingPlace, @startTime, @endTime)";
+                string query = "INSERT INTO appointment ([free time], tutor, tutee, courseName, meetingPlace, startTime, endTime, isFreeTimeSession) VALUES (@freeTime, @tutor, @tutee, @courseName, @meetingPlace, @startTime, @endTime, @isFreeTime)";
 
                 if (this.OpenConnection())
                 {
@@ -210,6 +210,7 @@ namespace Tutor_Master
 
                     cmd.Parameters.Add("@startTime", startTime);
                     cmd.Parameters.Add("@endTime", endTime);
+                    cmd.Parameters.Add("@isFreeTime", isFreeTime);
                     cmd.Connection = con;
                     try
                     {
@@ -235,14 +236,13 @@ namespace Tutor_Master
             List<Appointment> appointmentList = new List<Appointment>();
 
             string query;
-            query = "SELECT * FROM appointments WHERE  ([free time] = @username OR tutor = @username OR tutee = @username)";
+            query = "SELECT * FROM appointment WHERE  ([free time] = @username OR tutor = @username OR tutee = @username)";
 
             if (this.OpenConnection())
             {
                 SqlCeCommand cmd = new SqlCeCommand();
                 cmd.CommandText = query;
                 cmd.Parameters.Add("@username", username);
-                cmd.Parameters.Add("@date", date);
                 cmd.Connection = con;
                 try
                 {
@@ -251,14 +251,18 @@ namespace Tutor_Master
                     //Read the data and store them in the list
                     while (dataReader.Read())
                     { //have to make catches for all of the nulls that might be in the database
-                        string temp = "";
                         Appointment newAppointment = new Appointment();
-                        newAppointment.setId((int)dataReader["id number"]);
-                        if(dataReader["free time"] ==DBNull.Value) {
-                            temp = "";
+                        newAppointment.setID((int)dataReader["id number"]);
+                        if (dataReader["free time"] == DBNull.Value)
+                        {
+                            newAppointment.setFreeTimeProf(null);
                         }
                         else
-                            temp = "";
+                        {
+                            Profile freeTime = new Profile(dataReader["free time"].ToString());
+                            newAppointment.setFreeTimeProf(freeTime);
+                        }
+                            
                         if(dataReader["tutor"] == DBNull.Value){
                             newAppointment.setTutor(null);
                         }
@@ -289,6 +293,7 @@ namespace Tutor_Master
                         }
                         newAppointment.setStartTime((DateTime)dataReader["startTime"]);
                         newAppointment.setEndTime((DateTime)dataReader["endTime"]);
+                        newAppointment.setIsFreeTimeSession((bool)dataReader["isFreeTimeSession"]);
                         appointmentList.Add(newAppointment);
                     }
 
