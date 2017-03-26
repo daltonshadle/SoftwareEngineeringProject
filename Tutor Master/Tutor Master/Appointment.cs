@@ -47,6 +47,7 @@ namespace Tutor_Master
             tutorProf = tempTutor;
             tuteeProf = tempTutee;
             isFreeTimeSession = meetingTypeStringToBool(tempMeetingType);
+            apptID = -1;
         }
         public Appointment(DateTime tempStartTime, DateTime tempEndTime, Profile owner)
         {
@@ -56,6 +57,7 @@ namespace Tutor_Master
             endTime = tempEndTime;
             isFreeTimeSession = true;
             freeTimeProf = owner;
+            apptID = -1;
         }
 
         private bool meetingTypeStringToBool(string type) {
@@ -63,6 +65,16 @@ namespace Tutor_Master
         }
 
         //setters and getters for appointment
+        public void setID(int id)
+        {
+            apptID = id;
+        }
+
+        public int getID()
+        {
+            return apptID;
+        }
+
         public DateTime getStartTime()
         {
             return startTime;
@@ -121,6 +133,25 @@ namespace Tutor_Master
         {
             //needs validaiton for the tutee object t
             tuteeProf = t;
+        }
+
+        public Profile getFreeTimeProf()
+        {
+            return freeTimeProf;
+        }
+        public void setFreeTimeProf(Profile freeTime)
+        {
+            //needs validaiton for the tutee object t
+            freeTimeProf = freeTime;
+        }
+
+        public void setIsFreeTimeSession(bool isFree)
+        {
+            isFreeTimeSession = isFree;
+        }
+        public bool getIsFreeTimeSession()
+        {
+            return isFreeTimeSession;
         }
 
         public void setMeetingType(int type)
