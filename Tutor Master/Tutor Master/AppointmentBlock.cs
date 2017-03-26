@@ -23,14 +23,14 @@ namespace Tutor_Master
             InitializeComponent();
         }
 
-        public AppointmentBlock(string type, string place, DateTime time, string course, Profile user)
+        public AppointmentBlock(string type, string place, DateTime time, string course, string user)
         {
             InitializeComponent();
             apptCourse = course;
             apptPlace = place;
             apptTime = time.ToShortTimeString();
             apptType = type;
-            otherProfileName = user.getUsername();
+            otherProfileName = user;
 
             setViews();
         }
@@ -95,9 +95,9 @@ namespace Tutor_Master
             return otherProfileName;
         }
 
-        public void setAppointmentName(Profile user)
+        public void setAppointmentOwnerName(string user)
         {
-            string name = user.getUsername();
+            string name = user;
             lblAppointmentType.Text = name;
         }
 

@@ -15,9 +15,9 @@ namespace Tutor_Master
         private string meetingPlace;
         private string course;
         private DateTime startTime, endTime;
-        private Profile tutorProf;
-        private Profile tuteeProf;
-        private Profile freeTimeProf;
+        private string tutorProf;
+        private string tuteeProf;
+        private string freeTimeProf;
         private bool isFreeTimeSession;
         private int apptID;
 
@@ -30,13 +30,13 @@ namespace Tutor_Master
             course = "";
             startTime = new DateTime();
             endTime = new DateTime();
-            tutorProf = new Profile();
-            tuteeProf = new Profile();
-            freeTimeProf = new Profile();
+            tutorProf = "";
+            tuteeProf = "";
+            freeTimeProf = "";
             isFreeTimeSession = false;
             apptID = -1;
         }
-        public Appointment(string tempMeetingType, string tempPlace, string tempCourse, DateTime tempStartTime, DateTime tempEndTime, Tutor tempTutor,  Tutee tempTutee)
+        public Appointment(string tempMeetingType, string tempPlace, string tempCourse, DateTime tempStartTime, DateTime tempEndTime, Profile tempTutor,  Profile tempTutee)
         {
             //validation of these parameters can be done before the creation of the appointment object
             //appointment constructor for tutoring or tuteeing sessions
@@ -44,8 +44,21 @@ namespace Tutor_Master
             course = tempCourse;
             startTime = tempStartTime;
             endTime = tempEndTime;
-            tutorProf = tempTutor;
-            tuteeProf = tempTutee;
+            tutorProf = tempTutor.getUsername();
+            tuteeProf = tempTutee.getUsername();
+            isFreeTimeSession = meetingTypeStringToBool(tempMeetingType);
+            apptID = -1;
+        }
+        public Appointment(string tempMeetingType, string tempPlace, string tempCourse, DateTime tempStartTime, DateTime tempEndTime, string tempTutorUsername, string tempTuteeUsername)
+        {
+            //validation of these parameters can be done before the creation of the appointment object
+            //appointment constructor for tutoring or tuteeing sessions
+            meetingPlace = tempPlace;
+            course = tempCourse;
+            startTime = tempStartTime;
+            endTime = tempEndTime;
+            tutorProf = tempTutorUsername;
+            tuteeProf = tempTuteeUsername;
             isFreeTimeSession = meetingTypeStringToBool(tempMeetingType);
             apptID = -1;
         }
@@ -56,7 +69,7 @@ namespace Tutor_Master
             startTime = tempStartTime;
             endTime = tempEndTime;
             isFreeTimeSession = true;
-            freeTimeProf = owner;
+            freeTimeProf = owner.getUsername();
             apptID = -1;
         }
 
@@ -115,31 +128,31 @@ namespace Tutor_Master
             course = c;
         }
 
-        public Profile getTutor()
+        public string getTutor()
         {
             return tutorProf;
         }
-        public void setTutor(Tutor t)
+        public void setTutor(string t)
         {
             //needs validation for the tutor object t
             tutorProf = t;
         }
 
-        public Profile getTutee()
+        public string getTutee()
         {
             return tuteeProf;
         }
-        public void setTutee(Tutee t)
+        public void setTutee(string t)
         {
             //needs validaiton for the tutee object t
             tuteeProf = t;
         }
 
-        public Profile getFreeTimeProf()
+        public string getFreeTimeProf()
         {
             return freeTimeProf;
         }
-        public void setFreeTimeProf(Profile freeTime)
+        public void setFreeTimeProf(string freeTime)
         {
             //needs validaiton for the tutee object t
             freeTimeProf = freeTime;
@@ -180,11 +193,12 @@ namespace Tutor_Master
             if (isFreeTimeSession)
             {
                 //add freetime appt
-
+                db.addAppointment(freeTimeProf, null, null, startTime, endTime, null, null, isFreeTimeSession); 
             }
             else
             { 
                 //add tutor/tutee appt
+                db.addAppointment(null, meetingPlace, course, startTime, endTime, tutorProf, tuteeProf, isFreeTimeSession);
             }
         }
     }
