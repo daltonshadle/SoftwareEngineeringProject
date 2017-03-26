@@ -170,14 +170,15 @@ namespace Tutor_Master
 
         private void btnAddApp_Click(object sender, EventArgs e)
         {
-            var appBuilder = new AppointmentBuilderForm();
+            Profile temp = new Profile(user);
+            var appBuilder = new AppointmentBuilderForm(temp, tutorAcc, tuteeAcc);
             appBuilder.Show();
             //this.Hide();
         }
 
         private void btnViewCal_Click(object sender, EventArgs e)
         {
-            var monthCal = new MonthCalendarForm();
+            var monthCal = new MonthCalendarForm(user);
             monthCal.Show();
             //this.Hide();
         }

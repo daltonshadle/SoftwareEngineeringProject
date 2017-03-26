@@ -7,6 +7,8 @@ namespace Tutor_Master
 {
     public class Appointment
     {
+        private const string FREETYPE = "Free Time", LEARNTYPE = "Learning (Tuteeing)", TEACHTYPE = "Teaching (Tutoring)";
+
         //all the private data
         private string meetingPlace;
         private string course;
@@ -59,16 +61,6 @@ namespace Tutor_Master
             //have to find something for profile and cast to a tutor or tutee
         }
 
-        //I don't know if we need this, we have a constructor to do this
-        public void createAppt(string tempPlace, string tempCourse, DateTime tempStartTime, DateTime tempEndTime, Tutor tempTutor, Tutee tempTutee) {
-            meetingPlace = tempPlace;
-            course = tempCourse;
-            startTime = tempStartTime;
-            endTime = tempEndTime;
-            tutor = tempTutor;
-            tutee = tempTutee;
-        }
-
         //setters and getters for appointment
         public DateTime getStartTime() {
             return startTime;
@@ -117,5 +109,40 @@ namespace Tutor_Master
             //needs validaiton for the tutee object t
             tutee = t;
         }
+
+        public void setMeetingType(int type) {
+            switch (type) { 
+                case 1:
+                    meetingType = FREETYPE;
+                    break;
+                case 2:
+                    meetingType = LEARNTYPE;
+                    break;
+                case 3:
+                    meetingType = TEACHTYPE;
+                    break;
+                default:
+                    //shit didn't work
+                    break;
+            }
+        }
+        
+
+        public void addAppointmentToDatabase() {
+            Database db = new Database();
+
+            if (meetingType.Equals(FREETYPE)) {
+                if(tutor==null){
+                    db.addAppointment(tutee.getUsername(), getMeetingPlace(), getCourse(), getStartTime(), getEndTime(), null, null);
+                } else {
+                    db.addAppointment(tutor.getUsername(), getMeetingPlace(), getCourse(), getStartTime(), getEndTime(), null, null);
+                }
+            }
+            else {
+                db.addAppointment(null, getMeetingPlace(), getCourse(), getStartTime(), getEndTime(), getTutor(), getTutee());
+            }
+        }
+
+        
     }
 }
