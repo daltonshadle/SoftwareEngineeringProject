@@ -237,10 +237,12 @@ namespace Tutor_Master
                     if (isBuilderTheTutor(type))
                     {
                         tutorProf = builderProf;
+                        tuteeProf = otherProfName;
                     }
                     else
                     {
                         tuteeProf = builderProf;
+                        tutorProf = otherProfName;
                     }
 
                     //something is wrong here
@@ -249,13 +251,11 @@ namespace Tutor_Master
 
                     //This is where we will send a message if a person is doing a learning appointment
                     //send message to other person.
-                    /*
+                    
                     string msg = builderProf + " has requested to make a tutoring appointment for course: " + course + " at " + startTime.ToShortDateString();
                     Database db = new Database();
                     db.sendMessage(builderProf, otherProfName, "Request for appointment", msg, true, DateTime.Now, course);
-                    */
-
-                    //a.addAppointmentToDatabase();
+                   
                 }
                 this.Hide();
                 this.Close();
@@ -295,7 +295,7 @@ namespace Tutor_Master
                     startTime < endTime && (endTime.Hour - startTime.Hour) < 3);
 
             //commenting this to fix the overflow on datetime problem
-            /*
+            
             if (good)
             {
 
@@ -351,7 +351,6 @@ namespace Tutor_Master
                     }
                 }
             }
-            */
             return good;
         }
 
@@ -395,11 +394,11 @@ namespace Tutor_Master
                 good = false;
                 MessageBox.Show("Please enter a valid profile.");
             }
-            //if (!verifyTimes())
-            //{
-            //    good = false;
-            //    MessageBox.Show("Please enter valid times.");
-            //}
+            if (!verifyTimes())
+            {
+                good = false;
+                MessageBox.Show("Please enter valid times.");
+            }
 
             return good;
         }

@@ -59,7 +59,7 @@ namespace Tutor_Master
                 AppointmentBlock a;
                 for (int j = 0; j < dailyAppointments.Count; j++)
                 {
-                    a = new AppointmentBlock(appointmentList[j]);
+                    a = new AppointmentBlock(dailyAppointments[j]);
                     int x = makeX(j);
                     int y = makeY(j);
                     a.Location = new Point(x, y);

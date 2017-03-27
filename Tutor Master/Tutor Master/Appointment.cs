@@ -38,10 +38,13 @@ namespace Tutor_Master
         }
         public Appointment(string tempMeetingType, string tempPlace, string tempCourse, DateTime tempStartTime, DateTime tempEndTime, string tempTutor,  string tempTutee)
         {
-            tutorProf = "";
-            tuteeProf = "";
-            freeTimeProf = "";
-            isFreeTimeSession = false;
+            meetingPlace = tempPlace;
+            course = tempCourse;
+            startTime = tempStartTime;
+            endTime = tempEndTime;
+            tutorProf = tempTutor;
+            tuteeProf = tempTutee;
+            isFreeTimeSession = meetingTypeStringToBool(tempMeetingType);
             apptID = -1;
         }
         public Appointment(string tempMeetingType, string tempPlace, string tempCourse, DateTime tempStartTime, DateTime tempEndTime, Profile tempTutor,  Profile tempTutee)
