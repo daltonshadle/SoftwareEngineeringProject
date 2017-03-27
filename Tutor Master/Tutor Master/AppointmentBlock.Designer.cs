@@ -39,7 +39,7 @@
             // 
             this.lblAppointmentType.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblAppointmentType.AutoSize = true;
-            this.lblAppointmentType.Location = new System.Drawing.Point(17, 5);
+            this.lblAppointmentType.Location = new System.Drawing.Point(3, 7);
             this.lblAppointmentType.Name = "lblAppointmentType";
             this.lblAppointmentType.Size = new System.Drawing.Size(66, 13);
             this.lblAppointmentType.TabIndex = 0;
@@ -49,7 +49,7 @@
             // 
             this.lblTimeAndPlace.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblTimeAndPlace.AutoSize = true;
-            this.lblTimeAndPlace.Location = new System.Drawing.Point(10, 20);
+            this.lblTimeAndPlace.Location = new System.Drawing.Point(3, 20);
             this.lblTimeAndPlace.Name = "lblTimeAndPlace";
             this.lblTimeAndPlace.Size = new System.Drawing.Size(81, 13);
             this.lblTimeAndPlace.TabIndex = 1;
@@ -59,7 +59,7 @@
             // 
             this.lblCourse.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblCourse.AutoSize = true;
-            this.lblCourse.Location = new System.Drawing.Point(30, 35);
+            this.lblCourse.Location = new System.Drawing.Point(3, 33);
             this.lblCourse.Name = "lblCourse";
             this.lblCourse.Size = new System.Drawing.Size(40, 13);
             this.lblCourse.TabIndex = 2;
@@ -69,7 +69,7 @@
             // 
             this.lblFirst.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblFirst.AutoSize = true;
-            this.lblFirst.Location = new System.Drawing.Point(32, 50);
+            this.lblFirst.Location = new System.Drawing.Point(3, 46);
             this.lblFirst.Name = "lblFirst";
             this.lblFirst.Size = new System.Drawing.Size(32, 13);
             this.lblFirst.TabIndex = 3;
@@ -78,7 +78,7 @@
             // lblSecond
             // 
             this.lblSecond.AutoSize = true;
-            this.lblSecond.Location = new System.Drawing.Point(30, 63);
+            this.lblSecond.Location = new System.Drawing.Point(3, 59);
             this.lblSecond.Name = "lblSecond";
             this.lblSecond.Size = new System.Drawing.Size(35, 13);
             this.lblSecond.TabIndex = 4;

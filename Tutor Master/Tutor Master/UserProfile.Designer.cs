@@ -36,11 +36,8 @@
             this.btnAddApp = new System.Windows.Forms.Button();
             this.btnViewCal = new System.Windows.Forms.Button();
             this.weekCalendar = new Tutor_Master.WeekCalendar();
-<<<<<<< HEAD
             this.btnMatchingAppoint = new System.Windows.Forms.Button();
-=======
             this.lblNameAndUser = new System.Windows.Forms.Label();
->>>>>>> ed0492e6fc758a3e1daa74d8c8161c11fa7fb3c8
             this.SuspendLayout();
             // 
             // btnLogout
@@ -127,7 +124,6 @@
             this.weekCalendar.Size = new System.Drawing.Size(900, 368);
             this.weekCalendar.TabIndex = 7;
             // 
-<<<<<<< HEAD
             // btnMatchingAppoint
             // 
             this.btnMatchingAppoint.Anchor = System.Windows.Forms.AnchorStyles.Top;
@@ -138,7 +134,6 @@
             this.btnMatchingAppoint.Text = "Find Matching Appointment";
             this.btnMatchingAppoint.UseVisualStyleBackColor = true;
             this.btnMatchingAppoint.Click += new System.EventHandler(this.btnMatchingAppoint_Click);
-=======
             // lblNameAndUser
             // 
             this.lblNameAndUser.AutoSize = true;
@@ -148,18 +143,14 @@
             this.lblNameAndUser.Size = new System.Drawing.Size(86, 31);
             this.lblNameAndUser.TabIndex = 10;
             this.lblNameAndUser.Text = "label2";
->>>>>>> ed0492e6fc758a3e1daa74d8c8161c11fa7fb3c8
             // 
             // UserProfile
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1066, 574);
-<<<<<<< HEAD
             this.Controls.Add(this.btnMatchingAppoint);
-=======
             this.Controls.Add(this.lblNameAndUser);
->>>>>>> ed0492e6fc758a3e1daa74d8c8161c11fa7fb3c8
             this.Controls.Add(this.btnViewCal);
             this.Controls.Add(this.btnAddApp);
             this.Controls.Add(this.weekCalendar);
@@ -186,10 +177,7 @@
         private WeekCalendar weekCalendar;
         private System.Windows.Forms.Button btnAddApp;
         private System.Windows.Forms.Button btnViewCal;
-<<<<<<< HEAD
         private System.Windows.Forms.Button btnMatchingAppoint;
-=======
         private System.Windows.Forms.Label lblNameAndUser;
->>>>>>> ed0492e6fc758a3e1daa74d8c8161c11fa7fb3c8
     }
 }

@@ -187,11 +187,8 @@ namespace Tutor_Master
         void appBuilder_FormClosing(object sender, FormClosingEventArgs e)
         {
             weekCalendar.assignWeeklyAppointments(user);
-<<<<<<< HEAD
 
             //need to hide the other form
-=======
->>>>>>> ed0492e6fc758a3e1daa74d8c8161c11fa7fb3c8
             //throw new NotImplementedException();
         }
 

@@ -19,6 +19,7 @@ namespace Tutor_Master
         public MonthCalendarForm(string user)
         {
             InitializeComponent();
+            this.Icon = Tutor_Master.Properties.Resources.favicon;
             username = user;
 
             this.monthCalendar1.profileMonthCalendar.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.profileMonthCalendar_DateSelected);

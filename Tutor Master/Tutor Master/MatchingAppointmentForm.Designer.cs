@@ -57,7 +57,7 @@
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(130, 256);
+            this.btnAdd.Location = new System.Drawing.Point(121, 236);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(75, 23);
             this.btnAdd.TabIndex = 9;
@@ -69,7 +69,7 @@
             // 
             this.panelApptType.Controls.Add(this.cbxTypeAppt);
             this.panelApptType.Controls.Add(this.lblTypeAppt);
-            this.panelApptType.Location = new System.Drawing.Point(24, 12);
+            this.panelApptType.Location = new System.Drawing.Point(12, 12);
             this.panelApptType.Name = "panelApptType";
             this.panelApptType.Size = new System.Drawing.Size(291, 33);
             this.panelApptType.TabIndex = 8;
@@ -100,7 +100,7 @@
             // 
             this.panelOtherProfile.Controls.Add(this.cbxProfileList);
             this.panelOtherProfile.Controls.Add(this.lblOtherProfile);
-            this.panelOtherProfile.Location = new System.Drawing.Point(24, 90);
+            this.panelOtherProfile.Location = new System.Drawing.Point(12, 90);
             this.panelOtherProfile.Name = "panelOtherProfile";
             this.panelOtherProfile.Size = new System.Drawing.Size(291, 33);
             this.panelOtherProfile.TabIndex = 7;
@@ -126,7 +126,7 @@
             // 
             this.panelCourse.Controls.Add(this.cbxCourseList);
             this.panelCourse.Controls.Add(this.lblCourse);
-            this.panelCourse.Location = new System.Drawing.Point(24, 51);
+            this.panelCourse.Location = new System.Drawing.Point(12, 51);
             this.panelCourse.Name = "panelCourse";
             this.panelCourse.Size = new System.Drawing.Size(291, 33);
             this.panelCourse.TabIndex = 6;
@@ -173,7 +173,7 @@
             this.panelTime.Controls.Add(this.dateTimeDay1);
             this.panelTime.Controls.Add(this.lblEndTime);
             this.panelTime.Controls.Add(this.lblStartTime);
-            this.panelTime.Location = new System.Drawing.Point(24, 129);
+            this.panelTime.Location = new System.Drawing.Point(12, 129);
             this.panelTime.Name = "panelTime";
             this.panelTime.Size = new System.Drawing.Size(291, 61);
             this.panelTime.TabIndex = 5;
@@ -234,7 +234,7 @@
             // 
             this.panelMeetingPlace.Controls.Add(this.lblMeetingPlace);
             this.panelMeetingPlace.Controls.Add(this.txtMeetingPlace);
-            this.panelMeetingPlace.Location = new System.Drawing.Point(24, 196);
+            this.panelMeetingPlace.Location = new System.Drawing.Point(12, 196);
             this.panelMeetingPlace.Name = "panelMeetingPlace";
             this.panelMeetingPlace.Size = new System.Drawing.Size(291, 33);
             this.panelMeetingPlace.TabIndex = 10;
@@ -243,7 +243,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(338, 315);
+            this.ClientSize = new System.Drawing.Size(316, 271);
             this.Controls.Add(this.panelMeetingPlace);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.panelApptType);
@@ -251,7 +251,8 @@
             this.Controls.Add(this.panelCourse);
             this.Controls.Add(this.panelTime);
             this.Name = "MatchingAppointmentForm";
-            this.Text = "MatchingAppointmentForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Appointment Matcher";
             this.panelApptType.ResumeLayout(false);
             this.panelApptType.PerformLayout();
             this.panelOtherProfile.ResumeLayout(false);
