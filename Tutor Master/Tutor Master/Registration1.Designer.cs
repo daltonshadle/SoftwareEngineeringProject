@@ -40,7 +40,7 @@
             this.btnNext.Location = new System.Drawing.Point(109, 177);
             this.btnNext.Name = "btnNext";
             this.btnNext.Size = new System.Drawing.Size(75, 23);
-            this.btnNext.TabIndex = 0;
+            this.btnNext.TabIndex = 2;
             this.btnNext.Text = "Continue";
             this.btnNext.UseVisualStyleBackColor = true;
             this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
@@ -62,7 +62,7 @@
             this.chkTutor.Location = new System.Drawing.Point(83, 114);
             this.chkTutor.Name = "chkTutor";
             this.chkTutor.Size = new System.Drawing.Size(51, 17);
-            this.chkTutor.TabIndex = 2;
+            this.chkTutor.TabIndex = 0;
             this.chkTutor.Text = "Tutor";
             this.chkTutor.UseVisualStyleBackColor = true;
             this.chkTutor.CheckedChanged += new System.EventHandler(this.chkTutor_CheckedChanged);
@@ -74,7 +74,7 @@
             this.chkTutee.Location = new System.Drawing.Point(161, 114);
             this.chkTutee.Name = "chkTutee";
             this.chkTutee.Size = new System.Drawing.Size(54, 17);
-            this.chkTutee.TabIndex = 3;
+            this.chkTutee.TabIndex = 1;
             this.chkTutee.Text = "Tutee";
             this.chkTutee.UseVisualStyleBackColor = true;
             this.chkTutee.CheckedChanged += new System.EventHandler(this.chkTutee_CheckedChanged);

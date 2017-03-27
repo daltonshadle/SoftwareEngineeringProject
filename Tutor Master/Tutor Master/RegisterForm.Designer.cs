@@ -42,13 +42,15 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.btnSignIn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(265, 9);
+            this.label1.Location = new System.Drawing.Point(265, 55);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(74, 13);
             this.label1.TabIndex = 0;
@@ -57,25 +59,25 @@
             // tbxPassword
             // 
             this.tbxPassword.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.tbxPassword.Location = new System.Drawing.Point(194, 106);
+            this.tbxPassword.Location = new System.Drawing.Point(194, 152);
             this.tbxPassword.Name = "tbxPassword";
             this.tbxPassword.PasswordChar = '*';
             this.tbxPassword.Size = new System.Drawing.Size(100, 20);
-            this.tbxPassword.TabIndex = 12;
+            this.tbxPassword.TabIndex = 1;
             // 
             // tbxUsername
             // 
             this.tbxUsername.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.tbxUsername.Location = new System.Drawing.Point(194, 80);
+            this.tbxUsername.Location = new System.Drawing.Point(194, 126);
             this.tbxUsername.Name = "tbxUsername";
             this.tbxUsername.Size = new System.Drawing.Size(100, 20);
-            this.tbxUsername.TabIndex = 11;
+            this.tbxUsername.TabIndex = 0;
             // 
             // lblPassword
             // 
             this.lblPassword.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblPassword.AutoSize = true;
-            this.lblPassword.Location = new System.Drawing.Point(130, 109);
+            this.lblPassword.Location = new System.Drawing.Point(130, 155);
             this.lblPassword.Name = "lblPassword";
             this.lblPassword.Size = new System.Drawing.Size(63, 13);
             this.lblPassword.TabIndex = 10;
@@ -85,7 +87,7 @@
             // 
             this.lblUsername.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblUsername.AutoSize = true;
-            this.lblUsername.Location = new System.Drawing.Point(130, 83);
+            this.lblUsername.Location = new System.Drawing.Point(130, 129);
             this.lblUsername.Name = "lblUsername";
             this.lblUsername.Size = new System.Drawing.Size(65, 13);
             this.lblUsername.TabIndex = 9;
@@ -94,10 +96,10 @@
             // btnRegister
             // 
             this.btnRegister.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnRegister.Location = new System.Drawing.Point(268, 208);
+            this.btnRegister.Location = new System.Drawing.Point(268, 254);
             this.btnRegister.Name = "btnRegister";
             this.btnRegister.Size = new System.Drawing.Size(75, 23);
-            this.btnRegister.TabIndex = 15;
+            this.btnRegister.TabIndex = 5;
             this.btnRegister.Text = "Register";
             this.btnRegister.UseVisualStyleBackColor = true;
             this.btnRegister.Click += new System.EventHandler(this.btnRegister_Click);
@@ -106,7 +108,7 @@
             // 
             this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(93, 135);
+            this.label2.Location = new System.Drawing.Point(93, 181);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(100, 13);
             this.label2.TabIndex = 16;
@@ -115,33 +117,33 @@
             // tbxPassConfirm
             // 
             this.tbxPassConfirm.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.tbxPassConfirm.Location = new System.Drawing.Point(194, 132);
+            this.tbxPassConfirm.Location = new System.Drawing.Point(194, 178);
             this.tbxPassConfirm.Name = "tbxPassConfirm";
             this.tbxPassConfirm.PasswordChar = '*';
             this.tbxPassConfirm.Size = new System.Drawing.Size(100, 20);
-            this.tbxPassConfirm.TabIndex = 17;
+            this.tbxPassConfirm.TabIndex = 2;
             // 
             // tbxLastName
             // 
             this.tbxLastName.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.tbxLastName.Location = new System.Drawing.Point(397, 106);
+            this.tbxLastName.Location = new System.Drawing.Point(397, 152);
             this.tbxLastName.Name = "tbxLastName";
             this.tbxLastName.Size = new System.Drawing.Size(100, 20);
-            this.tbxLastName.TabIndex = 21;
+            this.tbxLastName.TabIndex = 4;
             // 
             // tbxFirstName
             // 
             this.tbxFirstName.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.tbxFirstName.Location = new System.Drawing.Point(397, 80);
+            this.tbxFirstName.Location = new System.Drawing.Point(397, 126);
             this.tbxFirstName.Name = "tbxFirstName";
             this.tbxFirstName.Size = new System.Drawing.Size(100, 20);
-            this.tbxFirstName.TabIndex = 20;
+            this.tbxFirstName.TabIndex = 3;
             // 
             // label3
             // 
             this.label3.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(333, 109);
+            this.label3.Location = new System.Drawing.Point(333, 155);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(59, 13);
             this.label3.TabIndex = 19;
@@ -151,7 +153,7 @@
             // 
             this.label4.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(333, 83);
+            this.label4.Location = new System.Drawing.Point(333, 129);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(58, 13);
             this.label4.TabIndex = 18;
@@ -161,7 +163,7 @@
             // 
             this.label5.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(241, 175);
+            this.label5.Location = new System.Drawing.Point(241, 221);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(123, 13);
             this.label5.TabIndex = 22;
@@ -171,17 +173,40 @@
             // 
             this.label6.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(503, 96);
+            this.label6.Location = new System.Drawing.Point(503, 142);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(80, 13);
             this.label6.TabIndex = 23;
             this.label6.Text = "(Fields optional)";
             // 
+            // label7
+            // 
+            this.label7.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(230, 294);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(153, 13);
+            this.label7.TabIndex = 24;
+            this.label7.Text = "Already have a profile? Sign in!";
+            // 
+            // btnSignIn
+            // 
+            this.btnSignIn.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnSignIn.Location = new System.Drawing.Point(268, 319);
+            this.btnSignIn.Name = "btnSignIn";
+            this.btnSignIn.Size = new System.Drawing.Size(75, 23);
+            this.btnSignIn.TabIndex = 6;
+            this.btnSignIn.Text = "Sign In";
+            this.btnSignIn.UseVisualStyleBackColor = true;
+            this.btnSignIn.Click += new System.EventHandler(this.btnSignIn_Click);
+            // 
             // RegisterForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(619, 262);
+            this.ClientSize = new System.Drawing.Size(619, 354);
+            this.Controls.Add(this.btnSignIn);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.tbxLastName);
@@ -220,5 +245,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Button btnSignIn;
     }
 }

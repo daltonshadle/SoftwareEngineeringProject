@@ -33,11 +33,13 @@
             this.cbxTypeAppt = new System.Windows.Forms.ComboBox();
             this.lblTypeAppt = new System.Windows.Forms.Label();
             this.panelOtherProfile = new System.Windows.Forms.Panel();
+            this.cbxProfileList = new System.Windows.Forms.ComboBox();
             this.lblOtherProfile = new System.Windows.Forms.Label();
             this.panelCourseAndPlace = new System.Windows.Forms.Panel();
+            this.cbxCourseList = new System.Windows.Forms.ComboBox();
+            this.lblCourse = new System.Windows.Forms.Label();
             this.txtMeetingPlace = new System.Windows.Forms.TextBox();
             this.lblMeetingPlace = new System.Windows.Forms.Label();
-            this.lblCourse = new System.Windows.Forms.Label();
             this.panelTime = new System.Windows.Forms.Panel();
             this.dateTimeTime2 = new System.Windows.Forms.DateTimePicker();
             this.dateTimeTime1 = new System.Windows.Forms.DateTimePicker();
@@ -45,8 +47,6 @@
             this.dateTimeDay1 = new System.Windows.Forms.DateTimePicker();
             this.lblEndTime = new System.Windows.Forms.Label();
             this.lblStartTime = new System.Windows.Forms.Label();
-            this.cbxCourseList = new System.Windows.Forms.ComboBox();
-            this.cbxProfileList = new System.Windows.Forms.ComboBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panelApptType.SuspendLayout();
             this.panelOtherProfile.SuspendLayout();
@@ -60,7 +60,7 @@
             this.btnAdd.Location = new System.Drawing.Point(130, 256);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(75, 23);
-            this.btnAdd.TabIndex = 9;
+            this.btnAdd.TabIndex = 5;
             this.btnAdd.Text = "Add";
             this.btnAdd.UseVisualStyleBackColor = true;
             // 
@@ -71,7 +71,7 @@
             this.panelApptType.Location = new System.Drawing.Point(24, 12);
             this.panelApptType.Name = "panelApptType";
             this.panelApptType.Size = new System.Drawing.Size(291, 33);
-            this.panelApptType.TabIndex = 8;
+            this.panelApptType.TabIndex = 0;
             // 
             // cbxTypeAppt
             // 
@@ -83,7 +83,7 @@
             this.cbxTypeAppt.Location = new System.Drawing.Point(161, 6);
             this.cbxTypeAppt.Name = "cbxTypeAppt";
             this.cbxTypeAppt.Size = new System.Drawing.Size(121, 21);
-            this.cbxTypeAppt.TabIndex = 1;
+            this.cbxTypeAppt.TabIndex = 0;
             // 
             // lblTypeAppt
             // 
@@ -91,7 +91,7 @@
             this.lblTypeAppt.Location = new System.Drawing.Point(6, 9);
             this.lblTypeAppt.Name = "lblTypeAppt";
             this.lblTypeAppt.Size = new System.Drawing.Size(108, 13);
-            this.lblTypeAppt.TabIndex = 0;
+            this.lblTypeAppt.TabIndex = 1;
             this.lblTypeAppt.Text = "Type of Appointment:";
             // 
             // panelOtherProfile
@@ -101,7 +101,15 @@
             this.panelOtherProfile.Location = new System.Drawing.Point(24, 157);
             this.panelOtherProfile.Name = "panelOtherProfile";
             this.panelOtherProfile.Size = new System.Drawing.Size(291, 33);
-            this.panelOtherProfile.TabIndex = 7;
+            this.panelOtherProfile.TabIndex = 3;
+            // 
+            // cbxProfileList
+            // 
+            this.cbxProfileList.FormattingEnabled = true;
+            this.cbxProfileList.Location = new System.Drawing.Point(161, 6);
+            this.cbxProfileList.Name = "cbxProfileList";
+            this.cbxProfileList.Size = new System.Drawing.Size(121, 21);
+            this.cbxProfileList.TabIndex = 0;
             // 
             // lblOtherProfile
             // 
@@ -119,14 +127,31 @@
             this.panelCourseAndPlace.Location = new System.Drawing.Point(24, 51);
             this.panelCourseAndPlace.Name = "panelCourseAndPlace";
             this.panelCourseAndPlace.Size = new System.Drawing.Size(291, 33);
-            this.panelCourseAndPlace.TabIndex = 6;
+            this.panelCourseAndPlace.TabIndex = 1;
+            // 
+            // cbxCourseList
+            // 
+            this.cbxCourseList.FormattingEnabled = true;
+            this.cbxCourseList.Location = new System.Drawing.Point(161, 8);
+            this.cbxCourseList.Name = "cbxCourseList";
+            this.cbxCourseList.Size = new System.Drawing.Size(121, 21);
+            this.cbxCourseList.TabIndex = 0;
+            // 
+            // lblCourse
+            // 
+            this.lblCourse.AutoSize = true;
+            this.lblCourse.Location = new System.Drawing.Point(6, 11);
+            this.lblCourse.Name = "lblCourse";
+            this.lblCourse.Size = new System.Drawing.Size(46, 13);
+            this.lblCourse.TabIndex = 1;
+            this.lblCourse.Text = "Course: ";
             // 
             // txtMeetingPlace
             // 
             this.txtMeetingPlace.Location = new System.Drawing.Point(161, 7);
             this.txtMeetingPlace.Name = "txtMeetingPlace";
             this.txtMeetingPlace.Size = new System.Drawing.Size(121, 20);
-            this.txtMeetingPlace.TabIndex = 3;
+            this.txtMeetingPlace.TabIndex = 0;
             // 
             // lblMeetingPlace
             // 
@@ -136,15 +161,6 @@
             this.lblMeetingPlace.Size = new System.Drawing.Size(78, 13);
             this.lblMeetingPlace.TabIndex = 2;
             this.lblMeetingPlace.Text = "Meeting Place:";
-            // 
-            // lblCourse
-            // 
-            this.lblCourse.AutoSize = true;
-            this.lblCourse.Location = new System.Drawing.Point(6, 11);
-            this.lblCourse.Name = "lblCourse";
-            this.lblCourse.Size = new System.Drawing.Size(46, 13);
-            this.lblCourse.TabIndex = 0;
-            this.lblCourse.Text = "Course: ";
             // 
             // panelTime
             // 
@@ -157,7 +173,7 @@
             this.panelTime.Location = new System.Drawing.Point(24, 90);
             this.panelTime.Name = "panelTime";
             this.panelTime.Size = new System.Drawing.Size(291, 61);
-            this.panelTime.TabIndex = 5;
+            this.panelTime.TabIndex = 2;
             // 
             // dateTimeTime2
             // 
@@ -165,7 +181,7 @@
             this.dateTimeTime2.Location = new System.Drawing.Point(178, 36);
             this.dateTimeTime2.Name = "dateTimeTime2";
             this.dateTimeTime2.Size = new System.Drawing.Size(104, 20);
-            this.dateTimeTime2.TabIndex = 5;
+            this.dateTimeTime2.TabIndex = 3;
             // 
             // dateTimeTime1
             // 
@@ -173,7 +189,7 @@
             this.dateTimeTime1.Location = new System.Drawing.Point(177, 5);
             this.dateTimeTime1.Name = "dateTimeTime1";
             this.dateTimeTime1.Size = new System.Drawing.Size(105, 20);
-            this.dateTimeTime1.TabIndex = 4;
+            this.dateTimeTime1.TabIndex = 1;
             // 
             // dateTimeDay2
             // 
@@ -181,7 +197,7 @@
             this.dateTimeDay2.Location = new System.Drawing.Point(70, 36);
             this.dateTimeDay2.Name = "dateTimeDay2";
             this.dateTimeDay2.Size = new System.Drawing.Size(101, 20);
-            this.dateTimeDay2.TabIndex = 3;
+            this.dateTimeDay2.TabIndex = 2;
             // 
             // dateTimeDay1
             // 
@@ -189,7 +205,7 @@
             this.dateTimeDay1.Location = new System.Drawing.Point(70, 5);
             this.dateTimeDay1.Name = "dateTimeDay1";
             this.dateTimeDay1.Size = new System.Drawing.Size(101, 20);
-            this.dateTimeDay1.TabIndex = 2;
+            this.dateTimeDay1.TabIndex = 0;
             // 
             // lblEndTime
             // 
@@ -208,24 +224,8 @@
             this.lblStartTime.Location = new System.Drawing.Point(6, 8);
             this.lblStartTime.Name = "lblStartTime";
             this.lblStartTime.Size = new System.Drawing.Size(58, 13);
-            this.lblStartTime.TabIndex = 0;
+            this.lblStartTime.TabIndex = 4;
             this.lblStartTime.Text = "Start Time:";
-            // 
-            // cbxCourseList
-            // 
-            this.cbxCourseList.FormattingEnabled = true;
-            this.cbxCourseList.Location = new System.Drawing.Point(161, 8);
-            this.cbxCourseList.Name = "cbxCourseList";
-            this.cbxCourseList.Size = new System.Drawing.Size(121, 21);
-            this.cbxCourseList.TabIndex = 1;
-            // 
-            // cbxProfileList
-            // 
-            this.cbxProfileList.FormattingEnabled = true;
-            this.cbxProfileList.Location = new System.Drawing.Point(161, 6);
-            this.cbxProfileList.Name = "cbxProfileList";
-            this.cbxProfileList.Size = new System.Drawing.Size(121, 21);
-            this.cbxProfileList.TabIndex = 1;
             // 
             // panel1
             // 
@@ -234,7 +234,7 @@
             this.panel1.Location = new System.Drawing.Point(24, 196);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(291, 33);
-            this.panel1.TabIndex = 10;
+            this.panel1.TabIndex = 4;
             // 
             // MatchingAppointmentForm
             // 

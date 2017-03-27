@@ -64,7 +64,7 @@
             this.panelTime.Location = new System.Drawing.Point(12, 51);
             this.panelTime.Name = "panelTime";
             this.panelTime.Size = new System.Drawing.Size(291, 61);
-            this.panelTime.TabIndex = 0;
+            this.panelTime.TabIndex = 1;
             // 
             // dateTimeTime2
             // 
@@ -72,7 +72,7 @@
             this.dateTimeTime2.Location = new System.Drawing.Point(178, 36);
             this.dateTimeTime2.Name = "dateTimeTime2";
             this.dateTimeTime2.Size = new System.Drawing.Size(104, 20);
-            this.dateTimeTime2.TabIndex = 5;
+            this.dateTimeTime2.TabIndex = 3;
             // 
             // dateTimeTime1
             // 
@@ -80,7 +80,7 @@
             this.dateTimeTime1.Location = new System.Drawing.Point(177, 5);
             this.dateTimeTime1.Name = "dateTimeTime1";
             this.dateTimeTime1.Size = new System.Drawing.Size(105, 20);
-            this.dateTimeTime1.TabIndex = 4;
+            this.dateTimeTime1.TabIndex = 1;
             // 
             // dateTimeDay2
             // 
@@ -88,7 +88,7 @@
             this.dateTimeDay2.Location = new System.Drawing.Point(70, 36);
             this.dateTimeDay2.Name = "dateTimeDay2";
             this.dateTimeDay2.Size = new System.Drawing.Size(101, 20);
-            this.dateTimeDay2.TabIndex = 3;
+            this.dateTimeDay2.TabIndex = 2;
             // 
             // dateTimeDay1
             // 
@@ -96,7 +96,7 @@
             this.dateTimeDay1.Location = new System.Drawing.Point(70, 5);
             this.dateTimeDay1.Name = "dateTimeDay1";
             this.dateTimeDay1.Size = new System.Drawing.Size(101, 20);
-            this.dateTimeDay1.TabIndex = 2;
+            this.dateTimeDay1.TabIndex = 0;
             // 
             // lblEndTime
             // 
@@ -127,14 +127,14 @@
             this.panelCourseAndPlace.Location = new System.Drawing.Point(12, 118);
             this.panelCourseAndPlace.Name = "panelCourseAndPlace";
             this.panelCourseAndPlace.Size = new System.Drawing.Size(291, 61);
-            this.panelCourseAndPlace.TabIndex = 1;
+            this.panelCourseAndPlace.TabIndex = 2;
             // 
             // txtMeetingPlace
             // 
             this.txtMeetingPlace.Location = new System.Drawing.Point(161, 35);
             this.txtMeetingPlace.Name = "txtMeetingPlace";
             this.txtMeetingPlace.Size = new System.Drawing.Size(121, 20);
-            this.txtMeetingPlace.TabIndex = 3;
+            this.txtMeetingPlace.TabIndex = 1;
             // 
             // lblMeetingPlace
             // 
@@ -151,7 +151,7 @@
             this.cbxCourseList.Location = new System.Drawing.Point(161, 8);
             this.cbxCourseList.Name = "cbxCourseList";
             this.cbxCourseList.Size = new System.Drawing.Size(121, 21);
-            this.cbxCourseList.TabIndex = 1;
+            this.cbxCourseList.TabIndex = 0;
             // 
             // lblCourse
             // 
@@ -169,14 +169,14 @@
             this.panelOtherProfile.Location = new System.Drawing.Point(12, 185);
             this.panelOtherProfile.Name = "panelOtherProfile";
             this.panelOtherProfile.Size = new System.Drawing.Size(291, 30);
-            this.panelOtherProfile.TabIndex = 2;
+            this.panelOtherProfile.TabIndex = 3;
             // 
             // txtOtherProf
             // 
             this.txtOtherProf.Location = new System.Drawing.Point(161, 6);
             this.txtOtherProf.Name = "txtOtherProf";
             this.txtOtherProf.Size = new System.Drawing.Size(120, 20);
-            this.txtOtherProf.TabIndex = 1;
+            this.txtOtherProf.TabIndex = 0;
             // 
             // lblOtherProfile
             // 
@@ -194,7 +194,7 @@
             this.panelApptType.Location = new System.Drawing.Point(12, 12);
             this.panelApptType.Name = "panelApptType";
             this.panelApptType.Size = new System.Drawing.Size(291, 33);
-            this.panelApptType.TabIndex = 3;
+            this.panelApptType.TabIndex = 0;
             // 
             // cbxTypeAppt
             // 
@@ -206,7 +206,7 @@
             this.cbxTypeAppt.Location = new System.Drawing.Point(161, 6);
             this.cbxTypeAppt.Name = "cbxTypeAppt";
             this.cbxTypeAppt.Size = new System.Drawing.Size(121, 21);
-            this.cbxTypeAppt.TabIndex = 1;
+            this.cbxTypeAppt.TabIndex = 0;
             this.cbxTypeAppt.SelectedIndexChanged += new System.EventHandler(this.cbxTypeAppt_SelectedIndexChanged);
             // 
             // lblTypeAppt
