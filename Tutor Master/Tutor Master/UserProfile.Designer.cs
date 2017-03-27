@@ -36,6 +36,7 @@
             this.btnAddApp = new System.Windows.Forms.Button();
             this.btnViewCal = new System.Windows.Forms.Button();
             this.weekCalendar = new Tutor_Master.WeekCalendar();
+            this.btnMatchingAppoint = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnLogout
@@ -122,11 +123,23 @@
             this.weekCalendar.Size = new System.Drawing.Size(900, 368);
             this.weekCalendar.TabIndex = 7;
             // 
+            // btnMatchingAppoint
+            // 
+            this.btnMatchingAppoint.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btnMatchingAppoint.Location = new System.Drawing.Point(570, 12);
+            this.btnMatchingAppoint.Name = "btnMatchingAppoint";
+            this.btnMatchingAppoint.Size = new System.Drawing.Size(144, 23);
+            this.btnMatchingAppoint.TabIndex = 10;
+            this.btnMatchingAppoint.Text = "Find Matching Appointment";
+            this.btnMatchingAppoint.UseVisualStyleBackColor = true;
+            this.btnMatchingAppoint.Click += new System.EventHandler(this.btnMatchingAppoint_Click);
+            // 
             // UserProfile
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1066, 574);
+            this.Controls.Add(this.btnMatchingAppoint);
             this.Controls.Add(this.btnViewCal);
             this.Controls.Add(this.btnAddApp);
             this.Controls.Add(this.weekCalendar);
@@ -153,5 +166,6 @@
         private WeekCalendar weekCalendar;
         private System.Windows.Forms.Button btnAddApp;
         private System.Windows.Forms.Button btnViewCal;
+        private System.Windows.Forms.Button btnMatchingAppoint;
     }
 }

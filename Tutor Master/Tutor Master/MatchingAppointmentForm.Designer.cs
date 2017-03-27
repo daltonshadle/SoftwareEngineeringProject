@@ -33,11 +33,13 @@
             this.cbxTypeAppt = new System.Windows.Forms.ComboBox();
             this.lblTypeAppt = new System.Windows.Forms.Label();
             this.panelOtherProfile = new System.Windows.Forms.Panel();
+            this.cbxProfileList = new System.Windows.Forms.ComboBox();
             this.lblOtherProfile = new System.Windows.Forms.Label();
-            this.panelCourseAndPlace = new System.Windows.Forms.Panel();
+            this.panelCourse = new System.Windows.Forms.Panel();
+            this.cbxCourseList = new System.Windows.Forms.ComboBox();
+            this.lblCourse = new System.Windows.Forms.Label();
             this.txtMeetingPlace = new System.Windows.Forms.TextBox();
             this.lblMeetingPlace = new System.Windows.Forms.Label();
-            this.lblCourse = new System.Windows.Forms.Label();
             this.panelTime = new System.Windows.Forms.Panel();
             this.dateTimeTime2 = new System.Windows.Forms.DateTimePicker();
             this.dateTimeTime1 = new System.Windows.Forms.DateTimePicker();
@@ -45,14 +47,12 @@
             this.dateTimeDay1 = new System.Windows.Forms.DateTimePicker();
             this.lblEndTime = new System.Windows.Forms.Label();
             this.lblStartTime = new System.Windows.Forms.Label();
-            this.cbxCourseList = new System.Windows.Forms.ComboBox();
-            this.cbxProfileList = new System.Windows.Forms.ComboBox();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.panelMeetingPlace = new System.Windows.Forms.Panel();
             this.panelApptType.SuspendLayout();
             this.panelOtherProfile.SuspendLayout();
-            this.panelCourseAndPlace.SuspendLayout();
+            this.panelCourse.SuspendLayout();
             this.panelTime.SuspendLayout();
-            this.panel1.SuspendLayout();
+            this.panelMeetingPlace.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnAdd
@@ -63,6 +63,7 @@
             this.btnAdd.TabIndex = 9;
             this.btnAdd.Text = "Add";
             this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // panelApptType
             // 
@@ -84,6 +85,7 @@
             this.cbxTypeAppt.Name = "cbxTypeAppt";
             this.cbxTypeAppt.Size = new System.Drawing.Size(121, 21);
             this.cbxTypeAppt.TabIndex = 1;
+            this.cbxTypeAppt.SelectedIndexChanged += new System.EventHandler(this.cbxTypeAppt_SelectedIndexChanged);
             // 
             // lblTypeAppt
             // 
@@ -98,10 +100,18 @@
             // 
             this.panelOtherProfile.Controls.Add(this.cbxProfileList);
             this.panelOtherProfile.Controls.Add(this.lblOtherProfile);
-            this.panelOtherProfile.Location = new System.Drawing.Point(24, 157);
+            this.panelOtherProfile.Location = new System.Drawing.Point(24, 90);
             this.panelOtherProfile.Name = "panelOtherProfile";
             this.panelOtherProfile.Size = new System.Drawing.Size(291, 33);
             this.panelOtherProfile.TabIndex = 7;
+            // 
+            // cbxProfileList
+            // 
+            this.cbxProfileList.FormattingEnabled = true;
+            this.cbxProfileList.Location = new System.Drawing.Point(161, 6);
+            this.cbxProfileList.Name = "cbxProfileList";
+            this.cbxProfileList.Size = new System.Drawing.Size(121, 21);
+            this.cbxProfileList.TabIndex = 1;
             // 
             // lblOtherProfile
             // 
@@ -112,14 +122,32 @@
             this.lblOtherProfile.TabIndex = 0;
             this.lblOtherProfile.Text = "Other Profile:";
             // 
-            // panelCourseAndPlace
+            // panelCourse
             // 
-            this.panelCourseAndPlace.Controls.Add(this.cbxCourseList);
-            this.panelCourseAndPlace.Controls.Add(this.lblCourse);
-            this.panelCourseAndPlace.Location = new System.Drawing.Point(24, 51);
-            this.panelCourseAndPlace.Name = "panelCourseAndPlace";
-            this.panelCourseAndPlace.Size = new System.Drawing.Size(291, 33);
-            this.panelCourseAndPlace.TabIndex = 6;
+            this.panelCourse.Controls.Add(this.cbxCourseList);
+            this.panelCourse.Controls.Add(this.lblCourse);
+            this.panelCourse.Location = new System.Drawing.Point(24, 51);
+            this.panelCourse.Name = "panelCourse";
+            this.panelCourse.Size = new System.Drawing.Size(291, 33);
+            this.panelCourse.TabIndex = 6;
+            // 
+            // cbxCourseList
+            // 
+            this.cbxCourseList.FormattingEnabled = true;
+            this.cbxCourseList.Location = new System.Drawing.Point(161, 8);
+            this.cbxCourseList.Name = "cbxCourseList";
+            this.cbxCourseList.Size = new System.Drawing.Size(121, 21);
+            this.cbxCourseList.TabIndex = 1;
+            this.cbxCourseList.SelectedIndexChanged += new System.EventHandler(this.cbxCourseList_SelectedIndexChanged);
+            // 
+            // lblCourse
+            // 
+            this.lblCourse.AutoSize = true;
+            this.lblCourse.Location = new System.Drawing.Point(6, 11);
+            this.lblCourse.Name = "lblCourse";
+            this.lblCourse.Size = new System.Drawing.Size(46, 13);
+            this.lblCourse.TabIndex = 0;
+            this.lblCourse.Text = "Course: ";
             // 
             // txtMeetingPlace
             // 
@@ -137,15 +165,6 @@
             this.lblMeetingPlace.TabIndex = 2;
             this.lblMeetingPlace.Text = "Meeting Place:";
             // 
-            // lblCourse
-            // 
-            this.lblCourse.AutoSize = true;
-            this.lblCourse.Location = new System.Drawing.Point(6, 11);
-            this.lblCourse.Name = "lblCourse";
-            this.lblCourse.Size = new System.Drawing.Size(46, 13);
-            this.lblCourse.TabIndex = 0;
-            this.lblCourse.Text = "Course: ";
-            // 
             // panelTime
             // 
             this.panelTime.Controls.Add(this.dateTimeTime2);
@@ -154,7 +173,7 @@
             this.panelTime.Controls.Add(this.dateTimeDay1);
             this.panelTime.Controls.Add(this.lblEndTime);
             this.panelTime.Controls.Add(this.lblStartTime);
-            this.panelTime.Location = new System.Drawing.Point(24, 90);
+            this.panelTime.Location = new System.Drawing.Point(24, 129);
             this.panelTime.Name = "panelTime";
             this.panelTime.Size = new System.Drawing.Size(291, 61);
             this.panelTime.TabIndex = 5;
@@ -211,41 +230,25 @@
             this.lblStartTime.TabIndex = 0;
             this.lblStartTime.Text = "Start Time:";
             // 
-            // cbxCourseList
+            // panelMeetingPlace
             // 
-            this.cbxCourseList.FormattingEnabled = true;
-            this.cbxCourseList.Location = new System.Drawing.Point(161, 8);
-            this.cbxCourseList.Name = "cbxCourseList";
-            this.cbxCourseList.Size = new System.Drawing.Size(121, 21);
-            this.cbxCourseList.TabIndex = 1;
-            // 
-            // cbxProfileList
-            // 
-            this.cbxProfileList.FormattingEnabled = true;
-            this.cbxProfileList.Location = new System.Drawing.Point(161, 6);
-            this.cbxProfileList.Name = "cbxProfileList";
-            this.cbxProfileList.Size = new System.Drawing.Size(121, 21);
-            this.cbxProfileList.TabIndex = 1;
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.lblMeetingPlace);
-            this.panel1.Controls.Add(this.txtMeetingPlace);
-            this.panel1.Location = new System.Drawing.Point(24, 196);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(291, 33);
-            this.panel1.TabIndex = 10;
+            this.panelMeetingPlace.Controls.Add(this.lblMeetingPlace);
+            this.panelMeetingPlace.Controls.Add(this.txtMeetingPlace);
+            this.panelMeetingPlace.Location = new System.Drawing.Point(24, 196);
+            this.panelMeetingPlace.Name = "panelMeetingPlace";
+            this.panelMeetingPlace.Size = new System.Drawing.Size(291, 33);
+            this.panelMeetingPlace.TabIndex = 10;
             // 
             // MatchingAppointmentForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(338, 315);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.panelMeetingPlace);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.panelApptType);
             this.Controls.Add(this.panelOtherProfile);
-            this.Controls.Add(this.panelCourseAndPlace);
+            this.Controls.Add(this.panelCourse);
             this.Controls.Add(this.panelTime);
             this.Name = "MatchingAppointmentForm";
             this.Text = "MatchingAppointmentForm";
@@ -253,12 +256,12 @@
             this.panelApptType.PerformLayout();
             this.panelOtherProfile.ResumeLayout(false);
             this.panelOtherProfile.PerformLayout();
-            this.panelCourseAndPlace.ResumeLayout(false);
-            this.panelCourseAndPlace.PerformLayout();
+            this.panelCourse.ResumeLayout(false);
+            this.panelCourse.PerformLayout();
             this.panelTime.ResumeLayout(false);
             this.panelTime.PerformLayout();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.panelMeetingPlace.ResumeLayout(false);
+            this.panelMeetingPlace.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -272,7 +275,7 @@
         private System.Windows.Forms.Panel panelOtherProfile;
         private System.Windows.Forms.ComboBox cbxProfileList;
         private System.Windows.Forms.Label lblOtherProfile;
-        private System.Windows.Forms.Panel panelCourseAndPlace;
+        private System.Windows.Forms.Panel panelCourse;
         private System.Windows.Forms.ComboBox cbxCourseList;
         private System.Windows.Forms.Label lblCourse;
         private System.Windows.Forms.TextBox txtMeetingPlace;
@@ -284,6 +287,6 @@
         private System.Windows.Forms.DateTimePicker dateTimeDay1;
         private System.Windows.Forms.Label lblEndTime;
         private System.Windows.Forms.Label lblStartTime;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panelMeetingPlace;
     }
 }

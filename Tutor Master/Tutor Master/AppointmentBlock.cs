@@ -24,39 +24,6 @@ namespace Tutor_Master
             InitializeComponent();
         }
 
-
-        /*public AppointmentBlock(string type, string place, DateTime time, string course, Profile user)
-
-        public AppointmentBlock(string type, string place, DateTime time, string course, string user)
-        {
-            InitializeComponent();
-            apptCourse = course;
-            apptPlace = place;
-            apptTime = time.ToShortTimeString();
-            
-
-            if (b)
-            {
-                apptType = "Freetime";
-            }
-            else
-            {
-                apptType = "Learning";
-            }
-
-            apptType = type;
-<<<<<<< HEAD
-            otherProfileName = user;
-=======
-
-            otherProfileName = user;
-
-            otherProfileName = "temp name"; //NEEDS TO BE REWORKED.
->>>>>>> 4f0a90a3af556f87ab821265604b250971260864
-
-            setViews();
-        }*/
-
         public AppointmentBlock(Appointment a)
         {
             InitializeComponent();
@@ -68,11 +35,8 @@ namespace Tutor_Master
             bool b = a.getIsFreeTimeSession();
             if (b) {
                 apptType = "Freetime";
-<<<<<<< HEAD
-=======
                 firstName = a.getFreeTimeProf();
                 lblSecond.Visible = false;
->>>>>>> 4f0a90a3af556f87ab821265604b250971260864
             }
             else {
                 apptType = "Learning";
@@ -80,11 +44,6 @@ namespace Tutor_Master
                 lblSecond.Visible = true;
                 secondName = a.getTutee();
             }
-
-<<<<<<< HEAD
-            otherProfileName = "temp name"; //NEEDS TO BE REWORKED.
-=======
->>>>>>> 4f0a90a3af556f87ab821265604b250971260864
 
             setViews();
         }

@@ -183,7 +183,9 @@ namespace Tutor_Master
         void appBuilder_FormClosing(object sender, FormClosingEventArgs e)
         {
             weekCalendar.assignWeeklyAppointments(user);
-            throw new NotImplementedException();
+
+            //need to hide the other form
+            //throw new NotImplementedException();
         }
 
         private void btnViewCal_Click(object sender, EventArgs e)
@@ -192,6 +194,21 @@ namespace Tutor_Master
             monthCal.StartPosition = FormStartPosition.CenterParent;
             monthCal.Show();
             //this.Hide();
+        }
+
+        private void btnMatchingAppoint_Click(object sender, EventArgs e)
+        {
+            var matchingForm = new MatchingAppointmentForm(user, tutorAcc, tuteeAcc);
+            matchingForm.FormClosing += new FormClosingEventHandler(matchingForm_FormClosing);
+            matchingForm.Show();
+        }
+
+        void matchingForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            weekCalendar.assignWeeklyAppointments(user);
+
+            //need to hide the other form
+            //throw new NotImplementedException();
         }
 
        

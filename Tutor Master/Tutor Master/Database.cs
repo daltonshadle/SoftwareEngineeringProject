@@ -358,6 +358,51 @@ namespace Tutor_Master
                 return list;
         }
 
+        //function to get all the tutor usernames that tutor a specific course
+        public List<string> getUsernamesForCourse(string courseName, bool isTutor)
+        {
+            string query;
+            if (isTutor)
+                query = "SELECT username FROM tutorCourses WHERE (course1 = @course OR course2 = @course OR course3 = @course OR course4 = @course)";
+            else
+                query = "SELECT username FROM tuteeCourses WHERE (course1 = @course OR course2 = @course OR course3 = @course OR course4 = @course)";
+
+            List<string> usernameList = new List<string>();
+
+            if (this.OpenConnection())
+            {
+                SqlCeCommand cmd = new SqlCeCommand();
+                cmd.CommandText = query;
+                cmd.Parameters.Add("@course", courseName);
+                cmd.Connection = con;
+                try
+                {
+                    SqlCeDataReader dataReader = cmd.ExecuteReader();
+
+                    //Read the data and store them in the list
+                    while (dataReader.Read())
+                    {
+                        usernameList.Add(dataReader["username"] + "");
+                    }
+
+                    //close Data Reader
+                    dataReader.Close();
+                    this.CloseConnection();
+                    return usernameList;
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    usernameList.Clear();
+                    this.CloseConnection();
+                    return usernameList;
+                }
+            }
+            else
+                return usernameList;
+        }
+
         //if the courses what someone can tutor, pass in true
         //if the courses what someone wants to be tutored, pass in false
         //only use this function during registration
