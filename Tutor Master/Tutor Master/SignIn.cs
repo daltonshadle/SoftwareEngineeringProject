@@ -35,9 +35,19 @@ namespace Tutor_Master
 
             if (accountValid)
             {
-                var profile = new UserProfile(username);
-                profile.Show();
-                this.Hide();
+                Database db = new Database();
+                if (db.isFacultyAccount(username))
+                {
+                    var profile = new FacultyForm(username);
+                    profile.Show();
+                    this.Hide();
+                }
+                else
+                {
+                    var profile = new UserProfile(username);
+                    profile.Show();
+                    this.Hide();
+                }
                 //move to profile form, successfully signed in
             }
             else 

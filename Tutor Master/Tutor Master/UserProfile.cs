@@ -12,7 +12,7 @@ namespace Tutor_Master
     public partial class UserProfile : Form
     {
         private string first, last, user;
-        private bool tutorAcc, tuteeAcc;
+        private bool tutorAcc, tuteeAcc, facultyAcc, adminAcc;
 
         public UserProfile(string username)
         {
@@ -39,6 +39,20 @@ namespace Tutor_Master
                 tuteeAcc = true;
             else
                 tuteeAcc = false;
+
+            string facultya = listOfProfileInfo[12];
+            if (facultya == "true")
+            {
+                facultyAcc = true;
+            }
+            else
+                facultyAcc = false;
+
+            string admina = listOfProfileInfo[13];
+            if (admina == "true")
+                adminAcc = true;
+            else
+                adminAcc = false;
 
             tuteeCoursesList.Add(listOfProfileInfo[4]);
             tuteeCoursesList.Add(listOfProfileInfo[5]);
