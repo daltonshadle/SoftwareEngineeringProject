@@ -104,6 +104,7 @@ namespace Tutor_Master
                 case 0:
                     panelCourseAndPlace.Visible = false;
                     panelOtherProfile.Visible = false;
+                    isFreeTimeSession = true;
                     break;
                 case 1:
                     //add tutor courses here from tutee list
@@ -123,6 +124,7 @@ namespace Tutor_Master
 
                     panelCourseAndPlace.Visible = true;
                     panelOtherProfile.Visible = true;
+                    isFreeTimeSession = false;
                     break;
                 case 2:
                     //add tutee courses here from tutor list
@@ -142,6 +144,7 @@ namespace Tutor_Master
 
                     panelCourseAndPlace.Visible = true;
                     panelOtherProfile.Visible = true;
+                    isFreeTimeSession = false;
                     break;
             }
         }
@@ -213,25 +216,69 @@ namespace Tutor_Master
         private bool verifyTimes()
         {
             bool good = false;
-
-            if (verifyOtherProfile())
-            {
-                DateTime firstDate = dateTimeDay1.Value.Date + dateTimeTime1.Value.TimeOfDay;
-                DateTime secondDate = dateTimeDay2.Value.Date + dateTimeTime2.Value.TimeOfDay;
-
-                good = (firstDate > DateTime.Now && secondDate > DateTime.Now &&
+            DateTime firstDate = dateTimeDay1.Value.Date + dateTimeTime1.Value.TimeOfDay;
+            DateTime secondDate = dateTimeDay2.Value.Date + dateTimeTime2.Value.TimeOfDay;
+            
+            good = (firstDate > DateTime.Now && secondDate > DateTime.Now &&
                     firstDate < secondDate && (secondDate.Hour - firstDate.Hour) < 3);
+
+            if (verifyOtherProfile()&&good)
+            {
+                
 
                 if (good)
                 {
+                    //checking both profile times to see if they conflict with the start and end times
                     Database db = new Database();
                     List<Appointment> builderAppoint = db.getDailyAppointments(builderProf.getUsername());
                     List<Appointment> otherAppoint = db.getDailyAppointments(txtOtherProf.Text.ToString());
 
+                    int it = 0;
 
+                    while (good && it < builderAppoint.Count)
+                    {
+                        bool temp = false;
 
+                        Appointment a = builderAppoint[it];
+                        temp = isTimeInBetween(a.getStartTime(), a.getEndTime(), startTime, endTime);
+
+                        good = temp;
+                        it++;
+                    }
+
+                    it = 0;
+                    while (good && it < otherAppoint.Count)
+                    {
+                        bool temp = false;
+
+                        Appointment a = otherAppoint[it];
+                        temp = isTimeInBetween(a.getStartTime(), a.getEndTime(), startTime, endTime);
+
+                        good = temp;
+                        it++;
+                    }
                 }
 
+            }
+            else 
+            {
+                if (isFreeTimeSession) {
+                    Database db = new Database();
+                    List<Appointment> builderAppoint = db.getDailyAppointments(builderProf.getUsername());
+
+                    int it = 0;
+
+                    while (good && it < builderAppoint.Count)
+                    {
+                        bool temp = false;
+
+                        Appointment a = builderAppoint[it];
+                        temp = !isTimeInBetween(a.getStartTime(), a.getEndTime(), startTime, endTime);
+
+                        good = temp;
+                        it++;
+                    }
+                }
             }
             return good;
         }
@@ -343,8 +390,8 @@ namespace Tutor_Master
             return (meetingType.Equals(TEACHTYPE) && !meetingType.Equals(FREETYPE));
         }
 
-        private bool isTimeInBetween(DateTime startTime, DateTime endTime, DateTime timeInQuestion) {
-            return ((timeInQuestion>startTime)&&(timeInQuestion<endTime));
+        private bool isTimeInBetween(DateTime startTime, DateTime endTime, DateTime startTimeInQuestion, DateTime endTimeInQuestion) {
+            return (((startTimeInQuestion > startTime) && (startTimeInQuestion < endTime)) && ((endTimeInQuestion > startTime) && (endTimeInQuestion < endTime)));
         }
     }
 }

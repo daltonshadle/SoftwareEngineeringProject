@@ -11,7 +11,7 @@ namespace Tutor_Master
     class Database
     {
         private SqlCeConnection con;
-        private string connection = @"Data Source=C:\TutorMaster (3).sdf";
+        private string connection = @"Data Source=C:\TutorMaster.sdf";
 
         public Database()
         {
