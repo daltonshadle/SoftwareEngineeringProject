@@ -16,12 +16,16 @@ namespace Tutor_Master
         private string apptPlace;
         private string apptCourse;
         private string apptTime;
-        private string otherProfileName;
+        private string firstName;
+        private string secondName;
 
         public AppointmentBlock()
         {
             InitializeComponent();
         }
+
+
+        /*public AppointmentBlock(string type, string place, DateTime time, string course, Profile user)
 
         public AppointmentBlock(string type, string place, DateTime time, string course, string user)
         {
@@ -29,11 +33,29 @@ namespace Tutor_Master
             apptCourse = course;
             apptPlace = place;
             apptTime = time.ToShortTimeString();
+            
+
+            if (b)
+            {
+                apptType = "Freetime";
+            }
+            else
+            {
+                apptType = "Learning";
+            }
+
             apptType = type;
+<<<<<<< HEAD
+            otherProfileName = user;
+=======
+
             otherProfileName = user;
 
+            otherProfileName = "temp name"; //NEEDS TO BE REWORKED.
+>>>>>>> 4f0a90a3af556f87ab821265604b250971260864
+
             setViews();
-        }
+        }*/
 
         public AppointmentBlock(Appointment a)
         {
@@ -41,16 +63,28 @@ namespace Tutor_Master
             apptCourse = a.getCourse();
             apptPlace = a.getMeetingPlace();
             apptTime = a.getStartTime().ToShortTimeString();
-            //apptType = type;
+
+
             bool b = a.getIsFreeTimeSession();
             if (b) {
                 apptType = "Freetime";
+<<<<<<< HEAD
+=======
+                firstName = a.getFreeTimeProf();
+                lblSecond.Visible = false;
+>>>>>>> 4f0a90a3af556f87ab821265604b250971260864
             }
             else {
                 apptType = "Learning";
+                firstName = a.getTutor();
+                lblSecond.Visible = true;
+                secondName = a.getTutee();
             }
 
+<<<<<<< HEAD
             otherProfileName = "temp name"; //NEEDS TO BE REWORKED.
+=======
+>>>>>>> 4f0a90a3af556f87ab821265604b250971260864
 
             setViews();
         }
@@ -58,20 +92,17 @@ namespace Tutor_Master
         private void setViews() {
             lblAppointmentType.Text = apptType;
             lblCourse.Text = apptCourse;
-            lblName.Text = otherProfileName;
+            lblFirst.Text = firstName;
+            lblSecond.Text = secondName;
             lblTimeAndPlace.Text = apptTime + " " + apptPlace;
 
             setBackColor();
         }
 
         private void setBackColor() {
-            if (apptType.Equals("Teaching"))
-            {
-                this.BackColor = Color.Aqua;
-            }
             if (apptType.Equals("Learning"))
             {
-                this.BackColor = Color.Green;
+                this.BackColor = Color.Cyan;
             }
             if (apptType.Equals("Freetime"))
             {
@@ -110,9 +141,9 @@ namespace Tutor_Master
             lblCourse.Text = course;
         }
 
-        public string getName()
+        public string getFirstName()
         {
-            return otherProfileName;
+            return firstName;
         }
 
         public void setAppointmentOwnerName(string user)

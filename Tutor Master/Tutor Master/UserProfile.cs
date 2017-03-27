@@ -124,7 +124,7 @@ namespace Tutor_Master
             }
 
             //Update the week calendar
-            weekCalendar.assignWeeklyAppointments(username);
+            weekCalendar.assignWeeklyAppointments(user);
         }
    
 
@@ -189,6 +189,7 @@ namespace Tutor_Master
         private void btnViewCal_Click(object sender, EventArgs e)
         {
             var monthCal = new MonthCalendarForm(user);
+            monthCal.StartPosition = FormStartPosition.CenterParent;
             monthCal.Show();
             //this.Hide();
         }

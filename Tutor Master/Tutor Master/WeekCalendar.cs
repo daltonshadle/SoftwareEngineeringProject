@@ -35,6 +35,9 @@ namespace Tutor_Master
             {
                 date = date.AddDays(-1);
             }
+
+            clearWeeklyCalendar();
+
             DateTime Sunday = date;
             DateTime Monday = date.AddDays(1);
             DateTime Tuesday = date.AddDays(2);
@@ -101,7 +104,7 @@ namespace Tutor_Master
                 Button button = new Button();
                 button.Name = "btnSeeMore";
                 button.Text = "See More";
-                button.Location = new Point(45, 300);
+                button.Location = new Point(22, 300);
                 this.Controls.Add(button);
                 p.Controls.Add(button);
                 button.Click += new EventHandler(NewButton_Click);
@@ -120,6 +123,7 @@ namespace Tutor_Master
             if (btn.Name == ("btnSeeMore"))
             {
                 var monthCal = new MonthCalendarForm(username);
+                monthCal.StartPosition = FormStartPosition.CenterParent;
                 monthCal.Show();
             }
         }
@@ -137,6 +141,36 @@ namespace Tutor_Master
 
             lblWeek.Text = startDate.ToShortDateString() + " - " + endDate.ToShortDateString();
         }
+
+        public void clearWeeklyCalendar()
+        {
+            panelSun.Controls.Clear();
+            panelMon.Controls.Clear();
+            panelTues.Controls.Clear();
+            panelWed.Controls.Clear();
+            panelThur.Controls.Clear();
+            panelFri.Controls.Clear();
+            panelSat.Controls.Clear();
+            panelSun.Controls.Add(lblSunday);
+            panelMon.Controls.Add(lblMonday);
+            panelTues.Controls.Add(lblTuesday);
+            panelWed.Controls.Add(lblWednesday);
+            panelThur.Controls.Add(lblThursday);
+            panelFri.Controls.Add(lblFriday);
+            panelSat.Controls.Add(lblSaturday);
+            
+        }
+
+
+
+        /*public void drawAppoint(Panel p) {
+            DateTime d = DateTime.Now;
+            Profile user = new Profile("Tommy", "asdfghj");
+            AppointmentBlock a = new AppointmentBlock("Learning", "Library", d, "CS1", user);
+            a.Location = new Point(9, 30);
+            p.Controls.Add(a);
+        }
+
 
         public void drawAppointment(Appointment appt, string type) {
             DateTime time = appt.getStartTime();
@@ -169,7 +203,7 @@ namespace Tutor_Master
 
             Panel p = new Panel();
             return p;
-        }
+        }*/
 
     }
 }

@@ -72,7 +72,7 @@ namespace Tutor_Master
             {
                 if (isFreeTime(type))
                 {
-                    Appointment a = new Appointment(startTime, endTime, builderProf);
+                    Appointment a = new Appointment(startTime, endTime, builderProf.getUsername());
                     a.addAppointmentToDatabase();
                 }
                 else 

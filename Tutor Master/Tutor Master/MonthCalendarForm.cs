@@ -113,7 +113,7 @@ namespace Tutor_Master
         public int makeX( int iteration)
         {
             int x;
-            int col = iteration/5;
+            int col = iteration/3;
             x = (col*120);
 
             return x;
@@ -122,7 +122,7 @@ namespace Tutor_Master
         public int makeY(int iteration)
         {
             int y;
-            int row = iteration % 5;
+            int row = iteration % 3;
             y = ((row) * 100);
 
             return y;

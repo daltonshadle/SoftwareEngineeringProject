@@ -30,6 +30,14 @@ namespace Tutor_Master
             course = "";
             startTime = new DateTime();
             endTime = new DateTime();
+            tutorProf = "";//new Profile();
+            tuteeProf = ""; //new Profile();
+            freeTimeProf = ""; //new Profile();
+            isFreeTimeSession = false;
+            apptID = -1;
+        }
+        public Appointment(string tempMeetingType, string tempPlace, string tempCourse, DateTime tempStartTime, DateTime tempEndTime, string tempTutor,  string tempTutee)
+        {
             tutorProf = "";
             tuteeProf = "";
             freeTimeProf = "";
@@ -37,6 +45,7 @@ namespace Tutor_Master
             apptID = -1;
         }
         public Appointment(string tempMeetingType, string tempPlace, string tempCourse, DateTime tempStartTime, DateTime tempEndTime, Profile tempTutor,  Profile tempTutee)
+
         {
             //validation of these parameters can be done before the creation of the appointment object
             //appointment constructor for tutoring or tuteeing sessions
@@ -49,7 +58,7 @@ namespace Tutor_Master
             isFreeTimeSession = meetingTypeStringToBool(tempMeetingType);
             apptID = -1;
         }
-        public Appointment(string tempMeetingType, string tempPlace, string tempCourse, DateTime tempStartTime, DateTime tempEndTime, string tempTutorUsername, string tempTuteeUsername)
+        /*public Appointment(string tempMeetingType, string tempPlace, string tempCourse, DateTime tempStartTime, DateTime tempEndTime, string tempTutorUsername, string tempTuteeUsername)
         {
             //validation of these parameters can be done before the creation of the appointment object
             //appointment constructor for tutoring or tuteeing sessions
@@ -61,15 +70,15 @@ namespace Tutor_Master
             tuteeProf = tempTuteeUsername;
             isFreeTimeSession = meetingTypeStringToBool(tempMeetingType);
             apptID = -1;
-        }
-        public Appointment(DateTime tempStartTime, DateTime tempEndTime, Profile owner)
+        }*/
+        public Appointment(DateTime tempStartTime, DateTime tempEndTime, string owner)
         {
             //Freetime appointment constructor
 
             startTime = tempStartTime;
             endTime = tempEndTime;
             isFreeTimeSession = true;
-            freeTimeProf = owner.getUsername();
+            freeTimeProf = owner;
             apptID = -1;
         }
 
