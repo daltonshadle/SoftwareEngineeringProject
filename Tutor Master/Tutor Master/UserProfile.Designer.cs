@@ -36,6 +36,7 @@
             this.btnAddApp = new System.Windows.Forms.Button();
             this.btnViewCal = new System.Windows.Forms.Button();
             this.weekCalendar = new Tutor_Master.WeekCalendar();
+            this.lblNameAndUser = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnLogout
@@ -122,11 +123,22 @@
             this.weekCalendar.Size = new System.Drawing.Size(900, 368);
             this.weekCalendar.TabIndex = 7;
             // 
+            // lblNameAndUser
+            // 
+            this.lblNameAndUser.AutoSize = true;
+            this.lblNameAndUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNameAndUser.Location = new System.Drawing.Point(24, 12);
+            this.lblNameAndUser.Name = "lblNameAndUser";
+            this.lblNameAndUser.Size = new System.Drawing.Size(86, 31);
+            this.lblNameAndUser.TabIndex = 10;
+            this.lblNameAndUser.Text = "label2";
+            // 
             // UserProfile
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1066, 574);
+            this.Controls.Add(this.lblNameAndUser);
             this.Controls.Add(this.btnViewCal);
             this.Controls.Add(this.btnAddApp);
             this.Controls.Add(this.weekCalendar);
@@ -153,5 +165,6 @@
         private WeekCalendar weekCalendar;
         private System.Windows.Forms.Button btnAddApp;
         private System.Windows.Forms.Button btnViewCal;
+        private System.Windows.Forms.Label lblNameAndUser;
     }
 }

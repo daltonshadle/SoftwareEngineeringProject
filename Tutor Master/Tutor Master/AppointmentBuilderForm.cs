@@ -93,6 +93,7 @@ namespace Tutor_Master
                     a.addAppointmentToDatabase();
                 }
                 this.Hide();
+                this.Close();
             }
 
             
@@ -240,7 +241,7 @@ namespace Tutor_Master
                         bool temp = false;
 
                         Appointment a = builderAppoint[it];
-                        temp = isTimeInBetween(a.getStartTime(), a.getEndTime(), startTime, endTime);
+                        temp = !isTimeInBetween(a.getStartTime(), a.getEndTime(), startTime, endTime);
 
                         good = temp;
                         it++;
@@ -252,7 +253,7 @@ namespace Tutor_Master
                         bool temp = false;
 
                         Appointment a = otherAppoint[it];
-                        temp = isTimeInBetween(a.getStartTime(), a.getEndTime(), startTime, endTime);
+                        temp = !isTimeInBetween(a.getStartTime(), a.getEndTime(), startTime, endTime);
 
                         good = temp;
                         it++;

@@ -36,6 +36,7 @@ namespace Tutor_Master
                 monthCalendar1.profileMonthCalendar.AddBoldedDate(appointmentDate);
             }
 
+            clearPanel();
 
             //Set the panel to display once the calendar is pulled up
             //would clean up code a shit-ton if i could make a function, but e.Start is the problem.
@@ -74,8 +75,8 @@ namespace Tutor_Master
         {
             //Display the date of the selected date
             monthCalendar1.lblTempDate.Text = e.Start.ToShortDateString();
-        
 
+            clearPanel();
 
             Database db = new Database();
             appointmentList = db.getDailyAppointments(username);
@@ -97,7 +98,7 @@ namespace Tutor_Master
                 AppointmentBlock a;
                 for (int j = 0; j < dailyAppointments.Count; j++)
                 {
-                    a = new AppointmentBlock(appointmentList[j]);
+                    a = new AppointmentBlock(dailyAppointments[j]);
                     int x = makeX(j);
                     int y = makeY(j);
                     a.Location = new Point(x, y);
@@ -108,6 +109,11 @@ namespace Tutor_Master
             else
                 panel1.Visible = false;
 
+        }
+
+        public void clearPanel()
+        {
+            panel1.Controls.Clear();
         }
 
         public int makeX( int iteration)
