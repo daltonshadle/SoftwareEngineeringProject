@@ -410,7 +410,7 @@ namespace Tutor_Master
         {
             string query;
             if (isTutor)
-                query = "INSERT into tutorCourses (username, course1, course2, course3, course4) VALUES (@username, @course1, @course2, @course3, @course4)";
+                query = "INSERT into tutorCourses (username, course1, course2, course3, course4, course1Approved, course2Approved, course3Approved, course4Approved) VALUES (@username, @course1, @course2, @course3, @course4, @approved1, @approved2, @approved3, @approved4)";
             else
                 query = "INSERT into tuteeCourses (username, course1, course2, course3, course4) VALUES (@username, @course1, @course2, @course3, @course4)";
 
@@ -428,6 +428,18 @@ namespace Tutor_Master
                 for (; i < 4; ++i)
                 {
                     cmd.Parameters.Add("@course" + (1 + i).ToString(), DBNull.Value);
+                }
+                if (isTutor)
+                {
+                    int j = 0;
+                    for (; j < number; ++j)
+                    {
+                        cmd.Parameters.Add("@approved" + (j + 1).ToString(), "False");
+                    }
+                    for (; j < 4; ++j)
+                    {
+                        cmd.Parameters.Add("@approved" + (1 + j).ToString(), DBNull.Value);
+                    }
                 }
 
                 cmd.Connection = con;
@@ -632,7 +644,7 @@ namespace Tutor_Master
         public List<string> getProfileInfo(string username)
         {
             string query;
-            query = "SELECT profile.firstName, profile.lastName, profile.isTutor, profile.isTutee, tuteeCourses.course1 AS tuteeCourse1, tuteeCourses.course2 AS tuteeCourse2, tuteeCourses.course3 AS tuteeCourse3, tuteeCourses.course4 AS tuteeCourse4, tutorCourses.course1 AS tutorCourse1, tutorCourses.course2 AS tutorCourse2, tutorCourses.course3 AS tutorCourse3, tutorCourses.course4 AS tutorCourse4 FROM profile LEFT OUTER JOIN tuteeCourses ON profile.username = tuteeCourses.username LEFT OUTER JOIN tutorCourses ON profile.username = tutorCourses.username WHERE profile.username = @username";
+            query = "SELECT profile.firstName, profile.lastName, profile.isTutor, profile.isTutee, profile.isFaculty, profile.isAdmin, tuteeCourses.course1 AS tuteeCourse1, tuteeCourses.course2 AS tuteeCourse2, tuteeCourses.course3 AS tuteeCourse3, tuteeCourses.course4 AS tuteeCourse4, tutorCourses.course1 AS tutorCourse1, tutorCourses.course2 AS tutorCourse2, tutorCourses.course3 AS tutorCourse3, tutorCourses.course4 AS tutorCourse4 FROM profile LEFT OUTER JOIN tuteeCourses ON profile.username = tuteeCourses.username LEFT OUTER JOIN tutorCourses ON profile.username = tutorCourses.username WHERE profile.username = @username";
 
 
             List<string> list = new List<string>();
@@ -662,6 +674,8 @@ namespace Tutor_Master
                         list.Add(dataReader["tutorCourse2"] + "");
                         list.Add(dataReader["tutorCourse3"] + "");
                         list.Add(dataReader["tutorCourse4"] + "");
+                        list.Add(dataReader["isFaculty"] + "");
+                        list.Add(dataReader["isAdmin"] + "");
                     }
 
                     //close Data Reader
@@ -716,8 +730,8 @@ namespace Tutor_Master
                 }
                 else
                 {
-                    cmdSent.Parameters.Add("@pending", approved);
-                    cmdReceived.Parameters.Add("@pending", approved);
+                    cmdSent.Parameters.Add("@approved", approved);
+                    cmdReceived.Parameters.Add("@approved", approved);
                 }
               
                 cmdSent.Parameters.Add("@sentTime", sentTime);
@@ -774,8 +788,9 @@ namespace Tutor_Master
                             newMessage.setPending(null);
                         }
                         else
-                            newMessage.setPending((bool?)dataReader["pending"]);
+                            newMessage.setPending((bool?)dataReader["approved"]);
                         newMessage.setDateTime((DateTime)dataReader["timeSent"]);
+                        newMessage.setCourseName(dataReader["courseName"].ToString());
                         messageList.Add(newMessage);
                     }
 
@@ -831,8 +846,9 @@ namespace Tutor_Master
                             newMessage.setPending(null);
                         }
                         else
-                            newMessage.setPending((bool?)dataReader["pending"]);
+                            newMessage.setPending((bool?)dataReader["approved"]);
                         newMessage.setDateTime((DateTime)dataReader["timeSent"]);
+                        newMessage.setCourseName(dataReader["courseName"].ToString());
                         messageList.Add(newMessage);
                     }
 
@@ -947,6 +963,107 @@ namespace Tutor_Master
                 }
             }
             return facultyName;
+        }
+
+        //figures out if the profile is a faculty profile or not
+        public bool isFacultyAccount(string user)
+        {
+            string query = "SELECT isFaculty FROM profile WHERE username = @username";
+
+            if (this.OpenConnection())
+            {
+                SqlCeCommand cmd = new SqlCeCommand();
+                cmd.CommandText = query;
+                cmd.Parameters.Add("@username", user);
+                cmd.Connection = con;
+                try
+                {
+                    SqlCeDataReader dataReader = cmd.ExecuteReader();
+
+                    //Read the data and store them in the list
+                    string isFaculty = "";
+                    while (dataReader.Read())
+                    {
+                        isFaculty = dataReader["isFaculty"] + "";
+                    }
+
+                    //close Data Reader
+                    dataReader.Close();
+                    this.CloseConnection();
+
+                    if (isFaculty == "True")
+                        return true;
+                    else
+                        return false;
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    this.CloseConnection();
+                    return false;
+                }
+            }
+            else
+                return false;
+
+        }
+
+        //turn the value in tutor courses to true once the faculty approves the course
+        public void approveCourseInTutorCourses(string username, string courseName, int messageID, bool approval)
+        {
+            string strApproval = approval.ToString();
+
+            Database db = new Database();
+            List<string> currentCourseList = db.getCourseList(username, true);
+            int index = -1;
+            for (int i = 0; i < currentCourseList.Count; i++)
+            {
+                if (currentCourseList[i] == courseName)
+                    index = i;
+            }
+
+            if (index != -1)
+            {
+                string query = "UPDATE tutorCourses SET course"+(index+1)+"Approved = @value WHERE username = @username";
+                string query2 = "UPDATE sentMessages SET approved = @true WHERE [id number] = @idNum";
+                string query3 = "UPDATE receivedMessages SET approved = @true WHERE [id number] = @idNum";
+
+                if (this.OpenConnection())
+                {
+                    SqlCeCommand cmd = new SqlCeCommand();
+                    cmd.CommandText = query;
+                    cmd.Parameters.Add("@username", username);
+                    cmd.Parameters.Add("@value", strApproval);
+                    cmd.Connection = con;
+                    SqlCeCommand cmd2 = new SqlCeCommand();
+                    cmd2.CommandText = query2;
+                    cmd2.Parameters.Add("@true", "True");
+                    cmd2.Parameters.Add("@idNum", messageID);
+                    cmd2.Connection = con;
+                    SqlCeCommand cmd3 = new SqlCeCommand();
+                    cmd3.CommandText = query3;
+                    cmd3.Parameters.Add("@true", "True");
+                    cmd3.Parameters.Add("@idNum", messageID);
+                    cmd3.Connection = con;
+                    try
+                    {
+                        cmd.ExecuteNonQuery();
+                        cmd2.ExecuteNonQuery();
+                        cmd3.ExecuteNonQuery();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+
+                    this.CloseConnection();
+                }
+            }
+            else 
+            {
+                MessageBox.Show("Course not applicable to tutor.");
+            }
         }
     }
 }
