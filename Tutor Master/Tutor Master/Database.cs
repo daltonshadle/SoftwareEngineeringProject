@@ -163,7 +163,7 @@ namespace Tutor_Master
         }
 
         //adds an appointment to the appointments table
-        public void addAppointment(string free, string meetingPlace, string course, DateTime startTime, DateTime endTime, Tutor tutor, Tutee tutee, bool isFreeTime)
+        public void addAppointment(string free, string meetingPlace, string course, DateTime startTime, DateTime endTime, string tutor, string tutee, bool isFreeTime)
         {
             {
                 string query = "INSERT INTO appointment ([free time], tutor, tutee, courseName, meetingPlace, startTime, endTime, isFreeTimeSession) VALUES (@freeTime, @tutor, @tutee, @courseName, @meetingPlace, @startTime, @endTime, @isFreeTime)";
@@ -186,14 +186,14 @@ namespace Tutor_Master
                         cmd.Parameters.Add("@tutor", DBNull.Value);
                     }
                     else
-                        cmd.Parameters.Add("@tutor", tutor.getUsername());
+                        cmd.Parameters.Add("@tutor", tutor);
 
                     if (tutee == null)
                     {
                         cmd.Parameters.Add("@tutee", DBNull.Value);
                     }
                     else
-                        cmd.Parameters.Add("@tutee", tutee.getUsername());
+                        cmd.Parameters.Add("@tutee", tutee);
 
                     if (meetingPlace == null)
                     {
@@ -259,25 +259,20 @@ namespace Tutor_Master
                         }
                         else
                         {
-                            Profile freeTime = new Profile(dataReader["free time"].ToString());
-                            newAppointment.setFreeTimeProf(freeTime);
+                            newAppointment.setFreeTimeProf(dataReader["free time"].ToString());
                         }
                             
                         if(dataReader["tutor"] == DBNull.Value){
                             newAppointment.setTutor(null);
                         }
                         else {
-                            string[] stringTemp = new string[4];
-                            Tutor tut = new Tutor(dataReader["tutor"].ToString(), "",  stringTemp);
-                            newAppointment.setTutor(tut);
+                            newAppointment.setTutor(dataReader["tutor"].ToString());
                         }
                         if(dataReader["tutee"] == DBNull.Value) {
                             newAppointment.setTutee(null);
                         }
                         else {
-                            string[] tempString = new string[4];
-                            Tutee tee = new Tutee(dataReader["tutee"].ToString(), "", tempString);
-                            newAppointment.setTutee(tee);
+                            newAppointment.setTutee(dataReader["tutee"].ToString());
                         }
                         if(dataReader["courseName"] == DBNull.Value){
                             newAppointment.setCourse(null);

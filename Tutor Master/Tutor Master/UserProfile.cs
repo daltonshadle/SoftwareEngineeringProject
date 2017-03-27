@@ -66,11 +66,15 @@ namespace Tutor_Master
             if (first != "")
             {
                 this.Text = FirstLetterToUpper(first) + " " + FirstLetterToUpper(last);
+                lblNameAndUser.Text = FirstLetterToUpper(first) + " " + FirstLetterToUpper(last) + " - " + username;
             }
             else
             {
                 this.Text = username;
+                lblNameAndUser.Text = username;
             }
+
+            
 
             this.Icon = Tutor_Master.Properties.Resources.favicon;
 
@@ -136,6 +140,9 @@ namespace Tutor_Master
 
                 button.Click += new EventHandler(NewButton_Click);
             }
+
+            //Update the week calendar
+            weekCalendar.assignWeeklyAppointments(user);
         }
    
 
@@ -186,18 +193,30 @@ namespace Tutor_Master
         {
             Profile temp = new Profile(user);
             var appBuilder = new AppointmentBuilderForm(temp, tutorAcc, tuteeAcc);
+            appBuilder.FormClosing += new FormClosingEventHandler(appBuilder_FormClosing);
             appBuilder.Show();
             //this.Hide();
+        }
+
+        void appBuilder_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            weekCalendar.assignWeeklyAppointments(user);
+            //throw new NotImplementedException();
         }
 
         private void btnViewCal_Click(object sender, EventArgs e)
         {
             var monthCal = new MonthCalendarForm(user);
+            monthCal.StartPosition = FormStartPosition.CenterParent;
             monthCal.Show();
-            //this.Hide();
         }
 
+        private void weekCalendar_Load(object sender, EventArgs e)
+        {
 
+        }
+
+       
 
     }
 }

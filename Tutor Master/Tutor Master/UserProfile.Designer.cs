@@ -36,6 +36,7 @@
             this.btnAddApp = new System.Windows.Forms.Button();
             this.btnViewCal = new System.Windows.Forms.Button();
             this.weekCalendar = new Tutor_Master.WeekCalendar();
+            this.lblNameAndUser = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnLogout
@@ -53,7 +54,7 @@
             // 
             this.lbTutor.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lbTutor.AutoSize = true;
-            this.lbTutor.Location = new System.Drawing.Point(200, 22);
+            this.lbTutor.Location = new System.Drawing.Point(200, 51);
             this.lbTutor.Name = "lbTutor";
             this.lbTutor.Size = new System.Drawing.Size(101, 13);
             this.lbTutor.TabIndex = 3;
@@ -62,7 +63,7 @@
             // listView1
             // 
             this.listView1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.listView1.Location = new System.Drawing.Point(203, 56);
+            this.listView1.Location = new System.Drawing.Point(203, 85);
             this.listView1.Name = "listView1";
             this.listView1.Size = new System.Drawing.Size(119, 101);
             this.listView1.TabIndex = 4;
@@ -74,7 +75,7 @@
             // 
             this.listView2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.listView2.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-            this.listView2.Location = new System.Drawing.Point(456, 56);
+            this.listView2.Location = new System.Drawing.Point(456, 85);
             this.listView2.Name = "listView2";
             this.listView2.Size = new System.Drawing.Size(119, 101);
             this.listView2.TabIndex = 6;
@@ -86,7 +87,7 @@
             // 
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(453, 22);
+            this.label1.Location = new System.Drawing.Point(453, 51);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(122, 13);
             this.label1.TabIndex = 5;
@@ -117,16 +118,27 @@
             // weekCalendar
             // 
             this.weekCalendar.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.weekCalendar.Location = new System.Drawing.Point(12, 198);
+            this.weekCalendar.Location = new System.Drawing.Point(12, 192);
             this.weekCalendar.Name = "weekCalendar";
-            this.weekCalendar.Size = new System.Drawing.Size(870, 351);
+            this.weekCalendar.Size = new System.Drawing.Size(900, 368);
             this.weekCalendar.TabIndex = 7;
+            // 
+            // lblNameAndUser
+            // 
+            this.lblNameAndUser.AutoSize = true;
+            this.lblNameAndUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNameAndUser.Location = new System.Drawing.Point(24, 12);
+            this.lblNameAndUser.Name = "lblNameAndUser";
+            this.lblNameAndUser.Size = new System.Drawing.Size(86, 31);
+            this.lblNameAndUser.TabIndex = 10;
+            this.lblNameAndUser.Text = "label2";
             // 
             // UserProfile
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1066, 517);
+            this.ClientSize = new System.Drawing.Size(1066, 574);
+            this.Controls.Add(this.lblNameAndUser);
             this.Controls.Add(this.btnViewCal);
             this.Controls.Add(this.btnAddApp);
             this.Controls.Add(this.weekCalendar);
@@ -153,5 +165,6 @@
         private WeekCalendar weekCalendar;
         private System.Windows.Forms.Button btnAddApp;
         private System.Windows.Forms.Button btnViewCal;
+        private System.Windows.Forms.Label lblNameAndUser;
     }
 }
