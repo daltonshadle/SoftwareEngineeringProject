@@ -88,11 +88,21 @@ namespace Tutor_Master
             else
             {
                 lvMessages.SelectedItems[0].Remove();
-
+                int messageID;
+                if (INBOX)
+                {
+                    messageID = inboxMessageList[currentIndex].getIdNum();
+                    db.deleteMessageFromInbox(messageID);
+                }
+                else
+                {
+                    messageID = sentMessageList[currentIndex].getIdNum();
+                    db.deleteMessageFromSentMail(messageID);
+                }
             }
         }
 
-        private void btnView_Click(object sender, EventArgs e)
+        /*private void btnView_Click(object sender, EventArgs e)
         {
             if (lvMessages.SelectedItems.Count == 0)
                 MessageBox.Show("No message selected");
@@ -119,7 +129,7 @@ namespace Tutor_Master
                     }
                 }
             }
-        }
+        }*/
 
         private void button1_Click(object sender, EventArgs e)
         {

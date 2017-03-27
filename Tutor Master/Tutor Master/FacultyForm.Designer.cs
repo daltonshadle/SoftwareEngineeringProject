@@ -30,19 +30,19 @@
         {
             this.lblMessages = new System.Windows.Forms.Label();
             this.lvMessages = new System.Windows.Forms.ListView();
-            this.btnInbox = new System.Windows.Forms.Button();
-            this.btnSent = new System.Windows.Forms.Button();
             this.From = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Subject = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Date = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Done = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.To = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.btnInbox = new System.Windows.Forms.Button();
+            this.btnSent = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.lblMessageDetails = new System.Windows.Forms.Label();
             this.rtbMessageDetails = new System.Windows.Forms.RichTextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.Done = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.To = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnLogout = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -76,6 +76,30 @@
             this.lvMessages.View = System.Windows.Forms.View.Details;
             this.lvMessages.SelectedIndexChanged += new System.EventHandler(this.lvMessages_SelectedIndexChanged_1);
             // 
+            // From
+            // 
+            this.From.Text = "From";
+            this.From.Width = 69;
+            // 
+            // Subject
+            // 
+            this.Subject.Text = "To";
+            this.Subject.Width = 108;
+            // 
+            // Date
+            // 
+            this.Date.Text = "Subject";
+            this.Date.Width = 205;
+            // 
+            // Done
+            // 
+            this.Done.Text = "Date";
+            this.Done.Width = 161;
+            // 
+            // To
+            // 
+            this.To.Text = "Done";
+            // 
             // btnInbox
             // 
             this.btnInbox.Location = new System.Drawing.Point(507, 23);
@@ -95,21 +119,6 @@
             this.btnSent.Text = "Sent";
             this.btnSent.UseVisualStyleBackColor = true;
             this.btnSent.Click += new System.EventHandler(this.btnSent_Click);
-            // 
-            // From
-            // 
-            this.From.Text = "From";
-            this.From.Width = 69;
-            // 
-            // Subject
-            // 
-            this.Subject.Text = "To";
-            this.Subject.Width = 108;
-            // 
-            // Date
-            // 
-            this.Date.Text = "Subject";
-            this.Date.Width = 242;
             // 
             // btnDelete
             // 
@@ -170,15 +179,6 @@
             this.button2.Text = "Reject";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // Done
-            // 
-            this.Done.Text = "Date";
-            this.Done.Width = 89;
-            // 
-            // To
-            // 
-            this.To.Text = "Done";
             // 
             // btnLogout
             // 
