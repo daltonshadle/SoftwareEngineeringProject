@@ -26,6 +26,7 @@ namespace Tutor_Master
 
         private List<string> builderTutorCourses;
         private List<string> builderTuteeCourses;
+        private List<string> builderCourseApprovedList;
 
         private bool isTutee, isTutor;
 
@@ -89,6 +90,14 @@ namespace Tutor_Master
                     //something is wrong here
                     Appointment a = new Appointment(type, place, course, startTime, endTime, tutorProf, tuteeProf);
                     a.addAppointmentToDatabase();
+
+                    //This is where we will send a message if a person is doing a learning appointment
+                    //send message to other person.
+
+                    string msg = builderProf + " has requested to make a tutoring appointment for course: " + course + " at " + startTime.ToShortDateString();
+                    Database db = new Database();
+                    db.sendMessage(builderProf.getUsername(), otherProfName, "Request for appointment", msg, true, DateTime.Now, course);
+                    
                 }
                 this.Hide();
                 this.Close();
@@ -115,7 +124,10 @@ namespace Tutor_Master
 
                         while (!tempTutorCourse.Equals(""))
                         {
-                            cbxCourseList.Items.Add(tempTutorCourse);
+                            if (builderCourseApprovedList[i] == "True")
+                            {
+                                cbxCourseList.Items.Add(tempTutorCourse);
+                            }
                             i++;
                             tempTutorCourse = builderTutorCourses[i];
                         }
@@ -175,10 +187,12 @@ namespace Tutor_Master
             if (isBuilderTutor)
             {
                 builderTutorCourses = builderInfo.GetRange(8, 4);
+                builderCourseApprovedList = builderInfo.GetRange(12, 4);
             }
             else 
             { 
                 builderTutorCourses = new List<string>();
+                builderCourseApprovedList = new List<string>();
             }
             if (isBuilderTutee)
             {

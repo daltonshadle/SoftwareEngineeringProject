@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace Tutor_Master
 {
-    public partial class FacultyForm : Form
+    public partial class MessagesForm : Form
     {
         private static bool INBOX = true;
 
@@ -20,13 +20,13 @@ namespace Tutor_Master
 
         string user;
 
-        public FacultyForm(string username)
+        public MessagesForm(string username)
         {
             InitializeComponent();
             user = username;
             sentMessageList = db.getSentMail(username);
             inboxMessageList = db.getInbox(username);
-            
+
 
             for (int i = 0; i < inboxMessageList.Count(); i++)
             {
@@ -123,46 +123,12 @@ namespace Tutor_Master
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //check if selected index is what you want for "True" and "False" or currentIndex
-            if (currentIndex == -1)
-                MessageBox.Show("No message selected");
-            else
-            {
-                if (INBOX)
-                {
-                    //MessageBox.Show("About to approve " + inboxMessageList[currentIndex].getMessage());
-                    if (lvMessages.SelectedItems[0].SubItems[4].Text == "False")
-                    {
-                        db.approveCourseInTutorCourses(inboxMessageList[currentIndex].getFromUser(), inboxMessageList[currentIndex].getCourseName(), inboxMessageList[currentIndex].getIdNum(), true);
-                        db.sendMessage(user, inboxMessageList[currentIndex].getFromUser(), "Tutor Request Approved", user + " has approved you to tutor " + inboxMessageList[currentIndex].getCourseName(), true, DateTime.Now, inboxMessageList[currentIndex].getCourseName());
-                        lvMessages.SelectedItems[0].SubItems[4].Text = "True";
-                        rtbMessageDetails.Clear();
-                        rtbMessageDetails.AppendText("Done");
-                    }
-                }
-            }
+
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            //check if selected index is what you want for "True" and "False" or currentIndex
-            if (currentIndex == -1)
-                MessageBox.Show("No message selected");
-            else
-            {
-                if (INBOX)
-                {
-                    //MessageBox.Show("About to approve " + inboxMessageList[currentIndex].getMessage());
-                    if (lvMessages.SelectedItems[0].SubItems[4].Text == "False")
-                    {
-                        db.approveCourseInTutorCourses(inboxMessageList[currentIndex].getFromUser(), inboxMessageList[currentIndex].getCourseName(), inboxMessageList[currentIndex].getIdNum(), false);
-                        db.sendMessage(user, inboxMessageList[currentIndex].getFromUser(), "Tutor Request REJECTED", user + " has not approved you to tutor " + inboxMessageList[currentIndex].getCourseName(), true, DateTime.Now, inboxMessageList[currentIndex].getCourseName());
-                        lvMessages.SelectedItems[0].SubItems[4].Text = "True";
-                        rtbMessageDetails.Clear();
-                        rtbMessageDetails.AppendText("Done");
-                    }                   
-                }
-            }
+
         }
 
         private void lvMessages_SelectedIndexChanged_1(object sender, EventArgs e)

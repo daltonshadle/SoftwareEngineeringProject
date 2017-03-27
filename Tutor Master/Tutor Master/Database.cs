@@ -11,7 +11,7 @@ namespace Tutor_Master
     class Database
     {
         private SqlCeConnection con;
-        private string connection = @"Data Source=C:\TutorMaster.sdf";
+        private string connection = @"Data Source=C:\TutorMaster(1).sdf";
 
         public Database()
         {
@@ -363,7 +363,7 @@ namespace Tutor_Master
         {
             string query;
             if (isTutor)
-                query = "SELECT username FROM tutorCourses WHERE (course1 = @course OR course2 = @course OR course3 = @course OR course4 = @course)";
+                query = "SELECT username FROM tutorCourses WHERE ((course1 = @course AND course1Approved = @approved) OR (course2 = @course AND course2Approved = @approved) OR (course3 = @course AND course3Approved = @approved) OR (course4 = @course AND course4Approved = @approved))";
             else
                 query = "SELECT username FROM tuteeCourses WHERE (course1 = @course OR course2 = @course OR course3 = @course OR course4 = @course)";
 
@@ -374,6 +374,7 @@ namespace Tutor_Master
                 SqlCeCommand cmd = new SqlCeCommand();
                 cmd.CommandText = query;
                 cmd.Parameters.Add("@course", courseName);
+                cmd.Parameters.Add("@approved", "True");
                 cmd.Connection = con;
                 try
                 {
@@ -438,7 +439,7 @@ namespace Tutor_Master
                     }
                     for (; j < 4; ++j)
                     {
-                        cmd.Parameters.Add("@approved" + (1 + j).ToString(), DBNull.Value);
+                        cmd.Parameters.Add("@approved" + (1 + j).ToString(), "False");
                     }
                 }
 
@@ -644,7 +645,7 @@ namespace Tutor_Master
         public List<string> getProfileInfo(string username)
         {
             string query;
-            query = "SELECT profile.firstName, profile.lastName, profile.isTutor, profile.isTutee, profile.isFaculty, profile.isAdmin, tuteeCourses.course1 AS tuteeCourse1, tuteeCourses.course2 AS tuteeCourse2, tuteeCourses.course3 AS tuteeCourse3, tuteeCourses.course4 AS tuteeCourse4, tutorCourses.course1 AS tutorCourse1, tutorCourses.course2 AS tutorCourse2, tutorCourses.course3 AS tutorCourse3, tutorCourses.course4 AS tutorCourse4 FROM profile LEFT OUTER JOIN tuteeCourses ON profile.username = tuteeCourses.username LEFT OUTER JOIN tutorCourses ON profile.username = tutorCourses.username WHERE profile.username = @username";
+            query = "SELECT profile.firstName, profile.lastName, profile.isTutor, profile.isTutee, profile.isFaculty, profile.isAdmin, tuteeCourses.course1 AS tuteeCourse1, tuteeCourses.course2 AS tuteeCourse2, tuteeCourses.course3 AS tuteeCourse3, tuteeCourses.course4 AS tuteeCourse4, tutorCourses.course1 AS tutorCourse1, tutorCourses.course2 AS tutorCourse2, tutorCourses.course3 AS tutorCourse3, tutorCourses.course4 AS tutorCourse4, tutorCourses.course1Approved, tutorCourses.course2Approved, tutorCourses.course3Approved, tutorCourses.course4Approved FROM profile LEFT OUTER JOIN tuteeCourses ON profile.username = tuteeCourses.username LEFT OUTER JOIN tutorCourses ON profile.username = tutorCourses.username WHERE profile.username = @username";
 
 
             List<string> list = new List<string>();
@@ -674,6 +675,10 @@ namespace Tutor_Master
                         list.Add(dataReader["tutorCourse2"] + "");
                         list.Add(dataReader["tutorCourse3"] + "");
                         list.Add(dataReader["tutorCourse4"] + "");
+                        list.Add(dataReader["course1Approved"] + "");
+                        list.Add(dataReader["course2Approved"] + "");
+                        list.Add(dataReader["course3Approved"] + "");
+                        list.Add(dataReader["course4Approved"] + "");
                         list.Add(dataReader["isFaculty"] + "");
                         list.Add(dataReader["isAdmin"] + "");
                     }
@@ -697,11 +702,11 @@ namespace Tutor_Master
         }
 
         //create a message to send between users
-        public void sendMessage(string fromUser, string toUser, string subject, string message, bool? approved, DateTime sentTime)
+        public void sendMessage(string fromUser, string toUser, string subject, string message, bool? approved, DateTime sentTime, string courseName)
         {
             string querySent, queryReceived;
-            querySent = "INSERT INTO sentMessages (fromUserName, toUserName, subject, message, approved, timeSent) VALUES (@fromUser, @toUser, @subject, @message, @approved, @sentTime)";
-            queryReceived = "INSERT INTO receivedMessages (fromUserName, toUserName, subject, message, approved, timeSent) VALUES (@fromUser, @toUser, @subject, @message, @approved, @sentTime)";
+            querySent = "INSERT INTO sentMessages (fromUserName, toUserName, subject, message, approved, timeSent, courseName) VALUES (@fromUser, @toUser, @subject, @message, @approved, @sentTime, @course)";
+            queryReceived = "INSERT INTO receivedMessages (fromUserName, toUserName, subject, message, approved, timeSent, courseName) VALUES (@fromUser, @toUser, @subject, @message, @approved, @sentTime, @course)";
 
             if (this.OpenConnection())
             {
@@ -736,6 +741,9 @@ namespace Tutor_Master
               
                 cmdSent.Parameters.Add("@sentTime", sentTime);
                 cmdReceived.Parameters.Add("@sentTime", sentTime);
+
+                cmdSent.Parameters.Add("@course", courseName);
+                cmdReceived.Parameters.Add("@course", courseName);
 
                 cmdSent.Connection = con;
                 cmdReceived.Connection = con;

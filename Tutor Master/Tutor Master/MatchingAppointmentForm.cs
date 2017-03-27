@@ -26,6 +26,7 @@ namespace Tutor_Master
 
         private List<string> builderTutorCourses;
         private List<string> builderTuteeCourses;
+        private List<string> builderCourseApprovedList;
 
         private bool isTutee, isTutor;
 
@@ -81,7 +82,11 @@ namespace Tutor_Master
 
                         while (!tempTutorCourse.Equals(""))
                         {
-                            cbxCourseList.Items.Add(tempTutorCourse);
+                            if (builderCourseApprovedList[i] == "True")
+                            {
+                                cbxCourseList.Items.Add(tempTutorCourse);
+                                
+                            }
                             i++;
                             tempTutorCourse = builderTutorCourses[i];
                         }
@@ -149,10 +154,12 @@ namespace Tutor_Master
             if (isBuilderTutor)
             {
                 builderTutorCourses = builderInfo.GetRange(8, 4);
+                builderCourseApprovedList = builderInfo.GetRange(12, 4);
             }
             else
             {
                 builderTutorCourses = new List<string>();
+                builderCourseApprovedList = new List<string>();
             }
             if (isBuilderTutee)
             {
@@ -162,6 +169,7 @@ namespace Tutor_Master
             {
                 builderTuteeCourses = new List<string>();
             }
+
         }
 
         private void getValidProfiles(int type) 
@@ -221,6 +229,7 @@ namespace Tutor_Master
                 if (isFreeTimeSession)
                 {
                     Appointment a = new Appointment(startTime, endTime, builderProf);
+                    //free time needs no message
                     a.addAppointmentToDatabase();
                 }
                 else
@@ -237,6 +246,15 @@ namespace Tutor_Master
                     //something is wrong here
                     Appointment a = new Appointment(type, place, course, startTime, endTime, tutorProf, tuteeProf);
                     a.addAppointmentToDatabase();
+
+                    //This is where we will send a message if a person is doing a learning appointment
+                    //send message to other person.
+                    string msg = builderProf + " has requested to make a tutoring appointment for course: " + course + " at " + startTime.ToShortDateString();
+                    Database db = new Database();
+                    db.sendMessage(builderProf, otherProfName, "Request for appointment", msg, true, DateTime.Now, course);
+
+
+                    //a.addAppointmentToDatabase();
                 }
                 this.Hide();
                 this.Close();

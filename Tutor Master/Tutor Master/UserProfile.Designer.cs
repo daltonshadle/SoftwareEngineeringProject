@@ -38,6 +38,7 @@
             this.weekCalendar = new Tutor_Master.WeekCalendar();
             this.btnMatchingAppoint = new System.Windows.Forms.Button();
             this.lblNameAndUser = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnLogout
@@ -134,6 +135,7 @@
             this.btnMatchingAppoint.Text = "Find Matching Appointment";
             this.btnMatchingAppoint.UseVisualStyleBackColor = true;
             this.btnMatchingAppoint.Click += new System.EventHandler(this.btnMatchingAppoint_Click);
+            // 
             // lblNameAndUser
             // 
             this.lblNameAndUser.AutoSize = true;
@@ -144,11 +146,23 @@
             this.lblNameAndUser.TabIndex = 10;
             this.lblNameAndUser.Text = "label2";
             // 
+            // button1
+            // 
+            this.button1.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.button1.Location = new System.Drawing.Point(456, 12);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(90, 23);
+            this.button1.TabIndex = 11;
+            this.button1.Text = "View Messages";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // UserProfile
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1066, 574);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.btnMatchingAppoint);
             this.Controls.Add(this.lblNameAndUser);
             this.Controls.Add(this.btnViewCal);
@@ -179,5 +193,6 @@
         private System.Windows.Forms.Button btnViewCal;
         private System.Windows.Forms.Button btnMatchingAppoint;
         private System.Windows.Forms.Label lblNameAndUser;
+        private System.Windows.Forms.Button button1;
     }
 }

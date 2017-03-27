@@ -13,6 +13,7 @@ namespace Tutor_Master
     {
         private string first, last, user;
         private bool tutorAcc, tuteeAcc, facultyAcc, adminAcc;
+        private string courseapp1, courseapp2, courseapp3, courseapp4;
 
         public UserProfile(string username)
         {
@@ -20,6 +21,7 @@ namespace Tutor_Master
 
             List<string> tuteeCoursesList = new List<string>();
             List<string> tutorCoursesList = new List<string>();
+            List<string> courseAppList = new List<string>();
 
             List<string> listOfProfileInfo;
             Database db = new Database();
@@ -40,7 +42,7 @@ namespace Tutor_Master
             else
                 tuteeAcc = false;
 
-            string facultya = listOfProfileInfo[12];
+            string facultya = listOfProfileInfo[16];
             if (facultya == "true")
             {
                 facultyAcc = true;
@@ -48,7 +50,7 @@ namespace Tutor_Master
             else
                 facultyAcc = false;
 
-            string admina = listOfProfileInfo[13];
+            string admina = listOfProfileInfo[17];
             if (admina == "true")
                 adminAcc = true;
             else
@@ -62,6 +64,13 @@ namespace Tutor_Master
             tutorCoursesList.Add(listOfProfileInfo[9]);
             tutorCoursesList.Add(listOfProfileInfo[10]);
             tutorCoursesList.Add(listOfProfileInfo[11]);
+
+            courseAppList.Add(listOfProfileInfo[12]);
+            courseAppList.Add(listOfProfileInfo[13]);
+            courseAppList.Add(listOfProfileInfo[14]);
+            courseAppList.Add(listOfProfileInfo[15]);
+
+
 
             if (first != "")
             {
@@ -94,7 +103,10 @@ namespace Tutor_Master
                 {
                     if (tutorCoursesList[x] != "")
                     {
-                        tutorListView.Items.Add(tutorCoursesList[x] + "\n");
+                        if (courseAppList[x] == "False")
+                            tutorListView.Items.Add("Pending");
+                        else
+                            tutorListView.Items.Add(tutorCoursesList[x] + "\n");
                     }
                 }
                 tutorListView.Visible = true;
@@ -231,6 +243,12 @@ namespace Tutor_Master
 
             //need to hide the other form
             //throw new NotImplementedException();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            var messagePage = new MessagesForm(user);
+            messagePage.Show();
         }
 
        
