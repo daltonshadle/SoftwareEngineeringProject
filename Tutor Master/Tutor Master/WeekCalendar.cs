@@ -52,7 +52,7 @@ namespace Tutor_Master
             displayDay(Wednesday, panelWed);
             displayDay(Thursday, panelThur);
             displayDay(Friday, panelFri);
-            displayDay(Saturday, panelFri);
+            displayDay(Saturday, panelSat);
         }
 
         public void displayDay(DateTime date, Panel p)
@@ -77,7 +77,7 @@ namespace Tutor_Master
                 AppointmentBlock a;
                 for (int j = 0; j < dailyAppointments.Count; j++)
                 {
-                    a = new AppointmentBlock(appointmentList[j]);
+                    a = new AppointmentBlock(dailyAppointments[j]);
                     //int x = makeX(j);
                     //int y = makeY(j);
                     a.Location = new Point(10, (j*90) + 30);

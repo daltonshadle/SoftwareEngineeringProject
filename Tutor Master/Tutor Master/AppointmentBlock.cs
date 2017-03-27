@@ -35,8 +35,15 @@ namespace Tutor_Master
             bool b = a.getIsFreeTimeSession();
             if (b) {
                 apptType = "Freetime";
+<<<<<<< HEAD
                 firstName = a.getFreeTimeProf();
                 lblSecond.Visible = false;
+=======
+
+                firstName = a.getFreeTimeProf();
+                lblSecond.Visible = false;
+
+>>>>>>> ed0492e6fc758a3e1daa74d8c8161c11fa7fb3c8
             }
             else {
                 apptType = "Learning";
@@ -45,6 +52,13 @@ namespace Tutor_Master
                 secondName = a.getTutee();
             }
 
+<<<<<<< HEAD
+=======
+
+            
+
+
+>>>>>>> ed0492e6fc758a3e1daa74d8c8161c11fa7fb3c8
             setViews();
         }
 

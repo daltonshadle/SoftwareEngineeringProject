@@ -52,11 +52,15 @@ namespace Tutor_Master
             if (first != "")
             {
                 this.Text = FirstLetterToUpper(first) + " " + FirstLetterToUpper(last);
+                lblNameAndUser.Text = FirstLetterToUpper(first) + " " + FirstLetterToUpper(last) + " - " + username;
             }
             else
             {
                 this.Text = username;
+                lblNameAndUser.Text = username;
             }
+
+            
 
             this.Icon = Tutor_Master.Properties.Resources.favicon;
 
@@ -183,8 +187,11 @@ namespace Tutor_Master
         void appBuilder_FormClosing(object sender, FormClosingEventArgs e)
         {
             weekCalendar.assignWeeklyAppointments(user);
+<<<<<<< HEAD
 
             //need to hide the other form
+=======
+>>>>>>> ed0492e6fc758a3e1daa74d8c8161c11fa7fb3c8
             //throw new NotImplementedException();
         }
 
@@ -193,7 +200,11 @@ namespace Tutor_Master
             var monthCal = new MonthCalendarForm(user);
             monthCal.StartPosition = FormStartPosition.CenterParent;
             monthCal.Show();
-            //this.Hide();
+        }
+
+        private void weekCalendar_Load(object sender, EventArgs e)
+        {
+
         }
 
         private void btnMatchingAppoint_Click(object sender, EventArgs e)
