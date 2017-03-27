@@ -124,7 +124,7 @@ namespace Tutor_Master
             }
 
             //Update the week calendar
-            weekCalendar.assignWeeklyAppointments(username);
+            weekCalendar.assignWeeklyAppointments(user);
         }
    
 

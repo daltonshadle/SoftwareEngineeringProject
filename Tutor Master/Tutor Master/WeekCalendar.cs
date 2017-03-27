@@ -35,6 +35,9 @@ namespace Tutor_Master
             {
                 date = date.AddDays(-1);
             }
+
+            clearWeeklyCalendar();
+
             DateTime Sunday = date;
             DateTime Monday = date.AddDays(1);
             DateTime Tuesday = date.AddDays(2);
@@ -138,6 +141,26 @@ namespace Tutor_Master
 
             lblWeek.Text = startDate.ToShortDateString() + " - " + endDate.ToShortDateString();
         }
+
+        public void clearWeeklyCalendar()
+        {
+            panelSun.Controls.Clear();
+            panelMon.Controls.Clear();
+            panelTues.Controls.Clear();
+            panelWed.Controls.Clear();
+            panelThur.Controls.Clear();
+            panelFri.Controls.Clear();
+            panelSat.Controls.Clear();
+            panelSun.Controls.Add(lblSunday);
+            panelMon.Controls.Add(lblMonday);
+            panelTues.Controls.Add(lblTuesday);
+            panelWed.Controls.Add(lblWednesday);
+            panelThur.Controls.Add(lblThursday);
+            panelFri.Controls.Add(lblFriday);
+            panelSat.Controls.Add(lblSaturday);
+            
+        }
+
 
 
         /*public void drawAppoint(Panel p) {
