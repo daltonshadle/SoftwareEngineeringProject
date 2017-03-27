@@ -113,14 +113,7 @@ namespace Tutor_Master
             }
             else
             {
-                Button button = new Button();
-                button.Name = "buttAddTutor";
-                button.Text = "Add courses";
-                button.Left = listView1.Left + 160;
-                button.Top = listView1.Top + 100;
-                this.Controls.Add(button);
-
-                button.Click += new EventHandler(NewButton_Click);
+                btnAddTutorCourses.Visible = true;
             }
 
             var tuteeListView = listView2;
@@ -142,23 +135,29 @@ namespace Tutor_Master
             }
             else
             {
-                Button button = new Button();
-                button.Name = "buttAddTutee";
-                button.Text = "Add courses";
-                button.Left = listView2.Left + 170;
-                button.Top = listView2.Top + 100;
-                this.Controls.Add(button);
-
-
-                button.Click += new EventHandler(NewButton_Click);
+                btnAddTuteeCourses.Visible = true;
             }
 
             //Update the week calendar
             weekCalendar.assignWeeklyAppointments(user);
         }
-   
 
-    // In event method.
+        private void btnAddTutorCourses_Click(object sender, EventArgs e)
+        {
+            var next = new Registration2(user, tutorAcc, tuteeAcc, 2000);   //2000 is the id for coming from userprofile
+            this.Hide();
+            next.Show();
+        }
+
+        private void buttAddTuteeCourses_Click(object sender, EventArgs e)
+        {
+            var next = new Registration3(user);
+            this.Hide();
+            next.Show();
+        }
+
+
+    /*// In event method.
     private void NewButton_Click(object sender, EventArgs e)
     {
         Button btn = (Button) sender;
@@ -179,7 +178,7 @@ namespace Tutor_Master
             
         }
         
-    }
+    }*/
 
 
         //Function casts the first letter of the string to be capitalized...

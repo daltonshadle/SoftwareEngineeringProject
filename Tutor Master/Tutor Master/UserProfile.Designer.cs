@@ -35,10 +35,12 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnAddApp = new System.Windows.Forms.Button();
             this.btnViewCal = new System.Windows.Forms.Button();
-            this.weekCalendar = new Tutor_Master.WeekCalendar();
             this.btnMatchingAppoint = new System.Windows.Forms.Button();
             this.lblNameAndUser = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
+            this.btnAddTutorCourses = new System.Windows.Forms.Button();
+            this.btnAddTuteeCourses = new System.Windows.Forms.Button();
+            this.weekCalendar = new Tutor_Master.WeekCalendar();
             this.SuspendLayout();
             // 
             // btnLogout
@@ -117,14 +119,6 @@
             this.btnViewCal.UseVisualStyleBackColor = true;
             this.btnViewCal.Click += new System.EventHandler(this.btnViewCal_Click);
             // 
-            // weekCalendar
-            // 
-            this.weekCalendar.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.weekCalendar.Location = new System.Drawing.Point(12, 192);
-            this.weekCalendar.Name = "weekCalendar";
-            this.weekCalendar.Size = new System.Drawing.Size(900, 368);
-            this.weekCalendar.TabIndex = 7;
-            // 
             // btnMatchingAppoint
             // 
             this.btnMatchingAppoint.Anchor = System.Windows.Forms.AnchorStyles.Top;
@@ -142,9 +136,8 @@
             this.lblNameAndUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNameAndUser.Location = new System.Drawing.Point(24, 12);
             this.lblNameAndUser.Name = "lblNameAndUser";
-            this.lblNameAndUser.Size = new System.Drawing.Size(86, 31);
+            this.lblNameAndUser.Size = new System.Drawing.Size(0, 31);
             this.lblNameAndUser.TabIndex = 10;
-            this.lblNameAndUser.Text = "label2";
             // 
             // button1
             // 
@@ -157,11 +150,45 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // btnAddTutorCourses
+            // 
+            this.btnAddTutorCourses.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnAddTutorCourses.Location = new System.Drawing.Point(215, 95);
+            this.btnAddTutorCourses.Name = "btnAddTutorCourses";
+            this.btnAddTutorCourses.Size = new System.Drawing.Size(75, 23);
+            this.btnAddTutorCourses.TabIndex = 12;
+            this.btnAddTutorCourses.Text = "Add Courses";
+            this.btnAddTutorCourses.UseVisualStyleBackColor = true;
+            this.btnAddTutorCourses.Visible = false;
+            this.btnAddTutorCourses.Click += new System.EventHandler(this.btnAddTutorCourses_Click);
+            // 
+            // btnAddTuteeCourses
+            // 
+            this.btnAddTuteeCourses.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnAddTuteeCourses.Location = new System.Drawing.Point(471, 95);
+            this.btnAddTuteeCourses.Name = "btnAddTuteeCourses";
+            this.btnAddTuteeCourses.Size = new System.Drawing.Size(75, 23);
+            this.btnAddTuteeCourses.TabIndex = 13;
+            this.btnAddTuteeCourses.Text = "Add Courses";
+            this.btnAddTuteeCourses.UseVisualStyleBackColor = true;
+            this.btnAddTuteeCourses.Visible = false;
+            this.btnAddTuteeCourses.Click += new System.EventHandler(this.buttAddTuteeCourses_Click);
+            // 
+            // weekCalendar
+            // 
+            this.weekCalendar.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.weekCalendar.Location = new System.Drawing.Point(12, 192);
+            this.weekCalendar.Name = "weekCalendar";
+            this.weekCalendar.Size = new System.Drawing.Size(900, 368);
+            this.weekCalendar.TabIndex = 7;
+            // 
             // UserProfile
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1066, 574);
+            this.Controls.Add(this.btnAddTuteeCourses);
+            this.Controls.Add(this.btnAddTutorCourses);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btnMatchingAppoint);
             this.Controls.Add(this.lblNameAndUser);
@@ -194,5 +221,7 @@
         private System.Windows.Forms.Button btnMatchingAppoint;
         private System.Windows.Forms.Label lblNameAndUser;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnAddTutorCourses;
+        private System.Windows.Forms.Button btnAddTuteeCourses;
     }
 }

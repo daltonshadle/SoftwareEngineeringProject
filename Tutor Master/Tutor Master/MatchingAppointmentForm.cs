@@ -249,10 +249,11 @@ namespace Tutor_Master
 
                     //This is where we will send a message if a person is doing a learning appointment
                     //send message to other person.
+                    /*
                     string msg = builderProf + " has requested to make a tutoring appointment for course: " + course + " at " + startTime.ToShortDateString();
                     Database db = new Database();
                     db.sendMessage(builderProf, otherProfName, "Request for appointment", msg, true, DateTime.Now, course);
-
+                    */
 
                     //a.addAppointmentToDatabase();
                 }
@@ -287,18 +288,17 @@ namespace Tutor_Master
         private bool verifyTimes()
         {
             bool good = false;
-            DateTime firstDate = dateTimeDay1.Value.Date + dateTimeTime1.Value.TimeOfDay;
-            DateTime secondDate = dateTimeDay2.Value.Date + dateTimeTime2.Value.TimeOfDay;
+            //startTime = dateTimeDay1.Value.Date + dateTimeTime1.Value.TimeOfDay;
+            //endTime = dateTimeDay2.Value.Date + dateTimeTime2.Value.TimeOfDay;
 
-            good = (firstDate > DateTime.Now && secondDate > DateTime.Now &&
-                    firstDate < secondDate && (secondDate.Hour - firstDate.Hour) < 3);
+            good = (startTime > DateTime.Now && endTime > DateTime.Now &&
+                    startTime < endTime && (endTime.Hour - startTime.Hour) < 3);
 
+            //commenting this to fix the overflow on datetime problem
+            /*
             if (good)
             {
 
-
-                if (good)
-                {
                     //checking both profile times to see if they conflict with the start and end times
                     Database db = new Database();
                     List<Appointment> builderAppoint = db.getDailyAppointments(builderProf);
@@ -328,7 +328,6 @@ namespace Tutor_Master
                         good = temp;
                         it++;
                     }
-                }
 
             }
             else
@@ -352,6 +351,7 @@ namespace Tutor_Master
                     }
                 }
             }
+            */
             return good;
         }
 
@@ -395,11 +395,11 @@ namespace Tutor_Master
                 good = false;
                 MessageBox.Show("Please enter a valid profile.");
             }
-            if (!verifyTimes())
-            {
-                good = false;
-                MessageBox.Show("Please enter valid times.");
-            }
+            //if (!verifyTimes())
+            //{
+            //    good = false;
+            //    MessageBox.Show("Please enter valid times.");
+            //}
 
             return good;
         }
