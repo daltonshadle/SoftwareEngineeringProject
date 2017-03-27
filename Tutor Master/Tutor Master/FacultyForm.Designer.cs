@@ -89,12 +89,20 @@
             // Date
             // 
             this.Date.Text = "Subject";
+<<<<<<< HEAD
             this.Date.Width = 242;
+=======
+            this.Date.Width = 205;
+>>>>>>> e45103dee646a663c30f142d7e26cde73a00d4af
             // 
             // Done
             // 
             this.Done.Text = "Date";
+<<<<<<< HEAD
             this.Done.Width = 89;
+=======
+            this.Done.Width = 161;
+>>>>>>> e45103dee646a663c30f142d7e26cde73a00d4af
             // 
             // To
             // 

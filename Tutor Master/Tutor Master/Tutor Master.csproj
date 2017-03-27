@@ -82,6 +82,12 @@
     <Compile Include="Faculty.cs" />
     <Compile Include="Appointment.cs" />
     <Compile Include="Database.cs" />
+    <Compile Include="FacultyForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FacultyForm.Designer.cs">
+      <DependentUpon>FacultyForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -95,6 +101,7 @@
       <DependentUpon>MatchingAppointmentForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Messages.cs" />
+    <Compile Include="Model1.Designer.cs" />
     <Compile Include="Model2.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -170,6 +177,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AppointmentBuilderForm.resx">
       <DependentUpon>AppointmentBuilderForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FacultyForm.resx">
+      <DependentUpon>FacultyForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>

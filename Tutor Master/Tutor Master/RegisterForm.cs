@@ -70,5 +70,12 @@ namespace Tutor_Master
                 //All 3 of the required items were not submitted.
             }
         }
+
+        private void btnSignIn_Click(object sender, EventArgs e)
+        {
+            var signInform = new SignIn();
+            signInform.Show();
+            this.Hide();
+        }
     }
 }
