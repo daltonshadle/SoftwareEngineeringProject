@@ -163,15 +163,13 @@ namespace Tutor_Master
         }
 
         //adds an appointment to the appointments table
-        public void addAppointment(string free, string meetingPlace, string course, DateTime startTime, DateTime endTime, string tutor, string tutee, bool isFreeTime)
+        public void addAppointment(string free, string meetingPlace, string course, DateTime startTime, DateTime endTime, string tutor, string tutee, bool isFreeTime, bool isApproved)
         {
             {
-                string query = "INSERT INTO appointment ([free time], tutor, tutee, courseName, meetingPlace, startTime, endTime, isFreeTimeSession) VALUES (@freeTime, @tutor, @tutee, @courseName, @meetingPlace, @startTime, @endTime, @isFreeTime)";
+                string query = "INSERT INTO appointment ([free time], tutor, tutee, courseName, meetingPlace, startTime, endTime, isFreeTimeSession, isApproved) VALUES (@freeTime, @tutor, @tutee, @courseName, @meetingPlace, @startTime, @endTime, @isFreeTime, @isApproved)";
 
                 if (this.OpenConnection())
                 {
-                    //@tutor, @tutuee, @meetingPlace, @course, @startTime, @endTime
-                    //Finish writing query
                     SqlCeCommand cmd = new SqlCeCommand();
                     cmd.CommandText = query;
                     if (free == null)
@@ -211,6 +209,7 @@ namespace Tutor_Master
                     cmd.Parameters.Add("@startTime", startTime);
                     cmd.Parameters.Add("@endTime", endTime);
                     cmd.Parameters.Add("@isFreeTime", isFreeTime);
+                    cmd.Parameters.Add("@isApproved", isApproved);
                     cmd.Connection = con;
                     try
                     {
@@ -702,7 +701,7 @@ namespace Tutor_Master
         }
 
         //create a message to send between users
-        public void sendMessage(string fromUser, string toUser, string subject, string message, bool? approved, DateTime sentTime, string courseName)
+        public void sendMessage(string fromUser, string toUser, string subject, string message, bool? approved, DateTime sentTime, string courseName, int appointmentID)
         {
             string querySent, queryReceived;
             querySent = "INSERT INTO sentMessages (fromUserName, toUserName, subject, message, approved, timeSent, courseName) VALUES (@fromUser, @toUser, @subject, @message, @approved, @sentTime, @course)";

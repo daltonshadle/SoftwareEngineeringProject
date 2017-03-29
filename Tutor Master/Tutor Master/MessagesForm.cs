@@ -49,6 +49,7 @@ namespace Tutor_Master
             lvMessages.Items.Clear();
             inboxMessageList.Clear();
             inboxMessageList = db.getInbox(user);
+            rtbMessageDetails.Clear();
             for (int i = 0; i < inboxMessageList.Count(); i++)
             {
                 ListViewItem listItem = new ListViewItem(inboxMessageList[i].getFromUser());
@@ -70,6 +71,7 @@ namespace Tutor_Master
             sentMessageList = db.getSentMail(user);
             button1.Visible = false;
             button2.Visible = false;
+            rtbMessageDetails.Clear();
             for (int i = 0; i < sentMessageList.Count(); i++)
             {
                 ListViewItem listItem = new ListViewItem(sentMessageList[i].getFromUser());
@@ -88,7 +90,18 @@ namespace Tutor_Master
             else
             {
                 lvMessages.SelectedItems[0].Remove();
-
+                int messageID;
+                if (INBOX)
+                {
+                    messageID = inboxMessageList[currentIndex].getIdNum();
+                    db.deleteMessageFromInbox(messageID);
+                }
+                else
+                {
+                    messageID = sentMessageList[currentIndex].getIdNum();
+                    db.deleteMessageFromSentMail(messageID);
+                }
+                rtbMessageDetails.Clear();
             }
         }
 
@@ -123,7 +136,23 @@ namespace Tutor_Master
 
         private void button1_Click(object sender, EventArgs e)
         {
-
+            //check if selected index is what you want for "True" and "False" or currentIndex
+            if (currentIndex == -1)
+                MessageBox.Show("No message selected");
+            else
+            {
+                if (INBOX)
+                {
+                    if (lvMessages.SelectedItems[0].SubItems[4].Text == "False")
+                    {
+                        db.approveCourseInTutorCourses(inboxMessageList[currentIndex].getFromUser(), inboxMessageList[currentIndex].getCourseName(), inboxMessageList[currentIndex].getIdNum(), true);
+                        db.sendMessage(user, inboxMessageList[currentIndex].getFromUser(), "Appoinment Request Confirmed", user + " has confirmed your appointment regarding " + inboxMessageList[currentIndex].getCourseName(), true, DateTime.Now, inboxMessageList[currentIndex].getCourseName());
+                        lvMessages.SelectedItems[0].SubItems[4].Text = "True";
+                        rtbMessageDetails.Clear();
+                        rtbMessageDetails.AppendText("Done");
+                    }
+                }
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)
