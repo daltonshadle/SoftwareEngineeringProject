@@ -19,3 +19,4 @@ F:\SoftwareEngineering\Tutor Master\Tutor Master\bin\Debug\Tutor Master.pdb
 F:\SoftwareEngineering\Tutor Master\Tutor Master\obj\x86\Debug\Tutor_Master.MessagesForm.resources
 F:\SoftwareEngineering\Tutor Master\Tutor Master\obj\x86\Debug\Tutor Master.exe
 F:\SoftwareEngineering\Tutor Master\Tutor Master\obj\x86\Debug\Tutor Master.pdb
+F:\SoftwareEngineering\Tutor Master\Tutor Master\obj\x86\Debug\Tutor Master.csprojResolveAssemblyReference.cache

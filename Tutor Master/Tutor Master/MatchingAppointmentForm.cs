@@ -14,12 +14,10 @@ namespace Tutor_Master
         private const string FREETYPE = "Free Time", LEARNTYPE = "Learning (Tuteeing)", TEACHTYPE = "Teaching (Tutoring)";
 
         //all the private data
-        private string meetingPlace;
         private string course;
-        private DateTime startTime, endTime;
+        private DateTime startTime, endTime, prevTime1, prevTime2;
         private string tutorProf;
         private string tuteeProf;
-        private string freeTimeProf;
         private string builderProf;
         private bool isFreeTimeSession;
         private int type;
@@ -28,17 +26,21 @@ namespace Tutor_Master
         private List<string> builderTuteeCourses;
         private List<string> builderCourseApprovedList;
 
-        private bool isTutee, isTutor;
+        private bool isTutee, isTutor, initialValue1, initialValue2;
+
+
 
         public MatchingAppointmentForm()
         {
             InitializeComponent();
+            initializeTimers();
             this.Icon = Tutor_Master.Properties.Resources.favicon;
         }
 
         public MatchingAppointmentForm(string builderProfileName, bool isTutor, bool isTutee)
         {
             InitializeComponent();
+            initializeTimers();
             this.Icon = Tutor_Master.Properties.Resources.favicon;
 
             this.isTutee = isTutee;
@@ -262,8 +264,6 @@ namespace Tutor_Master
             }
         }
 
- 
-
         private bool isTimeInBetween(DateTime startTime, DateTime endTime, DateTime startTimeInQuestion, DateTime endTimeInQuestion)
         {
             return (((startTimeInQuestion > startTime) && (startTimeInQuestion < endTime)) && ((endTimeInQuestion > startTime) && (endTimeInQuestion < endTime)));
@@ -288,8 +288,8 @@ namespace Tutor_Master
         private bool verifyTimes()
         {
             bool good = false;
-            //startTime = dateTimeDay1.Value.Date + dateTimeTime1.Value.TimeOfDay;
-            //endTime = dateTimeDay2.Value.Date + dateTimeTime2.Value.TimeOfDay;
+            startTime = dateTimeDay1.Value.Date + dateTimeTime1.Value.TimeOfDay;
+            endTime = dateTimeDay2.Value.Date + dateTimeTime2.Value.TimeOfDay;
 
             good = (startTime > DateTime.Now && endTime > DateTime.Now &&
                     startTime < endTime && (endTime.Hour - startTime.Hour) < 3);
@@ -402,6 +402,73 @@ namespace Tutor_Master
 
             return good;
         }
+
+        private void initializeTimers() {
+            dateTimeTime1.Format = DateTimePickerFormat.Custom;
+            dateTimeTime1.CustomFormat = "hh:mm";
+            dateTimeTime2.Format = DateTimePickerFormat.Custom;
+            dateTimeTime2.CustomFormat = "hh:mm";
+
+            DateTime dt = new DateTime();
+            if (dt.Minute % 30 > 15)
+            {
+                initialValue1 = true;
+                initialValue2 = true;
+                dateTimeTime1.Value = dt.AddMinutes(dt.Minute % 30);
+                dateTimeTime2.Value = dt.AddMinutes(dt.Minute % 30 + 15);
+            }
+            else
+            {
+                initialValue1 = true;
+                initialValue2 = true;
+                dateTimeTime1.Value = dt.AddMinutes(-(dt.Minute % 30));
+                dateTimeTime2.Value = dt.AddMinutes(-(dt.Minute % 30) + 15);
+            }
+
+            prevTime1 = dateTimeTime1.Value;
+            prevTime2 = dateTimeTime2.Value;
+        }
+
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+            if (initialValue1)
+            {
+                initialValue1 = false;
+                return;
+            }
+
+            DateTime dt = dateTimeTime1.Value;
+            TimeSpan diff = dt - prevTime1;
+
+
+            if (diff.Ticks < 0)
+                dateTimeTime1.Value = prevTime1.AddMinutes(-30);
+            else
+                dateTimeTime1.Value = prevTime1.AddMinutes(30);
+
+            prevTime1 = dateTimeTime1.Value;
+        }
+
+        private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
+        {
+            if (initialValue2)
+            {
+                initialValue2 = false;
+                return;
+            }
+
+            DateTime dt = dateTimeTime2.Value;
+            TimeSpan diff = dt - prevTime2;
+
+
+            if (diff.Ticks < 0)
+                dateTimeTime2.Value = prevTime2.AddMinutes(-30);
+            else
+                dateTimeTime2.Value = prevTime2.AddMinutes(30);
+
+            prevTime2 = dateTimeTime2.Value;
+        }
+
 
     }
 }

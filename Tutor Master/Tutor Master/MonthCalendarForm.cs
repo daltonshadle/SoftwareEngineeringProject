@@ -28,6 +28,7 @@ namespace Tutor_Master
 
             Database db = new Database();
             appointmentList = db.getDailyAppointments(username);
+            appointmentList = appointmentList.OrderBy(o => o.getStartTime()).ToList();
 
             //Fill the calendar with bolded dates
             monthCalendar1.profileMonthCalendar.BoldedDates = new System.DateTime[] { };
@@ -52,6 +53,7 @@ namespace Tutor_Master
                 }
             }
 
+            dailyAppointments = dailyAppointments.OrderBy(o => o.getStartTime()).ToList();
             //Display all of the daily apps
             if (dailyAppointments.Count > 0)
             {
@@ -81,7 +83,7 @@ namespace Tutor_Master
 
             Database db = new Database();
             appointmentList = db.getDailyAppointments(username);
-
+            appointmentList = appointmentList.OrderBy(o => o.getStartTime()).ToList();
             //Fill up the list for each day.
             List<Appointment> dailyAppointments = new List<Appointment>();
             for (int i = 0; i < appointmentList.Count; i++)
@@ -91,7 +93,8 @@ namespace Tutor_Master
                     dailyAppointments.Add(appointmentList[i]);
                 }
             }
-            
+
+            dailyAppointments = dailyAppointments.OrderBy(o => o.getStartTime()).ToList();
             //Display all of the daily apps
             if (dailyAppointments.Count > 0)
             {
@@ -117,7 +120,7 @@ namespace Tutor_Master
             panel1.Controls.Clear();
         }
 
-        public int makeX( int iteration)
+        public int makeX(int iteration)
         {
             int x;
             int col = iteration/3;

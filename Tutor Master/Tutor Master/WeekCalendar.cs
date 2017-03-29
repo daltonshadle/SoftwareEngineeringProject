@@ -18,7 +18,6 @@ namespace Tutor_Master
         public WeekCalendar()
         {
             InitializeComponent();
-            //drawAppoint(panelSun);
             updateWeekLabel();
         }
 
@@ -70,14 +69,16 @@ namespace Tutor_Master
                 }
             }
 
+            List<Appointment> SortedList = dailyAppointments.OrderBy(o => o.getStartTime()).ToList();
+
             //Display all of the daily apps
-            if (dailyAppointments.Count > 0 && dailyAppointments.Count <= 3)
+            if (SortedList.Count > 0 && SortedList.Count <= 3)
             {
 
                 AppointmentBlock a;
-                for (int j = 0; j < dailyAppointments.Count; j++)
+                for (int j = 0; j < SortedList.Count; j++)
                 {
-                    a = new AppointmentBlock(dailyAppointments[j]);
+                    a = new AppointmentBlock(SortedList[j]);
                     //int x = makeX(j);
                     //int y = makeY(j);
                     a.Location = new Point(10, (j*90) + 30);
@@ -87,13 +88,13 @@ namespace Tutor_Master
                 p.Visible = true;
             }
 
-            else if(dailyAppointments.Count > 3)
+            else if(SortedList.Count > 3)
             {
 
                 AppointmentBlock a;
                 for (int j = 0; j < 3; j++)
                 {
-                    a = new AppointmentBlock(dailyAppointments[j]);
+                    a = new AppointmentBlock(SortedList[j]);
                     //int x = makeX(j);
                     //int y = makeY(j);
                     a.Location = new Point(10, (j * 90) + 30);

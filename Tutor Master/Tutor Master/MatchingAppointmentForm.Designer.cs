@@ -48,7 +48,6 @@
             this.lblEndTime = new System.Windows.Forms.Label();
             this.lblStartTime = new System.Windows.Forms.Label();
             this.panelMeetingPlace = new System.Windows.Forms.Panel();
-            //this.panel1 = new System.Windows.Forms.Panel();
             this.panelApptType.SuspendLayout();
             this.panelOtherProfile.SuspendLayout();
             this.panelCourse.SuspendLayout();
@@ -87,7 +86,6 @@
             this.cbxTypeAppt.Size = new System.Drawing.Size(121, 21);
             this.cbxTypeAppt.TabIndex = 1;
             this.cbxTypeAppt.SelectedIndexChanged += new System.EventHandler(this.cbxTypeAppt_SelectedIndexChanged);
-            //this.cbxTypeAppt.TabIndex = 0;
             // 
             // lblTypeAppt
             // 
@@ -106,14 +104,6 @@
             this.panelOtherProfile.Name = "panelOtherProfile";
             this.panelOtherProfile.Size = new System.Drawing.Size(291, 33);
             this.panelOtherProfile.TabIndex = 3;
-            // 
-            // cbxProfileList
-            // 
-            this.cbxProfileList.FormattingEnabled = true;
-            this.cbxProfileList.Location = new System.Drawing.Point(161, 6);
-            this.cbxProfileList.Name = "cbxProfileList";
-            this.cbxProfileList.Size = new System.Drawing.Size(121, 21);
-            this.cbxProfileList.TabIndex = 0;
             // 
             // cbxProfileList
             // 
@@ -147,9 +137,8 @@
             this.cbxCourseList.Location = new System.Drawing.Point(161, 8);
             this.cbxCourseList.Name = "cbxCourseList";
             this.cbxCourseList.Size = new System.Drawing.Size(121, 21);
-            this.cbxCourseList.TabIndex = 1;
-            this.cbxCourseList.SelectedIndexChanged += new System.EventHandler(this.cbxCourseList_SelectedIndexChanged);
             this.cbxCourseList.TabIndex = 0;
+            this.cbxCourseList.SelectedIndexChanged += new System.EventHandler(this.cbxCourseList_SelectedIndexChanged);
             // 
             // lblCourse
             // 
@@ -157,7 +146,6 @@
             this.lblCourse.Location = new System.Drawing.Point(6, 11);
             this.lblCourse.Name = "lblCourse";
             this.lblCourse.Size = new System.Drawing.Size(46, 13);
-            this.lblCourse.TabIndex = 0;
             this.lblCourse.TabIndex = 1;
             this.lblCourse.Text = "Course: ";
             // 
@@ -197,6 +185,7 @@
             this.dateTimeTime2.Name = "dateTimeTime2";
             this.dateTimeTime2.Size = new System.Drawing.Size(104, 20);
             this.dateTimeTime2.TabIndex = 3;
+            this.dateTimeTime2.ValueChanged += new System.EventHandler(this.dateTimePicker2_ValueChanged);
             // 
             // dateTimeTime1
             // 
@@ -205,6 +194,7 @@
             this.dateTimeTime1.Name = "dateTimeTime1";
             this.dateTimeTime1.Size = new System.Drawing.Size(105, 20);
             this.dateTimeTime1.TabIndex = 1;
+            this.dateTimeTime1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
             // 
             // dateTimeDay2
             // 
@@ -250,16 +240,6 @@
             this.panelMeetingPlace.Name = "panelMeetingPlace";
             this.panelMeetingPlace.Size = new System.Drawing.Size(291, 33);
             this.panelMeetingPlace.TabIndex = 10;
-            // panel1
-            // 
-            /*
-            this.panel1.Controls.Add(this.lblMeetingPlace);
-            this.panel1.Controls.Add(this.txtMeetingPlace);
-            this.panel1.Location = new System.Drawing.Point(24, 196);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(291, 33);
-            this.panel1.TabIndex = 4;
-            */
             // 
             // MatchingAppointmentForm
             // 
