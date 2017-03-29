@@ -102,35 +102,6 @@ namespace Tutor_Master
             }
         }
 
-        /*private void btnView_Click(object sender, EventArgs e)
-        {
-            if (lvMessages.SelectedItems.Count == 0)
-                MessageBox.Show("No message selected");
-            else
-            {
-                rtbMessageDetails.Clear();
-                ListView.SelectedIndexCollection indexes = this.lvMessages.SelectedIndices;
-                if (indexes.Count > 1)
-                    MessageBox.Show("Can only view details of one message at a time.");
-                else
-                {
-                    foreach (int index in indexes)
-                    {
-                        if (INBOX)
-                        {
-                            rtbMessageDetails.AppendText(inboxMessageList[index].getMessage());
-                            currentIndex = index;
-                        }
-                        else
-                        {
-                            rtbMessageDetails.AppendText(sentMessageList[index].getMessage());
-                            currentIndex = index;
-                        }
-                    }
-                }
-            }
-        }*/
-
         private void button1_Click(object sender, EventArgs e)
         {
             //check if selected index is what you want for "True" and "False" or currentIndex
