@@ -96,6 +96,7 @@
             this.Controls.Add(this.lblAppointmentType);
             this.Name = "AppointmentBlock";
             this.Size = new System.Drawing.Size(100, 80);
+            this.Click += new System.EventHandler(this.AppointmentBlock_Click);
             this.ResumeLayout(false);
             this.PerformLayout();
 

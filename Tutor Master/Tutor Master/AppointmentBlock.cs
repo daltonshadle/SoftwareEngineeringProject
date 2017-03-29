@@ -110,5 +110,10 @@ namespace Tutor_Master
             lblAppointmentType.Text = name;
         }
 
+        private void AppointmentBlock_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Appointment clicked");
+        }
+
     }
 }
