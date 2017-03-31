@@ -16,6 +16,7 @@ namespace Tutor_Master
         private string apptPlace;
         private string apptCourse;
         private string apptTime;
+        private string apptDate;
         private string firstName;
         private string secondName;
 
@@ -25,17 +26,58 @@ namespace Tutor_Master
             InitializeComponent();
         }
 
-        public AppointmentInfoForm(string type, string place, string course, string time, string fname, string sname)
+        public AppointmentInfoForm(string type, string place, string course, string datetime, string fname, string sname)
         {
             apptType = type;
             apptPlace = place;
             apptCourse = course;
-            apptTime = time;
+            apptTime = datetime;
+            //apptDate = date;
             firstName = fname;
             secondName = sname;
             InitializeComponent();
 
-        }
 
+            if (apptType != "" && apptType != null)
+                lblTypeVal.Text = apptType;
+            else
+                lblTypeVal.Text = "-------";
+
+
+            if (firstName != "" && firstName != null)
+                lblTypeVal.Text = firstName;
+            else
+                lblTypeVal.Text = "-------";
+
+
+            if (secondName != "" && secondName != null)
+                lblTypeVal.Text = secondName;
+            else
+                lblTypeVal.Text = "-------";
+
+
+            if (apptCourse != "" && apptCourse != null)
+                lblTypeVal.Text = apptCourse;
+            else
+                lblTypeVal.Text = "-------";
+
+
+            if (apptPlace != "" && apptPlace != null)
+                lblTypeVal.Text = apptPlace;
+            else
+                lblTypeVal.Text = "-------";
+
+
+            if (apptTime != "" && apptTime != null)
+                lblTypeVal.Text = apptTime;
+            else
+                lblTypeVal.Text = "-------";
+
+
+            if (apptDate != "" && apptDate != null)
+                lblTypeVal.Text = apptDate;
+            else
+                lblTypeVal.Text = "-------";
+        }
     }
 }

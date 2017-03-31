@@ -146,7 +146,7 @@ namespace Tutor_Master
                     if (lvMessages.SelectedItems[0].SubItems[4].Text == "False")
                     {
                         db.approveCourseInTutorCourses(inboxMessageList[currentIndex].getFromUser(), inboxMessageList[currentIndex].getCourseName(), inboxMessageList[currentIndex].getIdNum(), true);
-                        db.sendMessage(user, inboxMessageList[currentIndex].getFromUser(), "Appoinment Request Confirmed", user + " has confirmed your appointment regarding " + inboxMessageList[currentIndex].getCourseName(), true, DateTime.Now, inboxMessageList[currentIndex].getCourseName());
+                        //db.sendMessage(user, inboxMessageList[currentIndex].getFromUser(), "Appoinment Request Confirmed", user + " has confirmed your appointment regarding " + inboxMessageList[currentIndex].getCourseName(), true, DateTime.Now, inboxMessageList[currentIndex].getCourseName());
                         lvMessages.SelectedItems[0].SubItems[4].Text = "True";
                         rtbMessageDetails.Clear();
                         rtbMessageDetails.AppendText("Done");
