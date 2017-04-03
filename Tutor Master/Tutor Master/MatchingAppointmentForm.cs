@@ -28,8 +28,6 @@ namespace Tutor_Master
 
         private bool isTutee, isTutor, initialValue1, initialValue2;
 
-
-
         public MatchingAppointmentForm()
         {
             InitializeComponent();
@@ -248,7 +246,7 @@ namespace Tutor_Master
                     }
 
                     //something is wrong here
-                    Appointment a = new Appointment(type, place, course, startTime, endTime, tutorProf, tuteeProf);
+                    Appointment a = new Appointment(type, place, course, startTime, endTime, tutorProf, tuteeProf, false);
                     a.addAppointmentToDatabase();
 
                     //This is where we will send a message if a person is doing a learning appointment
@@ -256,7 +254,11 @@ namespace Tutor_Master
                     
                     string msg = builderProf + " has requested to make a tutoring appointment for course: " + course + " at " + startTime.ToShortDateString();
                     Database db = new Database();
+<<<<<<< HEAD
                     //db.sendMessage(builderProf, otherProfName, "Request for appointment", msg, true, DateTime.Now, course);
+=======
+                    db.sendMessage(builderProf, otherProfName, "Request for appointment", msg, true, DateTime.Now, course, a.getID());
+>>>>>>> e5703ffe27183f8c83e32096d204163b059abc52
                    
                 }
                 this.Hide();
@@ -405,24 +407,24 @@ namespace Tutor_Master
 
         private void initializeTimers() {
             dateTimeTime1.Format = DateTimePickerFormat.Custom;
-            dateTimeTime1.CustomFormat = "hh:mm";
+            dateTimeTime1.CustomFormat = "hh:mm tt";
             dateTimeTime2.Format = DateTimePickerFormat.Custom;
-            dateTimeTime2.CustomFormat = "hh:mm";
+            dateTimeTime2.CustomFormat = "hh:mm tt";
 
-            DateTime dt = new DateTime();
-            if (dt.Minute % 30 > 15)
+            DateTime dt = DateTime.Now;
+            if (dt.Minute % 15 > 15)
             {
                 initialValue1 = true;
                 initialValue2 = true;
-                dateTimeTime1.Value = dt.AddMinutes(dt.Minute % 30);
-                dateTimeTime2.Value = dt.AddMinutes(dt.Minute % 30 + 15);
+                dateTimeTime1.Value = dt.AddMinutes(dt.Minute % 15);
+                dateTimeTime2.Value = dt.AddMinutes(dt.Minute % 15 + 15);
             }
             else
             {
                 initialValue1 = true;
                 initialValue2 = true;
-                dateTimeTime1.Value = dt.AddMinutes(-(dt.Minute % 30));
-                dateTimeTime2.Value = dt.AddMinutes(-(dt.Minute % 30) + 15);
+                dateTimeTime1.Value = dt.AddMinutes(-(dt.Minute % 15));
+                dateTimeTime2.Value = dt.AddMinutes(-(dt.Minute % 15) + 15);
             }
 
             prevTime1 = dateTimeTime1.Value;
@@ -442,11 +444,15 @@ namespace Tutor_Master
 
 
             if (diff.Ticks < 0)
-                dateTimeTime1.Value = prevTime1.AddMinutes(-30);
+                dateTimeTime1.Value = prevTime1.AddMinutes(-15);
             else
-                dateTimeTime1.Value = prevTime1.AddMinutes(30);
+                dateTimeTime1.Value = prevTime1.AddMinutes(15);
 
             prevTime1 = dateTimeTime1.Value;
+
+            if (dateTimeTime2.Value <= dateTimeTime1.Value) {
+                dateTimeTime2.Value = prevTime1.AddMinutes(15);
+            }
         }
 
         private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
@@ -462,11 +468,15 @@ namespace Tutor_Master
 
 
             if (diff.Ticks < 0)
-                dateTimeTime2.Value = prevTime2.AddMinutes(-30);
+                dateTimeTime2.Value = prevTime2.AddMinutes(-15);
             else
-                dateTimeTime2.Value = prevTime2.AddMinutes(30);
+                dateTimeTime2.Value = prevTime2.AddMinutes(15);
 
             prevTime2 = dateTimeTime2.Value;
+
+            if (dateTimeTime1.Value >= dateTimeTime2.Value) {
+                dateTimeTime1.Value = prevTime2.AddMinutes(-15);
+            }
         }
 
 
