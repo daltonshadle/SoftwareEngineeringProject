@@ -45,3 +45,4 @@ F:\cs-225 project\SoftwareEngineering2\Tutor Master\Tutor Master\obj\x86\Debug\T
 F:\cs-225 project\SoftwareEngineering2\Tutor Master\Tutor Master\obj\x86\Debug\Tutor_Master.WeekCalendar.resources
 F:\cs-225 project\SoftwareEngineering2\Tutor Master\Tutor Master\obj\x86\Debug\Tutor Master.csproj.GenerateResource.Cache
 >>>>>>> b2ff9c8e1f875a02e71caaf95151744ad035ff7b
+F:\cs-225 project\SoftwareEngineering2\Tutor Master\Tutor Master\obj\x86\Debug\Tutor_Master.AppointmentInfoForm.resources
