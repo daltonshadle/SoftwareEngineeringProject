@@ -16,9 +16,12 @@ namespace Tutor_Master
         private string apptPlace;
         private string apptCourse;
         private string apptTime;
-        private string apptDate;
+        private DateTime apptDateTime;
+        private DateTime apptDate;
         private string firstName;
         private string secondName;
+        private int apptId;
+        //private Appointment infoAppointment;
 
     
         public AppointmentInfoForm()
@@ -26,58 +29,94 @@ namespace Tutor_Master
             InitializeComponent();
         }
 
-        public AppointmentInfoForm(string type, string place, string course, string datetime, string fname, string sname)
+        public AppointmentInfoForm(string type, int id)
         {
+            apptId = id;
+            Appointment a = new Appointment();
+            Database db = new Database();
+            a = db.getAppointmentById(apptId);
+
+
+
+        }
+
+        public AppointmentInfoForm(string type, string place, string course, string datetime, string fname, string sname, int id)
+        {
+
+            apptId = id;
+            Appointment a = new Appointment();
+            Database db = new Database();
+            a = db.getAppointmentById(apptId);
+
             apptType = type;
+            apptTime = datetime;
             apptPlace = place;
             apptCourse = course;
-            apptTime = datetime;
-            //apptDate = date;
             firstName = fname;
             secondName = sname;
+            apptId = id;
             InitializeComponent();
 
+            apptDateTime = a.getStartTime();
+            apptDate = apptDateTime.Date;
 
-            if (apptType != "" && apptType != null)
+
+
+            if (apptType != "" && apptType != null){
                 lblTypeVal.Text = apptType;
-            else
+            }
+            else{
                 lblTypeVal.Text = "-------";
+            }
 
 
-            if (firstName != "" && firstName != null)
-                lblTypeVal.Text = firstName;
+            if (firstName != "" && firstName != null){
+                lblTutorVal.Text = firstName;
+            }
+            else{
+                lblTutorVal.Text = "-------";
+            }
+
+
+            if (secondName != "" && secondName != null){
+                lblTuteeVal.Text = secondName;
+            }
             else
-                lblTypeVal.Text = "-------";
+            {
+                lblTuteeVal.Text = "-------";
+            }
 
 
-            if (secondName != "" && secondName != null)
-                lblTypeVal.Text = secondName;
-            else
-                lblTypeVal.Text = "-------";
+            if (apptCourse != "" && apptCourse != null){
+                lblCourseVal.Text = apptCourse;
+            }
+            else{
+                lblCourseVal.Text = "-------";
+            }
 
 
-            if (apptCourse != "" && apptCourse != null)
-                lblTypeVal.Text = apptCourse;
-            else
-                lblTypeVal.Text = "-------";
+            if (apptPlace != "" && apptPlace != null){
+                lblPlaceVal.Text = apptPlace;
+            }
+            else{
+                lblPlaceVal.Text = "-------";
+            }
 
 
-            if (apptPlace != "" && apptPlace != null)
-                lblTypeVal.Text = apptPlace;
-            else
-                lblTypeVal.Text = "-------";
+            if (apptTime != "" && apptTime != null){
+                lblTimeVal.Text = apptTime;
+            }
+            else{
+                lblTimeVal.Text = "-------";
+            }
 
 
-            if (apptTime != "" && apptTime != null)
-                lblTypeVal.Text = apptTime;
-            else
-                lblTypeVal.Text = "-------";
-
-
-            if (apptDate != "" && apptDate != null)
-                lblTypeVal.Text = apptDate;
-            else
-                lblTypeVal.Text = "-------";
+            if (apptDate != null){
+                lblDateVal.Text = apptDate.ToShortDateString();
+            }
+            else{
+                lblDateVal.Text = "-------";
+            }
         }
     }
 }

@@ -18,6 +18,7 @@ namespace Tutor_Master
         private string apptTime;
         private string firstName;
         private string secondName;
+        private int id;
 
         public AppointmentBlock()
         {
@@ -30,6 +31,7 @@ namespace Tutor_Master
             apptCourse = a.getCourse();
             apptPlace = a.getMeetingPlace();
             apptTime = a.getStartTime().ToShortTimeString();
+            id = a.getID();
 
 
             bool b = a.getIsFreeTimeSession();
@@ -113,7 +115,8 @@ namespace Tutor_Master
         private void AppointmentBlock_Click(object sender, EventArgs e)
         {
             //MessageBox.Show("Appointment clicked");
-            Form form = new AppointmentInfoForm(this.apptType, this.apptPlace, this.apptCourse, this.apptTime, this.firstName, this.secondName);
+            Form form = new AppointmentInfoForm(this.apptType, this.apptPlace, this.apptCourse, this.apptTime, this.firstName, this.secondName, this.id);
+            //Form form = new AppointmentInfoForm(this.apptType, this.id);
             form.Show();
             //this.Hide();
         }

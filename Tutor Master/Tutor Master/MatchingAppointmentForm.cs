@@ -254,11 +254,8 @@ namespace Tutor_Master
                     
                     string msg = builderProf + " has requested to make a tutoring appointment for course: " + course + " at " + startTime.ToShortDateString();
                     Database db = new Database();
-<<<<<<< HEAD
                     //db.sendMessage(builderProf, otherProfName, "Request for appointment", msg, true, DateTime.Now, course);
-=======
                     db.sendMessage(builderProf, otherProfName, "Request for appointment", msg, true, DateTime.Now, course, a.getID());
->>>>>>> e5703ffe27183f8c83e32096d204163b059abc52
                    
                 }
                 this.Hide();
