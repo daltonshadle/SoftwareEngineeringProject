@@ -87,8 +87,7 @@ namespace Tutor_Master
                         tutorProf = new Profile(otherProfName);
                     }
 
-                    //something is wrong here
-                    Appointment a = new Appointment(type, place, course, startTime, endTime, tutorProf, tuteeProf);
+                    Appointment a = new Appointment(type, place, course, startTime, endTime, tutorProf, tuteeProf, false);
                     a.addAppointmentToDatabase();
 
                     //This is where we will send a message if a person is doing a learning appointment
@@ -97,7 +96,15 @@ namespace Tutor_Master
                     
                     string msg = builderProf + " has requested to make a tutoring appointment for course: " + course + " at " + startTime.ToShortDateString();
                     Database db = new Database();
+<<<<<<< HEAD
                     db.sendMessage(builderProf.getUsername(), otherProfName, "Request for appointment", msg, true, DateTime.Now, course, a.getID());
+=======
+<<<<<<< HEAD
+                    //db.sendMessage(builderProf.getUsername(), otherProfName, "Request for appointment", msg, true, DateTime.Now, course);
+=======
+                    db.sendMessage(builderProf.getUsername(), otherProfName, "Request for appointment", msg, true, DateTime.Now, course, a.getID());
+>>>>>>> e5703ffe27183f8c83e32096d204163b059abc52
+>>>>>>> 19002c3e49fbf1c21e4990d41b0ec25e27528dfd
                     
                 }
                 this.Hide();

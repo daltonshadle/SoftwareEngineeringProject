@@ -112,7 +112,10 @@ namespace Tutor_Master
 
         private void AppointmentBlock_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Appointment clicked");
+            //MessageBox.Show("Appointment clicked");
+            Form form = new AppointmentInfoForm(this.apptType, this.apptPlace, this.apptCourse, this.apptTime, this.firstName, this.secondName);
+            form.Show();
+            //this.Hide();
         }
 
     }
