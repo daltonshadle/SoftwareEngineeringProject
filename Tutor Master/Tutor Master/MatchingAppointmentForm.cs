@@ -58,6 +58,7 @@ namespace Tutor_Master
             course = "";
 
             initializeBuilderCourseCollection();
+            initializeBuilderApptTypeCollection();
         }
 
         private void cbxTypeAppt_SelectedIndexChanged(object sender, EventArgs e)
@@ -76,6 +77,7 @@ namespace Tutor_Master
 
                     int i = 0;
                     cbxCourseList.Items.Clear();
+                    cbxCourseList.Text = "";
                     if (builderTutorCourses.Count > 0)
                     {
                         string tempTutorCourse = builderTutorCourses[i];
@@ -103,6 +105,7 @@ namespace Tutor_Master
 
                     int j = 0;
                     cbxCourseList.Items.Clear();
+                    cbxCourseList.Text = "";
                     if (builderTuteeCourses.Count > 0)
                     {
                         string tempTuteeCourse = builderTuteeCourses[j];
@@ -120,6 +123,18 @@ namespace Tutor_Master
                     panelOtherProfile.Visible = true;
                     isFreeTimeSession = false;
                     break;
+            }
+        }
+
+        private void initializeBuilderApptTypeCollection(){
+            cbxTypeAppt.Items.Clear();
+            if (isTutee) {
+                cbxTypeAppt.Items.Add(TEACHTYPE);
+                cbxTypeAppt.Items.Add(FREETYPE);
+            }
+
+            if (isTutor) {
+                cbxTypeAppt.Items.Add(LEARNTYPE);
             }
         }
 
@@ -254,7 +269,10 @@ namespace Tutor_Master
                     
                     string msg = builderProf + " has requested to make a tutoring appointment for course: " + course + " at " + startTime.ToShortDateString();
                     Database db = new Database();
+<<<<<<< HEAD
                     //db.sendMessage(builderProf, otherProfName, "Request for appointment", msg, true, DateTime.Now, course);
+=======
+>>>>>>> d2defd81413190c8b863a4057526a47cd5ac51f9
                     db.sendMessage(builderProf, otherProfName, "Request for appointment", msg, true, DateTime.Now, course, a.getID());
                    
                 }
