@@ -34,12 +34,13 @@ namespace Tutor_Master
 
         private void chkTutor_CheckedChanged(object sender, EventArgs e)
         {
-            isTutor = true;
+
+            isTutor = chkTutor.Checked;
         }
 
         private void chkTutee_CheckedChanged(object sender, EventArgs e)
         {
-            isTutee = true;
+            isTutee = chkTutee.Checked;
         }
 
         private void btnNext_Click(object sender, EventArgs e)

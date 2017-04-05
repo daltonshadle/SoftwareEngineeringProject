@@ -21,6 +21,7 @@ namespace Tutor_Master
         private bool isFreeTimeSession;
         private bool isApproved;
         private int apptID;
+        private string meetingType;
 
         //all the public functions
 
@@ -49,6 +50,7 @@ namespace Tutor_Master
             isFreeTimeSession = meetingTypeStringToBool(tempMeetingType);
             isApproved = isAppointApproved;
             apptID = -1;
+            meetingType = tempMeetingType;
         }
 
         //Will work on getting rid of this function
@@ -65,7 +67,8 @@ namespace Tutor_Master
             tuteeProf = tempTutee.getUsername();
             isFreeTimeSession = meetingTypeStringToBool(tempMeetingType);
             isApproved = isAppointApproved;
-            apptID = -1;
+            apptID = -1; 
+            meetingType = tempMeetingType;
         }
 
         public Appointment(DateTime tempStartTime, DateTime tempEndTime, string owner)
@@ -211,6 +214,11 @@ namespace Tutor_Master
                 //add tutor/tutee appt
                 db.addAppointment(null, meetingPlace, course, startTime, endTime, tutorProf, tuteeProf, isFreeTimeSession, isApproved);
             }
+        }
+
+        public string getMeetingType()
+        {
+            return meetingType;
         }
     }
 }
