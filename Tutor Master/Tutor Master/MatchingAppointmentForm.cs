@@ -72,8 +72,8 @@ namespace Tutor_Master
                     isFreeTimeSession = true;
                 }
                 
-                if(cbxTypeAppt.Text.ToString().Equals(LEARNTYPE)){
-                    //add tutor courses here from tutee list
+                if(cbxTypeAppt.Text.ToString().Equals(TEACHTYPE)){
+                    //add tutor courses here
                     type = 1;
 
                     int i = 0;
@@ -101,8 +101,8 @@ namespace Tutor_Master
                     isFreeTimeSession = false;
                 }
 
-                if(cbxTypeAppt.Text.ToString().Equals(TEACHTYPE)){
-                    //add tutee courses here from tutor list
+                if(cbxTypeAppt.Text.ToString().Equals(LEARNTYPE)){
+                    //add tutee courses here
                     type = 2;
 
                     int j = 0;
@@ -129,12 +129,12 @@ namespace Tutor_Master
 
         private void initializeBuilderApptTypeCollection(){
             cbxTypeAppt.Items.Clear();
-            if (isTutee) {
+            if (isTutor) {
                 cbxTypeAppt.Items.Add(TEACHTYPE);
                 cbxTypeAppt.Items.Add(FREETYPE);
             }
 
-            if (isTutor) {
+            if (isTutee) {
                 cbxTypeAppt.Items.Add(LEARNTYPE);
             }
         }
