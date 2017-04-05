@@ -308,6 +308,86 @@ namespace Tutor_Master
             return appointmentList;
         }
 
+        //Delete an appointment
+        public void deleteAppointment(int apptId)
+        {
+            Database db = new Database();
+
+            string query = "DELETE FROM appointment WHERE [id number] = @ID";
+            
+            if (this.OpenConnection())
+            {
+                SqlCeCommand cmd = new SqlCeCommand();
+
+                cmd.CommandText = query;             
+
+                cmd.Parameters.Add("@ID", apptId);              
+
+                cmd.Connection = con;
+                try
+                {
+                    cmd.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+
+                this.CloseConnection();
+            }
+        }
+
+        //Edit an appointment -- just reassign values to everything that makes up an appointment
+        public void editAppointment(int apptId, string free, string meetingPlace, string course, DateTime startTime, DateTime endTime, string tutor, string tutee, bool isFreeTime, bool? isApproved)
+        {
+            string query = "UPDATE appointment SET [free time] = @free, tutor = @tutor, tutee = @tutee, courseName = @course, meetingPlace = @meetingPlace, startTime = @startTime, endTime = @endTime, isFreeTimeSession = @isFreeTime, isApproved = @isApproved WHERE [id number] = @apptId";
+
+            if (this.OpenConnection())
+            {
+                SqlCeCommand cmd = new SqlCeCommand();
+                cmd.CommandText = query;
+                cmd.Parameters.Add("@apptId", apptId);
+                if (free == null)
+                    cmd.Parameters.Add("@free", DBNull.Value);
+                else
+                    cmd.Parameters.Add("@free", free);
+                if(meetingPlace == null)
+                    cmd.Parameters.Add("@meetingPlace", DBNull.Value);
+                else
+                    cmd.Parameters.Add("@meetingPlace", meetingPlace);
+                if(tutor == null)
+                    cmd.Parameters.Add("@tutor", DBNull.Value);
+                else
+                    cmd.Parameters.Add("@tutor", tutor);
+                if(tutee == null)
+                    cmd.Parameters.Add("@tutee", DBNull.Value);
+                else
+                    cmd.Parameters.Add("@tutee", tutee);
+                if(course == null)
+                    cmd.Parameters.Add("@course", DBNull.Value);
+                else
+                    cmd.Parameters.Add("@course", course);
+                cmd.Parameters.Add("@startTime", startTime);
+                cmd.Parameters.Add("@endTime", endTime);
+                cmd.Parameters.Add("@isFreeTime", isFreeTime);
+                if(isApproved == null)
+                    cmd.Parameters.Add("@isApproved", DBNull.Value);
+                else
+                    cmd.Parameters.Add("@isApproved", isApproved);
+                cmd.Connection = con;
+                try
+                {
+                    cmd.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+
+                this.CloseConnection();
+            }
+        }
+
         //if you want the list of course someone tutors, pass in true
         //if you want the list of courses someone is a tutee for, pass false
         public List<string> getCourseList(string username, bool isTutor)
@@ -700,6 +780,7 @@ namespace Tutor_Master
                 return list;
         }
 
+        //Garrett: create apptId in message tables and insert apptId variable into them
         //create a message to send between users
         public void sendMessage(string fromUser, string toUser, string subject, string message, bool? approved, DateTime sentTime, string courseName, int appointmentID)
         {
