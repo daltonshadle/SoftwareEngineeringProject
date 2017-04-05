@@ -57,21 +57,22 @@ namespace Tutor_Master
             dateTimeTime2.ShowUpDown = true;
             course = "";
 
-            initializeBuilderCourseCollection();
             initializeBuilderApptTypeCollection();
+            initializeBuilderCourseCollection();
+            
         }
 
         private void cbxTypeAppt_SelectedIndexChanged(object sender, EventArgs e)
         {
-            switch (cbxTypeAppt.SelectedIndex)
-            {
-                case 0:
+                if(cbxTypeAppt.Text.ToString().Equals(FREETYPE)){
+                    //freetime appt
                     panelCourse.Visible = false;
                     panelMeetingPlace.Visible = false;
                     panelOtherProfile.Visible = false;
                     isFreeTimeSession = true;
-                    break;
-                case 1:
+                }
+                
+                if(cbxTypeAppt.Text.ToString().Equals(LEARNTYPE)){
                     //add tutor courses here from tutee list
                     type = 1;
 
@@ -98,8 +99,9 @@ namespace Tutor_Master
                     panelMeetingPlace.Visible = true;
                     panelOtherProfile.Visible = true;
                     isFreeTimeSession = false;
-                    break;
-                case 2:
+                }
+
+                if(cbxTypeAppt.Text.ToString().Equals(TEACHTYPE)){
                     //add tutee courses here from tutor list
                     type = 2;
 
@@ -122,9 +124,8 @@ namespace Tutor_Master
                     panelMeetingPlace.Visible = true;
                     panelOtherProfile.Visible = true;
                     isFreeTimeSession = false;
-                    break;
+                }
             }
-        }
 
         private void initializeBuilderApptTypeCollection(){
             cbxTypeAppt.Items.Clear();
@@ -269,10 +270,6 @@ namespace Tutor_Master
                     
                     string msg = builderProf + " has requested to make a tutoring appointment for course: " + course + " at " + startTime.ToShortDateString();
                     Database db = new Database();
-<<<<<<< HEAD
-                    //db.sendMessage(builderProf, otherProfName, "Request for appointment", msg, true, DateTime.Now, course);
-=======
->>>>>>> d2defd81413190c8b863a4057526a47cd5ac51f9
                     db.sendMessage(builderProf, otherProfName, "Request for appointment", msg, true, DateTime.Now, course, a.getID());
                    
                 }
