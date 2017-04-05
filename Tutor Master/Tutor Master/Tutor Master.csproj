@@ -120,11 +120,6 @@
       <DependentUpon>MessagesForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Model1.Designer.cs" />
-    <Compile Include="Model2.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model2.edmx</DependentUpon>
-    </Compile>
     <Compile Include="MonthCalendar.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -246,10 +241,6 @@
     <EmbeddedResource Include="WeekCalendar.resx">
       <DependentUpon>WeekCalendar.cs</DependentUpon>
     </EmbeddedResource>
-    <EntityDeploy Include="Model2.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Model2.Designer.cs</LastGenOutput>
-    </EntityDeploy>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
