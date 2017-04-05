@@ -7,7 +7,7 @@ namespace Tutor_Master
 {
     class Messages
     {
-        private int id;
+        private int id, apptId;
         private string toUser, fromUser, subject, message, course;
         private bool? pending;
         private DateTime timeSent;
@@ -22,9 +22,10 @@ namespace Tutor_Master
             course = "";
             pending = null;
             timeSent = DateTime.Now;
+            apptId = -1;
         }
 
-        public Messages(int idNum, string toUserName, string fromUserName, string subj, string mess, bool pend, DateTime sent, string courseName)
+        public Messages(int idNum, string toUserName, string fromUserName, string subj, string mess, bool pend, DateTime sent, string courseName, int appointmentId)
         {
             id = idNum;
             toUser = toUserName;
@@ -34,6 +35,7 @@ namespace Tutor_Master
             pending = pend;
             timeSent = sent;
             course = courseName;
+            apptId = appointmentId;
         }
 
         public int getIdNum() { return id; }
@@ -59,5 +61,8 @@ namespace Tutor_Master
 
         public string getCourseName() { return course; }
         public void setCourseName(string c) { course = c; }
+
+        public int getApptId() { return apptId; }
+        public void setApptId(int id) { apptId = id; }
     }
 }
