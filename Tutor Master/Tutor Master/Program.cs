@@ -17,11 +17,8 @@ namespace Tutor_Master
             Application.SetCompatibleTextRenderingDefault(false);
 
             Database db = new Database();
+            //db.editAppointment(1, null, "library", null, DateTime.Now, DateTime.Now, null, null, false, true);
             Application.Run(new StartForm());
-            //db.sendMessage("grbohach", "coolTerry7", "tutor request", "I want to tutor cs1", null, DateTime.Now);
-            //db.getInbox("grbohach");
-            //Application.Run(new StartForm());
-            //db.sendMessage("grbohach", "coolTerry7", "tutor request", "I want to tutor cs1", null, DateTime.Now);
         }
     }
 }
