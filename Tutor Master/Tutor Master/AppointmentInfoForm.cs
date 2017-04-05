@@ -167,5 +167,12 @@ namespace Tutor_Master
             appointmentEditor.Show();
             this.Hide();
         }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            Database db = new Database();
+            db.deleteAppointment(apptId);
+            this.Hide();
+        }
     }
 }

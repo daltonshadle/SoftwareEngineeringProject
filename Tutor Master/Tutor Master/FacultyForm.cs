@@ -116,10 +116,6 @@ namespace Tutor_Master
                     {
                         db.approveCourseInTutorCourses(inboxMessageList[currentIndex].getFromUser(), inboxMessageList[currentIndex].getCourseName(), inboxMessageList[currentIndex].getIdNum(), true);
                         db.sendMessage(user, inboxMessageList[currentIndex].getFromUser(), "Tutor Request Approved", user + " has approved you to tutor " + inboxMessageList[currentIndex].getCourseName(), true, DateTime.Now, inboxMessageList[currentIndex].getCourseName(), -1);
-<<<<<<< HEAD
-=======
-
->>>>>>> cdc478535bca4eaf7c17d81fcde005d75c8f2143
                         lvMessages.SelectedItems[0].SubItems[4].Text = "True";
                         rtbMessageDetails.Clear();
                         rtbMessageDetails.AppendText("Done");
@@ -141,10 +137,7 @@ namespace Tutor_Master
                     if (lvMessages.SelectedItems[0].SubItems[4].Text == "False")
                     {
                         db.approveCourseInTutorCourses(inboxMessageList[currentIndex].getFromUser(), inboxMessageList[currentIndex].getCourseName(), inboxMessageList[currentIndex].getIdNum(), false);
-<<<<<<< HEAD
-=======
                         db.sendMessage(user, inboxMessageList[currentIndex].getFromUser(), "Tutor Request REJECTED", user + " has not approved you to tutor " + inboxMessageList[currentIndex].getCourseName(), true, DateTime.Now, inboxMessageList[currentIndex].getCourseName(), -1);
->>>>>>> cdc478535bca4eaf7c17d81fcde005d75c8f2143
                         lvMessages.SelectedItems[0].SubItems[4].Text = "True";
                         rtbMessageDetails.Clear();
                         rtbMessageDetails.AppendText("Done");

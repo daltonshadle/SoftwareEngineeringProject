@@ -286,12 +286,12 @@ namespace Tutor_Master
                         else {
                             newAppointment.setMeetingPlace(dataReader["meetingPlace"].ToString());
                         }
-                        /*if (dataReader["meetingType"] == DBNull.Value){
-                            newAppointment.setMeetingType(-1);
+                        if (dataReader["isFreeTimeSession"] == DBNull.Value){
+                            newAppointment.setIsFreeTimeSession(false);
                         }
                         else{
-                            newAppointment.setMeetingType((int)dataReader["meetingType"]);
-                        }*/
+                            newAppointment.setIsFreeTimeSession((bool)dataReader["isFreeTimeSession"]);
+                        }
                         newAppointment.setStartTime((DateTime)dataReader["startTime"]);
                         newAppointment.setEndTime((DateTime)dataReader["endTime"]);
                         newAppointment.setIsFreeTimeSession((bool)dataReader["isFreeTimeSession"]);
@@ -386,7 +386,6 @@ namespace Tutor_Master
                 {
                     cmd.ExecuteNonQuery();
                 }
-<<<<<<< HEAD
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
@@ -395,14 +394,8 @@ namespace Tutor_Master
                 this.CloseConnection();
             }
         } 
-=======
-                catch (Exception e)
-                {
-                    MessageBox.Show(e.Message);
-                }
-            }
-        }
->>>>>>> cdc478535bca4eaf7c17d81fcde005d75c8f2143
+
+
 
         /*private Appointment getAppointmentById(int id);
         Preconditions: Appointment with associated id already exists.
@@ -487,25 +480,16 @@ namespace Tutor_Master
                 {
                     this.CloseConnection();
                     MessageBox.Show(ex.Message);
-<<<<<<< HEAD
                 }
 
                 this.CloseConnection();
-=======
 
                 }                
->>>>>>> cdc478535bca4eaf7c17d81fcde005d75c8f2143
-            }
+            
             return appt;
 
         }
 
-
-
-<<<<<<< HEAD
-
-=======
->>>>>>> cdc478535bca4eaf7c17d81fcde005d75c8f2143
         //if you want the list of course someone tutors, pass in true
         //if you want the list of courses someone is a tutee for, pass false
         public List<string> getCourseList(string username, bool isTutor)

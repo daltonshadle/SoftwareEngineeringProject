@@ -15,13 +15,17 @@ namespace Tutor_Master
         private bool tutorAcc, tuteeAcc, facultyAcc, adminAcc;
         private string courseapp1, courseapp2, courseapp3, courseapp4;
 
+        List<string> tuteeCoursesList;
+        List<string> tutorCoursesList;
+        List<string> courseAppList;
+
         public UserProfile(string username)
         {
             InitializeComponent();
 
-            List<string> tuteeCoursesList = new List<string>();
-            List<string> tutorCoursesList = new List<string>();
-            List<string> courseAppList = new List<string>();
+            tuteeCoursesList = new List<string>();
+            tutorCoursesList = new List<string>();
+            courseAppList = new List<string>();
 
             List<string> listOfProfileInfo;
             Database db = new Database();
@@ -56,19 +60,21 @@ namespace Tutor_Master
             else
                 adminAcc = false;
 
-            tuteeCoursesList.Add(listOfProfileInfo[4]);
-            tuteeCoursesList.Add(listOfProfileInfo[5]);
-            tuteeCoursesList.Add(listOfProfileInfo[6]);
-            tuteeCoursesList.Add(listOfProfileInfo[7]);
-            tutorCoursesList.Add(listOfProfileInfo[8]);
-            tutorCoursesList.Add(listOfProfileInfo[9]);
-            tutorCoursesList.Add(listOfProfileInfo[10]);
-            tutorCoursesList.Add(listOfProfileInfo[11]);
-
-            courseAppList.Add(listOfProfileInfo[12]);
-            courseAppList.Add(listOfProfileInfo[13]);
-            courseAppList.Add(listOfProfileInfo[14]);
-            courseAppList.Add(listOfProfileInfo[15]);
+            for (int i = 4; i < 7; i++)
+            {
+                if (listOfProfileInfo[i] != "")
+                    tuteeCoursesList.Add(listOfProfileInfo[i]);
+            }
+            for (int i = 8; i < 11; i++)
+            {
+                if (listOfProfileInfo[i] != "")
+                    tutorCoursesList.Add(listOfProfileInfo[i]);
+            }
+            for (int i = 12; i < 15; i++)
+            {
+                if (listOfProfileInfo[i] != "")
+                    courseAppList.Add(listOfProfileInfo[i]);
+            }
 
             if (first != "")
             {
@@ -93,7 +99,7 @@ namespace Tutor_Master
 
 
             // If so, loop through all checked items and print results. 
-            if (tutorCoursesList[0] != "")
+            if (tutorCoursesList.Count > 0)
             {
                 for (int x = 0; x < tutorCoursesList.Count; x++)
                 {
@@ -118,7 +124,7 @@ namespace Tutor_Master
             //MessageBox.Show("tutee list box " + b.X + " " + b.Y);
 
 
-            if (tuteeCoursesList[0] != "")
+            if (tuteeCoursesList.Count > 0)
             {
                 for (int x = 0; x < tuteeCoursesList.Count; x++)
                 {
@@ -140,14 +146,14 @@ namespace Tutor_Master
 
         private void btnAddTutorCourses_Click(object sender, EventArgs e)
         {
-            var next = new Registration2(user, tutorAcc, tuteeAcc, 2000);   //2000 is the id for coming from userprofile
+            var next = new Registration2(user, tutorAcc, tuteeAcc, tuteeCoursesList, 2000);   //2000 is the id for coming from userprofile
             this.Hide();
             next.Show();
         }
 
         private void buttAddTuteeCourses_Click(object sender, EventArgs e)
         {
-            var next = new Registration3(user);
+            var next = new Registration3(user, tutorCoursesList);
             this.Hide();
             next.Show();
         }
@@ -218,11 +224,6 @@ namespace Tutor_Master
             var monthCal = new MonthCalendarForm(user);
             monthCal.StartPosition = FormStartPosition.CenterParent;
             monthCal.Show();
-        }
-
-        private void weekCalendar_Load(object sender, EventArgs e)
-        {
-
         }
 
         private void btnMatchingAppoint_Click(object sender, EventArgs e)

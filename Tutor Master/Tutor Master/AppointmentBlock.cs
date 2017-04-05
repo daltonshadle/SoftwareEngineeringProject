@@ -21,6 +21,7 @@ namespace Tutor_Master
         private int id;
         private int user;
         private string endDate;
+        private Appointment buildingAppt;
 
         public AppointmentBlock()
         {
@@ -30,6 +31,7 @@ namespace Tutor_Master
         public AppointmentBlock(Appointment a)
         {
             InitializeComponent();
+            buildingAppt = a;
             apptCourse = a.getCourse();
             apptPlace = a.getMeetingPlace();
             apptTime = a.getStartTime().ToShortTimeString();
@@ -51,7 +53,6 @@ namespace Tutor_Master
         }
 
         private void setViews() {
-            lblAppointmentType.Text = apptType;
             lblCourse.Text = apptCourse;
             lblFirst.Text = firstName;
             lblSecond.Text = secondName;
@@ -61,16 +62,24 @@ namespace Tutor_Master
         }
 
         private void setBackColor() {
-            if (apptType.Equals("Tutoring"))
+            if (!buildingAppt.getIsFreeTimeSession())
             {
-                this.BackColor = Color.Cyan;
+                lblAppointmentType.Text = "Learning";
+                if (buildingAppt.getIsApproved())
+                    this.BackColor = Color.Cyan;
+                else
+                    this.BackColor = Color.MediumVioletRed;
             }
-            else if (apptType.Equals("Tuteeing"))
+            /*else if (apptType.Equals("Tuteeing"))
             {
-                this.BackColor = Color.Cyan;
-            }
-            else if (apptType.Equals("Freetime"))
+                if (buildingAppt.getIsApproved())
+                    this.BackColor = Color.Cyan;
+                else
+                    this.BackColor = Color.MediumVioletRed;
+            }*/
+            else
             {
+                lblAppointmentType.Text = "Freetime";
                 this.BackColor = Color.Yellow;
             }
         }
