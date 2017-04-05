@@ -1,3 +1,5 @@
+F:\SoftwareEngineering\Tutor Master\Tutor Master\bin\Debug\Tutor Master.exe
+F:\SoftwareEngineering\Tutor Master\Tutor Master\bin\Debug\Tutor Master.pdb
 F:\SoftwareEngineering\Tutor Master\Tutor Master\obj\x86\Debug\Tutor Master.csprojResolveAssemblyReference.cache
 F:\SoftwareEngineering\Tutor Master\Tutor Master\obj\x86\Debug\Tutor_Master.AppointmentBlock.resources
 F:\SoftwareEngineering\Tutor Master\Tutor Master\obj\x86\Debug\Tutor_Master.AppointmentBuilderForm.resources
@@ -17,7 +19,5 @@ F:\SoftwareEngineering\Tutor Master\Tutor Master\obj\x86\Debug\Tutor_Master.Sign
 F:\SoftwareEngineering\Tutor Master\Tutor Master\obj\x86\Debug\Tutor_Master.UserProfile.resources
 F:\SoftwareEngineering\Tutor Master\Tutor Master\obj\x86\Debug\Tutor_Master.WeekCalendar.resources
 F:\SoftwareEngineering\Tutor Master\Tutor Master\obj\x86\Debug\Tutor Master.csproj.GenerateResource.Cache
-F:\SoftwareEngineering\Tutor Master\Tutor Master\bin\Debug\Tutor Master.exe
-F:\SoftwareEngineering\Tutor Master\Tutor Master\bin\Debug\Tutor Master.pdb
 F:\SoftwareEngineering\Tutor Master\Tutor Master\obj\x86\Debug\Tutor Master.exe
 F:\SoftwareEngineering\Tutor Master\Tutor Master\obj\x86\Debug\Tutor Master.pdb
