@@ -83,7 +83,11 @@ namespace Tutor_Master
                 for (int x = 0; x < tutorClassesList.Count(); x++)
                 {
                     facultyApprover = db.getFacultyApprover(tutorClassesList[x]);
+<<<<<<< HEAD
                     db.sendMessage(username, facultyApprover, "Tutor Request", username+" is requesting to tutor "+tutorClassesList[x], false, DateTime.Now, tutorClassesList[x], -1);
+=======
+
+>>>>>>> cdc478535bca4eaf7c17d81fcde005d75c8f2143
                     db.sendMessage(username, facultyApprover, "Tutor Request", username+" is requesting to tutor "+tutorClassesList[x], false, DateTime.Now, tutorClassesList[x], -1);
                 }
 
