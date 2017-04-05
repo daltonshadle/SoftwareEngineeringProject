@@ -29,6 +29,7 @@ namespace Tutor_Master
         public Appointment()
         {
             meetingPlace = "";
+            meetingType = "";
             course = "";
             startTime = new DateTime();
             endTime = new DateTime();
@@ -80,6 +81,7 @@ namespace Tutor_Master
             freeTimeProf = owner;
             isApproved = true; //will always be approved for a freetime appt.
             apptID = -1;
+            meetingType = "Freetime";
         }
 
         private bool meetingTypeStringToBool(string type) {
@@ -182,15 +184,24 @@ namespace Tutor_Master
             return isFreeTimeSession;
         }
 
+
         public void setMeetingType(int type)
         {
             switch (type)
             {
+                case -1:
+                    meetingType = "";
+                    break;
                 case 1:
+                    meetingType = "Freetime";
                     isFreeTimeSession = true;
                     break;
                 case 2:
+                    meetingType = "Tutoring";
+                    isFreeTimeSession = false;
+                    break;
                 case 3:
+                    meetingType = "Tuteeing";
                     isFreeTimeSession = false;
                     break;
                 default:

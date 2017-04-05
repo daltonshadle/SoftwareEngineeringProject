@@ -33,18 +33,16 @@ namespace Tutor_Master
             apptCourse = a.getCourse();
             apptPlace = a.getMeetingPlace();
             apptTime = a.getStartTime().ToShortTimeString();
+            apptType = a.getMeetingType();
             endDate = a.getEndTime().ToShortTimeString();
             id = a.getID();
 
-
             bool b = a.getIsFreeTimeSession();
             if (b) {
-                apptType = "Freetime";
                 firstName = a.getFreeTimeProf();
                 lblSecond.Visible = false;
             }
             else {
-                apptType = "Learning";
                 firstName = a.getTutor();
                 lblSecond.Visible = true;
                 secondName = a.getTutee();
@@ -63,11 +61,15 @@ namespace Tutor_Master
         }
 
         private void setBackColor() {
-            if (apptType.Equals("Learning"))
+            if (apptType.Equals("Tutoring"))
             {
                 this.BackColor = Color.Cyan;
             }
-            if (apptType.Equals("Freetime"))
+            else if (apptType.Equals("Tuteeing"))
+            {
+                this.BackColor = Color.Cyan;
+            }
+            else if (apptType.Equals("Freetime"))
             {
                 this.BackColor = Color.Yellow;
             }

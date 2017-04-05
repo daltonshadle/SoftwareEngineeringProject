@@ -22,6 +22,7 @@ namespace Tutor_Master
         private string firstName;
         private string secondName;
         private int apptId;
+        private string startString;
 
         public AppointmentEditForm()
         {
@@ -32,6 +33,7 @@ namespace Tutor_Master
         public AppointmentEditForm(string type, string place, string course, string time, DateTime date, DateTime datetime2, string tutor, string tutee, int id)
         {
             apptType = type;
+            startString = type;
             apptPlace = place;
             apptCourse = course;
             apptTime = time;
@@ -41,6 +43,7 @@ namespace Tutor_Master
             firstName = tutor;
             secondName = tutee;
             apptId = id;
+
 
             InitializeComponent();
             initialize();
@@ -154,11 +157,9 @@ namespace Tutor_Master
 
                     lblPlace.Visible = false;
                     txtMeetingPlace.Visible = false;
-                    //isFreeTimeSession = true;
                     break;
                 case 1:
                     //add tutor courses here from tutee list
-                    int i = 0;
                     cbxCourseList.Items.Clear();
 
                     //Fill the course box up
@@ -210,19 +211,27 @@ namespace Tutor_Master
                         }
                     }*/
 
-                     lblTutor.Visible = true;
-                     lblTutorVal1.Visible = true;
-                     lblTutee.Visible = true;
-                     lblTuteeVal1.Visible = true;
+                    lblTutor.Visible = true;
+                    lblTutorVal1.Visible = true;
+                    lblTutee.Visible = true;
+                    lblTuteeVal1.Visible = true;
 
-                     lblCourse.Visible = true;
+                    lblCourse.Visible = true;
                     cbxCourseList.Visible = true;
 
                     lblPlace.Visible = true;
                     txtMeetingPlace.Visible = true;
 
-                    lblTutorVal1.Text = firstName;
-                    lblTuteeVal1.Text = secondName;
+                    if (startString == "Freetime")
+                    {
+                        lblTutorVal1.Text = firstName;
+                        lblTuteeVal1.Text = "------";
+                    }
+                    else
+                    {
+                        lblTutorVal1.Text = firstName;
+                        lblTuteeVal1.Text = secondName;
+                    }
 
                     //isFreeTimeSession = false;
                     break;
@@ -291,8 +300,16 @@ namespace Tutor_Master
                     lblPlace.Visible = true;
                     txtMeetingPlace.Visible = true;
 
-                    lblTutorVal1.Text = firstName;
-                    lblTuteeVal1.Text = secondName;
+                    if (startString == "Freetime")
+                    {
+                        lblTutorVal1.Text = "------";
+                        lblTuteeVal1.Text = firstName;
+                    }
+                    else
+                    {
+                        lblTutorVal1.Text = firstName;
+                        lblTuteeVal1.Text = secondName;
+                    }
 
                     //isFreeTimeSession = false;
                     break;

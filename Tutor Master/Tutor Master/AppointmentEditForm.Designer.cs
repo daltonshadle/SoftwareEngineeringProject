@@ -33,7 +33,6 @@
             this.lblCourse = new System.Windows.Forms.Label();
             this.lblTutee = new System.Windows.Forms.Label();
             this.lblTutor = new System.Windows.Forms.Label();
-            this.cbxCourseList = new System.Windows.Forms.ComboBox();
             this.txtMeetingPlace = new System.Windows.Forms.TextBox();
             this.panelTime = new System.Windows.Forms.Panel();
             this.dateTimeTime2 = new System.Windows.Forms.DateTimePicker();
@@ -45,6 +44,7 @@
             this.lblTuteeVal1 = new System.Windows.Forms.Label();
             this.lblTutorVal1 = new System.Windows.Forms.Label();
             this.cbxType = new System.Windows.Forms.ComboBox();
+            this.cbxCourseList = new System.Windows.Forms.ComboBox();
             this.panelTime.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -92,14 +92,6 @@
             this.lblTutor.Size = new System.Drawing.Size(66, 13);
             this.lblTutor.TabIndex = 21;
             this.lblTutor.Text = "Tutor profile:";
-            // 
-            // cbxCourseList
-            // 
-            this.cbxCourseList.FormattingEnabled = true;
-            this.cbxCourseList.Location = new System.Drawing.Point(111, 81);
-            this.cbxCourseList.Name = "cbxCourseList";
-            this.cbxCourseList.Size = new System.Drawing.Size(121, 21);
-            this.cbxCourseList.TabIndex = 35;
             // 
             // txtMeetingPlace
             // 
@@ -200,6 +192,14 @@
             this.cbxType.TabIndex = 41;
             this.cbxType.SelectedIndexChanged += new System.EventHandler(this.cbxType_SelectedIndexChanged);
             // 
+            // cbxCourseList
+            // 
+            this.cbxCourseList.FormattingEnabled = true;
+            this.cbxCourseList.Location = new System.Drawing.Point(111, 81);
+            this.cbxCourseList.Name = "cbxCourseList";
+            this.cbxCourseList.Size = new System.Drawing.Size(121, 21);
+            this.cbxCourseList.TabIndex = 35;
+            // 
             // AppointmentEditForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -232,7 +232,6 @@
         private System.Windows.Forms.Label lblCourse;
         private System.Windows.Forms.Label lblTutee;
         private System.Windows.Forms.Label lblTutor;
-        private System.Windows.Forms.ComboBox cbxCourseList;
         private System.Windows.Forms.TextBox txtMeetingPlace;
         private System.Windows.Forms.Panel panelTime;
         private System.Windows.Forms.DateTimePicker dateTimeTime2;
@@ -244,6 +243,7 @@
         private System.Windows.Forms.Label lblTuteeVal1;
         private System.Windows.Forms.Label lblTutorVal1;
         private System.Windows.Forms.ComboBox cbxType;
+        private System.Windows.Forms.ComboBox cbxCourseList;
 
     }
 }
