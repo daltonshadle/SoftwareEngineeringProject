@@ -57,25 +57,28 @@ namespace Tutor_Master
             dateTimeTime2.ShowUpDown = true;
             course = "";
 
+            initializeBuilderApptTypeCollection();
             initializeBuilderCourseCollection();
+            
         }
 
         private void cbxTypeAppt_SelectedIndexChanged(object sender, EventArgs e)
         {
-            switch (cbxTypeAppt.SelectedIndex)
-            {
-                case 0:
+                if(cbxTypeAppt.Text.ToString().Equals(FREETYPE)){
+                    //freetime appt
                     panelCourse.Visible = false;
                     panelMeetingPlace.Visible = false;
                     panelOtherProfile.Visible = false;
                     isFreeTimeSession = true;
-                    break;
-                case 1:
+                }
+                
+                if(cbxTypeAppt.Text.ToString().Equals(LEARNTYPE)){
                     //add tutor courses here from tutee list
                     type = 1;
 
                     int i = 0;
                     cbxCourseList.Items.Clear();
+                    cbxCourseList.Text = "";
                     if (builderTutorCourses.Count > 0)
                     {
                         string tempTutorCourse = builderTutorCourses[i];
@@ -96,13 +99,15 @@ namespace Tutor_Master
                     panelMeetingPlace.Visible = true;
                     panelOtherProfile.Visible = true;
                     isFreeTimeSession = false;
-                    break;
-                case 2:
+                }
+
+                if(cbxTypeAppt.Text.ToString().Equals(TEACHTYPE)){
                     //add tutee courses here from tutor list
                     type = 2;
 
                     int j = 0;
                     cbxCourseList.Items.Clear();
+                    cbxCourseList.Text = "";
                     if (builderTuteeCourses.Count > 0)
                     {
                         string tempTuteeCourse = builderTuteeCourses[j];
@@ -119,7 +124,18 @@ namespace Tutor_Master
                     panelMeetingPlace.Visible = true;
                     panelOtherProfile.Visible = true;
                     isFreeTimeSession = false;
-                    break;
+                }
+            }
+
+        private void initializeBuilderApptTypeCollection(){
+            cbxTypeAppt.Items.Clear();
+            if (isTutee) {
+                cbxTypeAppt.Items.Add(TEACHTYPE);
+                cbxTypeAppt.Items.Add(FREETYPE);
+            }
+
+            if (isTutor) {
+                cbxTypeAppt.Items.Add(LEARNTYPE);
             }
         }
 
@@ -254,9 +270,14 @@ namespace Tutor_Master
                     
                     string msg = builderProf + " has requested to make a tutoring appointment for course: " + course + " at " + startTime.ToShortDateString();
                     Database db = new Database();
+<<<<<<< HEAD
                     db.sendMessage(builderProf, otherProfName, "Request for appointment", msg, true, DateTime.Now, course, a.getID());
                     //db.sendMessage(builderProf, otherProfName, "Request for appointment", msg, true, DateTime.Now, course);
                     db.sendMessage(builderProf, otherProfName, "Request for appointment", msg, true, DateTime.Now, course, a.getID());
+=======
+                    db.sendMessage(builderProf, otherProfName, "Request for appointment", msg, true, DateTime.Now, course, a.getID());
+                   
+>>>>>>> 6a2b23e22b9cd7fd4d44aa9939e188240f1b7b90
                 }
                 this.Hide();
                 this.Close();

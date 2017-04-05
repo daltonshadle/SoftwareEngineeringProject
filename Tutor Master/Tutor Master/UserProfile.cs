@@ -31,19 +31,19 @@ namespace Tutor_Master
             last = listOfProfileInfo[1];
 
             string tutora = listOfProfileInfo[2];
-            if (tutora == "true")
+            if (tutora == "True")
                 tutorAcc = true;
             else
                 tutorAcc = false;
 
             string tuteea = listOfProfileInfo[3];
-            if (tuteea == "true")
+            if (tuteea == "True")
                 tuteeAcc = true;
             else
                 tuteeAcc = false;
 
             string facultya = listOfProfileInfo[16];
-            if (facultya == "true")
+            if (facultya == "True")
             {
                 facultyAcc = true;
             }
@@ -51,7 +51,7 @@ namespace Tutor_Master
                 facultyAcc = false;
 
             string admina = listOfProfileInfo[17];
-            if (admina == "true")
+            if (admina == "True")
                 adminAcc = true;
             else
                 adminAcc = false;
@@ -70,8 +70,6 @@ namespace Tutor_Master
             courseAppList.Add(listOfProfileInfo[14]);
             courseAppList.Add(listOfProfileInfo[15]);
 
-
-
             if (first != "")
             {
                 this.Text = FirstLetterToUpper(first) + " " + FirstLetterToUpper(last);
@@ -81,9 +79,7 @@ namespace Tutor_Master
             {
                 this.Text = username;
                 lblNameAndUser.Text = username;
-            }
-
-            
+            }  
 
             this.Icon = Tutor_Master.Properties.Resources.favicon;
 

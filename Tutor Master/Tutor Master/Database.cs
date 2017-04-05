@@ -11,7 +11,7 @@ namespace Tutor_Master
     class Database
     {
         private SqlCeConnection con;
-        private string connection = @"Data Source=C:\TutorMaster.sdf";
+        private string connection = @"Data Source=C:\TutorMaster(1).sdf";
 
         public Database()
         {
@@ -308,6 +308,7 @@ namespace Tutor_Master
             return appointmentList;
         }
 
+<<<<<<< HEAD
         //Delete an appointment
         public void deleteAppointment(int apptId)
         {
@@ -378,16 +379,110 @@ namespace Tutor_Master
                 try
                 {
                     cmd.ExecuteNonQuery();
+=======
+
+        /*private Appointment getAppointmentById(int id);
+        Preconditions: Appointment with associated id already exists.
+        Post-conditions: Appointment is returned with matching id.
+        Function: Returns the appointment object with id similar to argument*/
+        public Appointment getAppointmentById(int id)
+        {
+            Appointment appt = new Appointment();
+
+            string query;
+            query = "SELECT * FROM appointment WHERE  ([id number] = @id)";
+
+            if (this.OpenConnection())
+            {
+                SqlCeCommand cmd = new SqlCeCommand();
+                cmd.CommandText = query;
+                cmd.Parameters.Add("@id", id);
+                cmd.Connection = con;
+                try
+                {
+                    SqlCeDataReader dataReader = cmd.ExecuteReader();
+
+                    //Read the data and store them in the list
+                    while (dataReader.Read())
+                    { //have to make catches for all of the nulls that might be in the database
+
+                        //appt.setID((int)dataReader["id number"]);
+                        if (dataReader["free time"] == DBNull.Value)
+                        {
+                            appt.setFreeTimeProf(null);
+                        }
+                        else
+                        {
+                            appt.setFreeTimeProf(dataReader["free time"].ToString());
+                        }
+
+                        if (dataReader["tutor"] == DBNull.Value)
+                        {
+                            appt.setTutor(null);
+                        }
+                        else
+                        {
+                            appt.setTutor(dataReader["tutor"].ToString());
+                        }
+                        if (dataReader["tutee"] == DBNull.Value)
+                        {
+                            appt.setTutee(null);
+                        }
+                        else
+                        {
+                            appt.setTutee(dataReader["tutee"].ToString());
+                        }
+                        if (dataReader["courseName"] == DBNull.Value)
+                        {
+                            appt.setCourse(null);
+                        }
+                        else
+                        {
+                            appt.setCourse(dataReader["courseName"].ToString());
+                        }
+                        if (dataReader["meetingPlace"] == DBNull.Value)
+                        {
+                            appt.setMeetingPlace(null);
+                        }
+                        else
+                        {
+                            appt.setMeetingPlace(dataReader["meetingPlace"].ToString());
+                        }
+                        appt.setStartTime((DateTime)dataReader["startTime"]);
+                        appt.setEndTime((DateTime)dataReader["endTime"]);
+                        appt.setIsFreeTimeSession((bool)dataReader["isFreeTimeSession"]);
+                        //appointmentList.Add(newAppointment);
+                    }
+
+                    //close Data Reader
+                    dataReader.Close();
+                    this.CloseConnection();
+                    return appt;
+
+>>>>>>> 6a2b23e22b9cd7fd4d44aa9939e188240f1b7b90
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
+<<<<<<< HEAD
                 }
 
                 this.CloseConnection();
             }
         }
 
+=======
+                    this.CloseConnection();
+                    return appt;
+                }
+            }
+            return appt;
+        }
+
+
+
+
+>>>>>>> 6a2b23e22b9cd7fd4d44aa9939e188240f1b7b90
         //if you want the list of course someone tutors, pass in true
         //if you want the list of courses someone is a tutee for, pass false
         public List<string> getCourseList(string username, bool isTutor)
