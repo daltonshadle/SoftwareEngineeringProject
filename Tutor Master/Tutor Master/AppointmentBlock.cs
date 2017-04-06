@@ -65,6 +65,7 @@ namespace Tutor_Master
             if (!buildingAppt.getIsFreeTimeSession())
             {
                 lblAppointmentType.Text = "Learning";
+                apptType = "Learning";
                 if (buildingAppt.getIsApproved())
                     this.BackColor = Color.Cyan;
                 else
@@ -80,6 +81,7 @@ namespace Tutor_Master
             else
             {
                 lblAppointmentType.Text = "Freetime";
+                apptType = "Freetime";
                 this.BackColor = Color.Yellow;
             }
         }

@@ -241,10 +241,27 @@ namespace Tutor_Master
             //throw new NotImplementedException();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnViewMessages_Click(object sender, EventArgs e)
         {
             var messagePage = new MessagesForm(user);
             messagePage.Show();
+        }
+
+        private void btnRefinedSearch_Click(object sender, EventArgs e)
+        {
+            //If user is a tutee:
+            if (tuteeCoursesList.Count > 0)
+            {
+                var refine = new SearchRefinementForm(user);
+                refine.FormClosing += new FormClosingEventHandler(matchingForm_FormClosing);
+                refine.Show();
+                //this.Hide();
+            }
+            //If user is not a tutee:
+            else
+            {
+                MessageBox.Show("This search is for users looking for someone to tutor them.");
+            }
         }
 
        

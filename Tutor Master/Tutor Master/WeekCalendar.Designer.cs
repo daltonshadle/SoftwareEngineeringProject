@@ -43,6 +43,12 @@
             this.lblFriday = new System.Windows.Forms.Label();
             this.panelSat = new System.Windows.Forms.Panel();
             this.lblSaturday = new System.Windows.Forms.Label();
+            this.pnlLegendFreetime = new System.Windows.Forms.Panel();
+            this.pnlLegendTutoring = new System.Windows.Forms.Panel();
+            this.pnlLegendPending = new System.Windows.Forms.Panel();
+            this.lblLegendFreetime = new System.Windows.Forms.Label();
+            this.lblLegendTutoring = new System.Windows.Forms.Label();
+            this.lblLegendPending = new System.Windows.Forms.Label();
             this.panelSun.SuspendLayout();
             this.panelMon.SuspendLayout();
             this.panelTues.SuspendLayout();
@@ -50,6 +56,9 @@
             this.panelThur.SuspendLayout();
             this.panelFri.SuspendLayout();
             this.panelSat.SuspendLayout();
+            this.pnlLegendFreetime.SuspendLayout();
+            this.pnlLegendTutoring.SuspendLayout();
+            this.pnlLegendPending.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblWeek
@@ -187,10 +196,67 @@
             this.lblSaturday.TabIndex = 0;
             this.lblSaturday.Text = "Saturday";
             // 
+            // pnlLegendFreetime
+            // 
+            this.pnlLegendFreetime.BackColor = System.Drawing.Color.Yellow;
+            this.pnlLegendFreetime.Controls.Add(this.lblLegendFreetime);
+            this.pnlLegendFreetime.Location = new System.Drawing.Point(887, 118);
+            this.pnlLegendFreetime.Name = "pnlLegendFreetime";
+            this.pnlLegendFreetime.Size = new System.Drawing.Size(138, 31);
+            this.pnlLegendFreetime.TabIndex = 11;
+            // 
+            // pnlLegendTutoring
+            // 
+            this.pnlLegendTutoring.BackColor = System.Drawing.Color.Cyan;
+            this.pnlLegendTutoring.Controls.Add(this.lblLegendTutoring);
+            this.pnlLegendTutoring.Location = new System.Drawing.Point(887, 155);
+            this.pnlLegendTutoring.Name = "pnlLegendTutoring";
+            this.pnlLegendTutoring.Size = new System.Drawing.Size(138, 31);
+            this.pnlLegendTutoring.TabIndex = 12;
+            // 
+            // pnlLegendPending
+            // 
+            this.pnlLegendPending.BackColor = System.Drawing.Color.MediumVioletRed;
+            this.pnlLegendPending.Controls.Add(this.lblLegendPending);
+            this.pnlLegendPending.Location = new System.Drawing.Point(887, 192);
+            this.pnlLegendPending.Name = "pnlLegendPending";
+            this.pnlLegendPending.Size = new System.Drawing.Size(138, 31);
+            this.pnlLegendPending.TabIndex = 12;
+            // 
+            // lblLegendFreetime
+            // 
+            this.lblLegendFreetime.AutoSize = true;
+            this.lblLegendFreetime.Location = new System.Drawing.Point(24, 9);
+            this.lblLegendFreetime.Name = "lblLegendFreetime";
+            this.lblLegendFreetime.Size = new System.Drawing.Size(82, 13);
+            this.lblLegendFreetime.TabIndex = 0;
+            this.lblLegendFreetime.Text = "Tutor Free Time";
+            // 
+            // lblLegendTutoring
+            // 
+            this.lblLegendTutoring.AutoSize = true;
+            this.lblLegendTutoring.Location = new System.Drawing.Point(3, 9);
+            this.lblLegendTutoring.Name = "lblLegendTutoring";
+            this.lblLegendTutoring.Size = new System.Drawing.Size(135, 13);
+            this.lblLegendTutoring.TabIndex = 1;
+            this.lblLegendTutoring.Text = "Approved Tutoring Session";
+            // 
+            // lblLegendPending
+            // 
+            this.lblLegendPending.AutoSize = true;
+            this.lblLegendPending.Location = new System.Drawing.Point(7, 9);
+            this.lblLegendPending.Name = "lblLegendPending";
+            this.lblLegendPending.Size = new System.Drawing.Size(128, 13);
+            this.lblLegendPending.TabIndex = 2;
+            this.lblLegendPending.Text = "Pending Tutoring Session";
+            // 
             // WeekCalendar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.pnlLegendPending);
+            this.Controls.Add(this.pnlLegendTutoring);
+            this.Controls.Add(this.pnlLegendFreetime);
             this.Controls.Add(this.panelSat);
             this.Controls.Add(this.panelFri);
             this.Controls.Add(this.panelThur);
@@ -200,7 +266,7 @@
             this.Controls.Add(this.panelSun);
             this.Controls.Add(this.lblWeek);
             this.Name = "WeekCalendar";
-            this.Size = new System.Drawing.Size(870, 351);
+            this.Size = new System.Drawing.Size(1066, 351);
             this.panelSun.ResumeLayout(false);
             this.panelSun.PerformLayout();
             this.panelMon.ResumeLayout(false);
@@ -215,6 +281,12 @@
             this.panelFri.PerformLayout();
             this.panelSat.ResumeLayout(false);
             this.panelSat.PerformLayout();
+            this.pnlLegendFreetime.ResumeLayout(false);
+            this.pnlLegendFreetime.PerformLayout();
+            this.pnlLegendTutoring.ResumeLayout(false);
+            this.pnlLegendTutoring.PerformLayout();
+            this.pnlLegendPending.ResumeLayout(false);
+            this.pnlLegendPending.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -237,5 +309,11 @@
         private System.Windows.Forms.Label lblFriday;
         private System.Windows.Forms.Panel panelSat;
         private System.Windows.Forms.Label lblSaturday;
+        private System.Windows.Forms.Panel pnlLegendFreetime;
+        private System.Windows.Forms.Panel pnlLegendTutoring;
+        private System.Windows.Forms.Panel pnlLegendPending;
+        private System.Windows.Forms.Label lblLegendFreetime;
+        private System.Windows.Forms.Label lblLegendTutoring;
+        private System.Windows.Forms.Label lblLegendPending;
     }
 }

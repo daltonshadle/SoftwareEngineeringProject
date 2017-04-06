@@ -292,9 +292,16 @@ namespace Tutor_Master
                         else{
                             newAppointment.setIsFreeTimeSession((bool)dataReader["isFreeTimeSession"]);
                         }
+                        if (dataReader["isApproved"] == DBNull.Value){
+                            newAppointment.setIsApproved(false);
+                        }
+                        else{
+                            newAppointment.setIsApproved((bool)dataReader["isApproved"]);
+                        }
                         newAppointment.setStartTime((DateTime)dataReader["startTime"]);
                         newAppointment.setEndTime((DateTime)dataReader["endTime"]);
                         newAppointment.setIsFreeTimeSession((bool)dataReader["isFreeTimeSession"]);
+                        newAppointment.setID((int)dataReader["id number"]); //Scott added this.
                         appointmentList.Add(newAppointment);
                     }
 
@@ -467,6 +474,7 @@ namespace Tutor_Master
                         appt.setStartTime((DateTime)dataReader["startTime"]);
                         appt.setEndTime((DateTime)dataReader["endTime"]);
                         appt.setIsFreeTimeSession((bool)dataReader["isFreeTimeSession"]);
+                        appt.setID(id); //Scott added this.
                         //appointmentList.Add(newAppointment);
                     }
 

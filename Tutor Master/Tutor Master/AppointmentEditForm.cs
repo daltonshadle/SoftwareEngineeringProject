@@ -56,8 +56,7 @@ namespace Tutor_Master
             if (apptType == "Freetime")
             {
                 cbxType.Items.Add("Freetime");
-                cbxType.Items.Add("Tutoring");
-                cbxType.Items.Add("Tuteeing");
+                cbxType.Items.Add("Learning");
                 cbxType.SelectedItem = apptType;
 
                 lblTutor.Visible = false;
@@ -80,6 +79,14 @@ namespace Tutor_Master
 
                 lblTutorVal1.Text = firstName;
                 lblTuteeVal1.Text = secondName;
+
+                lblTutor.Visible = true;
+                lblTutorVal1.Visible = true;
+                lblTutee.Visible = true;
+                lblTuteeVal1.Visible = true;
+
+                lblCourse.Visible = true;
+                cbxCourseList.Visible = true;
 
                 //Fill the course box up
                 //Can't finalize this until we know more than just "Learning"

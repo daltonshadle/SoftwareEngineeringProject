@@ -23,3 +23,4 @@ F:\Software Engineering\Tutor Master\Tutor Master\Tutor Master\obj\x86\Debug\Tut
 F:\Software Engineering\Tutor Master\Tutor Master\Tutor Master\obj\x86\Debug\Tutor Master.csproj.GenerateResource.Cache
 F:\Software Engineering\Tutor Master\Tutor Master\Tutor Master\obj\x86\Debug\Tutor Master.exe
 F:\Software Engineering\Tutor Master\Tutor Master\Tutor Master\obj\x86\Debug\Tutor Master.pdb
+F:\Software Engineering\Tutor Master\Tutor Master\Tutor Master\obj\x86\Debug\Tutor_Master.SearchRefinementForm.resources

@@ -37,10 +37,11 @@
             this.btnViewCal = new System.Windows.Forms.Button();
             this.btnMatchingAppoint = new System.Windows.Forms.Button();
             this.lblNameAndUser = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnViewMessages = new System.Windows.Forms.Button();
             this.btnAddTutorCourses = new System.Windows.Forms.Button();
             this.btnAddTuteeCourses = new System.Windows.Forms.Button();
             this.weekCalendar = new Tutor_Master.WeekCalendar();
+            this.btnRefinedSearch = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnLogout
@@ -139,16 +140,16 @@
             this.lblNameAndUser.Size = new System.Drawing.Size(0, 31);
             this.lblNameAndUser.TabIndex = 10;
             // 
-            // button1
+            // btnViewMessages
             // 
-            this.button1.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.button1.Location = new System.Drawing.Point(456, 12);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(90, 23);
-            this.button1.TabIndex = 11;
-            this.button1.Text = "View Messages";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnViewMessages.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btnViewMessages.Location = new System.Drawing.Point(456, 12);
+            this.btnViewMessages.Name = "btnViewMessages";
+            this.btnViewMessages.Size = new System.Drawing.Size(90, 23);
+            this.btnViewMessages.TabIndex = 11;
+            this.btnViewMessages.Text = "View Messages";
+            this.btnViewMessages.UseVisualStyleBackColor = true;
+            this.btnViewMessages.Click += new System.EventHandler(this.btnViewMessages_Click);
             // 
             // btnAddTutorCourses
             // 
@@ -179,17 +180,29 @@
             this.weekCalendar.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.weekCalendar.Location = new System.Drawing.Point(12, 192);
             this.weekCalendar.Name = "weekCalendar";
-            this.weekCalendar.Size = new System.Drawing.Size(900, 368);
+            this.weekCalendar.Size = new System.Drawing.Size(1032, 368);
             this.weekCalendar.TabIndex = 7;
+            // 
+            // btnRefinedSearch
+            // 
+            this.btnRefinedSearch.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btnRefinedSearch.Location = new System.Drawing.Point(321, 12);
+            this.btnRefinedSearch.Name = "btnRefinedSearch";
+            this.btnRefinedSearch.Size = new System.Drawing.Size(113, 23);
+            this.btnRefinedSearch.TabIndex = 14;
+            this.btnRefinedSearch.Text = "Refined Searching";
+            this.btnRefinedSearch.UseVisualStyleBackColor = true;
+            this.btnRefinedSearch.Click += new System.EventHandler(this.btnRefinedSearch_Click);
             // 
             // UserProfile
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1066, 574);
+            this.Controls.Add(this.btnRefinedSearch);
             this.Controls.Add(this.btnAddTuteeCourses);
             this.Controls.Add(this.btnAddTutorCourses);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnViewMessages);
             this.Controls.Add(this.btnMatchingAppoint);
             this.Controls.Add(this.lblNameAndUser);
             this.Controls.Add(this.btnViewCal);
@@ -220,8 +233,9 @@
         private System.Windows.Forms.Button btnViewCal;
         private System.Windows.Forms.Button btnMatchingAppoint;
         private System.Windows.Forms.Label lblNameAndUser;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnViewMessages;
         private System.Windows.Forms.Button btnAddTutorCourses;
         private System.Windows.Forms.Button btnAddTuteeCourses;
+        private System.Windows.Forms.Button btnRefinedSearch;
     }
 }
