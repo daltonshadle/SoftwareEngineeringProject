@@ -105,7 +105,7 @@ namespace Tutor_Master
                 {
                     if (tutorCoursesList[x] != "")
                     {
-                        if (courseAppList.Count > 0)
+                        if (courseAppList[x] == "False")   //Check to see if they were approved for the course. If so, don't write pending.
                             tutorListView.Items.Add("Pending");
                         else
                             tutorListView.Items.Add(tutorCoursesList[x] + "\n");
