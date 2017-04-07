@@ -105,7 +105,7 @@ namespace Tutor_Master
                 {
                     if (tutorCoursesList[x] != "")
                     {
-                        if (courseAppList[x] == "False")
+                        if (courseAppList.Count > 0)
                             tutorListView.Items.Add("Pending");
                         else
                             tutorListView.Items.Add(tutorCoursesList[x] + "\n");
