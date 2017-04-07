@@ -244,7 +244,6 @@ namespace Tutor_Master
                     break;
                 case 2:
                     //add tutee courses here from tutor list
-                    int j = 0;
                     cbxCourseList.Items.Clear();
 
                     //Fill the course box up
