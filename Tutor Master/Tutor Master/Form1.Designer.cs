@@ -81,9 +81,9 @@
             // 
             this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.pictureBox1.Image = global::Tutor_Master.Properties.Resources.BCB_Logo;
-            this.pictureBox1.Location = new System.Drawing.Point(282, 386);
+            this.pictureBox1.Location = new System.Drawing.Point(313, 396);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(296, 183);
+            this.pictureBox1.Size = new System.Drawing.Size(236, 136);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 4;
             this.pictureBox1.TabStop = false;

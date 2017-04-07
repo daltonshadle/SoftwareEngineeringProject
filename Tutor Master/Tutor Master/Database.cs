@@ -11,7 +11,7 @@ namespace Tutor_Master
     class Database
     {
         private SqlCeConnection con;
-        private string connection = @"Data Source=C:\TutorMaster(1).sdf";
+        private string connection = @"Data Source=C:\TutorMaster.sdf";
 
         public Database()
         {
@@ -119,6 +119,7 @@ namespace Tutor_Master
             }
         }
    
+        //Simply checks if username is in database
         public bool isUsernameInDataBase(string user)
         {
             string query = "SELECT Count(username) AS Count FROM profile WHERE username = @username";
@@ -285,9 +286,22 @@ namespace Tutor_Master
                         else {
                             newAppointment.setMeetingPlace(dataReader["meetingPlace"].ToString());
                         }
+                        if (dataReader["isFreeTimeSession"] == DBNull.Value){
+                            newAppointment.setIsFreeTimeSession(false);
+                        }
+                        else{
+                            newAppointment.setIsFreeTimeSession((bool)dataReader["isFreeTimeSession"]);
+                        }
+                        if (dataReader["isApproved"] == DBNull.Value){
+                            newAppointment.setIsApproved(false);
+                        }
+                        else{
+                            newAppointment.setIsApproved((bool)dataReader["isApproved"]);
+                        }
                         newAppointment.setStartTime((DateTime)dataReader["startTime"]);
                         newAppointment.setEndTime((DateTime)dataReader["endTime"]);
                         newAppointment.setIsFreeTimeSession((bool)dataReader["isFreeTimeSession"]);
+                        newAppointment.setID((int)dataReader["id number"]); //Scott added this.
                         appointmentList.Add(newAppointment);
                     }
 
@@ -351,26 +365,26 @@ namespace Tutor_Master
                     cmd.Parameters.Add("@free", DBNull.Value);
                 else
                     cmd.Parameters.Add("@free", free);
-                if(meetingPlace == null)
+                if (meetingPlace == null)
                     cmd.Parameters.Add("@meetingPlace", DBNull.Value);
                 else
                     cmd.Parameters.Add("@meetingPlace", meetingPlace);
-                if(tutor == null)
+                if (tutor == null)
                     cmd.Parameters.Add("@tutor", DBNull.Value);
                 else
                     cmd.Parameters.Add("@tutor", tutor);
-                if(tutee == null)
+                if (tutee == null)
                     cmd.Parameters.Add("@tutee", DBNull.Value);
                 else
                     cmd.Parameters.Add("@tutee", tutee);
-                if(course == null)
+                if (course == null)
                     cmd.Parameters.Add("@course", DBNull.Value);
                 else
                     cmd.Parameters.Add("@course", course);
                 cmd.Parameters.Add("@startTime", startTime);
                 cmd.Parameters.Add("@endTime", endTime);
                 cmd.Parameters.Add("@isFreeTime", isFreeTime);
-                if(isApproved == null)
+                if (isApproved == null)
                     cmd.Parameters.Add("@isApproved", DBNull.Value);
                 else
                     cmd.Parameters.Add("@isApproved", isApproved);
@@ -456,6 +470,7 @@ namespace Tutor_Master
                         appt.setStartTime((DateTime)dataReader["startTime"]);
                         appt.setEndTime((DateTime)dataReader["endTime"]);
                         appt.setIsFreeTimeSession((bool)dataReader["isFreeTimeSession"]);
+                        appt.setID(id); //Scott added this.
                         //appointmentList.Add(newAppointment);
                     }
 
@@ -871,8 +886,8 @@ namespace Tutor_Master
         public void sendMessage(string fromUser, string toUser, string subject, string message, bool? approved, DateTime sentTime, string courseName, int appointmentID)
         {
             string querySent, queryReceived;
-            querySent = "INSERT INTO sentMessages (fromUserName, toUserName, subject, message, approved, timeSent, courseName) VALUES (@fromUser, @toUser, @subject, @message, @approved, @sentTime, @course)";
-            queryReceived = "INSERT INTO receivedMessages (fromUserName, toUserName, subject, message, approved, timeSent, courseName) VALUES (@fromUser, @toUser, @subject, @message, @approved, @sentTime, @course)";
+            querySent = "INSERT INTO sentMessages (fromUserName, toUserName, subject, message, approved, timeSent, courseName, apptId) VALUES (@fromUser, @toUser, @subject, @message, @approved, @sentTime, @course, @apptId)";
+            queryReceived = "INSERT INTO receivedMessages (fromUserName, toUserName, subject, message, approved, timeSent, courseName, apptId) VALUES (@fromUser, @toUser, @subject, @message, @approved, @sentTime, @course, @apptId)";
 
             if (this.OpenConnection())
             {
@@ -911,6 +926,9 @@ namespace Tutor_Master
                 cmdSent.Parameters.Add("@course", courseName);
                 cmdReceived.Parameters.Add("@course", courseName);
 
+                cmdSent.Parameters.Add("@apptId", appointmentID);
+                cmdReceived.Parameters.Add("@apptId", appointmentID);
+
                 cmdSent.Connection = con;
                 cmdReceived.Connection = con;
                 try
@@ -934,9 +952,6 @@ namespace Tutor_Master
 
             string query;
             query = "SELECT * FROM receivedMessages WHERE receivedMessages.toUserName = @username";
-
-
-            List<string> list = new List<string>();
 
             if (this.OpenConnection())
             {
@@ -965,6 +980,10 @@ namespace Tutor_Master
                             newMessage.setPending((bool?)dataReader["approved"]);
                         newMessage.setDateTime((DateTime)dataReader["timeSent"]);
                         newMessage.setCourseName(dataReader["courseName"].ToString());
+                        if (dataReader["apptId"] == DBNull.Value)
+                            newMessage.setApptId(-1);
+                        else
+                            newMessage.setApptId((int)dataReader["apptId"]);
                         messageList.Add(newMessage);
                     }
 
@@ -977,7 +996,7 @@ namespace Tutor_Master
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
-                    list.Clear();
+                    messageList.Clear();
                     this.CloseConnection();
                     return messageList;
                 }
@@ -992,9 +1011,6 @@ namespace Tutor_Master
 
             string query;
             query = "SELECT * FROM sentMessages WHERE sentMessages.fromUserName = @username";
-
-
-            List<string> list = new List<string>();
 
             if (this.OpenConnection())
             {
@@ -1023,6 +1039,10 @@ namespace Tutor_Master
                             newMessage.setPending((bool?)dataReader["approved"]);
                         newMessage.setDateTime((DateTime)dataReader["timeSent"]);
                         newMessage.setCourseName(dataReader["courseName"].ToString());
+                        if (dataReader["apptId"] == DBNull.Value)
+                            newMessage.setApptId(-1);
+                        else
+                            newMessage.setApptId((int)dataReader["apptId"]);
                         messageList.Add(newMessage);
                     }
 
@@ -1035,7 +1055,7 @@ namespace Tutor_Master
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
-                    list.Clear();
+                    messageList.Clear();
                     this.CloseConnection();
                     return messageList;
                 }

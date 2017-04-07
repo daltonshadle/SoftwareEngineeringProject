@@ -14,6 +14,7 @@ namespace Tutor_Master
         bool tutorAcc, tuteeAcc;
         string username;
         List<string> tutorClassesList;
+        List<string> tuteeClassesList;
         int code = 0;
 
         Database db = new Database();
@@ -34,8 +35,8 @@ namespace Tutor_Master
             }
         }
 
-        public Registration2(string user, bool isTutor, bool isTutee, int fromCode)
-        {
+        public Registration2(string user, bool isTutor, bool isTutee, int fromCode)  //if this constructor is run, means user is adding courses from profile page
+        {   //if this constructor is run, means user is sent from registration1
             code = fromCode;
             InitializeComponent();
             this.Icon = Tutor_Master.Properties.Resources.favicon;
@@ -51,6 +52,28 @@ namespace Tutor_Master
             for (int i = 0; i < courses.Count(); i++)
             {
                 checkBox.Items.Add(courses[i]);
+            }
+        }
+
+        public Registration2(string user, bool isTutor, bool isTutee, List<string> list, int fromCode)  //if this constructor is run, means user is adding courses from profile page
+        {   //if this constructor is run, means user is adding courses from profile page
+            code = fromCode;
+            InitializeComponent();
+            this.Icon = Tutor_Master.Properties.Resources.favicon;
+            tutorAcc = isTutor;
+            tuteeAcc = isTutee;
+            username = user;
+            tuteeClassesList = list;
+            tutorClassesList = new List<string>();
+
+            //Here we will try to fill the checkboxes
+            List<string> courses = db.getAllCourses();
+
+            var checkBox = (CheckedListBox)checkedListBox1;
+            for (int i = 0; i < courses.Count(); i++)
+            {
+                if (!tuteeClassesList.Contains(courses[i]))
+                    checkBox.Items.Add(courses[i]);
             }
         }
 

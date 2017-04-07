@@ -13,8 +13,8 @@ namespace Tutor_Master
     {
         bool tutorAcc, tuteeAcc;
         string username;
+        List<string> tutorClassesList;
         List<string> tuteeClassesList;
-        //int code = 0;     //not needed for this page because the userProfile page is the destination regardless
 
         Database db = new Database();
 
@@ -36,14 +36,15 @@ namespace Tutor_Master
                 checkBox.Items.Add(courses[i]);
             }
         }
-          
-        public Registration3(string user, bool isTutor, bool isTutee)    //if this file is run, it means profile is both tutor and tutee
+
+        public Registration3(string user, List<string> list)  //If this constructor is run, it means user is adding courses from profile page
         {
             InitializeComponent();
             this.Icon = Tutor_Master.Properties.Resources.favicon;
-            tutorAcc = isTutor;
-            tuteeAcc = isTutee;
+            tutorAcc = false;
+            tuteeAcc = true;
             username = user;
+            tutorClassesList = list;
             tuteeClassesList = new List<string>();
 
             //Here we will try to fill the checkboxes
@@ -52,7 +53,29 @@ namespace Tutor_Master
             var checkBox = (CheckedListBox)checkedListBox1;
             for (int i = 0; i < courses.Count(); i++)
             {
-                checkBox.Items.Add(courses[i]);
+                if (!tutorClassesList.Contains(courses[i]))
+                    checkBox.Items.Add(courses[i]);
+            }
+        }
+          
+        public Registration3(string user, bool isTutor, bool isTutee, List<string> list)    //if this file is run, it means profile is both tutor and tutee
+        {
+            InitializeComponent();
+            this.Icon = Tutor_Master.Properties.Resources.favicon;
+            tutorAcc = isTutor;
+            tuteeAcc = isTutee;
+            username = user;
+            tutorClassesList = list;
+            tuteeClassesList = new List<string>();
+
+            //Here we will try to fill the checkboxes
+            List<string> courses = db.getAllCourses();
+
+            var checkBox = (CheckedListBox)checkedListBox1;
+            for (int i = 0; i < courses.Count(); i++)
+            {
+                if (!tutorClassesList.Contains(courses[i]))
+                    checkBox.Items.Add(courses[i]);
             }
         }
 
