@@ -139,6 +139,7 @@ namespace Tutor_Master
                     {
                         db.approveCourseInTutorCourses(inboxMessageList[currentIndex].getFromUser(), inboxMessageList[currentIndex].getCourseName(), inboxMessageList[currentIndex].getIdNum(), false);
                         db.sendMessage(user, inboxMessageList[currentIndex].getFromUser(), "Tutor Request REJECTED", user + " has not approved you to tutor " + inboxMessageList[currentIndex].getCourseName(), true, DateTime.Now, inboxMessageList[currentIndex].getCourseName(), -1);
+
                         lvMessages.SelectedItems[0].SubItems[4].Text = "True";
                         rtbMessageDetails.Clear();
                         rtbMessageDetails.AppendText("Done");

@@ -19,6 +19,9 @@ namespace Tutor_Master
         private string firstName;
         private string secondName;
         private int id;
+        private int user;
+        private string endDate;
+        private Appointment buildingAppt;
 
         public AppointmentBlock()
         {
@@ -28,20 +31,20 @@ namespace Tutor_Master
         public AppointmentBlock(Appointment a)
         {
             InitializeComponent();
+            buildingAppt = a;
             apptCourse = a.getCourse();
             apptPlace = a.getMeetingPlace();
             apptTime = a.getStartTime().ToShortTimeString();
+            apptType = a.getMeetingType();
+            endDate = a.getEndTime().ToShortTimeString();
             id = a.getID();
-
 
             bool b = a.getIsFreeTimeSession();
             if (b) {
-                apptType = "Freetime";
                 firstName = a.getFreeTimeProf();
                 lblSecond.Visible = false;
             }
             else {
-                apptType = "Learning";
                 firstName = a.getTutor();
                 lblSecond.Visible = true;
                 secondName = a.getTutee();
@@ -50,7 +53,6 @@ namespace Tutor_Master
         }
 
         private void setViews() {
-            lblAppointmentType.Text = apptType;
             lblCourse.Text = apptCourse;
             lblFirst.Text = firstName;
             lblSecond.Text = secondName;
@@ -60,12 +62,26 @@ namespace Tutor_Master
         }
 
         private void setBackColor() {
-            if (apptType.Equals("Learning"))
+            if (!buildingAppt.getIsFreeTimeSession())
             {
-                this.BackColor = Color.Cyan;
+                lblAppointmentType.Text = "Learning";
+                apptType = "Learning";
+                if (buildingAppt.getIsApproved())
+                    this.BackColor = Color.Cyan;
+                else
+                    this.BackColor = Color.MediumVioletRed;
             }
-            if (apptType.Equals("Freetime"))
+            /*else if (apptType.Equals("Tuteeing"))
             {
+                if (buildingAppt.getIsApproved())
+                    this.BackColor = Color.Cyan;
+                else
+                    this.BackColor = Color.MediumVioletRed;
+            }*/
+            else
+            {
+                lblAppointmentType.Text = "Freetime";
+                apptType = "Freetime";
                 this.BackColor = Color.Yellow;
             }
         }
@@ -115,7 +131,7 @@ namespace Tutor_Master
         private void AppointmentBlock_Click(object sender, EventArgs e)
         {
             //MessageBox.Show("Appointment clicked");
-            Form form = new AppointmentInfoForm(this.apptType, this.apptPlace, this.apptCourse, this.apptTime, this.firstName, this.secondName, this.id);
+            Form form = new AppointmentInfoForm(this.apptType, this.apptPlace, this.apptCourse, this.apptTime, this.endDate, this.firstName, this.secondName, this.id);
             //Form form = new AppointmentInfoForm(this.apptType, this.id);
             form.Show();
             //this.Hide();

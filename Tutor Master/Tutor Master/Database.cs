@@ -286,9 +286,22 @@ namespace Tutor_Master
                         else {
                             newAppointment.setMeetingPlace(dataReader["meetingPlace"].ToString());
                         }
+                        if (dataReader["isFreeTimeSession"] == DBNull.Value){
+                            newAppointment.setIsFreeTimeSession(false);
+                        }
+                        else{
+                            newAppointment.setIsFreeTimeSession((bool)dataReader["isFreeTimeSession"]);
+                        }
+                        if (dataReader["isApproved"] == DBNull.Value){
+                            newAppointment.setIsApproved(false);
+                        }
+                        else{
+                            newAppointment.setIsApproved((bool)dataReader["isApproved"]);
+                        }
                         newAppointment.setStartTime((DateTime)dataReader["startTime"]);
                         newAppointment.setEndTime((DateTime)dataReader["endTime"]);
                         newAppointment.setIsFreeTimeSession((bool)dataReader["isFreeTimeSession"]);
+                        newAppointment.setID((int)dataReader["id number"]); //Scott added this.
                         appointmentList.Add(newAppointment);
                     }
 
@@ -380,9 +393,9 @@ namespace Tutor_Master
                 {
                     cmd.ExecuteNonQuery();
                 }
-                catch (Exception e)
+                catch (Exception ex)
                 {
-                    MessageBox.Show(e.Message);
+                    MessageBox.Show(ex.Message);
                 }
             }
         }
@@ -457,6 +470,7 @@ namespace Tutor_Master
                         appt.setStartTime((DateTime)dataReader["startTime"]);
                         appt.setEndTime((DateTime)dataReader["endTime"]);
                         appt.setIsFreeTimeSession((bool)dataReader["isFreeTimeSession"]);
+                        appt.setID(id); //Scott added this.
                         //appointmentList.Add(newAppointment);
                     }
 
@@ -464,17 +478,14 @@ namespace Tutor_Master
                     dataReader.Close();
                     this.CloseConnection();
                     return appt;
-
                 }
                 catch (Exception ex)
                 {
-                    this.CloseConnection();
                     MessageBox.Show(ex.Message);
-
-                }                
+                }
             }
-            return appt;
 
+            return appt;
         }
 
         //Scott: "SELECT * FROM appointment WHERE startTime BETWEEN (DateTimeParameter1) AND (DateTimeParameter2)"
@@ -548,6 +559,7 @@ namespace Tutor_Master
                         appointmentSet.Add(newAppointment);
                     }
 
+<<<<<<< HEAD
                     //close Data Reader
                     dataReader.Close();
                     this.CloseConnection();
@@ -565,6 +577,8 @@ namespace Tutor_Master
             return appointmentSet;
         }
 
+=======
+>>>>>>> bb8dfca6496ae1ce0369a35a7fa406ba58f9d86e
         //if you want the list of course someone tutors, pass in true
         //if you want the list of courses someone is a tutee for, pass false
         public List<string> getCourseList(string username, bool isTutor)

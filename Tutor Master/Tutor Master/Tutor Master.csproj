@@ -79,6 +79,12 @@
     <Compile Include="AppointmentBuilderForm.Designer.cs">
       <DependentUpon>AppointmentBuilderForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="AppointmentEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AppointmentEditForm.Designer.cs">
+      <DependentUpon>AppointmentEditForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="AppointmentInfoForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -159,6 +165,12 @@
     <Compile Include="Registration3.Designer.cs">
       <DependentUpon>Registration3.cs</DependentUpon>
     </Compile>
+    <Compile Include="SearchRefinementForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SearchRefinementForm.Designer.cs">
+      <DependentUpon>SearchRefinementForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="SignIn.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -190,6 +202,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AppointmentBuilderForm.resx">
       <DependentUpon>AppointmentBuilderForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppointmentEditForm.resx">
+      <DependentUpon>AppointmentEditForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AppointmentInfoForm.resx">
       <DependentUpon>AppointmentInfoForm.cs</DependentUpon>
@@ -228,6 +243,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Registration3.resx">
       <DependentUpon>Registration3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SearchRefinementForm.resx">
+      <DependentUpon>SearchRefinementForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SignIn.resx">
       <DependentUpon>SignIn.cs</DependentUpon>

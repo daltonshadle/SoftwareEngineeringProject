@@ -11,13 +11,16 @@ namespace Tutor_Master
 {
     public partial class AppointmentInfoForm : Form
     {
-
+   
         private string apptType;
         private string apptPlace;
         private string apptCourse;
         private string apptTime;
         private DateTime apptDateTime;
         private DateTime apptDate;
+        private string apptDateEndTime;
+        private DateTime apptDateEndDate;
+        private DateTime apptDateEnd;
         private string firstName;
         private string secondName;
         private int apptId;
@@ -40,7 +43,7 @@ namespace Tutor_Master
 
         }
 
-        public AppointmentInfoForm(string type, string place, string course, string datetime, string fname, string sname, int id)
+        public AppointmentInfoForm(string type, string place, string course, string datetime, string endDateDateTime, string fname, string sname, int id)
         {
 
             apptId = id;
@@ -60,7 +63,18 @@ namespace Tutor_Master
             apptDateTime = a.getStartTime();
             apptDate = apptDateTime.Date;
 
-
+            apptDateEndTime = endDateDateTime;
+            apptDateEnd = a.getEndTime();
+            apptDateEndDate = apptDateEnd.Date;
+            
+            //Problem here: Can't get username so I can't distinguish between tutoring and tuteeing for learning
+            /*if (apptType == "Learning")
+            {
+                if (username == db.getAppointmentById(id).getTutor())
+                    apptType = "Tutoring";
+                else
+                    apptType = "Tuteeing";
+            }*/
 
             if (apptType != "" && apptType != null){
                 lblTypeVal.Text = apptType;
@@ -117,6 +131,48 @@ namespace Tutor_Master
             else{
                 lblDateVal.Text = "-------";
             }
+
+            if (apptDateEndDate != null)
+            {
+                lblEndDateVal.Text = apptDateEndDate.ToShortDateString();
+            }
+            else
+            {
+                lblEndDateVal.Text = "-------";
+            }
+
+            if (apptDateEndTime != null)
+            {
+                lblEndTimeVal.Text = apptDateEndTime;
+            }
+            else
+            {
+                lblEndTimeVal.Text = "-------";
+            }
+        }
+
+
+        /*
+         *  If someone wishes to edit an appointment, this is what should happen:
+         *      Starts an ApptEditForm filled with the existing info,
+         *      when that form is complete and user chooses to finish
+         *      free time: deletes old appointment, notifies other person if someone used to be pair, adds new appt (just edit?)    
+         *      non free time: appointment becomes pending and other person is messaged (Appt has been edited, needs to be approved)
+         *      
+         *      What can't be edited:  the type, and all profiles involved.
+         */
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+            var appointmentEditor = new AppointmentEditForm(apptType, apptPlace, apptCourse, apptTime, apptDateTime, apptDateEnd, firstName, secondName, apptId);
+            appointmentEditor.Show();
+            this.Hide();
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            Database db = new Database();
+            db.deleteAppointment(apptId);
+            this.Hide();
         }
     }
 }
