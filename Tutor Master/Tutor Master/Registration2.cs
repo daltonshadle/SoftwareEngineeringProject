@@ -122,7 +122,7 @@ namespace Tutor_Master
                     //this.Hide();
                     //next.Show();
                     if (code == 1000) {
-                        var next = new Registration3(username, tutorAcc, tuteeAcc);
+                        var next = new Registration3(username, tutorAcc, tuteeAcc, tutorClassesList);
                         this.Hide();
                         next.Show();
                     }
