@@ -11,7 +11,7 @@ namespace Tutor_Master
     class Database
     {
         private SqlCeConnection con;
-        private string connection = @"Data Source=C:\TutorMaster.sdf";
+        private string connection = @"Data Source=C:\TutorMaster(1).sdf";
 
         public Database()
         {
@@ -477,7 +477,93 @@ namespace Tutor_Master
 
         }
 
+        //Scott: "SELECT * FROM appointment WHERE startTime BETWEEN (DateTimeParameter1) AND (DateTimeParameter2)"
+        public HashSet<Appointment> getCourseSet(string course)
+        {
+            HashSet<Appointment> appointmentSet = new HashSet<Appointment>();
 
+            string query;
+            query = "SELECT * FROM appointment WHERE  (courseName = @course)";
+
+            if (this.OpenConnection())
+            {
+                SqlCeCommand cmd = new SqlCeCommand();
+                cmd.CommandText = query;
+                cmd.Parameters.Add("@course", course);
+                cmd.Connection = con;
+
+                try
+                {
+                    SqlCeDataReader dataReader = cmd.ExecuteReader();
+
+                    //Read the data and store them in the list
+                    while (dataReader.Read())
+                    { //have to make catches for all of the nulls that might be in the database
+                        Appointment newAppointment = new Appointment();
+                        newAppointment.setID((int)dataReader["id number"]);
+                        if (dataReader["free time"] == DBNull.Value)
+                        {
+                            newAppointment.setFreeTimeProf(null);
+                        }
+                        else
+                        {
+                            newAppointment.setFreeTimeProf(dataReader["free time"].ToString());
+                        }
+
+                        if (dataReader["tutor"] == DBNull.Value)
+                        {
+                            newAppointment.setTutor(null);
+                        }
+                        else
+                        {
+                            newAppointment.setTutor(dataReader["tutor"].ToString());
+                        }
+                        if (dataReader["tutee"] == DBNull.Value)
+                        {
+                            newAppointment.setTutee(null);
+                        }
+                        else
+                        {
+                            newAppointment.setTutee(dataReader["tutee"].ToString());
+                        }
+                        if (dataReader["courseName"] == DBNull.Value)
+                        {
+                            newAppointment.setCourse(null);
+                        }
+                        else
+                        {
+                            newAppointment.setCourse(dataReader["courseName"].ToString());
+                        }
+                        if (dataReader["meetingPlace"] == DBNull.Value)
+                        {
+                            newAppointment.setMeetingPlace(null);
+                        }
+                        else
+                        {
+                            newAppointment.setMeetingPlace(dataReader["meetingPlace"].ToString());
+                        }
+                        newAppointment.setStartTime((DateTime)dataReader["startTime"]);
+                        newAppointment.setEndTime((DateTime)dataReader["endTime"]);
+                        newAppointment.setIsFreeTimeSession((bool)dataReader["isFreeTimeSession"]);
+                        appointmentSet.Add(newAppointment);
+                    }
+
+                    //close Data Reader
+                    dataReader.Close();
+                    this.CloseConnection();
+                    return appointmentSet;
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    appointmentSet.Clear();
+                    this.CloseConnection();
+                    return appointmentSet;
+                }
+            }
+            return appointmentSet;
+        }
 
         //if you want the list of course someone tutors, pass in true
         //if you want the list of courses someone is a tutee for, pass false
