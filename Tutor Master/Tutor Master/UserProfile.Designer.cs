@@ -33,7 +33,6 @@
             this.listView1 = new System.Windows.Forms.ListView();
             this.listView2 = new System.Windows.Forms.ListView();
             this.label1 = new System.Windows.Forms.Label();
-            this.btnAddApp = new System.Windows.Forms.Button();
             this.btnViewCal = new System.Windows.Forms.Button();
             this.btnMatchingAppoint = new System.Windows.Forms.Button();
             this.lblNameAndUser = new System.Windows.Forms.Label();
@@ -97,17 +96,6 @@
             this.label1.TabIndex = 5;
             this.label1.Text = "Courses to be tutored in:";
             // 
-            // btnAddApp
-            // 
-            this.btnAddApp.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btnAddApp.Location = new System.Drawing.Point(737, 12);
-            this.btnAddApp.Name = "btnAddApp";
-            this.btnAddApp.Size = new System.Drawing.Size(97, 23);
-            this.btnAddApp.TabIndex = 8;
-            this.btnAddApp.Text = "Add appointment";
-            this.btnAddApp.UseVisualStyleBackColor = true;
-            this.btnAddApp.Click += new System.EventHandler(this.btnAddApp_Click);
-            // 
             // btnViewCal
             // 
             this.btnViewCal.Anchor = System.Windows.Forms.AnchorStyles.Top;
@@ -122,7 +110,7 @@
             // btnMatchingAppoint
             // 
             this.btnMatchingAppoint.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btnMatchingAppoint.Location = new System.Drawing.Point(570, 12);
+            this.btnMatchingAppoint.Location = new System.Drawing.Point(686, 12);
             this.btnMatchingAppoint.Name = "btnMatchingAppoint";
             this.btnMatchingAppoint.Size = new System.Drawing.Size(144, 23);
             this.btnMatchingAppoint.TabIndex = 10;
@@ -142,7 +130,7 @@
             // button1
             // 
             this.button1.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.button1.Location = new System.Drawing.Point(456, 12);
+            this.button1.Location = new System.Drawing.Point(569, 12);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(90, 23);
             this.button1.TabIndex = 11;
@@ -193,7 +181,6 @@
             this.Controls.Add(this.btnMatchingAppoint);
             this.Controls.Add(this.lblNameAndUser);
             this.Controls.Add(this.btnViewCal);
-            this.Controls.Add(this.btnAddApp);
             this.Controls.Add(this.weekCalendar);
             this.Controls.Add(this.listView2);
             this.Controls.Add(this.label1);
@@ -216,7 +203,6 @@
         private System.Windows.Forms.ListView listView2;
         private System.Windows.Forms.Label label1;
         private WeekCalendar weekCalendar;
-        private System.Windows.Forms.Button btnAddApp;
         private System.Windows.Forms.Button btnViewCal;
         private System.Windows.Forms.Button btnMatchingAppoint;
         private System.Windows.Forms.Label lblNameAndUser;

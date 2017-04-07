@@ -308,7 +308,6 @@ namespace Tutor_Master
             return appointmentList;
         }
 
-<<<<<<< HEAD
         //Delete an appointment
         public void deleteAppointment(int apptId)
         {
@@ -379,7 +378,13 @@ namespace Tutor_Master
                 try
                 {
                     cmd.ExecuteNonQuery();
-=======
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+        }
 
         /*private Appointment getAppointmentById(int id);
         Preconditions: Appointment with associated id already exists.
@@ -458,31 +463,17 @@ namespace Tutor_Master
                     dataReader.Close();
                     this.CloseConnection();
                     return appt;
-
->>>>>>> 6a2b23e22b9cd7fd4d44aa9939e188240f1b7b90
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
-<<<<<<< HEAD
-                }
-
-                this.CloseConnection();
-            }
-        }
-
-=======
-                    this.CloseConnection();
-                    return appt;
                 }
             }
+
             return appt;
         }
 
 
-
-
->>>>>>> 6a2b23e22b9cd7fd4d44aa9939e188240f1b7b90
         //if you want the list of course someone tutors, pass in true
         //if you want the list of courses someone is a tutee for, pass false
         public List<string> getCourseList(string username, bool isTutor)
