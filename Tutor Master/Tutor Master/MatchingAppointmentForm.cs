@@ -11,11 +11,12 @@ namespace Tutor_Master
 {
     public partial class MatchingAppointmentForm : Form
     {
-        private const string FREETYPE = "Free Time", LEARNTYPE = "Learning (Tuteeing)", TEACHTYPE = "Teaching (Tutoring)";
+        private const string FREETYPE = "Free Time Session", TUTORTYPE = "Tutoring Session";
 
         //all the private data
         private string course;
-        private DateTime startTime, endTime, prevTime1, prevTime2;
+        private DateTime startTime, endTime;
+        private DateTime prevTime1, prevTime2; //this is just for the 15 minute increments for time
         private string tutorProf;
         private string tuteeProf;
         private string builderProf;
@@ -65,44 +66,15 @@ namespace Tutor_Master
         private void cbxTypeAppt_SelectedIndexChanged(object sender, EventArgs e)
         {
                 if(cbxTypeAppt.Text.ToString().Equals(FREETYPE)){
-                    //freetime appt
+                    //freetime appt for type FREETYPE
                     panelCourse.Visible = false;
                     panelMeetingPlace.Visible = false;
                     panelOtherProfile.Visible = false;
                     isFreeTimeSession = true;
-                }
-                
-                if(cbxTypeAppt.Text.ToString().Equals(TEACHTYPE)){
-                    //add tutor courses here
-                    type = 1;
+                }   
 
-                    int i = 0;
-                    cbxCourseList.Items.Clear();
-                    cbxCourseList.Text = "";
-                    if (builderTutorCourses.Count > 0)
-                    {
-                        string tempTutorCourse = builderTutorCourses[i];
-
-                        while (!tempTutorCourse.Equals(""))
-                        {
-                            if (builderCourseApprovedList[i] == "True")
-                            {
-                                cbxCourseList.Items.Add(tempTutorCourse);
-                                
-                            }
-                            i++;
-                            tempTutorCourse = builderTutorCourses[i];
-                        }
-                    }
-
-                    panelCourse.Visible = true;
-                    panelMeetingPlace.Visible = true;
-                    panelOtherProfile.Visible = true;
-                    isFreeTimeSession = false;
-                }
-
-                if(cbxTypeAppt.Text.ToString().Equals(LEARNTYPE)){
-                    //add tutee courses here
+                if(cbxTypeAppt.Text.ToString().Equals(TUTORTYPE)){
+                    //add tutee courses here for type TUTORTYPE
                     type = 2;
 
                     int j = 0;
@@ -130,12 +102,11 @@ namespace Tutor_Master
         private void initializeBuilderApptTypeCollection(){
             cbxTypeAppt.Items.Clear();
             if (isTutor) {
-                cbxTypeAppt.Items.Add(TEACHTYPE);
                 cbxTypeAppt.Items.Add(FREETYPE);
             }
 
             if (isTutee) {
-                cbxTypeAppt.Items.Add(LEARNTYPE);
+                cbxTypeAppt.Items.Add(TUTORTYPE);
             }
         }
 
@@ -261,7 +232,6 @@ namespace Tutor_Master
                         tutorProf = otherProfName;
                     }
 
-                    //something is wrong here
                     Appointment a = new Appointment(type, place, course, startTime, endTime, tutorProf, tuteeProf, false);
                     a.addAppointmentToDatabase();
 
@@ -284,7 +254,7 @@ namespace Tutor_Master
 
         private bool isBuilderTheTutor(string meetingType)
         {
-            return (meetingType.Equals(TEACHTYPE) && !meetingType.Equals(FREETYPE));
+            return (meetingType.Equals(FREETYPE));
         }
 
         private bool courseAndProfilePanelVisisbile()

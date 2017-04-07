@@ -1,0 +1,13 @@
+diff a/Tutor Master/Tutor Master/UserProfile.Designer.cs b/Tutor Master/Tutor Master/UserProfile.Designer.cs	(rejected hunks)
+@@ -128,7 +128,11 @@
+              this.lblNameAndUser.Size = new System.Drawing.Size(0, 31);
+              this.lblNameAndUser.TabIndex = 10;
+              // 
+++<<<<<<< HEAD
+ +            // button1
+++=======
++             // btnViewMessages
+++>>>>>>> bb8dfca6496ae1ce0369a35a7fa406ba58f9d86e
+              // 
+              this.btnViewMessages.Anchor = System.Windows.Forms.AnchorStyles.Top;
+              this.btnViewMessages.Location = new System.Drawing.Point(569, 12);

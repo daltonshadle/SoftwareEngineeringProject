@@ -9,7 +9,7 @@ namespace Tutor_Master
     {
        
         //NEW APPOINTMENT CLASS
-        private const string FREETYPE = "Free Time", LEARNTYPE = "Learning (Tuteeing)", TEACHTYPE = "Teaching (Tutoring)";
+        private const string FREETYPE = "Free Time Session", TUTORTYPE = "Tutoring Session";
 
         //all the private data
         private string meetingPlace;

@@ -128,7 +128,7 @@
             this.lblNameAndUser.Size = new System.Drawing.Size(0, 31);
             this.lblNameAndUser.TabIndex = 10;
             // 
-            // btnViewMessages
+            // button1
             // 
             this.btnViewMessages.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btnViewMessages.Location = new System.Drawing.Point(569, 12);

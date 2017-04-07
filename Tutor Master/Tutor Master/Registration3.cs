@@ -57,7 +57,7 @@ namespace Tutor_Master
                     checkBox.Items.Add(courses[i]);
             }
         }
-          
+
         public Registration3(string user, bool isTutor, bool isTutee, List<string> list)    //if this file is run, it means profile is both tutor and tutee
         {
             InitializeComponent();
