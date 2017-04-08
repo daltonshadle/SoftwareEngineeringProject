@@ -663,7 +663,10 @@ namespace Tutor_Master
                         newAppointment.setIsFreeTimeSession((bool)dataReader["isFreeTimeSession"]);
                         appointmentSet.Add(newAppointment);
                     }
+<<<<<<< HEAD
+=======
 
+>>>>>>> 4b9801009549ca6c13db554c42d6143052af0156
                     //close Data Reader
                     dataReader.Close();
                     this.CloseConnection();
@@ -681,6 +684,8 @@ namespace Tutor_Master
             return appointmentSet;
         }
 
+<<<<<<< HEAD
+=======
         //Scott: "SELECT * FROM appointment WHERE startTime BETWEEN (DateTimeParameter1) AND (DateTimeParameter2)"
         public HashSet<Appointment> getAppointmentPlaceSet(string place)
         {
@@ -946,6 +951,7 @@ namespace Tutor_Master
             return appointmentSet;
         }
 
+>>>>>>> 4b9801009549ca6c13db554c42d6143052af0156
         //if you want the list of course someone tutors, pass in true
         //if you want the list of courses someone is a tutee for, pass false
         public List<string> getCourseList(string username, bool isTutor)

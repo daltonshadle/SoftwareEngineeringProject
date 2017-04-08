@@ -86,7 +86,7 @@
             // btnSignIn
             // 
             this.btnSignIn.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnSignIn.Location = new System.Drawing.Point(93, 259);
+            this.btnSignIn.Location = new System.Drawing.Point(90, 260);
             this.btnSignIn.Name = "btnSignIn";
             this.btnSignIn.Size = new System.Drawing.Size(75, 23);
             this.btnSignIn.TabIndex = 2;
@@ -97,10 +97,10 @@
             // btnRegister
             // 
             this.btnRegister.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnRegister.Location = new System.Drawing.Point(123, 248);
+            this.btnRegister.Location = new System.Drawing.Point(90, 260);
             this.btnRegister.Name = "btnRegister";
             this.btnRegister.Size = new System.Drawing.Size(75, 23);
-            this.btnRegister.TabIndex = 3;
+            this.btnRegister.TabIndex = 0;
             this.btnRegister.Text = "Register";
             this.btnRegister.UseVisualStyleBackColor = true;
             this.btnRegister.Click += new System.EventHandler(this.btnRegister_Click);
@@ -109,7 +109,7 @@
             // 
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(82, 232);
+            this.label1.Location = new System.Drawing.Point(41, 244);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(174, 13);
             this.label1.TabIndex = 11;
@@ -118,43 +118,45 @@
             // panel2
             // 
             this.panel2.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.panel2.BackColor = System.Drawing.Color.Transparent;
+            this.panel2.BackColor = System.Drawing.Color.LightSteelBlue;
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel2.Controls.Add(this.lblFreatures);
             this.panel2.Controls.Add(this.label1);
             this.panel2.Controls.Add(this.label2);
             this.panel2.Controls.Add(this.btnRegister);
-            this.panel2.Location = new System.Drawing.Point(150, 70);
+            this.panel2.Location = new System.Drawing.Point(220, 70);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(343, 299);
-            this.panel2.TabIndex = 28;
+            this.panel2.Size = new System.Drawing.Size(260, 299);
+            this.panel2.TabIndex = 1;
             // 
             // lblFreatures
             // 
             this.lblFreatures.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblFreatures.AutoSize = true;
-            this.lblFreatures.Location = new System.Drawing.Point(131, 137);
+            this.lblFreatures.Location = new System.Drawing.Point(30, 76);
+            this.lblFreatures.MaximumSize = new System.Drawing.Size(200, 0);
             this.lblFreatures.Name = "lblFreatures";
-            this.lblFreatures.Size = new System.Drawing.Size(67, 13);
+            this.lblFreatures.Size = new System.Drawing.Size(48, 13);
             this.lblFreatures.TabIndex = 26;
-            this.lblFreatures.Text = "Features List";
+            this.lblFreatures.Text = "Features";
             // 
             // label2
             // 
             this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(20, 7);
+            this.label2.Font = new System.Drawing.Font("Calibri Light", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(48, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(299, 55);
+            this.label2.Size = new System.Drawing.Size(154, 59);
             this.label2.TabIndex = 0;
-            this.label2.Text = "Sign In Page";
+            this.label2.Text = "Sign In";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // panel1
             // 
             this.panel1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.panel1.BackColor = System.Drawing.Color.Transparent;
+            this.panel1.BackColor = System.Drawing.Color.LightSteelBlue;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.btnSignIn);
@@ -165,7 +167,7 @@
             this.panel1.Location = new System.Drawing.Point(530, 70);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(260, 299);
-            this.panel1.TabIndex = 29;
+            this.panel1.TabIndex = 0;
             // 
             // label3
             // 
@@ -191,7 +193,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.BackColor = System.Drawing.Color.SteelBlue;
             this.ClientSize = new System.Drawing.Size(984, 462);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.panel1);

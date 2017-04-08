@@ -249,7 +249,7 @@ namespace Tutor_Master
 
         private bool isTimeInBetween(DateTime startTime, DateTime endTime, DateTime startTimeInQuestion, DateTime endTimeInQuestion)
         {
-            return (((startTimeInQuestion > startTime) && (startTimeInQuestion < endTime)) && ((endTimeInQuestion > startTime) && (endTimeInQuestion < endTime)));
+            return (startTime <= endTimeInQuestion && startTimeInQuestion <= endTime);
         }
 
         private bool isBuilderTheTutor(string meetingType)
@@ -273,6 +273,10 @@ namespace Tutor_Master
             bool good = false;
             startTime = dateTimeDay1.Value.Date + dateTimeTime1.Value.TimeOfDay;
             endTime = dateTimeDay2.Value.Date + dateTimeTime2.Value.TimeOfDay;
+
+            //trying to get seconds to offset by 1
+            startTime.AddSeconds(-startTime.Second + 1);
+            endTime.AddSeconds(-endTime.Second);
 
             good = (startTime > DateTime.Now && endTime > DateTime.Now &&
                     startTime < endTime && (endTime.Hour - startTime.Hour) < 3);
