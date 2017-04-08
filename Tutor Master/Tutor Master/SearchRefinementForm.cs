@@ -14,28 +14,27 @@ namespace Tutor_Master
             //When you refine by course, you can either search then or refine by time, then search or refine by tutor then search
             //If a refinement is not filled, you will not see the other possibilities.
 
+        //This form is only accessible for tutees.
+
     {
         private int stateOfProgress;    //This variable will tell what search refinements are being used
         private string user;
-        private DateTime startTime, endTime, prevTime1, prevTime2;
         private string course;
-        private DateTime date;
-        private DateTime time;
+        private DateTime startDate;
+        private DateTime endDate;
         private string tutor;
-        private string place;
-        private bool initialValue1;
+        private List<string> tutorList;
+        private List<string> placeList;
 
         public SearchRefinementForm()
         {
             InitializeComponent();
-            initializeTimers();
             stateOfProgress = 0;
         }
 
         public SearchRefinementForm(string username)
         {
             InitializeComponent();
-            initializeTimers();
             stateOfProgress = 0;
             user = username;
 
@@ -47,58 +46,108 @@ namespace Tutor_Master
                 if (allProfileInfo[i] != "")
                     comboCourse.Items.Add(allProfileInfo[i]);
             }
+            comboCourse.SelectedItem = allProfileInfo[4];
+            course = allProfileInfo[4];
 
-            this.Width = 289;
-            this.Height = 300;
+            this.Width = 290;
+            this.Height = 250;
 
-            date = DateTime.MinValue;
-            time = DateTime.MinValue;
+            startDate = DateTime.MinValue;
+            endDate = DateTime.MinValue;
             tutor = "";
-            place = "";
 
+            populateTutors(course);
         }
 
-
-        private void initializeTimers()
+        public void populateTutors(string course)
         {
-            dateTimeTime1.Format = DateTimePickerFormat.Custom;
-            dateTimeTime1.CustomFormat = "hh:mm tt";
+            Database db = new Database();
 
-            DateTime dt = DateTime.Now;
-            if (dt.Minute % 15 > 15)
-            {
-                initialValue1 = true;
-                dateTimeTime1.Value = dt.AddMinutes(dt.Minute % 15);
-            }
-            else
-            {
-                initialValue1 = true;
-                dateTimeTime1.Value = dt.AddMinutes(-(dt.Minute % 15));
-            }
+            HashSet<Appointment> courseSet = getCourseSet(course);
+            
+            Appointment[] list2 = new Appointment[courseSet.Count];
+            courseSet.CopyTo(list2);
+            
+            string[] tutorComboList = new string[list2.Length];
 
-            prevTime1 = dateTimeTime1.Value;
+            for (int i = 0; i < courseSet.Count; i++)
+            {
+                bool add = true;
+                for (int j = 0; j < tutorComboList.Length; j++ )
+                {
+                    if (tutorComboList[j] == list2[i].getFreeTimeProf())
+                        add = false;
+                }
+                
+                if (add)
+                    tutorComboList[i] = list2[i].getFreeTimeProf();
+            }
+            
+            comboTutor.Items.Clear();
+
+            for (int l = 0; l < tutorComboList.Length; l++)
+            {
+                if (tutorComboList[l] != null)
+                    comboTutor.Items.Add(tutorComboList[l]);
+            }
         }
 
-        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        private HashSet<Appointment> getCourseSet(string course)
         {
-            if (initialValue1)
+            HashSet<Appointment> appointmentSet = new HashSet<Appointment>();
+
+            Database db = new Database();
+
+            HashSet<Appointment> allFreeTimeAppointmentsSet = db.getAllFreeTimeAppointments();
+            Appointment[] allFreeTimeAppointmentsArray = new Appointment[allFreeTimeAppointmentsSet.Count];
+            allFreeTimeAppointmentsSet.CopyTo(allFreeTimeAppointmentsArray);
+
+            bool canTutorThisCourse = false;
+
+            //For every free time appointment
+            for (int i = 0; i < allFreeTimeAppointmentsArray.Length; i++)
             {
-                initialValue1 = false;
-                return;
+                string tutor = allFreeTimeAppointmentsArray[i].getFreeTimeProf();
+
+                List<string> tutorCourseList = new List<string>();
+                List<string> allTutorInfo = db.getProfileInfo(tutor);
+                //Determine if owner of free time can tutor that course
+                for (int j = 8; j < 11; j++)
+                {
+                    if (allTutorInfo[j] != "")
+                    {
+                        tutorCourseList.Add(allTutorInfo[j]);
+                    }
+                }
+
+                for (int k = 0; k < tutorCourseList.Count; k++)
+                {
+                    if (course == tutorCourseList[k])
+                        canTutorThisCourse = true;
+                }
+                //If the owner of the free time can tutor that course, add that tutor.
+                if (canTutorThisCourse)
+                {
+                    appointmentSet.Add(allFreeTimeAppointmentsArray[i]);
+                }
             }
-
-            DateTime dt = dateTimeTime1.Value;
-            TimeSpan diff = dt - prevTime1;
-
-
-            if (diff.Ticks < 0)
-                dateTimeTime1.Value = prevTime1.AddMinutes(-15);
-            else
-                dateTimeTime1.Value = prevTime1.AddMinutes(15);
-
-            prevTime1 = dateTimeTime1.Value;
+            return appointmentSet;
         }
 
+        static HashSet<Appointment> intersection(HashSet<Appointment> A, HashSet<Appointment> B)
+        {
+            HashSet<Appointment> C = new HashSet<Appointment>();
+            foreach (Appointment appt in A)
+            {
+                foreach (Appointment appt2 in B)
+                {
+                    if (appt.getID() == appt2.getID())
+                        C.Add(appt);
+                }
+            }
+
+            return C;
+        }
 
         private void btnMoreFields_Click(object sender, EventArgs e)
         {
@@ -107,54 +156,62 @@ namespace Tutor_Master
                 case 0:
                     stateOfProgress = 1;
                     btnMoreFields.Text = "Show Less Criteria";
-                    this.Width = 516;
+                    this.Width = 550;
                     break;
                 case 1:
                     stateOfProgress = 0;
                     btnMoreFields.Text = "Show More Criteria";
                     this.Width = 289;
-                    date = DateTime.MinValue;
-                    time = DateTime.MinValue;
+                    startDate = DateTime.MinValue;
+                    endDate = DateTime.MinValue;
                     tutor = "";
-                    place = "";
                     break;
-            }
-           
-
-            //course = comboCourse.SelectedItem.ToString();
-            lblDate.Visible = true;
-            dateTimeDay1.Visible = true;
-            //date = dateTimeDay1.Value;
-            lblTime.Visible = true;
-            dateTimeTime1.Visible = true;
-            //time = dateTimeTime1.Value;
-            lblTutor.Visible = true;
-            comboTutor.Visible = true;
-            //tutor = comboTutor.SelectedItem.ToString();
-            lblPlace.Visible = true;
-            comboPlace.Visible = true;
+            }        
 
         }
 
+
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            //Get all the search criteria.
-
-
-            MessageBox.Show("Course = " + course + "\nDate = " + date + "\nTime = " + time + "\nTutor = " + tutor + "\nPlace = " + place);
-
             Database db = new Database();
-            List<Appointment> matchesList;
+            HashSet<Appointment> courseSet;
+            HashSet<Appointment> dateSet;
+            HashSet<Appointment> tutorSet;
+            HashSet<Appointment> masterSearchSet = db.getAllFreeTimeAppointments();
+            
+            //Get all the search criteria.
+            course = comboCourse.SelectedItem.ToString();
+            courseSet = getCourseSet(course);
 
-            switch (stateOfProgress)
+            masterSearchSet = intersection(masterSearchSet, courseSet);
+            
+            
+            if (checkDates.Checked)
             {
-                case 0:
-                    //matchesList = db.getCorrespondingAppointments(string course);
-                    break;
-                case 1:
-                    //matchesList = db.getCorrespondingAppointments(string course, DateTime date, DateTime time, string tutor, string place);
-                    break;
+                dateSet = db.getAppointmentDateSet(dateTimeStartDate.Value, dateTimeEndDate.Value);
+                masterSearchSet = intersection(masterSearchSet, dateSet);
             }
+
+            if (checkTutor.Checked)
+            {
+                if (comboTutor.SelectedItem == null)
+                {
+                    MessageBox.Show("Search by tutor is checked but not filled.");
+                }                   
+                else
+                {
+                    tutorSet = db.getAppointmentTutorSet(comboTutor.SelectedItem.ToString());
+                    masterSearchSet = intersection(masterSearchSet, tutorSet);
+                }
+
+
+            }
+
+
+
+            MessageBox.Show(masterSearchSet.Count.ToString());
+
+            //MessageBox.Show("Course = " + course + "\nStart Date = " + startDate + "\nEnd date = " + endDate + "\nTutor = " + tutor + "\nPlace = " + place);
 
 
             //Garrett: Going to need a function that retrieves all appointments.
@@ -166,43 +223,9 @@ namespace Tutor_Master
              * */
         }
 
-        private void checkDate_CheckedChanged(object sender, EventArgs e)
-        {
-            if (checkDate.Checked)
-                date = dateTimeDay1.Value.Date;
-            else
-                date = DateTime.MinValue;
-        }
-
-        private void checkTime_CheckedChanged(object sender, EventArgs e)
-        {
-            if (checkTime.Checked)
-                time = dateTimeTime1.Value;
-            else
-                time = DateTime.MinValue;
-        }
-
-        private void checkTutor_CheckedChanged(object sender, EventArgs e)
-        {
-            if (checkTutor.Checked)
-                tutor = comboTutor.SelectedItem.ToString();
-            else
-                tutor = "";
-        }
-
-        private void checkPlace_CheckedChanged(object sender, EventArgs e)
-        {
-            if (checkPlace.Checked)
-                place = comboPlace.SelectedItem.ToString();
-            else
-                place = "";
-        }
-
         private void comboCourse_SelectedIndexChanged(object sender, EventArgs e)
         {
-            course = comboCourse.SelectedItem.ToString();
+            populateTutors(comboCourse.SelectedItem.ToString());
         }
-
-
     }
 }
