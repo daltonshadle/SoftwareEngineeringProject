@@ -74,6 +74,7 @@
             this.comboCourse.Name = "comboCourse";
             this.comboCourse.Size = new System.Drawing.Size(121, 21);
             this.comboCourse.TabIndex = 2;
+            this.comboCourse.SelectedIndexChanged += new System.EventHandler(this.comboCourse_SelectedIndexChanged);
             // 
             // lblByCourse
             // 
@@ -122,6 +123,7 @@
             this.dateTimeTime1.Size = new System.Drawing.Size(120, 20);
             this.dateTimeTime1.TabIndex = 8;
             this.dateTimeTime1.Visible = false;
+            this.dateTimeTime1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
             // 
             // lblPlace
             // 

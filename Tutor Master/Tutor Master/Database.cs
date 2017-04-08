@@ -11,7 +11,7 @@ namespace Tutor_Master
     class Database
     {
         private SqlCeConnection con;
-        private string connection = @"Data Source=C:\TutorMaster(1).sdf";
+        private string connection = @"Data Source=C:\TutorMaster (C drive).sdf";
 
         public Database()
         {
@@ -488,8 +488,9 @@ namespace Tutor_Master
             return appt;
         }
 
-        //Scott: "SELECT * FROM appointment WHERE startTime BETWEEN (DateTimeParameter1) AND (DateTimeParameter2)"
-        public HashSet<Appointment> getCourseSet(string course)
+        //Scott: Look on the Program.cs ... I use the below functions and a homemade intersect 
+        //function cause I wasn't having luck with the built in ones.
+        public HashSet<Appointment> getAppointmentCourseSet(string course)
         {
             HashSet<Appointment> appointmentSet = new HashSet<Appointment>();
 
@@ -558,6 +559,10 @@ namespace Tutor_Master
                         newAppointment.setIsFreeTimeSession((bool)dataReader["isFreeTimeSession"]);
                         appointmentSet.Add(newAppointment);
                     }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 4b9801009549ca6c13db554c42d6143052af0156
                     //close Data Reader
                     dataReader.Close();
                     this.CloseConnection();
@@ -575,6 +580,274 @@ namespace Tutor_Master
             return appointmentSet;
         }
 
+<<<<<<< HEAD
+=======
+        //Scott: "SELECT * FROM appointment WHERE startTime BETWEEN (DateTimeParameter1) AND (DateTimeParameter2)"
+        public HashSet<Appointment> getAppointmentPlaceSet(string place)
+        {
+            HashSet<Appointment> appointmentSet = new HashSet<Appointment>();
+
+            string query;
+            query = "SELECT * FROM appointment WHERE  (meetingPlace = @place)";
+
+            if (this.OpenConnection())
+            {
+                SqlCeCommand cmd = new SqlCeCommand();
+                cmd.CommandText = query;
+                cmd.Parameters.Add("@place", place);
+                cmd.Connection = con;
+
+                try
+                {
+                    SqlCeDataReader dataReader = cmd.ExecuteReader();
+
+                    //Read the data and store them in the list
+                    while (dataReader.Read())
+                    { //have to make catches for all of the nulls that might be in the database
+                        Appointment newAppointment = new Appointment();
+                        newAppointment.setID((int)dataReader["id number"]);
+                        if (dataReader["free time"] == DBNull.Value)
+                        {
+                            newAppointment.setFreeTimeProf(null);
+                        }
+                        else
+                        {
+                            newAppointment.setFreeTimeProf(dataReader["free time"].ToString());
+                        }
+
+                        if (dataReader["tutor"] == DBNull.Value)
+                        {
+                            newAppointment.setTutor(null);
+                        }
+                        else
+                        {
+                            newAppointment.setTutor(dataReader["tutor"].ToString());
+                        }
+                        if (dataReader["tutee"] == DBNull.Value)
+                        {
+                            newAppointment.setTutee(null);
+                        }
+                        else
+                        {
+                            newAppointment.setTutee(dataReader["tutee"].ToString());
+                        }
+                        if (dataReader["courseName"] == DBNull.Value)
+                        {
+                            newAppointment.setCourse(null);
+                        }
+                        else
+                        {
+                            newAppointment.setCourse(dataReader["courseName"].ToString());
+                        }
+                        if (dataReader["meetingPlace"] == DBNull.Value)
+                        {
+                            newAppointment.setMeetingPlace(null);
+                        }
+                        else
+                        {
+                            newAppointment.setMeetingPlace(dataReader["meetingPlace"].ToString());
+                        }
+                        newAppointment.setStartTime((DateTime)dataReader["startTime"]);
+                        newAppointment.setEndTime((DateTime)dataReader["endTime"]);
+                        newAppointment.setIsFreeTimeSession((bool)dataReader["isFreeTimeSession"]);
+                        appointmentSet.Add(newAppointment);
+                    }
+
+                    //close Data Reader
+                    dataReader.Close();
+                    this.CloseConnection();
+                    return appointmentSet;
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    appointmentSet.Clear();
+                    this.CloseConnection();
+                    return appointmentSet;
+                }
+            }
+            return appointmentSet;
+        }
+
+        //Scott: "SELECT * FROM appointment WHERE startTime BETWEEN (DateTimeParameter1) AND (DateTimeParameter2)"
+        public HashSet<Appointment> getAppointmentTutorSet(string tutor)
+        {
+            HashSet<Appointment> appointmentSet = new HashSet<Appointment>();
+
+            string query;
+            query = "SELECT * FROM appointment WHERE  (tutor = @tutor)";
+
+            if (this.OpenConnection())
+            {
+                SqlCeCommand cmd = new SqlCeCommand();
+                cmd.CommandText = query;
+                cmd.Parameters.Add("@tutor", tutor);
+                cmd.Connection = con;
+
+                try
+                {
+                    SqlCeDataReader dataReader = cmd.ExecuteReader();
+
+                    //Read the data and store them in the list
+                    while (dataReader.Read())
+                    { //have to make catches for all of the nulls that might be in the database
+                        Appointment newAppointment = new Appointment();
+                        newAppointment.setID((int)dataReader["id number"]);
+                        if (dataReader["free time"] == DBNull.Value)
+                        {
+                            newAppointment.setFreeTimeProf(null);
+                        }
+                        else
+                        {
+                            newAppointment.setFreeTimeProf(dataReader["free time"].ToString());
+                        }
+
+                        if (dataReader["tutor"] == DBNull.Value)
+                        {
+                            newAppointment.setTutor(null);
+                        }
+                        else
+                        {
+                            newAppointment.setTutor(dataReader["tutor"].ToString());
+                        }
+                        if (dataReader["tutee"] == DBNull.Value)
+                        {
+                            newAppointment.setTutee(null);
+                        }
+                        else
+                        {
+                            newAppointment.setTutee(dataReader["tutee"].ToString());
+                        }
+                        if (dataReader["courseName"] == DBNull.Value)
+                        {
+                            newAppointment.setCourse(null);
+                        }
+                        else
+                        {
+                            newAppointment.setCourse(dataReader["courseName"].ToString());
+                        }
+                        if (dataReader["meetingPlace"] == DBNull.Value)
+                        {
+                            newAppointment.setMeetingPlace(null);
+                        }
+                        else
+                        {
+                            newAppointment.setMeetingPlace(dataReader["meetingPlace"].ToString());
+                        }
+                        newAppointment.setStartTime((DateTime)dataReader["startTime"]);
+                        newAppointment.setEndTime((DateTime)dataReader["endTime"]);
+                        newAppointment.setIsFreeTimeSession((bool)dataReader["isFreeTimeSession"]);
+                        appointmentSet.Add(newAppointment);
+                    }
+
+                    //close Data Reader
+                    dataReader.Close();
+                    this.CloseConnection();
+                    return appointmentSet;
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    appointmentSet.Clear();
+                    this.CloseConnection();
+                    return appointmentSet;
+                }
+            }
+            return appointmentSet;
+        }
+
+        //Scott: "SELECT * FROM appointment WHERE startTime BETWEEN (DateTimeParameter1) AND (DateTimeParameter2)"
+        public HashSet<Appointment> getAppointmentDateSet(DateTime start, DateTime end)
+        {
+            HashSet<Appointment> appointmentSet = new HashSet<Appointment>();
+
+            string query;
+            query = "SELECT * FROM appointment WHERE  ((startTime BETWEEN @start AND @end) AND (endTime BETWEEN @start AND @end))";
+
+            if (this.OpenConnection())
+            {
+                SqlCeCommand cmd = new SqlCeCommand();
+                cmd.CommandText = query;
+                cmd.Parameters.Add("@start", start);
+                cmd.Parameters.Add("@end", end);
+                cmd.Connection = con;
+
+                try
+                {
+                    SqlCeDataReader dataReader = cmd.ExecuteReader();
+
+                    //Read the data and store them in the list
+                    while (dataReader.Read())
+                    { //have to make catches for all of the nulls that might be in the database
+                        Appointment newAppointment = new Appointment();
+                        newAppointment.setID((int)dataReader["id number"]);
+                        if (dataReader["free time"] == DBNull.Value)
+                        {
+                            newAppointment.setFreeTimeProf(null);
+                        }
+                        else
+                        {
+                            newAppointment.setFreeTimeProf(dataReader["free time"].ToString());
+                        }
+
+                        if (dataReader["tutor"] == DBNull.Value)
+                        {
+                            newAppointment.setTutor(null);
+                        }
+                        else
+                        {
+                            newAppointment.setTutor(dataReader["tutor"].ToString());
+                        }
+                        if (dataReader["tutee"] == DBNull.Value)
+                        {
+                            newAppointment.setTutee(null);
+                        }
+                        else
+                        {
+                            newAppointment.setTutee(dataReader["tutee"].ToString());
+                        }
+                        if (dataReader["courseName"] == DBNull.Value)
+                        {
+                            newAppointment.setCourse(null);
+                        }
+                        else
+                        {
+                            newAppointment.setCourse(dataReader["courseName"].ToString());
+                        }
+                        if (dataReader["meetingPlace"] == DBNull.Value)
+                        {
+                            newAppointment.setMeetingPlace(null);
+                        }
+                        else
+                        {
+                            newAppointment.setMeetingPlace(dataReader["meetingPlace"].ToString());
+                        }
+                        newAppointment.setStartTime((DateTime)dataReader["startTime"]);
+                        newAppointment.setEndTime((DateTime)dataReader["endTime"]);
+                        newAppointment.setIsFreeTimeSession((bool)dataReader["isFreeTimeSession"]);
+                        appointmentSet.Add(newAppointment);
+                    }
+
+                    //close Data Reader
+                    dataReader.Close();
+                    this.CloseConnection();
+                    return appointmentSet;
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    appointmentSet.Clear();
+                    this.CloseConnection();
+                    return appointmentSet;
+                }
+            }
+            return appointmentSet;
+        }
+
+>>>>>>> 4b9801009549ca6c13db554c42d6143052af0156
         //if you want the list of course someone tutors, pass in true
         //if you want the list of courses someone is a tutee for, pass false
         public List<string> getCourseList(string username, bool isTutor)

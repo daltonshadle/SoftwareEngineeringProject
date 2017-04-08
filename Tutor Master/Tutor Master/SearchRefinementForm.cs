@@ -28,14 +28,14 @@ namespace Tutor_Master
         public SearchRefinementForm()
         {
             InitializeComponent();
-            //initializeTimers();
+            initializeTimers();
             stateOfProgress = 0;
         }
 
         public SearchRefinementForm(string username)
         {
             InitializeComponent();
-            //initializeTimers();
+            initializeTimers();
             stateOfProgress = 0;
             user = username;
 
@@ -52,12 +52,12 @@ namespace Tutor_Master
             this.Height = 300;
 
             date = DateTime.MinValue;
-            time = DateTime.MaxValue;
+            time = DateTime.MinValue;
             tutor = "";
             place = "";
 
         }
-        
+
 
         private void initializeTimers()
         {
@@ -67,17 +67,18 @@ namespace Tutor_Master
             DateTime dt = DateTime.Now;
             if (dt.Minute % 15 > 15)
             {
+                initialValue1 = true;
                 dateTimeTime1.Value = dt.AddMinutes(dt.Minute % 15);
-
             }
             else
             {
+                initialValue1 = true;
                 dateTimeTime1.Value = dt.AddMinutes(-(dt.Minute % 15));
             }
-            //prevTime1 = dateTimeTime1.Value;
 
+            prevTime1 = dateTimeTime1.Value;
         }
-        
+
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
             if (initialValue1)
@@ -168,7 +169,7 @@ namespace Tutor_Master
         private void checkDate_CheckedChanged(object sender, EventArgs e)
         {
             if (checkDate.Checked)
-                date = dateTimeDay1.Value;
+                date = dateTimeDay1.Value.Date;
             else
                 date = DateTime.MinValue;
         }
@@ -195,6 +196,11 @@ namespace Tutor_Master
                 place = comboPlace.SelectedItem.ToString();
             else
                 place = "";
+        }
+
+        private void comboCourse_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            course = comboCourse.SelectedItem.ToString();
         }
 
 
