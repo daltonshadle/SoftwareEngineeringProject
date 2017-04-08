@@ -19,6 +19,7 @@ namespace Tutor_Master
         {
             InitializeComponent();
             this.Icon = Tutor_Master.Properties.Resources.favicon;
+            initFeaturesList();
         }
 
         private void btnSignIn_Click(object sender, EventArgs e)
@@ -70,5 +71,9 @@ namespace Tutor_Master
 
         }
 
+        private void initFeaturesList() { 
+            string l = "-Easy to use, clean and clear interface \n\n-Create tutor session schedules with course, time, place \n\n-Create weekly tutor sessions \n\n-Automated checks - Check for availability and conflicts \n\n-Access with any Windows devices";
+            lblFreatures.Text = l;
+        }
     }
 }

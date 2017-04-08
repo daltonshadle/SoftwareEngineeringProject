@@ -44,10 +44,10 @@
             this.panelSat = new System.Windows.Forms.Panel();
             this.lblSaturday = new System.Windows.Forms.Label();
             this.pnlLegendFreetime = new System.Windows.Forms.Panel();
-            this.pnlLegendTutoring = new System.Windows.Forms.Panel();
-            this.pnlLegendPending = new System.Windows.Forms.Panel();
             this.lblLegendFreetime = new System.Windows.Forms.Label();
+            this.pnlLegendTutoring = new System.Windows.Forms.Panel();
             this.lblLegendTutoring = new System.Windows.Forms.Label();
+            this.pnlLegendPending = new System.Windows.Forms.Panel();
             this.lblLegendPending = new System.Windows.Forms.Label();
             this.panelSun.SuspendLayout();
             this.panelMon.SuspendLayout();
@@ -64,7 +64,7 @@
             // lblWeek
             // 
             this.lblWeek.AutoSize = true;
-            this.lblWeek.Location = new System.Drawing.Point(386, 11);
+            this.lblWeek.Location = new System.Drawing.Point(407, 9);
             this.lblWeek.Name = "lblWeek";
             this.lblWeek.Size = new System.Drawing.Size(90, 13);
             this.lblWeek.TabIndex = 0;
@@ -74,7 +74,7 @@
             // 
             this.panelSun.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panelSun.Controls.Add(this.lblSunday);
-            this.panelSun.Location = new System.Drawing.Point(3, 38);
+            this.panelSun.Location = new System.Drawing.Point(24, 36);
             this.panelSun.Name = "panelSun";
             this.panelSun.Size = new System.Drawing.Size(120, 330);
             this.panelSun.TabIndex = 1;
@@ -92,7 +92,7 @@
             // 
             this.panelMon.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panelMon.Controls.Add(this.lblMonday);
-            this.panelMon.Location = new System.Drawing.Point(127, 38);
+            this.panelMon.Location = new System.Drawing.Point(148, 36);
             this.panelMon.Name = "panelMon";
             this.panelMon.Size = new System.Drawing.Size(120, 330);
             this.panelMon.TabIndex = 2;
@@ -110,7 +110,7 @@
             // 
             this.panelTues.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panelTues.Controls.Add(this.lblTuesday);
-            this.panelTues.Location = new System.Drawing.Point(251, 38);
+            this.panelTues.Location = new System.Drawing.Point(272, 36);
             this.panelTues.Name = "panelTues";
             this.panelTues.Size = new System.Drawing.Size(120, 330);
             this.panelTues.TabIndex = 3;
@@ -128,7 +128,7 @@
             // 
             this.panelWed.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panelWed.Controls.Add(this.lblWednesday);
-            this.panelWed.Location = new System.Drawing.Point(375, 38);
+            this.panelWed.Location = new System.Drawing.Point(396, 36);
             this.panelWed.Name = "panelWed";
             this.panelWed.Size = new System.Drawing.Size(120, 330);
             this.panelWed.TabIndex = 4;
@@ -146,7 +146,7 @@
             // 
             this.panelThur.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panelThur.Controls.Add(this.lblThursday);
-            this.panelThur.Location = new System.Drawing.Point(499, 38);
+            this.panelThur.Location = new System.Drawing.Point(520, 36);
             this.panelThur.Name = "panelThur";
             this.panelThur.Size = new System.Drawing.Size(120, 330);
             this.panelThur.TabIndex = 5;
@@ -164,7 +164,7 @@
             // 
             this.panelFri.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panelFri.Controls.Add(this.lblFriday);
-            this.panelFri.Location = new System.Drawing.Point(623, 38);
+            this.panelFri.Location = new System.Drawing.Point(644, 36);
             this.panelFri.Name = "panelFri";
             this.panelFri.Size = new System.Drawing.Size(120, 330);
             this.panelFri.TabIndex = 6;
@@ -182,7 +182,7 @@
             // 
             this.panelSat.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panelSat.Controls.Add(this.lblSaturday);
-            this.panelSat.Location = new System.Drawing.Point(747, 38);
+            this.panelSat.Location = new System.Drawing.Point(768, 36);
             this.panelSat.Name = "panelSat";
             this.panelSat.Size = new System.Drawing.Size(120, 330);
             this.panelSat.TabIndex = 7;
@@ -200,28 +200,10 @@
             // 
             this.pnlLegendFreetime.BackColor = System.Drawing.Color.Yellow;
             this.pnlLegendFreetime.Controls.Add(this.lblLegendFreetime);
-            this.pnlLegendFreetime.Location = new System.Drawing.Point(887, 118);
+            this.pnlLegendFreetime.Location = new System.Drawing.Point(914, 155);
             this.pnlLegendFreetime.Name = "pnlLegendFreetime";
             this.pnlLegendFreetime.Size = new System.Drawing.Size(138, 31);
             this.pnlLegendFreetime.TabIndex = 11;
-            // 
-            // pnlLegendTutoring
-            // 
-            this.pnlLegendTutoring.BackColor = System.Drawing.Color.Cyan;
-            this.pnlLegendTutoring.Controls.Add(this.lblLegendTutoring);
-            this.pnlLegendTutoring.Location = new System.Drawing.Point(887, 155);
-            this.pnlLegendTutoring.Name = "pnlLegendTutoring";
-            this.pnlLegendTutoring.Size = new System.Drawing.Size(138, 31);
-            this.pnlLegendTutoring.TabIndex = 12;
-            // 
-            // pnlLegendPending
-            // 
-            this.pnlLegendPending.BackColor = System.Drawing.Color.MediumVioletRed;
-            this.pnlLegendPending.Controls.Add(this.lblLegendPending);
-            this.pnlLegendPending.Location = new System.Drawing.Point(887, 192);
-            this.pnlLegendPending.Name = "pnlLegendPending";
-            this.pnlLegendPending.Size = new System.Drawing.Size(138, 31);
-            this.pnlLegendPending.TabIndex = 12;
             // 
             // lblLegendFreetime
             // 
@@ -232,6 +214,15 @@
             this.lblLegendFreetime.TabIndex = 0;
             this.lblLegendFreetime.Text = "Tutor Free Time";
             // 
+            // pnlLegendTutoring
+            // 
+            this.pnlLegendTutoring.BackColor = System.Drawing.Color.LimeGreen;
+            this.pnlLegendTutoring.Controls.Add(this.lblLegendTutoring);
+            this.pnlLegendTutoring.Location = new System.Drawing.Point(914, 118);
+            this.pnlLegendTutoring.Name = "pnlLegendTutoring";
+            this.pnlLegendTutoring.Size = new System.Drawing.Size(138, 31);
+            this.pnlLegendTutoring.TabIndex = 12;
+            // 
             // lblLegendTutoring
             // 
             this.lblLegendTutoring.AutoSize = true;
@@ -240,6 +231,15 @@
             this.lblLegendTutoring.Size = new System.Drawing.Size(135, 13);
             this.lblLegendTutoring.TabIndex = 1;
             this.lblLegendTutoring.Text = "Approved Tutoring Session";
+            // 
+            // pnlLegendPending
+            // 
+            this.pnlLegendPending.BackColor = System.Drawing.Color.Red;
+            this.pnlLegendPending.Controls.Add(this.lblLegendPending);
+            this.pnlLegendPending.Location = new System.Drawing.Point(914, 192);
+            this.pnlLegendPending.Name = "pnlLegendPending";
+            this.pnlLegendPending.Size = new System.Drawing.Size(138, 31);
+            this.pnlLegendPending.TabIndex = 12;
             // 
             // lblLegendPending
             // 
@@ -254,6 +254,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.LightSteelBlue;
             this.Controls.Add(this.pnlLegendPending);
             this.Controls.Add(this.pnlLegendTutoring);
             this.Controls.Add(this.pnlLegendFreetime);
@@ -266,7 +267,7 @@
             this.Controls.Add(this.panelSun);
             this.Controls.Add(this.lblWeek);
             this.Name = "WeekCalendar";
-            this.Size = new System.Drawing.Size(1066, 351);
+            this.Size = new System.Drawing.Size(1073, 379);
             this.panelSun.ResumeLayout(false);
             this.panelSun.PerformLayout();
             this.panelMon.ResumeLayout(false);

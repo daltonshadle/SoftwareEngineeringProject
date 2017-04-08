@@ -67,17 +67,10 @@ namespace Tutor_Master
                 lblAppointmentType.Text = "Learning";
                 apptType = "Learning";
                 if (buildingAppt.getIsApproved())
-                    this.BackColor = Color.Cyan;
+                    this.BackColor = Color.LimeGreen;
                 else
-                    this.BackColor = Color.MediumVioletRed;
+                    this.BackColor = Color.Red;
             }
-            /*else if (apptType.Equals("Tuteeing"))
-            {
-                if (buildingAppt.getIsApproved())
-                    this.BackColor = Color.Cyan;
-                else
-                    this.BackColor = Color.MediumVioletRed;
-            }*/
             else
             {
                 lblAppointmentType.Text = "Freetime";

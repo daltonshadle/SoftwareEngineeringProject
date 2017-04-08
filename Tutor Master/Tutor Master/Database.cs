@@ -558,8 +558,6 @@ namespace Tutor_Master
                         newAppointment.setIsFreeTimeSession((bool)dataReader["isFreeTimeSession"]);
                         appointmentSet.Add(newAppointment);
                     }
-
-<<<<<<< HEAD
                     //close Data Reader
                     dataReader.Close();
                     this.CloseConnection();
@@ -577,8 +575,6 @@ namespace Tutor_Master
             return appointmentSet;
         }
 
-=======
->>>>>>> bb8dfca6496ae1ce0369a35a7fa406ba58f9d86e
         //if you want the list of course someone tutors, pass in true
         //if you want the list of courses someone is a tutee for, pass false
         public List<string> getCourseList(string username, bool isTutor)
