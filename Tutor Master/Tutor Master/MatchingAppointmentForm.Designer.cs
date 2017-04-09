@@ -49,17 +49,25 @@
             this.lblStartTime = new System.Windows.Forms.Label();
             this.panelMeetingPlace = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.panelWeeklyAppt = new System.Windows.Forms.Panel();
+            this.cbxWeeklyApt = new System.Windows.Forms.CheckBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.panelNumberWeeklyAppts = new System.Windows.Forms.Panel();
+            this.udbWeeks = new System.Windows.Forms.NumericUpDown();
             this.panelApptType.SuspendLayout();
             this.panelOtherProfile.SuspendLayout();
             this.panelCourse.SuspendLayout();
             this.panelTime.SuspendLayout();
             this.panelMeetingPlace.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.panelWeeklyAppt.SuspendLayout();
+            this.panelNumberWeeklyAppts.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.udbWeeks)).BeginInit();
             this.SuspendLayout();
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(121, 242);
+            this.btnAdd.Location = new System.Drawing.Point(122, 323);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(75, 23);
             this.btnAdd.TabIndex = 5;
@@ -104,7 +112,7 @@
             this.panelOtherProfile.BackColor = System.Drawing.Color.Transparent;
             this.panelOtherProfile.Controls.Add(this.cbxProfileList);
             this.panelOtherProfile.Controls.Add(this.lblOtherProfile);
-            this.panelOtherProfile.Location = new System.Drawing.Point(6, 85);
+            this.panelOtherProfile.Location = new System.Drawing.Point(6, 152);
             this.panelOtherProfile.Name = "panelOtherProfile";
             this.panelOtherProfile.Size = new System.Drawing.Size(291, 33);
             this.panelOtherProfile.TabIndex = 3;
@@ -131,7 +139,7 @@
             this.panelCourse.BackColor = System.Drawing.Color.Transparent;
             this.panelCourse.Controls.Add(this.cbxCourseList);
             this.panelCourse.Controls.Add(this.lblCourse);
-            this.panelCourse.Location = new System.Drawing.Point(6, 46);
+            this.panelCourse.Location = new System.Drawing.Point(6, 113);
             this.panelCourse.Name = "panelCourse";
             this.panelCourse.Size = new System.Drawing.Size(291, 33);
             this.panelCourse.TabIndex = 6;
@@ -179,7 +187,7 @@
             this.panelTime.Controls.Add(this.dateTimeDay1);
             this.panelTime.Controls.Add(this.lblEndTime);
             this.panelTime.Controls.Add(this.lblStartTime);
-            this.panelTime.Location = new System.Drawing.Point(6, 124);
+            this.panelTime.Location = new System.Drawing.Point(6, 46);
             this.panelTime.Name = "panelTime";
             this.panelTime.Size = new System.Drawing.Size(291, 61);
             this.panelTime.TabIndex = 2;
@@ -252,28 +260,89 @@
             // 
             this.panel1.BackColor = System.Drawing.Color.LightSteelBlue;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel1.Controls.Add(this.panelNumberWeeklyAppts);
+            this.panel1.Controls.Add(this.panelWeeklyAppt);
             this.panel1.Controls.Add(this.panelMeetingPlace);
             this.panel1.Controls.Add(this.panelApptType);
             this.panel1.Controls.Add(this.panelOtherProfile);
             this.panel1.Controls.Add(this.panelCourse);
             this.panel1.Controls.Add(this.panelTime);
             this.panel1.Location = new System.Drawing.Point(6, 5);
-            this.panel1.MaximumSize = new System.Drawing.Size(305, 231);
-            this.panel1.MinimumSize = new System.Drawing.Size(305, 231);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(305, 231);
+            this.panel1.Size = new System.Drawing.Size(305, 312);
             this.panel1.TabIndex = 11;
+            // 
+            // panelWeeklyAppt
+            // 
+            this.panelWeeklyAppt.BackColor = System.Drawing.Color.Transparent;
+            this.panelWeeklyAppt.Controls.Add(this.cbxWeeklyApt);
+            this.panelWeeklyAppt.Location = new System.Drawing.Point(6, 230);
+            this.panelWeeklyAppt.Name = "panelWeeklyAppt";
+            this.panelWeeklyAppt.Size = new System.Drawing.Size(291, 33);
+            this.panelWeeklyAppt.TabIndex = 11;
+            // 
+            // cbxWeeklyApt
+            // 
+            this.cbxWeeklyApt.AutoSize = true;
+            this.cbxWeeklyApt.Location = new System.Drawing.Point(86, 10);
+            this.cbxWeeklyApt.Name = "cbxWeeklyApt";
+            this.cbxWeeklyApt.Size = new System.Drawing.Size(124, 17);
+            this.cbxWeeklyApt.TabIndex = 1;
+            this.cbxWeeklyApt.Text = "Weekly Appointment\r\n";
+            this.cbxWeeklyApt.UseVisualStyleBackColor = true;
+            this.cbxWeeklyApt.CheckedChanged += new System.EventHandler(this.cbxWeeklyApt_CheckedChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 10);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(165, 13);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "Number of Weekly Appointments:";
+            // 
+            // panelNumberWeeklyAppts
+            // 
+            this.panelNumberWeeklyAppts.BackColor = System.Drawing.Color.Transparent;
+            this.panelNumberWeeklyAppts.Controls.Add(this.udbWeeks);
+            this.panelNumberWeeklyAppts.Controls.Add(this.label1);
+            this.panelNumberWeeklyAppts.Location = new System.Drawing.Point(6, 269);
+            this.panelNumberWeeklyAppts.Name = "panelNumberWeeklyAppts";
+            this.panelNumberWeeklyAppts.Size = new System.Drawing.Size(291, 33);
+            this.panelNumberWeeklyAppts.TabIndex = 12;
+            this.panelNumberWeeklyAppts.Visible = false;
+            // 
+            // udbWeeks
+            // 
+            this.udbWeeks.Location = new System.Drawing.Point(178, 8);
+            this.udbWeeks.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.udbWeeks.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.udbWeeks.Name = "udbWeeks";
+            this.udbWeeks.Size = new System.Drawing.Size(103, 20);
+            this.udbWeeks.TabIndex = 3;
+            this.udbWeeks.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.udbWeeks.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // MatchingAppointmentForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.SteelBlue;
-            this.ClientSize = new System.Drawing.Size(316, 271);
+            this.ClientSize = new System.Drawing.Size(316, 351);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnAdd);
-            this.MaximumSize = new System.Drawing.Size(332, 309);
-            this.MinimumSize = new System.Drawing.Size(332, 309);
             this.Name = "MatchingAppointmentForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Appointment Maker";
@@ -288,6 +357,11 @@
             this.panelMeetingPlace.ResumeLayout(false);
             this.panelMeetingPlace.PerformLayout();
             this.panel1.ResumeLayout(false);
+            this.panelWeeklyAppt.ResumeLayout(false);
+            this.panelWeeklyAppt.PerformLayout();
+            this.panelNumberWeeklyAppts.ResumeLayout(false);
+            this.panelNumberWeeklyAppts.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.udbWeeks)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -315,5 +389,10 @@
         private System.Windows.Forms.Label lblStartTime;
         private System.Windows.Forms.Panel panelMeetingPlace;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panelNumberWeeklyAppts;
+        private System.Windows.Forms.NumericUpDown udbWeeks;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Panel panelWeeklyAppt;
+        private System.Windows.Forms.CheckBox cbxWeeklyApt;
     }
 }

@@ -211,13 +211,33 @@ namespace Tutor_Master
             string otherProfName = cbxProfileList.Text.ToString();
             course = cbxCourseList.Text.ToString();
 
+            int numWeeks = (int) udbWeeks.Value;
+
             if (verifyEverything())
             {
                 if (isFreeTimeSession)
                 {
-                    Appointment a = new Appointment(startTime, endTime, builderProf);
-                    //free time needs no message
-                    a.addAppointmentToDatabase();
+                    if (cbxWeeklyApt.Checked)
+                    {
+                        if (verifyWeeklyTimes()) 
+                        {
+                            for (int i = 0; i < udbWeeks.Value; i++) {
+                                DateTime tempStart = startTime, tempEnd = endTime;
+                                tempStart = tempStart.AddDays(7 * i);
+                                tempEnd = tempEnd.AddDays(7 * i);
+
+                                Appointment a = new Appointment(tempStart, tempEnd, builderProf);
+                                //free time needs no message
+                                a.addAppointmentToDatabase();
+                            }
+                        }
+                    }
+                    else
+                    {
+                        Appointment a = new Appointment(startTime, endTime, builderProf);
+                        //free time needs no message
+                        a.addAppointmentToDatabase();
+                    }
                 }
                 else
                 {
@@ -232,15 +252,37 @@ namespace Tutor_Master
                         tutorProf = otherProfName;
                     }
 
-                    Appointment a = new Appointment(type, place, course, startTime, endTime, tutorProf, tuteeProf, false);
-                    a.addAppointmentToDatabase();
+                    if (cbxWeeklyApt.Checked)
+                    {
+                        if (verifyWeeklyTimes())
+                        {
+                            for (int i = 0; i < udbWeeks.Value; i++)
+                            {
+                                DateTime tempStart = startTime, tempEnd = endTime;
+                                tempStart = tempStart = tempStart.AddDays(7 * i);
+                                tempEnd = tempEnd = tempEnd.AddDays(7 * i);
 
-                    //This is where we will send a message if a person is doing a learning appointment
-                    //send message to other person.
-                    
-                    string msg = builderProf + " has requested to make a tutoring appointment for course: " + course + " at " + startTime.ToShortDateString();
-                    Database db = new Database();
-                    db.sendMessage(builderProf, otherProfName, "Request for appointment", msg, true, DateTime.Now, course, a.getID());
+                                Appointment a = new Appointment(type, place, course, tempStart, tempEnd, tutorProf, tuteeProf, false);
+                                a.addAppointmentToDatabase();
+
+                                string msg = builderProf + " has requested to make a weekly tutoring appointment for course: " + course + " at " + startTime.ToShortTimeString() + " on " + startTime.DayOfWeek.ToString() + "s";
+                                Database db = new Database();
+                                db.sendMessage(builderProf, otherProfName, "Request for appointment", msg, true, DateTime.Now, course, a.getID());
+                            }
+                        }
+                    }
+                    else
+                    {
+                        Appointment a = new Appointment(type, place, course, startTime, endTime, tutorProf, tuteeProf, false);
+                        a.addAppointmentToDatabase();
+
+                        //This is where we will send a message if a person is doing a learning appointment
+                        //send message to other person.
+
+                        string msg = builderProf + " has requested to make a tutoring appointment for course: " + course + " at " + startTime.ToShortDateString();
+                        Database db = new Database();
+                        db.sendMessage(builderProf, otherProfName, "Request for appointment", msg, true, DateTime.Now, course, a.getID());
+                    }
                 }
                 this.Hide();
                 this.Close();
@@ -279,7 +321,7 @@ namespace Tutor_Master
             endTime.AddSeconds(-endTime.Second);
 
             good = (startTime > DateTime.Now && endTime > DateTime.Now &&
-                    startTime < endTime && (endTime.Hour - startTime.Hour) < 3);
+                    startTime < endTime && (endTime.Hour - startTime.Hour) <= 3);
 
             //commenting this to fix the overflow on datetime problem
             
@@ -355,6 +397,84 @@ namespace Tutor_Master
         private bool verifyCourse()
         {
             return (!cbxCourseList.Text.Equals(""));
+        }
+
+        private bool verifyWeeklyTimes() {
+            bool good = true;
+            Database db = new Database();
+            startTime = dateTimeDay1.Value.Date + dateTimeTime1.Value.TimeOfDay;
+            endTime = dateTimeDay2.Value.Date + dateTimeTime2.Value.TimeOfDay;
+            DateTime apptStart = startTime;
+            DateTime apptEnd = endTime;
+
+            good = (apptStart > DateTime.Now && apptEnd > DateTime.Now &&
+                    apptStart < apptEnd && (apptEnd.Hour - apptStart.Hour) <= 3);
+
+            //commenting this to fix the overflow on datetime problem
+            if (good)
+            {
+                List<Appointment> builderAppoint = db.getDailyAppointments(builderProf);
+                List<Appointment> otherAppoint = db.getDailyAppointments(cbxProfileList.Text.ToString());
+
+                int temp = 0;
+                int currentWeeklyAppt = 0;
+                int totalWeeklyAppt = (int) udbWeeks.Value;
+
+                //free time session check
+                if (isFreeTimeSession)
+                {
+                    while (good && currentWeeklyAppt < totalWeeklyAppt)
+                    {
+                        apptStart = apptStart.AddDays(currentWeeklyAppt * 7);
+                        apptEnd = apptEnd.AddDays(currentWeeklyAppt * 7);
+                        temp = 0;
+                        while (good && temp < builderAppoint.Count)
+                        {
+                            Appointment a = builderAppoint[temp];
+                            good = !isTimeInBetween(a.getStartTime(), a.getEndTime(), apptStart, apptEnd);
+
+                            temp++;
+                        }
+                        currentWeeklyAppt++;
+                    }
+                }
+                else
+                {
+                    //checking both profile times to see if they conflict with the start and end times
+                    currentWeeklyAppt = 0;
+                    apptStart = startTime;
+                    apptEnd = endTime;
+
+                    while (good && currentWeeklyAppt < totalWeeklyAppt)
+                    {
+                        temp = 0;
+                        apptStart = apptStart.AddDays(currentWeeklyAppt * 7);
+                        apptEnd = apptEnd.AddDays(currentWeeklyAppt * 7);
+
+                        while (good && temp < builderAppoint.Count)
+                        {
+                            Appointment a = builderAppoint[temp];
+                            good = !isTimeInBetween(a.getStartTime(), a.getEndTime(), apptStart, apptEnd);
+
+                            temp++;
+                        }
+
+                        temp = 0;
+                        while (good && temp < otherAppoint.Count)
+                        {
+                            Appointment a = otherAppoint[temp];
+                            good = !isTimeInBetween(a.getStartTime(), a.getEndTime(), apptStart, apptEnd);
+
+                            temp++;
+                        }
+
+                        currentWeeklyAppt++;
+                    }
+                }
+
+            }
+
+            return good;
         }
 
         private bool verifyEverything()
@@ -461,6 +581,18 @@ namespace Tutor_Master
 
             if (dateTimeTime1.Value >= dateTimeTime2.Value) {
                 dateTimeTime1.Value = prevTime2.AddMinutes(-15);
+            }
+        }
+
+        private void cbxWeeklyApt_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbxWeeklyApt.Checked)
+            {
+                panelNumberWeeklyAppts.Visible = true;
+            }
+            else 
+            {
+                panelNumberWeeklyAppts.Visible = false;
             }
         }
 
