@@ -22,13 +22,15 @@ namespace Tutor_Master
         private int user;
         private string endDate;
         private Appointment buildingAppt;
+        private string userProf;
+        private bool isApproved;
 
         public AppointmentBlock()
         {
             InitializeComponent();
         }
 
-        public AppointmentBlock(Appointment a)
+        public AppointmentBlock(Appointment a, string username)
         {
             InitializeComponent();
             buildingAppt = a;
@@ -38,13 +40,17 @@ namespace Tutor_Master
             apptType = a.getMeetingType();
             endDate = a.getEndTime().ToShortTimeString();
             id = a.getID();
+            userProf = username;
+            isApproved = a.getIsApproved();
 
             bool b = a.getIsFreeTimeSession();
-            if (b) {
+            if (b)
+            {
                 firstName = a.getFreeTimeProf();
                 lblSecond.Visible = false;
             }
-            else {
+            else
+            {
                 firstName = a.getTutor();
                 lblSecond.Visible = true;
                 secondName = a.getTutee();
@@ -124,11 +130,27 @@ namespace Tutor_Master
         private void AppointmentBlock_Click(object sender, EventArgs e)
         {
             //MessageBox.Show("Appointment clicked");
-            Form form = new AppointmentInfoForm(this.apptType, this.apptPlace, this.apptCourse, this.apptTime, this.endDate, this.firstName, this.secondName, this.id);
+            Form form = new AppointmentInfoForm(this.apptType, this.apptPlace, this.apptCourse, this.apptTime, this.endDate, this.firstName, this.secondName, this.id, this.userProf, this.isApproved);
+            form.FormClosing += new FormClosingEventHandler(AppointmentForm_FormClosing);
             //Form form = new AppointmentInfoForm(this.apptType, this.id);
             form.Show();
             //this.Hide();
         }
+
+        void AppointmentForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+
+            Database db = new Database();
+            Appointment a = db.getAppointmentById(id);
+
+            isApproved = a.getIsApproved();
+
+            setViews();
+
+            //need to hide the other form
+            //throw new NotImplementedException();
+        }
+
 
     }
 }

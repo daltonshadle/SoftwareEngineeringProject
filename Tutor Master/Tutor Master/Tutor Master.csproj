@@ -178,12 +178,6 @@
       <DependentUpon>SignIn.cs</DependentUpon>
     </Compile>
     <Compile Include="Tutee.cs" />
-    <Compile Include="TuteeMatcher.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="TuteeMatcher.Designer.cs">
-      <DependentUpon>TuteeMatcher.cs</DependentUpon>
-    </Compile>
     <Compile Include="Tutor.cs" />
     <Compile Include="UserProfile.cs">
       <SubType>Form</SubType>
@@ -249,9 +243,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SignIn.resx">
       <DependentUpon>SignIn.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="TuteeMatcher.resx">
-      <DependentUpon>TuteeMatcher.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserProfile.resx">
       <DependentUpon>UserProfile.cs</DependentUpon>

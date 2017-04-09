@@ -78,7 +78,7 @@ namespace Tutor_Master
                 AppointmentBlock a;
                 for (int j = 0; j < SortedList.Count; j++)
                 {
-                    a = new AppointmentBlock(SortedList[j]);
+                    a = new AppointmentBlock(SortedList[j], username);
                     //int x = makeX(j);
                     //int y = makeY(j);
                     a.Location = new Point(10, (j*90) + 30);
@@ -94,7 +94,7 @@ namespace Tutor_Master
                 AppointmentBlock a;
                 for (int j = 0; j < 3; j++)
                 {
-                    a = new AppointmentBlock(SortedList[j]);
+                    a = new AppointmentBlock(SortedList[j], username);
                     //int x = makeX(j);
                     //int y = makeY(j);
                     a.Location = new Point(10, (j * 90) + 30);

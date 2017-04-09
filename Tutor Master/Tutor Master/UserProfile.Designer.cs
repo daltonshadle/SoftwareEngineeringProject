@@ -227,6 +227,7 @@
             this.Name = "UserProfile";
             this.Text = "User Profile";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Activated += new System.EventHandler(this.UserProfile_Activated);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);

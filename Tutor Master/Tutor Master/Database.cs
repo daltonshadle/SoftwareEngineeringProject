@@ -389,6 +389,7 @@ namespace Tutor_Master
                 else
                     cmd.Parameters.Add("@isApproved", isApproved);
                 cmd.Connection = con;
+                
                 try
                 {
                     cmd.ExecuteNonQuery();
@@ -396,7 +397,7 @@ namespace Tutor_Master
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
-                }
+                }this.CloseConnection();
             }
         }
 
@@ -663,10 +664,7 @@ namespace Tutor_Master
                         newAppointment.setIsFreeTimeSession((bool)dataReader["isFreeTimeSession"]);
                         appointmentSet.Add(newAppointment);
                     }
-<<<<<<< HEAD
-=======
 
->>>>>>> 4b9801009549ca6c13db554c42d6143052af0156
                     //close Data Reader
                     dataReader.Close();
                     this.CloseConnection();
@@ -684,8 +682,6 @@ namespace Tutor_Master
             return appointmentSet;
         }
 
-<<<<<<< HEAD
-=======
         //Scott: "SELECT * FROM appointment WHERE startTime BETWEEN (DateTimeParameter1) AND (DateTimeParameter2)"
         public HashSet<Appointment> getAppointmentPlaceSet(string place)
         {
@@ -780,7 +776,7 @@ namespace Tutor_Master
             HashSet<Appointment> appointmentSet = new HashSet<Appointment>();
 
             string query;
-            query = "SELECT * FROM appointment WHERE  ([tutor] = @tutor)";
+            query = "SELECT * FROM appointment WHERE  ([free time] = @tutor)";  //Scott changed this from [tutor] = @tutor
 
             if (this.OpenConnection())
             {
@@ -951,7 +947,6 @@ namespace Tutor_Master
             return appointmentSet;
         }
 
->>>>>>> 4b9801009549ca6c13db554c42d6143052af0156
         //if you want the list of course someone tutors, pass in true
         //if you want the list of courses someone is a tutee for, pass false
         public List<string> getCourseList(string username, bool isTutor)
@@ -1343,7 +1338,7 @@ namespace Tutor_Master
             else
                 return list;
         }
-
+        
         //Garrett: create apptId in message tables and insert apptId variable into them
         //create a message to send between users
         public void sendMessage(string fromUser, string toUser, string subject, string message, bool? approved, DateTime sentTime, string courseName, int appointmentID)

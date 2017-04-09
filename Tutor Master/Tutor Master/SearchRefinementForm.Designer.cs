@@ -42,6 +42,9 @@
             this.checkTutor = new System.Windows.Forms.CheckBox();
             this.lblInfo = new System.Windows.Forms.Label();
             this.dateTimeEndDate = new System.Windows.Forms.DateTimePicker();
+            this.rtbInfo = new System.Windows.Forms.RichTextBox();
+            this.lvMatches = new System.Windows.Forms.ListView();
+            this.btnAskToJoin = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblHeader
@@ -89,6 +92,7 @@
             this.lblEndDate.Size = new System.Drawing.Size(53, 13);
             this.lblEndDate.TabIndex = 5;
             this.lblEndDate.Text = "End date:";
+            this.lblEndDate.Visible = false;
             // 
             // lblTutor
             // 
@@ -98,6 +102,7 @@
             this.lblTutor.Size = new System.Drawing.Size(35, 13);
             this.lblTutor.TabIndex = 7;
             this.lblTutor.Text = "Tutor:";
+            this.lblTutor.Visible = false;
             // 
             // comboTutor
             // 
@@ -106,6 +111,7 @@
             this.comboTutor.Name = "comboTutor";
             this.comboTutor.Size = new System.Drawing.Size(121, 21);
             this.comboTutor.TabIndex = 6;
+            this.comboTutor.Visible = false;
             // 
             // lblStartDate
             // 
@@ -115,6 +121,7 @@
             this.lblStartDate.Size = new System.Drawing.Size(56, 13);
             this.lblStartDate.TabIndex = 11;
             this.lblStartDate.Text = "Start date:";
+            this.lblStartDate.Visible = false;
             // 
             // dateTimeStartDate
             // 
@@ -123,6 +130,8 @@
             this.dateTimeStartDate.Name = "dateTimeStartDate";
             this.dateTimeStartDate.Size = new System.Drawing.Size(121, 20);
             this.dateTimeStartDate.TabIndex = 12;
+            this.dateTimeStartDate.Visible = false;
+            this.dateTimeStartDate.ValueChanged += new System.EventHandler(this.dateTimeStartDate_ValueChanged);
             // 
             // btnMoreFields
             // 
@@ -142,6 +151,7 @@
             this.checkDates.Size = new System.Drawing.Size(15, 14);
             this.checkDates.TabIndex = 14;
             this.checkDates.UseVisualStyleBackColor = true;
+            this.checkDates.Visible = false;
             // 
             // checkTutor
             // 
@@ -151,6 +161,7 @@
             this.checkTutor.Size = new System.Drawing.Size(15, 14);
             this.checkTutor.TabIndex = 16;
             this.checkTutor.UseVisualStyleBackColor = true;
+            this.checkTutor.Visible = false;
             // 
             // lblInfo
             // 
@@ -159,8 +170,9 @@
             this.lblInfo.Name = "lblInfo";
             this.lblInfo.Size = new System.Drawing.Size(163, 26);
             this.lblInfo.TabIndex = 18;
-            this.lblInfo.Text = "Check the box next to the criteria\r\nto search with that criteria.";
+            this.lblInfo.Text = "Check the box next to the criteria\r\nto search with those criteria.";
             this.lblInfo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblInfo.Visible = false;
             // 
             // dateTimeEndDate
             // 
@@ -169,12 +181,48 @@
             this.dateTimeEndDate.Name = "dateTimeEndDate";
             this.dateTimeEndDate.Size = new System.Drawing.Size(121, 20);
             this.dateTimeEndDate.TabIndex = 19;
+            this.dateTimeEndDate.Visible = false;
+            this.dateTimeEndDate.ValueChanged += new System.EventHandler(this.dateTimeEndDate_ValueChanged);
+            // 
+            // rtbInfo
+            // 
+            this.rtbInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rtbInfo.Location = new System.Drawing.Point(277, 250);
+            this.rtbInfo.Name = "rtbInfo";
+            this.rtbInfo.ReadOnly = true;
+            this.rtbInfo.Size = new System.Drawing.Size(220, 141);
+            this.rtbInfo.TabIndex = 21;
+            this.rtbInfo.Text = "";
+            // 
+            // lvMatches
+            // 
+            this.lvMatches.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lvMatches.Location = new System.Drawing.Point(37, 250);
+            this.lvMatches.Name = "lvMatches";
+            this.lvMatches.Size = new System.Drawing.Size(220, 216);
+            this.lvMatches.TabIndex = 20;
+            this.lvMatches.UseCompatibleStateImageBehavior = false;
+            this.lvMatches.View = System.Windows.Forms.View.List;
+            this.lvMatches.SelectedIndexChanged += new System.EventHandler(this.lvMatches_SelectedIndexChanged);
+            // 
+            // btnAskToJoin
+            // 
+            this.btnAskToJoin.Location = new System.Drawing.Point(316, 397);
+            this.btnAskToJoin.Name = "btnAskToJoin";
+            this.btnAskToJoin.Size = new System.Drawing.Size(141, 23);
+            this.btnAskToJoin.TabIndex = 22;
+            this.btnAskToJoin.Text = "Request this appointment";
+            this.btnAskToJoin.UseVisualStyleBackColor = true;
+            this.btnAskToJoin.Click += new System.EventHandler(this.btnAskToJoin_Click);
             // 
             // SearchRefinementForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(534, 208);
+            this.ClientSize = new System.Drawing.Size(534, 494);
+            this.Controls.Add(this.btnAskToJoin);
+            this.Controls.Add(this.rtbInfo);
+            this.Controls.Add(this.lvMatches);
             this.Controls.Add(this.dateTimeEndDate);
             this.Controls.Add(this.lblInfo);
             this.Controls.Add(this.checkTutor);
@@ -189,8 +237,12 @@
             this.Controls.Add(this.comboCourse);
             this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.lblHeader);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Location = new System.Drawing.Point(400, 100);
+            this.MaximumSize = new System.Drawing.Size(550, 550);
+            this.MinimumSize = new System.Drawing.Size(290, 250);
             this.Name = "SearchRefinementForm";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "SearchRefinementForm";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -213,5 +265,8 @@
         private System.Windows.Forms.CheckBox checkTutor;
         private System.Windows.Forms.Label lblInfo;
         private System.Windows.Forms.DateTimePicker dateTimeEndDate;
+        private System.Windows.Forms.RichTextBox rtbInfo;
+        private System.Windows.Forms.ListView lvMatches;
+        private System.Windows.Forms.Button btnAskToJoin;
     }
 }

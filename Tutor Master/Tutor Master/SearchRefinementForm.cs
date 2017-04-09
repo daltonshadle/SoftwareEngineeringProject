@@ -25,6 +25,9 @@ namespace Tutor_Master
         private string tutor;
         private List<string> tutorList;
         private List<string> placeList;
+        HashSet<Appointment> setToDisplay = new HashSet<Appointment>();
+        private Appointment[] arrayToDisplay;
+        private int currentIndex = -1;   //used for the selecting items in listview
 
         public SearchRefinementForm()
         {
@@ -63,7 +66,7 @@ namespace Tutor_Master
         {
             Database db = new Database();
 
-            HashSet<Appointment> courseSet = getCourseSet(course);
+            HashSet<Appointment> courseSet = db.getAppointmentCourseSet(course);
             
             Appointment[] list2 = new Appointment[courseSet.Count];
             courseSet.CopyTo(list2);
@@ -134,6 +137,14 @@ namespace Tutor_Master
             return appointmentSet;
         }
 
+        private void comboCourse_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            comboTutor.ResetText();
+            checkTutor.Checked = false;
+            populateTutors(comboCourse.SelectedItem.ToString());
+        }
+
+        //Written by Garrett to override the .Intersect() function for a set
         static HashSet<Appointment> intersection(HashSet<Appointment> A, HashSet<Appointment> B)
         {
             HashSet<Appointment> C = new HashSet<Appointment>();
@@ -157,14 +168,34 @@ namespace Tutor_Master
                     stateOfProgress = 1;
                     btnMoreFields.Text = "Show Less Criteria";
                     this.Width = 550;
+                    lblStartDate.Visible = true;
+                    lblEndDate.Visible = true;
+                    lblTutor.Visible = true;
+                    dateTimeStartDate.Visible = true;
+                    dateTimeEndDate.Visible = true;
+                    comboTutor.Visible = true;
+                    checkDates.Visible = true;
+                    checkTutor.Visible = true;
                     break;
                 case 1:
                     stateOfProgress = 0;
                     btnMoreFields.Text = "Show More Criteria";
-                    this.Width = 289;
+
+                    if(this.Height != 550)
+                        this.Width = 289;
+
                     startDate = DateTime.MinValue;
                     endDate = DateTime.MinValue;
-                    tutor = "";
+                    lblStartDate.Visible = false;
+                    lblEndDate.Visible = false;
+                    lblTutor.Visible = false;
+                    dateTimeStartDate.Visible = false;
+                    dateTimeEndDate.Visible = false;
+                    comboTutor.Visible = false;
+                    checkDates.Visible = false;
+                    checkTutor.Visible = false;
+                    checkDates.Checked = false;
+                    checkTutor.Checked = false;
                     break;
             }        
 
@@ -207,25 +238,107 @@ namespace Tutor_Master
 
             }
 
+            setToDisplay = masterSearchSet;
+            arrayToDisplay = new Appointment[setToDisplay.Count];
+            setToDisplay.CopyTo(arrayToDisplay);
+            arrayToDisplay.OrderBy(o => o.getStartTime()).ToArray();
 
-
-            MessageBox.Show(masterSearchSet.Count.ToString());
-
-            //MessageBox.Show("Course = " + course + "\nStart Date = " + startDate + "\nEnd date = " + endDate + "\nTutor = " + tutor + "\nPlace = " + place);
-
-
-            //Garrett: Going to need a function that retrieves all appointments.
-            /*Database function: 
-             * private List<Appointment> getCorrespondingAppointments(string course, DateTime date, DateTime time, string tutor, string place)
-             * Pre: all arguments could be null or they might have a value
-             * Post: returns a list of all of the free time appointments that match the argumental criteria.
-             * Function: for the arguments which are not null, function adds appointments to the list if they match the input arguments
-             * */
+            displayAppointments();
+            
         }
 
-        private void comboCourse_SelectedIndexChanged(object sender, EventArgs e)
+        private void displayAppointments()
         {
-            populateTutors(comboCourse.SelectedItem.ToString());
+            this.Height = 550;
+            this.Width = 550;
+
+            lvMatches.Clear();
+
+            for (int i = 0; i < arrayToDisplay.Length; i++)
+            {
+                lvMatches.Items.Add("Appointment with " + arrayToDisplay[i].getFreeTimeProf());
+            }
+
+            if (arrayToDisplay.Length == 0)
+                MessageBox.Show("No appointments match these criteria.");
+        }
+
+        private void lvMatches_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (lvMatches.SelectedItems.Count == 0)
+                rtbInfo.Clear();
+            else
+            {
+                rtbInfo.Clear();
+                ListView.SelectedIndexCollection indexes = this.lvMatches.SelectedIndices;
+                if (indexes.Count > 1)
+                    MessageBox.Show("Can only view details of one message at a time.");
+                else
+                {
+                    foreach (int index in indexes)
+                    {
+
+                        rtbInfo.AppendText("Free time with " + arrayToDisplay[index].getFreeTimeProf()
+                            + "\nFrom: " + arrayToDisplay[index].getStartTime().ToShortTimeString()
+                            + "\n    On: " + arrayToDisplay[index].getStartTime().ToShortDateString()
+                            + "\nTo: " + arrayToDisplay[index].getEndTime().ToShortTimeString()
+                            + "\n    On: " + arrayToDisplay[index].getEndTime().ToShortDateString());
+                        currentIndex = index;
+
+
+                    }
+                }
+            }
+        }
+
+        private void dateTimeStartDate_ValueChanged(object sender, EventArgs e)
+        {
+            if (dateTimeStartDate.Value.Date < DateTime.Now.Date)
+            {
+                dateTimeStartDate.Value = DateTime.Now.Date;
+            }
+
+            if (dateTimeEndDate.Value.Date < dateTimeStartDate.Value.Date)
+            {
+                dateTimeEndDate.Value = dateTimeStartDate.Value.Date;
+            }
+        }
+
+        private void dateTimeEndDate_ValueChanged(object sender, EventArgs e)
+        {
+            if (dateTimeEndDate.Value.Date < dateTimeStartDate.Value.Date)
+            {
+                if (dateTimeEndDate.Value.Date >= DateTime.Now.Date)
+                {
+                    dateTimeStartDate.Value = dateTimeEndDate.Value.Date;
+                }
+                else
+                {
+                    dateTimeEndDate.Value = dateTimeStartDate.Value.Date;
+                }
+            }
+        }
+
+        private void btnAskToJoin_Click(object sender, EventArgs e)
+        {
+            if (lvMatches.SelectedItems.Count == 1) 
+            {
+
+                string tutor = arrayToDisplay[currentIndex].getFreeTimeProf();
+                Appointment a = arrayToDisplay[currentIndex];
+
+                Database db = new Database();
+                db.editAppointment(a.getID(), null, null, course, a.getStartTime(), a.getEndTime(), a.getFreeTimeProf(), user, false, false);
+                db.sendMessage(user, tutor, "Free Time Filled.", user + " has requested to be tutored by you.", false, DateTime.Now, course, a.getID());
+
+                MessageBox.Show("A request message has been sent to " + tutor);
+                this.Hide();
+                this.Close();
+            }
+            else 
+            {
+                MessageBox.Show("One and only one appointment must be selected.");
+            }
         }
     }
 }

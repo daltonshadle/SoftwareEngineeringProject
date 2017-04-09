@@ -48,11 +48,12 @@
             this.lblEndDate = new System.Windows.Forms.Label();
             this.lblEndTimeVal = new System.Windows.Forms.Label();
             this.lblEndTime = new System.Windows.Forms.Label();
+            this.btnApprove = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnEdit
             // 
-            this.btnEdit.Location = new System.Drawing.Point(34, 247);
+            this.btnEdit.Location = new System.Drawing.Point(86, 235);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(75, 23);
             this.btnEdit.TabIndex = 4;
@@ -62,7 +63,7 @@
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(138, 247);
+            this.btnDelete.Location = new System.Drawing.Point(85, 264);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(75, 23);
             this.btnDelete.TabIndex = 6;
@@ -232,11 +233,22 @@
             this.lblEndTime.TabIndex = 21;
             this.lblEndTime.Text = "End time:";
             // 
+            // btnApprove
+            // 
+            this.btnApprove.Location = new System.Drawing.Point(86, 294);
+            this.btnApprove.Name = "btnApprove";
+            this.btnApprove.Size = new System.Drawing.Size(75, 23);
+            this.btnApprove.TabIndex = 25;
+            this.btnApprove.Text = "Approve";
+            this.btnApprove.UseVisualStyleBackColor = true;
+            this.btnApprove.Click += new System.EventHandler(this.btnApprove_Click);
+            // 
             // AppointmentInfoForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(235, 293);
+            this.ClientSize = new System.Drawing.Size(235, 321);
+            this.Controls.Add(this.btnApprove);
             this.Controls.Add(this.lblEndDateVal);
             this.Controls.Add(this.lblEndDate);
             this.Controls.Add(this.lblEndTimeVal);
@@ -286,6 +298,7 @@
         private System.Windows.Forms.Label lblEndDate;
         private System.Windows.Forms.Label lblEndTimeVal;
         private System.Windows.Forms.Label lblEndTime;
+        private System.Windows.Forms.Button btnApprove;
 
     }
 }
