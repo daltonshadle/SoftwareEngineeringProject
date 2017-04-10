@@ -577,7 +577,8 @@ namespace Tutor_Master
             return appointmentSet;
         }
 
-        //Scott: "SELECT * FROM appointment WHERE startTime BETWEEN (DateTimeParameter1) AND (DateTimeParameter2)"
+        //Scott: Look on the Program.cs ... I use the below functions and a homemade intersect 
+        //function cause I wasn't having luck with the built in ones.
         public HashSet<Appointment> getAppointmentPlaceSet(string place)
         {
             HashSet<Appointment> appointmentSet = new HashSet<Appointment>();
@@ -665,7 +666,8 @@ namespace Tutor_Master
             return appointmentSet;
         }
 
-        //Scott: "SELECT * FROM appointment WHERE startTime BETWEEN (DateTimeParameter1) AND (DateTimeParameter2)"
+        //Scott: Look on the Program.cs ... I use the below functions and a homemade intersect 
+        //function cause I wasn't having luck with the built in ones.
         public HashSet<Appointment> getAppointmentTutorSet(string tutor)
         {
             HashSet<Appointment> appointmentSet = new HashSet<Appointment>();
@@ -753,7 +755,8 @@ namespace Tutor_Master
             return appointmentSet;
         }
 
-        //Scott: "SELECT * FROM appointment WHERE startTime BETWEEN (DateTimeParameter1) AND (DateTimeParameter2)"
+        //Scott: Look on the Program.cs ... I use the below functions and a homemade intersect 
+        //function cause I wasn't having luck with the built in ones.
         public HashSet<Appointment> getAppointmentDateSet(DateTime start, DateTime end)
         {
             HashSet<Appointment> appointmentSet = new HashSet<Appointment>();
