@@ -17,6 +17,7 @@ namespace Tutor_Master
         private string course;
         private DateTime startTime, endTime;
         private DateTime prevTime1, prevTime2; //this is just for the 15 minute increments for time
+        private DateTime prevDate1, prevDate2; //this is just for syncing the date pickers
         private string tutorProf;
         private string tuteeProf;
         private string builderProf;
@@ -57,6 +58,9 @@ namespace Tutor_Master
             dateTimeTime1.ShowUpDown = true;
             dateTimeTime2.ShowUpDown = true;
             course = "";
+
+            prevDate1 = dateTimeDay1.Value;
+            prevDate2 = dateTimeDay2.Value;
 
             initializeBuilderApptTypeCollection();
             initializeBuilderCourseCollection();
@@ -206,6 +210,14 @@ namespace Tutor_Master
         {
             startTime = dateTimeDay1.Value.Date + dateTimeTime1.Value.TimeOfDay;
             endTime = dateTimeDay2.Value.Date + dateTimeTime2.Value.TimeOfDay;
+
+            //well this is just to make sure that appointments dont overlap
+            //ex. one ends at 3:00 and one starts at 3:00
+            startTime = startTime.AddMilliseconds(-startTime.Millisecond);
+            startTime = startTime.AddSeconds(-startTime.Second+1);
+            endTime = endTime.AddMilliseconds(-endTime.Millisecond);
+            endTime = endTime.AddSeconds(-endTime.Second);
+
             string type = cbxTypeAppt.Text.ToString();
             string place = txtMeetingPlace.Text.ToString();
             string otherProfName = cbxProfileList.Text.ToString();
@@ -315,14 +327,11 @@ namespace Tutor_Master
             bool good = false;
             startTime = dateTimeDay1.Value.Date + dateTimeTime1.Value.TimeOfDay;
             endTime = dateTimeDay2.Value.Date + dateTimeTime2.Value.TimeOfDay;
-
-            //trying to get seconds to offset by 1
-            startTime.AddSeconds(-startTime.Second + 1);
-            endTime.AddSeconds(-endTime.Second);
+            TimeSpan apptSpan = endTime - startTime;
 
             good = (startTime > DateTime.Now && endTime > DateTime.Now &&
-                    startTime < endTime && (endTime.Hour - startTime.Hour) <= 3);
-
+                    startTime < endTime && apptSpan.TotalMilliseconds <= 3 * 60 * 60 * 1000) ; //appt time up to 3 hours
+          
             //commenting this to fix the overflow on datetime problem
             
             if (good)
@@ -549,15 +558,19 @@ namespace Tutor_Master
 
 
             if (diff.Ticks < 0)
+            {
                 dateTimeTime1.Value = prevTime1.AddMinutes(-15);
+            }
             else
+            {
                 dateTimeTime1.Value = prevTime1.AddMinutes(15);
-
-            prevTime1 = dateTimeTime1.Value;
+            }
 
             if (dateTimeTime2.Value <= dateTimeTime1.Value) {
                 dateTimeTime2.Value = prevTime1.AddMinutes(15);
             }
+            
+            prevTime1 = dateTimeTime1.Value;
         }
 
         private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
@@ -573,15 +586,21 @@ namespace Tutor_Master
 
 
             if (diff.Ticks < 0)
+            {
                 dateTimeTime2.Value = prevTime2.AddMinutes(-15);
+            }
             else
+            {
                 dateTimeTime2.Value = prevTime2.AddMinutes(15);
+            }
 
-            prevTime2 = dateTimeTime2.Value;
+            
 
             if (dateTimeTime1.Value >= dateTimeTime2.Value) {
                 dateTimeTime1.Value = prevTime2.AddMinutes(-15);
             }
+            
+            prevTime2 = dateTimeTime2.Value;
         }
 
         private void cbxWeeklyApt_CheckedChanged(object sender, EventArgs e)
@@ -593,6 +612,25 @@ namespace Tutor_Master
             else 
             {
                 panelNumberWeeklyAppts.Visible = false;
+            }
+        }
+
+        private void dateTimeDay1_ValueChanged(object sender, EventArgs e)
+        {
+            TimeSpan dateSpan = dateTimeDay1.Value - dateTimeDay2.Value;
+
+            if (Math.Abs(dateSpan.TotalDays) > 1) {
+                dateTimeDay2.Value = dateTimeDay1.Value;
+            }
+        }
+
+        private void dateTimeDay2_ValueChanged(object sender, EventArgs e)
+        {
+            TimeSpan dateSpan = dateTimeDay1.Value - dateTimeDay2.Value;
+
+            if (Math.Abs(dateSpan.TotalDays) > 1)
+            {
+                dateTimeDay1.Value = dateTimeDay2.Value;
             }
         }
 

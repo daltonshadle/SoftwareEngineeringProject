@@ -49,20 +49,20 @@
             this.lblStartTime = new System.Windows.Forms.Label();
             this.panelMeetingPlace = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.panelWeeklyAppt = new System.Windows.Forms.Panel();
-            this.cbxWeeklyApt = new System.Windows.Forms.CheckBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.panelNumberWeeklyAppts = new System.Windows.Forms.Panel();
             this.udbWeeks = new System.Windows.Forms.NumericUpDown();
+            this.label1 = new System.Windows.Forms.Label();
+            this.panelWeeklyAppt = new System.Windows.Forms.Panel();
+            this.cbxWeeklyApt = new System.Windows.Forms.CheckBox();
             this.panelApptType.SuspendLayout();
             this.panelOtherProfile.SuspendLayout();
             this.panelCourse.SuspendLayout();
             this.panelTime.SuspendLayout();
             this.panelMeetingPlace.SuspendLayout();
             this.panel1.SuspendLayout();
-            this.panelWeeklyAppt.SuspendLayout();
             this.panelNumberWeeklyAppts.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.udbWeeks)).BeginInit();
+            this.panelWeeklyAppt.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnAdd
@@ -217,6 +217,7 @@
             this.dateTimeDay2.Name = "dateTimeDay2";
             this.dateTimeDay2.Size = new System.Drawing.Size(101, 20);
             this.dateTimeDay2.TabIndex = 2;
+            this.dateTimeDay2.ValueChanged += new System.EventHandler(this.dateTimeDay2_ValueChanged);
             // 
             // dateTimeDay1
             // 
@@ -225,6 +226,7 @@
             this.dateTimeDay1.Name = "dateTimeDay1";
             this.dateTimeDay1.Size = new System.Drawing.Size(101, 20);
             this.dateTimeDay1.TabIndex = 0;
+            this.dateTimeDay1.ValueChanged += new System.EventHandler(this.dateTimeDay1_ValueChanged);
             // 
             // lblEndTime
             // 
@@ -272,35 +274,6 @@
             this.panel1.Size = new System.Drawing.Size(305, 312);
             this.panel1.TabIndex = 11;
             // 
-            // panelWeeklyAppt
-            // 
-            this.panelWeeklyAppt.BackColor = System.Drawing.Color.Transparent;
-            this.panelWeeklyAppt.Controls.Add(this.cbxWeeklyApt);
-            this.panelWeeklyAppt.Location = new System.Drawing.Point(6, 230);
-            this.panelWeeklyAppt.Name = "panelWeeklyAppt";
-            this.panelWeeklyAppt.Size = new System.Drawing.Size(291, 33);
-            this.panelWeeklyAppt.TabIndex = 11;
-            // 
-            // cbxWeeklyApt
-            // 
-            this.cbxWeeklyApt.AutoSize = true;
-            this.cbxWeeklyApt.Location = new System.Drawing.Point(86, 10);
-            this.cbxWeeklyApt.Name = "cbxWeeklyApt";
-            this.cbxWeeklyApt.Size = new System.Drawing.Size(124, 17);
-            this.cbxWeeklyApt.TabIndex = 1;
-            this.cbxWeeklyApt.Text = "Weekly Appointment\r\n";
-            this.cbxWeeklyApt.UseVisualStyleBackColor = true;
-            this.cbxWeeklyApt.CheckedChanged += new System.EventHandler(this.cbxWeeklyApt_CheckedChanged);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 10);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(165, 13);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Number of Weekly Appointments:";
-            // 
             // panelNumberWeeklyAppts
             // 
             this.panelNumberWeeklyAppts.BackColor = System.Drawing.Color.Transparent;
@@ -335,6 +308,35 @@
             0,
             0});
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 10);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(165, 13);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "Number of Weekly Appointments:";
+            // 
+            // panelWeeklyAppt
+            // 
+            this.panelWeeklyAppt.BackColor = System.Drawing.Color.Transparent;
+            this.panelWeeklyAppt.Controls.Add(this.cbxWeeklyApt);
+            this.panelWeeklyAppt.Location = new System.Drawing.Point(6, 230);
+            this.panelWeeklyAppt.Name = "panelWeeklyAppt";
+            this.panelWeeklyAppt.Size = new System.Drawing.Size(291, 33);
+            this.panelWeeklyAppt.TabIndex = 11;
+            // 
+            // cbxWeeklyApt
+            // 
+            this.cbxWeeklyApt.AutoSize = true;
+            this.cbxWeeklyApt.Location = new System.Drawing.Point(86, 10);
+            this.cbxWeeklyApt.Name = "cbxWeeklyApt";
+            this.cbxWeeklyApt.Size = new System.Drawing.Size(124, 17);
+            this.cbxWeeklyApt.TabIndex = 1;
+            this.cbxWeeklyApt.Text = "Weekly Appointment\r\n";
+            this.cbxWeeklyApt.UseVisualStyleBackColor = true;
+            this.cbxWeeklyApt.CheckedChanged += new System.EventHandler(this.cbxWeeklyApt_CheckedChanged);
+            // 
             // MatchingAppointmentForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -357,11 +359,11 @@
             this.panelMeetingPlace.ResumeLayout(false);
             this.panelMeetingPlace.PerformLayout();
             this.panel1.ResumeLayout(false);
-            this.panelWeeklyAppt.ResumeLayout(false);
-            this.panelWeeklyAppt.PerformLayout();
             this.panelNumberWeeklyAppts.ResumeLayout(false);
             this.panelNumberWeeklyAppts.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.udbWeeks)).EndInit();
+            this.panelWeeklyAppt.ResumeLayout(false);
+            this.panelWeeklyAppt.PerformLayout();
             this.ResumeLayout(false);
 
         }
