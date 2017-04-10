@@ -22,6 +22,8 @@ namespace Tutor_Master
         {
             InitializeComponent();
             this.Icon = Tutor_Master.Properties.Resources.favicon;
+            initFeaturesList();
+
             tutorAcc = false;
             tuteeAcc = true;
             username = user;
@@ -41,6 +43,8 @@ namespace Tutor_Master
         {
             InitializeComponent();
             this.Icon = Tutor_Master.Properties.Resources.favicon;
+            initFeaturesList();
+
             tutorAcc = false;
             tuteeAcc = true;
             username = user;
@@ -62,6 +66,8 @@ namespace Tutor_Master
         {
             InitializeComponent();
             this.Icon = Tutor_Master.Properties.Resources.favicon;
+            initFeaturesList();
+
             tutorAcc = isTutor;
             tuteeAcc = isTutee;
             username = user;
@@ -115,6 +121,20 @@ namespace Tutor_Master
                 MessageBox.Show("Must choose from 1 to 4 courses.");
             }
         }
+
+        private void btnSignIn_Click(object sender, EventArgs e)
+        {
+            var signInform = new SignIn();
+            signInform.Show();
+            this.Hide();
+        }
+
+        private void initFeaturesList()
+        {
+            string l = "-Easy to use, clean and clear interface \n\n-Create tutor session schedules with course, time, place \n\n-Create weekly tutor sessions \n\n-Automated checks - Check for availability and conflicts \n\n-Access with any Windows devices";
+            lblFreatures.Text = l;
+        }
+
     }
 }
 

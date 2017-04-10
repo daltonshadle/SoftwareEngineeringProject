@@ -15,9 +15,12 @@ namespace Tutor_Master
         private string username;
         DateTime now;
         List<Appointment> appointmentList;
+        DateTime selectedDate;
 
         public MonthCalendarForm(string user)
         {
+            selectedDate = DateTime.Now.Date;
+
             InitializeComponent();
             this.Icon = Tutor_Master.Properties.Resources.favicon;
             username = user;
@@ -61,7 +64,7 @@ namespace Tutor_Master
                 AppointmentBlock a;
                 for (int j = 0; j < dailyAppointments.Count; j++)
                 {
-                    a = new AppointmentBlock(dailyAppointments[j]);
+                    a = new AppointmentBlock(dailyAppointments[j], user);
                     int x = makeX(j);
                     int y = makeY(j);
                     a.Location = new Point(x, y);
@@ -80,6 +83,8 @@ namespace Tutor_Master
             monthCalendar1.lblTempDate.Text = e.Start.ToShortDateString();
 
             clearPanel();
+
+            selectedDate = e.Start.Date;
 
             Database db = new Database();
             appointmentList = db.getDailyAppointments(username);
@@ -102,7 +107,7 @@ namespace Tutor_Master
                 AppointmentBlock a;
                 for (int j = 0; j < dailyAppointments.Count; j++)
                 {
-                    a = new AppointmentBlock(dailyAppointments[j]);
+                    a = new AppointmentBlock(dailyAppointments[j], username);
                     int x = makeX(j);
                     int y = makeY(j);
                     a.Location = new Point(x, y);
@@ -136,6 +141,41 @@ namespace Tutor_Master
             y = ((row) * 100);
 
             return y;
+        }
+
+        private void MonthCalendarForm_Activated(object sender, EventArgs e)
+        {
+            clearPanel();
+            Database db = new Database();
+            appointmentList = db.getDailyAppointments(username);
+            appointmentList = appointmentList.OrderBy(o => o.getStartTime()).ToList();
+            List<Appointment> dailyAppointments = new List<Appointment>();
+            for (int i = 0; i < appointmentList.Count; i++)
+            {
+                if (appointmentList[i].getStartTime().Date == selectedDate)
+                {
+                    dailyAppointments.Add(appointmentList[i]);
+                }
+            }
+
+            dailyAppointments = dailyAppointments.OrderBy(o => o.getStartTime()).ToList();
+            //Display all of the daily apps
+            if (dailyAppointments.Count > 0)
+            {
+
+                AppointmentBlock a;
+                for (int j = 0; j < dailyAppointments.Count; j++)
+                {
+                    a = new AppointmentBlock(dailyAppointments[j], username);
+                    int x = makeX(j);
+                    int y = makeY(j);
+                    a.Location = new Point(x, y);
+                    panel1.Controls.Add(a);
+                }
+                panel1.Visible = true;
+            }
+            else
+                panel1.Visible = false;
         }
 
     }

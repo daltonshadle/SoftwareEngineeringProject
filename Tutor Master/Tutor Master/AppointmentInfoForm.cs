@@ -24,6 +24,9 @@ namespace Tutor_Master
         private string firstName;
         private string secondName;
         private int apptId;
+        private string user, otherUser;
+        private bool isApproved;
+        
         //private Appointment infoAppointment;
 
     
@@ -43,8 +46,9 @@ namespace Tutor_Master
 
         }
 
-        public AppointmentInfoForm(string type, string place, string course, string datetime, string endDateDateTime, string fname, string sname, int id)
+        public AppointmentInfoForm(string type, string place, string course, string datetime, string endDateDateTime, string fname, string sname, int id, string username, bool approved)
         {
+            this.Height = 330;
 
             apptId = id;
             Appointment a = new Appointment();
@@ -58,7 +62,22 @@ namespace Tutor_Master
             firstName = fname;
             secondName = sname;
             apptId = id;
+            user = username;
+
+            if (firstName != "" && secondName != "")
+            {
+                if (firstName == user)
+                    otherUser = secondName;
+                else
+                    otherUser = firstName;
+            }
+
+            isApproved = approved;
+
             InitializeComponent();
+
+            displayApproveButton();
+
 
             apptDateTime = a.getStartTime();
             apptDate = apptDateTime.Date;
@@ -151,6 +170,21 @@ namespace Tutor_Master
             }
         }
 
+        private void displayApproveButton()
+        {
+            if ((user == firstName) && (apptType == "Learning") && (isApproved == false))
+            {
+                this.Height = 360;
+                btnApprove.Visible = true;
+            }
+            else
+            {
+                this.Height = 330;
+                btnApprove.Visible = false;
+            }
+        }
+
+
 
         /*
          *  If someone wishes to edit an appointment, this is what should happen:
@@ -173,6 +207,15 @@ namespace Tutor_Master
             Database db = new Database();
             db.deleteAppointment(apptId);
             this.Hide();
+        }
+
+        private void btnApprove_Click(object sender, EventArgs e)
+        {
+            Database db = new Database();
+            db.editAppointment(apptId, null, apptPlace, apptCourse, apptDateTime, apptDateEnd, firstName, secondName, false, true);
+            db.sendMessage(user, otherUser, "Appoinment Request Confirmed", user + " has confirmed your appointment regarding " + apptCourse, true, DateTime.Now, apptCourse, apptId);
+            this.Hide();
+            this.Close();
         }
     }
 }

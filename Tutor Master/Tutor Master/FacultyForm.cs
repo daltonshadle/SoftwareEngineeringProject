@@ -26,6 +26,9 @@ namespace Tutor_Master
             user = username;
             sentMessageList = db.getSentMail(username);
             inboxMessageList = db.getInbox(username);
+
+            initName();
+            this.Icon = Tutor_Master.Properties.Resources.favicon;
             
 
             for (int i = 0; i < inboxMessageList.Count(); i++)
@@ -38,6 +41,31 @@ namespace Tutor_Master
                 listItem.SubItems.Add(inboxMessageList[i].getPending().ToString());
                 lvMessages.Items.Add(listItem);
             }
+        }
+
+        private void initName() {
+            Database db = new Database();
+            List<string> listOfProfileInfo = db.getProfileInfo(user);
+            string first = listOfProfileInfo[0];
+            string last = listOfProfileInfo[1];
+
+            if (first != "")
+            {
+                this.Text = FirstCharToUpper(first) + " " + FirstCharToUpper(last);
+                lblNameAndUser.Text = FirstCharToUpper(first) + " " + FirstCharToUpper(last) + " - " + user;
+            }
+            else
+            {
+                this.Text = user;
+                lblNameAndUser.Text = user;
+            }
+        }
+
+        public string FirstCharToUpper(string input)
+        {
+            if (String.IsNullOrEmpty(input))
+                throw new ArgumentException("ARGH!");
+            return input.First().ToString().ToUpper() + input.Substring(1);
         }
 
         private void btnInbox_Click(object sender, EventArgs e)

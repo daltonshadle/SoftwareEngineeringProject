@@ -11,7 +11,7 @@ namespace Tutor_Master
     class Database
     {
         private SqlCeConnection con;
-        private string connection = @"Data Source=C:\TutorMaster (C drive).sdf";
+        private string connection = @"Data Source=C:\TutorMaster(1).sdf";
 
         public Database()
         {
@@ -389,6 +389,7 @@ namespace Tutor_Master
                 else
                     cmd.Parameters.Add("@isApproved", isApproved);
                 cmd.Connection = con;
+                
                 try
                 {
                     cmd.ExecuteNonQuery();
@@ -396,7 +397,7 @@ namespace Tutor_Master
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
-                }
+                }this.CloseConnection();
             }
         }
 
@@ -488,6 +489,110 @@ namespace Tutor_Master
             return appt;
         }
 
+        //Scott made this function for search refinement. Returns all appointments which are free time.
+        //Garrett: make sure the EditAppointment function changes the isFreeTimeSession value when it should.
+        public HashSet<Appointment> getAllFreeTimeAppointments()
+        {
+            HashSet<Appointment> appointmentList = new HashSet<Appointment>();
+
+            string query;
+            query = "SELECT * FROM appointment WHERE ([isFreeTimeSession] = 'True')";
+
+            if (this.OpenConnection())
+            {
+                SqlCeCommand cmd = new SqlCeCommand();
+                cmd.CommandText = query;
+                cmd.Connection = con;
+                try
+                {
+                    SqlCeDataReader dataReader = cmd.ExecuteReader();
+
+                    //Read the data and store them in the list
+                    while (dataReader.Read())
+                    { //have to make catches for all of the nulls that might be in the database
+                        Appointment newAppointment = new Appointment();
+                        newAppointment.setID((int)dataReader["id number"]);
+                        if (dataReader["free time"] == DBNull.Value)
+                        {
+                            newAppointment.setFreeTimeProf(null);
+                        }
+                        else
+                        {
+                            newAppointment.setFreeTimeProf(dataReader["free time"].ToString());
+                        }
+
+                        if (dataReader["tutor"] == DBNull.Value)
+                        {
+                            newAppointment.setTutor(null);
+                        }
+                        else
+                        {
+                            newAppointment.setTutor(dataReader["tutor"].ToString());
+                        }
+                        if (dataReader["tutee"] == DBNull.Value)
+                        {
+                            newAppointment.setTutee(null);
+                        }
+                        else
+                        {
+                            newAppointment.setTutee(dataReader["tutee"].ToString());
+                        }
+                        if (dataReader["courseName"] == DBNull.Value)
+                        {
+                            newAppointment.setCourse(null);
+                        }
+                        else
+                        {
+                            newAppointment.setCourse(dataReader["courseName"].ToString());
+                        }
+                        if (dataReader["meetingPlace"] == DBNull.Value)
+                        {
+                            newAppointment.setMeetingPlace(null);
+                        }
+                        else
+                        {
+                            newAppointment.setMeetingPlace(dataReader["meetingPlace"].ToString());
+                        }
+                        if (dataReader["isFreeTimeSession"] == DBNull.Value)
+                        {
+                            newAppointment.setIsFreeTimeSession(false);
+                        }
+                        else
+                        {
+                            newAppointment.setIsFreeTimeSession((bool)dataReader["isFreeTimeSession"]);
+                        }
+                        if (dataReader["isApproved"] == DBNull.Value)
+                        {
+                            newAppointment.setIsApproved(false);
+                        }
+                        else
+                        {
+                            newAppointment.setIsApproved((bool)dataReader["isApproved"]);
+                        }
+                        newAppointment.setStartTime((DateTime)dataReader["startTime"]);
+                        newAppointment.setEndTime((DateTime)dataReader["endTime"]);
+                        newAppointment.setIsFreeTimeSession((bool)dataReader["isFreeTimeSession"]);
+                        newAppointment.setID((int)dataReader["id number"]); //Scott added this.
+                        appointmentList.Add(newAppointment);
+                    }
+
+                    //close Data Reader
+                    dataReader.Close();
+                    this.CloseConnection();
+                    return appointmentList;
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    appointmentList.Clear();
+                    this.CloseConnection();
+                    return appointmentList;
+                }
+            }
+            return appointmentList;
+        }
+
         //Scott: Look on the Program.cs ... I use the below functions and a homemade intersect 
         //function cause I wasn't having luck with the built in ones.
         public HashSet<Appointment> getAppointmentCourseSet(string course)
@@ -495,7 +600,7 @@ namespace Tutor_Master
             HashSet<Appointment> appointmentSet = new HashSet<Appointment>();
 
             string query;
-            query = "SELECT * FROM appointment WHERE  (courseName = @course)";
+            query = "SELECT * FROM appointment WHERE  ([courseName] = @course)";
 
             if (this.OpenConnection())
             {
@@ -584,7 +689,7 @@ namespace Tutor_Master
             HashSet<Appointment> appointmentSet = new HashSet<Appointment>();
 
             string query;
-            query = "SELECT * FROM appointment WHERE  (meetingPlace = @place)";
+            query = "SELECT * FROM appointment WHERE  ([meetingPlace] = @place)";
 
             if (this.OpenConnection())
             {
@@ -673,7 +778,7 @@ namespace Tutor_Master
             HashSet<Appointment> appointmentSet = new HashSet<Appointment>();
 
             string query;
-            query = "SELECT * FROM appointment WHERE  (tutor = @tutor)";
+            query = "SELECT * FROM appointment WHERE  ([free time] = @tutor)";  //Scott changed this from [tutor] = @tutor
 
             if (this.OpenConnection())
             {
@@ -1236,7 +1341,7 @@ namespace Tutor_Master
             else
                 return list;
         }
-
+        
         //Garrett: create apptId in message tables and insert apptId variable into them
         //create a message to send between users
         public void sendMessage(string fromUser, string toUser, string subject, string message, bool? approved, DateTime sentTime, string courseName, int appointmentID)

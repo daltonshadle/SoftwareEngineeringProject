@@ -68,6 +68,7 @@
             this.Name = "MonthCalendarForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Month Calendar";
+            this.Activated += new System.EventHandler(this.MonthCalendarForm_Activated);
             this.ResumeLayout(false);
             this.PerformLayout();
 

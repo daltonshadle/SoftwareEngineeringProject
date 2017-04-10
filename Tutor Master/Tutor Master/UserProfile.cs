@@ -85,7 +85,7 @@ namespace Tutor_Master
             {
                 this.Text = username;
                 lblNameAndUser.Text = username;
-            }  
+            }
 
             this.Icon = Tutor_Master.Properties.Resources.favicon;
 
@@ -93,7 +93,7 @@ namespace Tutor_Master
 
 
             var tutorListView = listView1;
-            
+
             //Point a = tutorListView.Location;
             //MessageBox.Show("tutor list box " + a.X + " " + a.Y);
 
@@ -159,28 +159,28 @@ namespace Tutor_Master
         }
 
 
-    /*// In event method.
-    private void NewButton_Click(object sender, EventArgs e)
-    {
-        Button btn = (Button) sender;
+        /*// In event method.
+        private void NewButton_Click(object sender, EventArgs e)
+        {
+            Button btn = (Button) sender;
 
-        // Find the programatically created button and assign its onClick event
-        if (btn.Name == ("buttAddTutor"))
-        {
-            var next = new Registration2(user, tutorAcc, tuteeAcc, 2000);   //2000 is the id for coming from userprofile
-            this.Hide();
-            next.Show();
+            // Find the programatically created button and assign its onClick event
+            if (btn.Name == ("buttAddTutor"))
+            {
+                var next = new Registration2(user, tutorAcc, tuteeAcc, 2000);   //2000 is the id for coming from userprofile
+                this.Hide();
+                next.Show();
            
-        }
-        if (btn.Name == ("buttAddTutee"))
-        {
-            var next = new Registration3(user);
-            this.Hide();
-            next.Show();
+            }
+            if (btn.Name == ("buttAddTutee"))
+            {
+                var next = new Registration3(user);
+                this.Hide();
+                next.Show();
             
-        }
+            }
         
-    }*/
+        }*/
 
 
         //Function casts the first letter of the string to be capitalized...
@@ -255,7 +255,6 @@ namespace Tutor_Master
                 var refine = new SearchRefinementForm(user);
                 refine.FormClosing += new FormClosingEventHandler(matchingForm_FormClosing);
                 refine.Show();
-                //this.Hide();
             }
             //If user is not a tutee:
             else
@@ -264,7 +263,9 @@ namespace Tutor_Master
             }
         }
 
-       
-
+        private void UserProfile_Activated(object sender, System.EventArgs e)
+        {
+            weekCalendar.assignWeeklyAppointments(user);
+        }
     }
 }

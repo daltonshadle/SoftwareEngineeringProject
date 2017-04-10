@@ -39,14 +39,18 @@
             this.btnViewMessages = new System.Windows.Forms.Button();
             this.btnAddTutorCourses = new System.Windows.Forms.Button();
             this.btnAddTuteeCourses = new System.Windows.Forms.Button();
-            this.weekCalendar = new Tutor_Master.WeekCalendar();
             this.btnRefinedSearch = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.weekCalendar = new Tutor_Master.WeekCalendar();
+            this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnLogout
             // 
             this.btnLogout.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btnLogout.Location = new System.Drawing.Point(979, 12);
+            this.btnLogout.Location = new System.Drawing.Point(972, 7);
             this.btnLogout.Name = "btnLogout";
             this.btnLogout.Size = new System.Drawing.Size(75, 23);
             this.btnLogout.TabIndex = 1;
@@ -56,9 +60,8 @@
             // 
             // lbTutor
             // 
-            this.lbTutor.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lbTutor.AutoSize = true;
-            this.lbTutor.Location = new System.Drawing.Point(200, 51);
+            this.lbTutor.Location = new System.Drawing.Point(23, 18);
             this.lbTutor.Name = "lbTutor";
             this.lbTutor.Size = new System.Drawing.Size(101, 13);
             this.lbTutor.TabIndex = 3;
@@ -66,8 +69,7 @@
             // 
             // listView1
             // 
-            this.listView1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.listView1.Location = new System.Drawing.Point(203, 85);
+            this.listView1.Location = new System.Drawing.Point(14, 43);
             this.listView1.Name = "listView1";
             this.listView1.Size = new System.Drawing.Size(119, 101);
             this.listView1.TabIndex = 4;
@@ -77,9 +79,8 @@
             // 
             // listView2
             // 
-            this.listView2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.listView2.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-            this.listView2.Location = new System.Drawing.Point(456, 85);
+            this.listView2.Location = new System.Drawing.Point(178, 43);
             this.listView2.Name = "listView2";
             this.listView2.Size = new System.Drawing.Size(119, 101);
             this.listView2.TabIndex = 6;
@@ -89,9 +90,8 @@
             // 
             // label1
             // 
-            this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(453, 51);
+            this.label1.Location = new System.Drawing.Point(175, 18);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(122, 13);
             this.label1.TabIndex = 5;
@@ -100,7 +100,7 @@
             // btnViewCal
             // 
             this.btnViewCal.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btnViewCal.Location = new System.Drawing.Point(859, 12);
+            this.btnViewCal.Location = new System.Drawing.Point(869, 7);
             this.btnViewCal.Name = "btnViewCal";
             this.btnViewCal.Size = new System.Drawing.Size(97, 23);
             this.btnViewCal.TabIndex = 9;
@@ -111,11 +111,11 @@
             // btnMatchingAppoint
             // 
             this.btnMatchingAppoint.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btnMatchingAppoint.Location = new System.Drawing.Point(686, 12);
+            this.btnMatchingAppoint.Location = new System.Drawing.Point(749, 7);
             this.btnMatchingAppoint.Name = "btnMatchingAppoint";
-            this.btnMatchingAppoint.Size = new System.Drawing.Size(144, 23);
+            this.btnMatchingAppoint.Size = new System.Drawing.Size(114, 23);
             this.btnMatchingAppoint.TabIndex = 10;
-            this.btnMatchingAppoint.Text = "Find Matching Appointment";
+            this.btnMatchingAppoint.Text = "Make Appointment";
             this.btnMatchingAppoint.UseVisualStyleBackColor = true;
             this.btnMatchingAppoint.Click += new System.EventHandler(this.btnMatchingAppoint_Click);
             // 
@@ -123,16 +123,17 @@
             // 
             this.lblNameAndUser.AutoSize = true;
             this.lblNameAndUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNameAndUser.Location = new System.Drawing.Point(24, 12);
+            this.lblNameAndUser.Location = new System.Drawing.Point(8, 2);
             this.lblNameAndUser.Name = "lblNameAndUser";
-            this.lblNameAndUser.Size = new System.Drawing.Size(0, 31);
+            this.lblNameAndUser.Size = new System.Drawing.Size(86, 31);
             this.lblNameAndUser.TabIndex = 10;
+            this.lblNameAndUser.Text = "Name";
             // 
-            // button1
+            // btnViewMessages
             // 
             this.btnViewMessages.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btnViewMessages.Location = new System.Drawing.Point(569, 12);
-            this.btnViewMessages.Name = "button1";
+            this.btnViewMessages.Location = new System.Drawing.Point(653, 7);
+            this.btnViewMessages.Name = "btnViewMessages";
             this.btnViewMessages.Size = new System.Drawing.Size(90, 23);
             this.btnViewMessages.TabIndex = 11;
             this.btnViewMessages.Text = "View Messages";
@@ -141,8 +142,7 @@
             // 
             // btnAddTutorCourses
             // 
-            this.btnAddTutorCourses.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnAddTutorCourses.Location = new System.Drawing.Point(215, 95);
+            this.btnAddTutorCourses.Location = new System.Drawing.Point(35, 72);
             this.btnAddTutorCourses.Name = "btnAddTutorCourses";
             this.btnAddTutorCourses.Size = new System.Drawing.Size(75, 23);
             this.btnAddTutorCourses.TabIndex = 12;
@@ -153,8 +153,7 @@
             // 
             // btnAddTuteeCourses
             // 
-            this.btnAddTuteeCourses.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnAddTuteeCourses.Location = new System.Drawing.Point(471, 95);
+            this.btnAddTuteeCourses.Location = new System.Drawing.Point(201, 72);
             this.btnAddTuteeCourses.Name = "btnAddTuteeCourses";
             this.btnAddTuteeCourses.Size = new System.Drawing.Size(75, 23);
             this.btnAddTuteeCourses.TabIndex = 13;
@@ -163,18 +162,10 @@
             this.btnAddTuteeCourses.Visible = false;
             this.btnAddTuteeCourses.Click += new System.EventHandler(this.buttAddTuteeCourses_Click);
             // 
-            // weekCalendar
-            // 
-            this.weekCalendar.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.weekCalendar.Location = new System.Drawing.Point(12, 192);
-            this.weekCalendar.Name = "weekCalendar";
-            this.weekCalendar.Size = new System.Drawing.Size(1032, 368);
-            this.weekCalendar.TabIndex = 7;
-            // 
             // btnRefinedSearch
             // 
             this.btnRefinedSearch.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btnRefinedSearch.Location = new System.Drawing.Point(321, 12);
+            this.btnRefinedSearch.Location = new System.Drawing.Point(534, 7);
             this.btnRefinedSearch.Name = "btnRefinedSearch";
             this.btnRefinedSearch.Size = new System.Drawing.Size(113, 23);
             this.btnRefinedSearch.TabIndex = 14;
@@ -182,29 +173,66 @@
             this.btnRefinedSearch.UseVisualStyleBackColor = true;
             this.btnRefinedSearch.Click += new System.EventHandler(this.btnRefinedSearch_Click);
             // 
+            // panel1
+            // 
+            this.panel1.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.panel1.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel1.Controls.Add(this.btnAddTuteeCourses);
+            this.panel1.Controls.Add(this.btnAddTutorCourses);
+            this.panel1.Controls.Add(this.listView2);
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.listView1);
+            this.panel1.Controls.Add(this.lbTutor);
+            this.panel1.Location = new System.Drawing.Point(12, 75);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(315, 157);
+            this.panel1.TabIndex = 15;
+            // 
+            // panel2
+            // 
+            this.panel2.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.panel2.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel2.Controls.Add(this.btnRefinedSearch);
+            this.panel2.Controls.Add(this.btnViewMessages);
+            this.panel2.Controls.Add(this.lblNameAndUser);
+            this.panel2.Controls.Add(this.btnMatchingAppoint);
+            this.panel2.Controls.Add(this.btnViewCal);
+            this.panel2.Controls.Add(this.btnLogout);
+            this.panel2.Location = new System.Drawing.Point(12, 12);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(1079, 43);
+            this.panel2.TabIndex = 16;
+            // 
+            // weekCalendar
+            // 
+            this.weekCalendar.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.weekCalendar.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.weekCalendar.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.weekCalendar.Location = new System.Drawing.Point(12, 253);
+            this.weekCalendar.Name = "weekCalendar";
+            this.weekCalendar.Size = new System.Drawing.Size(1079, 383);
+            this.weekCalendar.TabIndex = 7;
+            // 
             // UserProfile
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1066, 574);
-            this.Controls.Add(this.btnRefinedSearch);
-            this.Controls.Add(this.btnAddTuteeCourses);
-            this.Controls.Add(this.btnAddTutorCourses);
-            this.Controls.Add(this.btnViewMessages);
-            this.Controls.Add(this.btnMatchingAppoint);
-            this.Controls.Add(this.lblNameAndUser);
-            this.Controls.Add(this.btnViewCal);
+            this.BackColor = System.Drawing.Color.SteelBlue;
+            this.ClientSize = new System.Drawing.Size(1107, 715);
+            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.weekCalendar);
-            this.Controls.Add(this.listView2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.listView1);
-            this.Controls.Add(this.lbTutor);
-            this.Controls.Add(this.btnLogout);
             this.Name = "UserProfile";
             this.Text = "User Profile";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Activated += new System.EventHandler(this.UserProfile_Activated);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -223,5 +251,7 @@
         private System.Windows.Forms.Button btnAddTutorCourses;
         private System.Windows.Forms.Button btnAddTuteeCourses;
         private System.Windows.Forms.Button btnRefinedSearch;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel2;
     }
 }
