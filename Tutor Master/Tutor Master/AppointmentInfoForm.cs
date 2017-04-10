@@ -33,23 +33,24 @@ namespace Tutor_Master
         public AppointmentInfoForm()
         {
             InitializeComponent();
+            this.Width = 280; 
+            displayApproveButton();
         }
 
         public AppointmentInfoForm(string type, int id)
         {
+            InitializeComponent();
             apptId = id;
             Appointment a = new Appointment();
             Database db = new Database();
             a = db.getAppointmentById(apptId);
-
-
+            displayApproveButton();
+            this.Width = 280;
 
         }
 
         public AppointmentInfoForm(string type, string place, string course, string datetime, string endDateDateTime, string fname, string sname, int id, string username, bool approved)
         {
-            this.Height = 330;
-
             apptId = id;
             Appointment a = new Appointment();
             Database db = new Database();
@@ -77,7 +78,7 @@ namespace Tutor_Master
             InitializeComponent();
 
             displayApproveButton();
-
+            this.Width = 280;
 
             apptDateTime = a.getStartTime();
             apptDate = apptDateTime.Date;
@@ -197,9 +198,12 @@ namespace Tutor_Master
          */
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            var appointmentEditor = new AppointmentEditForm(apptType, apptPlace, apptCourse, apptTime, apptDateTime, apptDateEnd, firstName, secondName, apptId);
-            appointmentEditor.Show();
-            this.Hide();
+            this.Width = 680;
+            panelEdit.Visible = true;
+            initializePanel();
+            //var appointmentEditor = new AppointmentEditForm(apptType, apptPlace, apptCourse, apptTime, apptDateTime, apptDateEnd, firstName, secondName, apptId);
+            //appointmentEditor.Show();
+            //this.Hide();
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -222,5 +226,35 @@ namespace Tutor_Master
             this.Hide();
             this.Close();
         }
+
+        private void initializePanel()
+        {
+            switch (apptType)
+            {
+                case "Freetime":
+                    lblTypePanel.Visible = false;
+                    cbxType.Visible = false;
+                    lblTutorPanel.Visible = false;
+                    lblTutorValPanel.Visible = false;
+                    lblTuteePanel.Visible = false;
+                    lblTuteeValPanel.Visible = false;
+                    lblCoursePanel.Visible = false;
+                    cbxCourseList.Visible = false;
+                    lblPlacePanel.Visible = false;
+                    txtMeetingPlace.Visible = false;
+                    dateTimeDay1.Value = apptDateTime;
+                    dateTimeTime1.Value = apptDateTime;
+                    dateTimeDay2.Value = apptDateEnd;
+                    dateTimeTime2.Value = apptDateEnd;
+
+
+
+                    break;
+
+            }
+
+        }
+
+
     }
 }

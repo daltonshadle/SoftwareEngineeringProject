@@ -143,6 +143,8 @@ namespace Tutor_Master
             comboTutor.ResetText();
             checkTutor.Checked = false;
             populateTutors(comboCourse.SelectedItem.ToString());
+            rtbInfo.Clear();
+            lvMatches.Clear();
         }
 
         //Written by Garrett to override the .Intersect() function for a set
@@ -261,7 +263,10 @@ namespace Tutor_Master
             }
 
             if (arrayToDisplay.Length == 0)
+            {
+                rtbInfo.Clear();
                 MessageBox.Show("No appointments match these criteria.");
+            }
         }
 
         private void lvMatches_SelectedIndexChanged(object sender, EventArgs e)
