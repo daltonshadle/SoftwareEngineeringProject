@@ -212,8 +212,13 @@ namespace Tutor_Master
         private void btnApprove_Click(object sender, EventArgs e)
         {
             Database db = new Database();
-            db.editAppointment(apptId, null, apptPlace, apptCourse, apptDateTime, apptDateEnd, firstName, secondName, false, true);
-            db.sendMessage(user, otherUser, "Appoinment Request Confirmed", user + " has confirmed your appointment regarding " + apptCourse, true, DateTime.Now, apptCourse, apptId);
+            int messageId = db.getMessageIdFromAppt(apptId);
+            if (messageId != -1)
+            {
+                db.approveMessageDetailsFromAppointment(messageId, true);
+                db.editAppointment(apptId, null, apptPlace, apptCourse, apptDateTime, apptDateEnd, firstName, secondName, false, true);
+                db.sendMessage(user, otherUser, "Appoinment Request Confirmed", user + " has confirmed your appointment regarding " + apptCourse, true, DateTime.Now, apptCourse, apptId);
+            }
             this.Hide();
             this.Close();
         }

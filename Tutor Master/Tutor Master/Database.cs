@@ -1660,6 +1660,99 @@ namespace Tutor_Master
 
         }
 
+        //Get message idea given an appointment
+        public int getMessageIdFromAppt(int apptId)
+        {
+            string query = "SELECT [id number] FROM sentMessages WHERE (apptId = @apptId AND subject = 'Free Time Filled.')";
+            int messageId = -1;
+
+            if (this.OpenConnection())
+            {
+                SqlCeCommand cmd = new SqlCeCommand();
+                cmd.CommandText = query;
+                cmd.Parameters.Add("@apptId", apptId);
+                cmd.Connection = con;
+                try
+                {
+                    SqlCeDataReader dataReader = cmd.ExecuteReader();
+
+                    //Read the data and store them in the list
+                    while (dataReader.Read())
+                    {
+                        messageId = (int)dataReader["id number"];
+                    }
+
+                    //close Data Reader
+                    dataReader.Close();
+                    this.CloseConnection();
+
+                    return messageId;
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    this.CloseConnection();
+                    return messageId;
+                }
+            }
+            else
+                return messageId;
+
+        }
+
+        //turn the value in messages to true once the tutor approves the session
+        public void approveMessageDetailsFromAppointment(int messageID, bool approval)
+        {
+            string strApproval = approval.ToString();
+
+            Database db = new Database();
+            /*List<string> currentCourseList = db.getCourseList(username, true);
+            int index = -1;
+            for (int i = 0; i < currentCourseList.Count; i++)
+            {
+                if (currentCourseList[i] == courseName)
+                    index = i;
+            }
+
+            if (index != -1)
+            {*/
+                string query2 = "UPDATE sentMessages SET approved = @true WHERE [id number] = @idNum";
+                string query3 = "UPDATE receivedMessages SET approved = @true WHERE [id number] = @idNum";
+
+                if (this.OpenConnection())
+                {
+                    SqlCeCommand cmd2 = new SqlCeCommand();
+                    cmd2.CommandText = query2;
+                    cmd2.Parameters.Add("@true", "True");
+                    cmd2.Parameters.Add("@idNum", messageID);
+                    cmd2.Connection = con;
+                    SqlCeCommand cmd3 = new SqlCeCommand();
+                    cmd3.CommandText = query3;
+                    cmd3.Parameters.Add("@true", "True");
+                    cmd3.Parameters.Add("@idNum", messageID);
+                    cmd3.Connection = con;
+                    try
+                    {
+                        cmd2.ExecuteNonQuery();
+                        cmd3.ExecuteNonQuery();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+
+                    this.CloseConnection();
+                }
+            /*}
+            else 
+            {
+                MessageBox.Show("Course not applicable to tutor.");
+            }*/
+        }
+    
+
+
         //turn the value in tutor courses to true once the faculty approves the course
         public void approveCourseInTutorCourses(string username, string courseName, int messageID, bool approval)
         {
