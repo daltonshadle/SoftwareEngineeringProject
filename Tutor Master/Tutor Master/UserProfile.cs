@@ -60,21 +60,24 @@ namespace Tutor_Master
             else
                 adminAcc = false;
 
-            for (int i = 4; i < 7; i++)
+            for (int i = 4; i < 8; i++)
             {
                 if (listOfProfileInfo[i] != "")
                     tuteeCoursesList.Add(listOfProfileInfo[i]);
             }
-            for (int i = 8; i < 11; i++)
+            for (int i = 8; i < 12; i++)
             {
                 if (listOfProfileInfo[i] != "")
+                {
                     tutorCoursesList.Add(listOfProfileInfo[i]);
+                    courseAppList.Add(listOfProfileInfo[i+4]);
+                }
             }
-            for (int i = 12; i < 15; i++)
+            /*for (int i = 12; i < 15; i++)
             {
                 if (listOfProfileInfo[i] != "")
                     courseAppList.Add(listOfProfileInfo[i]);
-            }
+            }*/
 
             if (first != "")
             {
@@ -106,7 +109,9 @@ namespace Tutor_Master
                     if (tutorCoursesList[x] != "")
                     {
                         if (courseAppList[x] == "False")
-                            tutorListView.Items.Add("Pending");
+                            tutorListView.Items.Add(tutorCoursesList[x] + " - Rejected");
+                        else if (courseAppList[x] == "")
+                            tutorListView.Items.Add(tutorCoursesList[x] + " - Pending");
                         else
                             tutorListView.Items.Add(tutorCoursesList[x] + "\n");
                     }

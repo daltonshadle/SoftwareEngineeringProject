@@ -105,19 +105,20 @@ namespace Tutor_Master
             Appointment[] allFreeTimeAppointmentsArray = new Appointment[allFreeTimeAppointmentsSet.Count];
             allFreeTimeAppointmentsSet.CopyTo(allFreeTimeAppointmentsArray);
 
-            bool canTutorThisCourse = false;
+            bool canTutorThisCourse;
 
             //For every free time appointment
             for (int i = 0; i < allFreeTimeAppointmentsArray.Length; i++)
             {
                 string tutor = allFreeTimeAppointmentsArray[i].getFreeTimeProf();
+                canTutorThisCourse = false;
 
                 List<string> tutorCourseList = new List<string>();
                 List<string> allTutorInfo = db.getProfileInfo(tutor);
                 //Determine if owner of free time can tutor that course
                 for (int j = 8; j < 11; j++)
                 {
-                    if (allTutorInfo[j] != "")
+                    if ((allTutorInfo[j] != "") && (allTutorInfo[j+4] == "True"))
                     {
                         tutorCourseList.Add(allTutorInfo[j]);
                     }

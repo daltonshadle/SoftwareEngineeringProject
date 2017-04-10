@@ -496,7 +496,7 @@ namespace Tutor_Master
             HashSet<Appointment> appointmentList = new HashSet<Appointment>();
 
             string query;
-            query = "SELECT * FROM appointment WHERE ([isFreeTimeSession] = 'True')";
+            query = "SELECT * FROM appointment WHERE ([isFreeTimeSession] = 'True' AND [endTime] > GETDATE())";
 
             if (this.OpenConnection())
             {
@@ -1074,14 +1074,10 @@ namespace Tutor_Master
                 if (isTutor)
                 {
                     int j = 0;
-                    for (; j < number; ++j)
-                    {
-                        cmd.Parameters.Add("@approved" + (j + 1).ToString(), "False");
-                    }
                     for (; j < 4; ++j)
                     {
-                        cmd.Parameters.Add("@approved" + (1 + j).ToString(), "False");
-                    }
+                        cmd.Parameters.Add("@approved" + (j + 1).ToString(), DBNull.Value);
+                    }                   
                 }
 
                 cmd.Connection = con;
