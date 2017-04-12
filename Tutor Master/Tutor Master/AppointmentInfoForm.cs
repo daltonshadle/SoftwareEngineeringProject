@@ -201,6 +201,7 @@ namespace Tutor_Master
             this.Width = 680;
             panelEdit.Visible = true;
             initializePanel();
+            btnConfirmEdit.Visible = true;
             //var appointmentEditor = new AppointmentEditForm(apptType, apptPlace, apptCourse, apptTime, apptDateTime, apptDateEnd, firstName, secondName, apptId);
             //appointmentEditor.Show();
             //this.Hide();
@@ -232,12 +233,6 @@ namespace Tutor_Master
             switch (apptType)
             {
                 case "Freetime":
-                    lblTypePanel.Visible = false;
-                    cbxType.Visible = false;
-                    lblTutorPanel.Visible = false;
-                    lblTutorValPanel.Visible = false;
-                    lblTuteePanel.Visible = false;
-                    lblTuteeValPanel.Visible = false;
                     lblCoursePanel.Visible = false;
                     cbxCourseList.Visible = false;
                     lblPlacePanel.Visible = false;
@@ -246,13 +241,77 @@ namespace Tutor_Master
                     dateTimeTime1.Value = apptDateTime;
                     dateTimeDay2.Value = apptDateEnd;
                     dateTimeTime2.Value = apptDateEnd;
-
-
-
                     break;
+
+                case "Learning":
+                    lblPlacePanel.Visible = true;
+                    txtMeetingPlace.Visible = true;
+                    txtMeetingPlace.Text = apptPlace;
+
+                    if (user == secondName)
+                    {
+                        lblCoursePanel.Visible = true;
+                        cbxCourseList.Visible = true;
+                        cbxCourseList.Text = apptCourse;
+                        
+                        Database db = new Database();
+                        List<string> tutorCourses = db.getCourseList(firstName, true);
+                        List<string> tuteeCourses = db.getCourseList(secondName, false);
+
+                        HashSet<string> comboBoxSet = new HashSet<string>();
+                        for (int a = 0; a < tutorCourses.Count; a++)
+                        {
+                            for (int b = 0; b < tuteeCourses.Count; b++)
+                            {
+                                if (tutorCourses[a] == tuteeCourses[b] && tuteeCourses[b] != "")
+                                    comboBoxSet.Add(tuteeCourses[b]);
+                            }
+                        }
+                        string[] comboBoxArray = new string[comboBoxSet.Count];
+                        comboBoxSet.CopyTo(comboBoxArray);
+                        cbxCourseList.Items.Clear();
+                        for (int c = 0; c < comboBoxArray.Length; c++)
+                        {
+                            cbxCourseList.Items.Add(comboBoxArray[c]);
+                        }
+                    }
+                    else
+                    {
+                        lblCoursePanel.Visible = false;
+                        cbxCourseList.Visible = false;
+                    }
+                    break;
+
 
             }
 
+        }
+
+        private void btnConfirmEdit_Click(object sender, EventArgs e)
+        {
+            //Re-assign all of the info for course, place, startTime, and endTime
+            if (cbxCourseList.Visible == true)
+                apptCourse = cbxCourseList.SelectedItem.ToString();
+            if (txtMeetingPlace.Visible == true)
+                apptPlace = txtMeetingPlace.Text;
+            //apptDateTime = dateTimeDay1.Value + dateTimeTime1.Value;
+            //apptDateEnd = dateTimeDay1.Value + dateTimeTime1.Value;
+
+            
+
+
+            //Edit the appointment and send the message.
+            Database db = new Database();
+            int messageId = db.getMessageIdFromAppt(apptId);
+            if (messageId != -1)
+            {
+                db.approveMessageDetailsFromAppointment(messageId, true);
+                //db.editAppointment(apptId, (secondName != ""), apptPlace, 
+                db.editAppointment(apptId, null, apptPlace, apptCourse, apptDateTime, apptDateEnd, firstName, secondName, false, true);
+                db.sendMessage(user, otherUser, "Appoinment Request Confirmed", user + " has confirmed your appointment regarding " + apptCourse, true, DateTime.Now, apptCourse, apptId);
+            }
+            this.Hide();
+            this.Close();
         }
 
 
