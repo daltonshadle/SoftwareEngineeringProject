@@ -44,8 +44,6 @@ namespace Tutor_Master
         {
             INBOX = true;
             lblMessages.Text = "Inbox";
-            button1.Visible = true;
-            button2.Visible = true;
             lvMessages.Items.Clear();
             inboxMessageList.Clear();
             inboxMessageList = db.getInbox(user);
@@ -69,8 +67,6 @@ namespace Tutor_Master
             lvMessages.Items.Clear();
             sentMessageList.Clear();
             sentMessageList = db.getSentMail(user);
-            button1.Visible = false;
-            button2.Visible = false;
             rtbMessageDetails.Clear();
             for (int i = 0; i < sentMessageList.Count(); i++)
             {
@@ -132,32 +128,6 @@ namespace Tutor_Master
                     }
                 }
             }
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            //check if selected index is what you want for "True" and "False" or currentIndex
-            if (currentIndex == -1)
-                MessageBox.Show("No message selected");
-            else
-            {
-                if (INBOX)
-                {
-                    if (lvMessages.SelectedItems[0].SubItems[4].Text == "False")
-                    {
-                        db.approveCourseInTutorCourses(inboxMessageList[currentIndex].getFromUser(), inboxMessageList[currentIndex].getCourseName(), inboxMessageList[currentIndex].getIdNum(), true);
-                        db.sendMessage(user, inboxMessageList[currentIndex].getFromUser(), "Appoinment Request Confirmed", user + " has confirmed your appointment regarding " + inboxMessageList[currentIndex].getCourseName(), true, DateTime.Now, inboxMessageList[currentIndex].getCourseName(), -1);
-                        lvMessages.SelectedItems[0].SubItems[4].Text = "True";
-                        rtbMessageDetails.Clear();
-                        rtbMessageDetails.AppendText("Done");
-                    }
-                }
-            }
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void lvMessages_SelectedIndexChanged_1(object sender, EventArgs e)
