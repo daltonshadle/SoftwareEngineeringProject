@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Diagnostics;
 
 namespace Tutor_Master
 {
@@ -84,16 +85,9 @@ namespace Tutor_Master
                     int j = 0;
                     cbxCourseList.Items.Clear();
                     cbxCourseList.Text = "";
-                    if (builderTuteeCourses.Count > 0)
-                    {
-                        string tempTuteeCourse = builderTuteeCourses[j];
 
-                        while (!tempTuteeCourse.Equals(""))
-                        {
-                            cbxCourseList.Items.Add(tempTuteeCourse);
-                            j++;
-                            tempTuteeCourse = builderTuteeCourses[j];
-                        }
+                    for (int x = 0; x < builderTuteeCourses.Count; x++) { 
+                        cbxCourseList.Items.Add(builderTuteeCourses[x]);
                     }
 
                     panelCourse.Visible = true;
@@ -530,15 +524,15 @@ namespace Tutor_Master
             {
                 initialValue1 = true;
                 initialValue2 = true;
-                dateTimeTime1.Value = dt.AddMinutes(dt.Minute % 15);
-                dateTimeTime2.Value = dt.AddMinutes(dt.Minute % 15 + 15);
+                dateTimeTime1.Value = dt.AddMinutes(dt.Minute % 15 + 15);
+                dateTimeTime2.Value = dt.AddMinutes(dt.Minute % 15 + 30);
             }
             else
             {
                 initialValue1 = true;
                 initialValue2 = true;
-                dateTimeTime1.Value = dt.AddMinutes(-(dt.Minute % 15));
-                dateTimeTime2.Value = dt.AddMinutes(-(dt.Minute % 15) + 15);
+                dateTimeTime1.Value = dt.AddMinutes(-(dt.Minute % 15) + 15);
+                dateTimeTime2.Value = dt.AddMinutes(-(dt.Minute % 15) + 30);
             }
 
             prevTime1 = dateTimeTime1.Value;
@@ -565,6 +559,8 @@ namespace Tutor_Master
             {
                 dateTimeTime1.Value = prevTime1.AddMinutes(15);
             }
+
+            Debug.WriteLine("Timer 1 " + diff.Ticks.ToString());
 
             if (dateTimeTime2.Value <= dateTimeTime1.Value) {
                 dateTimeTime2.Value = prevTime1.AddMinutes(15);
@@ -594,12 +590,12 @@ namespace Tutor_Master
                 dateTimeTime2.Value = prevTime2.AddMinutes(15);
             }
 
-            
+            Debug.WriteLine("Timer 2 " + diff.Ticks.ToString());
 
             if (dateTimeTime1.Value >= dateTimeTime2.Value) {
                 dateTimeTime1.Value = prevTime2.AddMinutes(-15);
             }
-            
+
             prevTime2 = dateTimeTime2.Value;
         }
 

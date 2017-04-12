@@ -867,7 +867,10 @@ namespace Tutor_Master
             HashSet<Appointment> appointmentSet = new HashSet<Appointment>();
 
             string query;
-            query = "SELECT * FROM appointment WHERE  ((startTime BETWEEN @start AND @end) AND (endTime BETWEEN @start AND @end))";
+            if (start.Date == end.Date)
+                query = "SELECT * FROM appointment WHERE  ((DATEPART(yyyy, startTime) = DATEPART(yyyy, @start)) AND (DATEPART(mm, startTime) = DATEPART(mm, @start)) AND (DATEPART(dd, startTime) = DATEPART(dd, @start)))";
+            else
+                query = "SELECT * FROM appointment WHERE  (startTime BETWEEN @start AND @end)";
 
             if (this.OpenConnection())
             {

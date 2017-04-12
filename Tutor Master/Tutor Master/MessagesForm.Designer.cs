@@ -29,8 +29,6 @@
         private void InitializeComponent()
         {
             this.btnLogout = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
             this.rtbMessageDetails = new System.Windows.Forms.RichTextBox();
             this.lblMessageDetails = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -55,26 +53,6 @@
             this.btnLogout.TabIndex = 21;
             this.btnLogout.Text = "Logout";
             this.btnLogout.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(331, 611);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 20;
-            this.button2.Text = "Reject";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(230, 611);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 19;
-            this.button1.Text = "Approve";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // rtbMessageDetails
             // 
@@ -197,8 +175,6 @@
             this.ClientSize = new System.Drawing.Size(635, 669);
             this.Controls.Add(this.lblMessages);
             this.Controls.Add(this.btnLogout);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.rtbMessageDetails);
             this.Controls.Add(this.lblMessageDetails);
             this.Controls.Add(this.label1);
@@ -216,8 +192,6 @@
         #endregion
 
         private System.Windows.Forms.Button btnLogout;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.RichTextBox rtbMessageDetails;
         private System.Windows.Forms.Label lblMessageDetails;
         private System.Windows.Forms.Label label1;
