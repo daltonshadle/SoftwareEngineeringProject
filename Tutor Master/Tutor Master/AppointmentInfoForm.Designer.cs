@@ -49,24 +49,19 @@
             this.lblEndTimeVal = new System.Windows.Forms.Label();
             this.lblEndTime = new System.Windows.Forms.Label();
             this.btnApprove = new System.Windows.Forms.Button();
-            this.cbxType = new System.Windows.Forms.ComboBox();
-            this.lblTutorValPanel = new System.Windows.Forms.Label();
-            this.lblTuteeValPanel = new System.Windows.Forms.Label();
             this.panelTime = new System.Windows.Forms.Panel();
+            this.dateTimeTime2 = new System.Windows.Forms.DateTimePicker();
+            this.dateTimeTime1 = new System.Windows.Forms.DateTimePicker();
             this.dateTimeDay2 = new System.Windows.Forms.DateTimePicker();
             this.dateTimeDay1 = new System.Windows.Forms.DateTimePicker();
             this.lblEndTimePanel = new System.Windows.Forms.Label();
             this.lblStartTimePanel = new System.Windows.Forms.Label();
             this.txtMeetingPlace = new System.Windows.Forms.TextBox();
             this.cbxCourseList = new System.Windows.Forms.ComboBox();
-            this.lblTypePanel = new System.Windows.Forms.Label();
             this.lblPlacePanel = new System.Windows.Forms.Label();
             this.lblCoursePanel = new System.Windows.Forms.Label();
-            this.lblTuteePanel = new System.Windows.Forms.Label();
-            this.lblTutorPanel = new System.Windows.Forms.Label();
             this.panelEdit = new System.Windows.Forms.Panel();
-            this.dateTimeTime1 = new System.Windows.Forms.DateTimePicker();
-            this.dateTimeTime2 = new System.Windows.Forms.DateTimePicker();
+            this.btnConfirmEdit = new System.Windows.Forms.Button();
             this.panelTime.SuspendLayout();
             this.panelEdit.SuspendLayout();
             this.SuspendLayout();
@@ -263,32 +258,6 @@
             this.btnApprove.UseVisualStyleBackColor = true;
             this.btnApprove.Click += new System.EventHandler(this.btnApprove_Click);
             // 
-            // cbxType
-            // 
-            this.cbxType.FormattingEnabled = true;
-            this.cbxType.Location = new System.Drawing.Point(125, 26);
-            this.cbxType.Name = "cbxType";
-            this.cbxType.Size = new System.Drawing.Size(121, 21);
-            this.cbxType.TabIndex = 52;
-            // 
-            // lblTutorValPanel
-            // 
-            this.lblTutorValPanel.AutoSize = true;
-            this.lblTutorValPanel.Location = new System.Drawing.Point(125, 50);
-            this.lblTutorValPanel.Name = "lblTutorValPanel";
-            this.lblTutorValPanel.Size = new System.Drawing.Size(19, 13);
-            this.lblTutorValPanel.TabIndex = 51;
-            this.lblTutorValPanel.Text = "----";
-            // 
-            // lblTuteeValPanel
-            // 
-            this.lblTuteeValPanel.AutoSize = true;
-            this.lblTuteeValPanel.Location = new System.Drawing.Point(126, 76);
-            this.lblTuteeValPanel.Name = "lblTuteeValPanel";
-            this.lblTuteeValPanel.Size = new System.Drawing.Size(19, 13);
-            this.lblTuteeValPanel.TabIndex = 50;
-            this.lblTuteeValPanel.Text = "----";
-            // 
             // panelTime
             // 
             this.panelTime.Controls.Add(this.dateTimeTime2);
@@ -297,10 +266,26 @@
             this.panelTime.Controls.Add(this.dateTimeDay1);
             this.panelTime.Controls.Add(this.lblEndTimePanel);
             this.panelTime.Controls.Add(this.lblStartTimePanel);
-            this.panelTime.Location = new System.Drawing.Point(56, 141);
+            this.panelTime.Location = new System.Drawing.Point(21, 59);
             this.panelTime.Name = "panelTime";
             this.panelTime.Size = new System.Drawing.Size(291, 61);
             this.panelTime.TabIndex = 49;
+            // 
+            // dateTimeTime2
+            // 
+            this.dateTimeTime2.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.dateTimeTime2.Location = new System.Drawing.Point(186, 36);
+            this.dateTimeTime2.Name = "dateTimeTime2";
+            this.dateTimeTime2.Size = new System.Drawing.Size(105, 20);
+            this.dateTimeTime2.TabIndex = 5;
+            // 
+            // dateTimeTime1
+            // 
+            this.dateTimeTime1.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.dateTimeTime1.Location = new System.Drawing.Point(186, 5);
+            this.dateTimeTime1.Name = "dateTimeTime1";
+            this.dateTimeTime1.Size = new System.Drawing.Size(105, 20);
+            this.dateTimeTime1.TabIndex = 4;
             // 
             // dateTimeDay2
             // 
@@ -340,7 +325,7 @@
             // 
             // txtMeetingPlace
             // 
-            this.txtMeetingPlace.Location = new System.Drawing.Point(128, 125);
+            this.txtMeetingPlace.Location = new System.Drawing.Point(93, 43);
             this.txtMeetingPlace.Name = "txtMeetingPlace";
             this.txtMeetingPlace.Size = new System.Drawing.Size(121, 20);
             this.txtMeetingPlace.TabIndex = 48;
@@ -348,24 +333,15 @@
             // cbxCourseList
             // 
             this.cbxCourseList.FormattingEnabled = true;
-            this.cbxCourseList.Location = new System.Drawing.Point(128, 98);
+            this.cbxCourseList.Location = new System.Drawing.Point(93, 16);
             this.cbxCourseList.Name = "cbxCourseList";
             this.cbxCourseList.Size = new System.Drawing.Size(121, 21);
             this.cbxCourseList.TabIndex = 47;
             // 
-            // lblTypePanel
-            // 
-            this.lblTypePanel.AutoSize = true;
-            this.lblTypePanel.Location = new System.Drawing.Point(27, 26);
-            this.lblTypePanel.Name = "lblTypePanel";
-            this.lblTypePanel.Size = new System.Drawing.Size(92, 13);
-            this.lblTypePanel.TabIndex = 46;
-            this.lblTypePanel.Text = "Appointment type:\r\n";
-            // 
             // lblPlacePanel
             // 
             this.lblPlacePanel.AutoSize = true;
-            this.lblPlacePanel.Location = new System.Drawing.Point(79, 125);
+            this.lblPlacePanel.Location = new System.Drawing.Point(44, 43);
             this.lblPlacePanel.Name = "lblPlacePanel";
             this.lblPlacePanel.Size = new System.Drawing.Size(37, 13);
             this.lblPlacePanel.TabIndex = 45;
@@ -374,71 +350,43 @@
             // lblCoursePanel
             // 
             this.lblCoursePanel.AutoSize = true;
-            this.lblCoursePanel.Location = new System.Drawing.Point(73, 101);
+            this.lblCoursePanel.Location = new System.Drawing.Point(38, 19);
             this.lblCoursePanel.Name = "lblCoursePanel";
             this.lblCoursePanel.Size = new System.Drawing.Size(43, 13);
             this.lblCoursePanel.TabIndex = 44;
             this.lblCoursePanel.Text = "Course:";
             // 
-            // lblTuteePanel
-            // 
-            this.lblTuteePanel.AutoSize = true;
-            this.lblTuteePanel.Location = new System.Drawing.Point(50, 76);
-            this.lblTuteePanel.Name = "lblTuteePanel";
-            this.lblTuteePanel.Size = new System.Drawing.Size(69, 13);
-            this.lblTuteePanel.TabIndex = 43;
-            this.lblTuteePanel.Text = "Tutee profile:";
-            // 
-            // lblTutorPanel
-            // 
-            this.lblTutorPanel.AutoSize = true;
-            this.lblTutorPanel.Location = new System.Drawing.Point(51, 50);
-            this.lblTutorPanel.Name = "lblTutorPanel";
-            this.lblTutorPanel.Size = new System.Drawing.Size(66, 13);
-            this.lblTutorPanel.TabIndex = 42;
-            this.lblTutorPanel.Text = "Tutor profile:";
-            // 
             // panelEdit
             // 
             this.panelEdit.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panelEdit.Controls.Add(this.cbxType);
-            this.panelEdit.Controls.Add(this.lblTutorValPanel);
-            this.panelEdit.Controls.Add(this.lblTuteeValPanel);
             this.panelEdit.Controls.Add(this.panelTime);
             this.panelEdit.Controls.Add(this.txtMeetingPlace);
             this.panelEdit.Controls.Add(this.cbxCourseList);
-            this.panelEdit.Controls.Add(this.lblTypePanel);
             this.panelEdit.Controls.Add(this.lblPlacePanel);
             this.panelEdit.Controls.Add(this.lblCoursePanel);
-            this.panelEdit.Controls.Add(this.lblTuteePanel);
-            this.panelEdit.Controls.Add(this.lblTutorPanel);
-            this.panelEdit.Location = new System.Drawing.Point(257, 42);
+            this.panelEdit.Location = new System.Drawing.Point(275, 73);
             this.panelEdit.Name = "panelEdit";
-            this.panelEdit.Size = new System.Drawing.Size(374, 222);
+            this.panelEdit.Size = new System.Drawing.Size(337, 145);
             this.panelEdit.TabIndex = 53;
             this.panelEdit.Visible = false;
             // 
-            // dateTimeTime1
+            // btnConfirmEdit
             // 
-            this.dateTimeTime1.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.dateTimeTime1.Location = new System.Drawing.Point(186, 5);
-            this.dateTimeTime1.Name = "dateTimeTime1";
-            this.dateTimeTime1.Size = new System.Drawing.Size(105, 20);
-            this.dateTimeTime1.TabIndex = 4;
-            // 
-            // dateTimeTime2
-            // 
-            this.dateTimeTime2.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.dateTimeTime2.Location = new System.Drawing.Point(186, 36);
-            this.dateTimeTime2.Name = "dateTimeTime2";
-            this.dateTimeTime2.Size = new System.Drawing.Size(105, 20);
-            this.dateTimeTime2.TabIndex = 5;
+            this.btnConfirmEdit.Location = new System.Drawing.Point(416, 235);
+            this.btnConfirmEdit.Name = "btnConfirmEdit";
+            this.btnConfirmEdit.Size = new System.Drawing.Size(75, 23);
+            this.btnConfirmEdit.TabIndex = 54;
+            this.btnConfirmEdit.Text = "Confirm Edit";
+            this.btnConfirmEdit.UseVisualStyleBackColor = true;
+            this.btnConfirmEdit.Visible = false;
+            this.btnConfirmEdit.Click += new System.EventHandler(this.btnConfirmEdit_Click);
             // 
             // AppointmentInfoForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(666, 321);
+            this.ClientSize = new System.Drawing.Size(663, 321);
+            this.Controls.Add(this.btnConfirmEdit);
             this.Controls.Add(this.panelEdit);
             this.Controls.Add(this.btnApprove);
             this.Controls.Add(this.lblEndDateVal);
@@ -495,9 +443,6 @@
         private System.Windows.Forms.Label lblEndTimeVal;
         private System.Windows.Forms.Label lblEndTime;
         private System.Windows.Forms.Button btnApprove;
-        private System.Windows.Forms.ComboBox cbxType;
-        private System.Windows.Forms.Label lblTutorValPanel;
-        private System.Windows.Forms.Label lblTuteeValPanel;
         private System.Windows.Forms.Panel panelTime;
         private System.Windows.Forms.DateTimePicker dateTimeDay2;
         private System.Windows.Forms.DateTimePicker dateTimeDay1;
@@ -505,14 +450,12 @@
         private System.Windows.Forms.Label lblStartTimePanel;
         private System.Windows.Forms.TextBox txtMeetingPlace;
         private System.Windows.Forms.ComboBox cbxCourseList;
-        private System.Windows.Forms.Label lblTypePanel;
         private System.Windows.Forms.Label lblPlacePanel;
         private System.Windows.Forms.Label lblCoursePanel;
-        private System.Windows.Forms.Label lblTuteePanel;
-        private System.Windows.Forms.Label lblTutorPanel;
         private System.Windows.Forms.Panel panelEdit;
         private System.Windows.Forms.DateTimePicker dateTimeTime2;
         private System.Windows.Forms.DateTimePicker dateTimeTime1;
+        private System.Windows.Forms.Button btnConfirmEdit;
 
     }
 }
