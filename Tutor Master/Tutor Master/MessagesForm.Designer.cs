@@ -42,6 +42,8 @@
             this.Done = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.To = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lblMessages = new System.Windows.Forms.Label();
+            this.btnApprove = new System.Windows.Forms.Button();
+            this.btnReject = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnLogout
@@ -168,11 +170,33 @@
             this.lblMessages.TabIndex = 22;
             this.lblMessages.Text = "Inbox";
             // 
+            // btnApprove
+            // 
+            this.btnApprove.Location = new System.Drawing.Point(230, 634);
+            this.btnApprove.Name = "btnApprove";
+            this.btnApprove.Size = new System.Drawing.Size(75, 23);
+            this.btnApprove.TabIndex = 23;
+            this.btnApprove.Text = "Approve";
+            this.btnApprove.UseVisualStyleBackColor = true;
+            this.btnApprove.Click += new System.EventHandler(this.btnApprove_Click);
+            // 
+            // btnReject
+            // 
+            this.btnReject.Location = new System.Drawing.Point(342, 634);
+            this.btnReject.Name = "btnReject";
+            this.btnReject.Size = new System.Drawing.Size(75, 23);
+            this.btnReject.TabIndex = 24;
+            this.btnReject.Text = "Reject";
+            this.btnReject.UseVisualStyleBackColor = true;
+            this.btnReject.Click += new System.EventHandler(this.btnReject_Click);
+            // 
             // MessagesForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(635, 669);
+            this.Controls.Add(this.btnReject);
+            this.Controls.Add(this.btnApprove);
             this.Controls.Add(this.lblMessages);
             this.Controls.Add(this.btnLogout);
             this.Controls.Add(this.rtbMessageDetails);
@@ -205,5 +229,7 @@
         private System.Windows.Forms.ColumnHeader Done;
         private System.Windows.Forms.ColumnHeader To;
         private System.Windows.Forms.Label lblMessages;
+        private System.Windows.Forms.Button btnApprove;
+        private System.Windows.Forms.Button btnReject;
     }
 }

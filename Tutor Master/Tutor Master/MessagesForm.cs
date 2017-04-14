@@ -101,7 +101,7 @@ namespace Tutor_Master
             }
         }
 
-        private void btnView_Click(object sender, EventArgs e)
+        /*private void btnView_Click(object sender, EventArgs e)
         {
             if (lvMessages.SelectedItems.Count == 0)
                 MessageBox.Show("No message selected");
@@ -128,7 +128,7 @@ namespace Tutor_Master
                     }
                 }
             }
-        }
+        }*/
 
         private void lvMessages_SelectedIndexChanged_1(object sender, EventArgs e)
         {
@@ -157,11 +157,49 @@ namespace Tutor_Master
             }
         }
 
+
         private void btnLogout_Click(object sender, EventArgs e)
         {
             var form = new StartForm();
             form.Show();
             this.Hide();
+        }
+
+        private void btnApprove_Click(object sender, EventArgs e)
+        {
+            Database db = new Database();
+
+            Messages message = inboxMessageList[currentIndex];
+            Appointment appt = db.getAppointmentById(message.getApptId());
+            int messageId = message.getIdNum();
+
+            if (messageId != -1)
+            {
+                db.approveMessageDetailsFromAppointment(messageId, true);
+                db.editAppointment(appt.getID(), null, appt.getMeetingPlace(), appt.getCourse(), appt.getStartTime(), appt.getEndTime(), appt.getTutor(), appt.getTutee(), false, true);
+                db.sendMessage(user, appt.getTutee(), "Appoinment Request Confirmed", user + " has confirmed your appointment regarding " + appt.getCourse(), true, DateTime.Now, appt.getCourse(), appt.getID());
+            }
+            this.Hide();
+            this.Close();
+        }
+
+        private void btnReject_Click(object sender, EventArgs e)
+        {
+            Database db = new Database();
+
+            Messages message = inboxMessageList[currentIndex];
+            Appointment appt = db.getAppointmentById(message.getApptId());
+            int messageId = message.getIdNum();
+
+            if (messageId != -1)
+            {
+                db.approveMessageDetailsFromAppointment(messageId, false);
+                db.editAppointment(appt.getID(), null, appt.getMeetingPlace(), appt.getCourse(), appt.getStartTime(), appt.getEndTime(), appt.getTutor(), appt.getTutee(), false, true);
+                //db.editAppointment(
+                db.sendMessage(user, appt.getTutee(), "Appoinment Request Confirmed", user + " has confirmed your appointment regarding " + appt.getCourse(), true, DateTime.Now, appt.getCourse(), appt.getID());
+            }
+            this.Hide();
+            this.Close();
         }
 
 

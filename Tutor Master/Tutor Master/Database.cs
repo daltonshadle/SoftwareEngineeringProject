@@ -1405,6 +1405,65 @@ namespace Tutor_Master
             }
         }
 
+        //get one inbox message, received messages that were sent to user
+        public Messages getInboxMessage(int messageID)
+        {
+            Messages message = new Messages();
+
+            string query;
+            query = "SELECT * FROM receivedMessages WHERE receivedMessages.[id number] = @messageID";
+
+            if (this.OpenConnection())
+            {
+                SqlCeCommand cmd = new SqlCeCommand();
+                cmd.CommandText = query;
+                cmd.Parameters.Add("@messageID", messageID);
+                cmd.Connection = con;
+                try
+                {
+                    SqlCeDataReader dataReader = cmd.ExecuteReader();
+
+                    //Read the data and store them in the list
+                    while (dataReader.Read())
+                    { //have to make catches for all of the nulls that might be in the database
+                        Messages newMessage = new Messages();
+                        newMessage.setIdNum((int)dataReader["id number"]);
+                        newMessage.setFromUser((dataReader["fromUserName"] + "").ToString());
+                        newMessage.setToUser((dataReader["toUserName"] + "").ToString());
+                        newMessage.setSubject((dataReader["subject"] + "").ToString());
+                        newMessage.setMessage((dataReader["message"] + "").ToString());
+                        if (dataReader["approved"] == DBNull.Value)
+                        {
+                            newMessage.setPending(null);
+                        }
+                        else
+                            newMessage.setPending((bool?)dataReader["approved"]);
+                        newMessage.setDateTime((DateTime)dataReader["timeSent"]);
+                        newMessage.setCourseName(dataReader["courseName"].ToString());
+                        if (dataReader["apptId"] == DBNull.Value)
+                            newMessage.setApptId(-1);
+                        else
+                            newMessage.setApptId((int)dataReader["apptId"]);
+                    }
+
+                    //close Data Reader
+                    dataReader.Close();
+                    this.CloseConnection();
+                    return message;
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    message = null;
+                    this.CloseConnection();
+                    return message;
+                }
+            }
+            message = null;
+            return message;
+        }
+
         //get inbox, received messages that were sent to user
         public List<Messages> getInbox(string username)
         {
@@ -1727,12 +1786,12 @@ namespace Tutor_Master
                 {
                     SqlCeCommand cmd2 = new SqlCeCommand();
                     cmd2.CommandText = query2;
-                    cmd2.Parameters.Add("@true", "True");
+                    cmd2.Parameters.Add("@true", strApproval);
                     cmd2.Parameters.Add("@idNum", messageID);
                     cmd2.Connection = con;
                     SqlCeCommand cmd3 = new SqlCeCommand();
                     cmd3.CommandText = query3;
-                    cmd3.Parameters.Add("@true", "True");
+                    cmd3.Parameters.Add("@true", strApproval);
                     cmd3.Parameters.Add("@idNum", messageID);
                     cmd3.Connection = con;
                     try
@@ -1754,8 +1813,6 @@ namespace Tutor_Master
             }*/
         }
     
-
-
         //turn the value in tutor courses to true once the faculty approves the course
         public void approveCourseInTutorCourses(string username, string courseName, int messageID, bool approval)
         {
