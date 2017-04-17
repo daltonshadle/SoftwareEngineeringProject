@@ -175,9 +175,15 @@ namespace Tutor_Master
 
             if (messageId != -1)
             {
-                db.approveMessageDetailsFromAppointment(messageId, true);
-                db.editAppointment(appt.getID(), null, appt.getMeetingPlace(), appt.getCourse(), appt.getStartTime(), appt.getEndTime(), appt.getTutor(), appt.getTutee(), false, true);
-                db.sendMessage(user, appt.getTutee(), "Appoinment Request Confirmed", user + " has confirmed your appointment regarding " + appt.getCourse(), true, DateTime.Now, appt.getCourse(), appt.getID());
+                if (appt.getEndTime() > DateTime.Now)
+                {
+                    db.approveMessageDetailsFromAppointment(messageId, true);
+                    db.editAppointment(appt.getID(), null, appt.getMeetingPlace(), appt.getCourse(), appt.getStartTime(), appt.getEndTime(), appt.getTutor(), appt.getTutee(), false, true);
+                    db.sendMessage(user, appt.getTutee(), "Appoinment Request Confirmed", user + " has confirmed your appointment regarding " + appt.getCourse(), true, DateTime.Now, appt.getCourse(), appt.getID());
+                }
+                else {
+                    MessageBox.Show("Appointment end time has passed.");
+                }
             }
             this.Hide();
             this.Close();
