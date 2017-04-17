@@ -27,6 +27,10 @@ namespace Tutor_Master
         private string user, otherUser;
         private bool isApproved;
         private bool isFreeTime;
+        private DateTime prevTime1, prevTime2; //this is just for the 15 minute increments for time
+        private DateTime prevDate1, prevDate2; //this is just for syncing the date pickers
+        private bool initialValue1, initialValue2;
+        private string source;
         
         //private Appointment infoAppointment;
 
@@ -34,7 +38,7 @@ namespace Tutor_Master
         public AppointmentInfoForm()
         {
             InitializeComponent();
-            this.Width = 280; 
+            this.Width = 280;
             displayApproveButton();
         }
 
@@ -50,7 +54,7 @@ namespace Tutor_Master
 
         }
 
-        public AppointmentInfoForm(string type, string place, string course, string datetime, string endDateDateTime, string fname, string sname, int id, string username, bool approved)
+        public AppointmentInfoForm(string type, string place, string course, string datetime, string endDateDateTime, string fname, string sname, int id, string username, bool approved, string src)
         {
             apptId = id;
             Appointment a = new Appointment();
@@ -75,6 +79,7 @@ namespace Tutor_Master
             }
 
             isApproved = approved;
+            source = src;
 
             InitializeComponent();
 
@@ -175,7 +180,7 @@ namespace Tutor_Master
         {
             if ((user == firstName) && (apptType == "Learning") && (isApproved == false))
             {
-                this.Height = 360;
+                this.Height = 390;
                 btnApprove.Visible = true;
             }
             else
@@ -183,6 +188,7 @@ namespace Tutor_Master
                 this.Height = 330;
                 btnApprove.Visible = false;
             }
+            initializeTimers();
         }
 
 
@@ -221,7 +227,7 @@ namespace Tutor_Master
             if (messageId != -1)
             {
                 db.approveMessageDetailsFromAppointment(messageId, true);
-                db.editAppointment(apptId, null, apptPlace, apptCourse, apptDateTime, apptDateEnd, firstName, secondName, false, true);
+                db.editAppointment(apptId, null, apptPlace, apptCourse, apptDateTime, apptDateEnd, firstName, secondName, false, true, "ApprovedInEditForm");
                 db.sendMessage(user, otherUser, "Appoinment Request Confirmed", user + " has confirmed your appointment regarding " + apptCourse, true, DateTime.Now, apptCourse, apptId);
             }
             this.Hide();
@@ -313,7 +319,7 @@ namespace Tutor_Master
             //Edit the appointment and send the message.
             Database db = new Database();
            
-            db.editAppointment(apptId, freeTimeProf, apptPlace, apptCourse, apptDateTime, apptDateEnd, firstName, secondName, isFreeTime, false);
+            db.editAppointment(apptId, freeTimeProf, apptPlace, apptCourse, apptDateTime, apptDateEnd, firstName, secondName, isFreeTime, false, "EditForm");
             //db.editAppointment(apptId, null, apptPlace, apptCourse, apptDateTime, apptDateEnd, firstName, secondName, false, true);
             db.sendMessage(user, otherUser, "Appoinment edited", user + " has edited your appointment for " + apptCourse, true, DateTime.Now, apptCourse, apptId);
             
@@ -321,6 +327,119 @@ namespace Tutor_Master
             this.Close();
         }
 
+        private void initializeTimers()
+        {
+            dateTimeTime1.Format = DateTimePickerFormat.Custom;
+            dateTimeTime1.CustomFormat = "hh:mm tt";
+            dateTimeTime2.Format = DateTimePickerFormat.Custom;
+            dateTimeTime2.CustomFormat = "hh:mm tt";
 
+            DateTime dt = DateTime.Now;
+            if (dt.Minute % 15 > 15)
+            {
+                initialValue1 = true;
+                initialValue2 = true;
+                dateTimeTime1.Value = dt.AddMinutes(dt.Minute % 15 + 15);
+                dateTimeTime2.Value = dt.AddMinutes(dt.Minute % 15 + 30);
+            }
+            else
+            {
+                initialValue1 = true;
+                initialValue2 = true;
+                dateTimeTime1.Value = dt.AddMinutes(-(dt.Minute % 15) + 15);
+                dateTimeTime2.Value = dt.AddMinutes(-(dt.Minute % 15) + 30);
+            }
+
+            prevTime1 = dateTimeTime1.Value;
+            prevTime2 = dateTimeTime2.Value;
+        }
+
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+            if (initialValue1)
+            {
+                initialValue1 = false;
+                return;
+            }
+
+            DateTime dt = dateTimeTime1.Value;
+            TimeSpan diff = dt - prevTime1;
+
+
+            if (diff.Ticks < 0)
+            {
+                dateTimeTime1.Value = prevTime1.AddMinutes(-15);
+            }
+            else
+            {
+                dateTimeTime1.Value = prevTime1.AddMinutes(15);
+            }
+
+            //Debug.WriteLine("Timer 1 " + diff.Ticks.ToString());
+
+            if (dateTimeTime2.Value <= dateTimeTime1.Value)
+            {
+                dateTimeTime2.Value = prevTime1.AddMinutes(15);
+            }
+
+            prevTime1 = dateTimeTime1.Value;
+        }
+
+        private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
+        {
+            if (initialValue2)
+            {
+                initialValue2 = false;
+                return;
+            }
+
+            DateTime dt = dateTimeTime2.Value;
+            TimeSpan diff = dt - prevTime2;
+
+
+            if (diff.Ticks < 0)
+            {
+                dateTimeTime2.Value = prevTime2.AddMinutes(-15);
+            }
+            else
+            {
+                dateTimeTime2.Value = prevTime2.AddMinutes(15);
+            }
+
+            //Debug.WriteLine("Timer 2 " + diff.Ticks.ToString());
+
+            if (dateTimeTime1.Value >= dateTimeTime2.Value)
+            {
+                dateTimeTime1.Value = prevTime2.AddMinutes(-15);
+            }
+
+            prevTime2 = dateTimeTime2.Value;
+        }
+
+        private void btnReject_Click(object sender, EventArgs e)
+        {
+            Database db = new Database();
+
+            switch(source) {
+                //Run this if the appointment was created by a tutee
+                case "TuteeMatch":
+                    db.deleteAppointment(apptId);
+                    break;
+
+                //Run this if the appointment was changed by a user editing it
+                case "EditFrom":
+
+                    //somehow try to revert it to its old settings
+                    break;
+
+                //Run this if the appointment was a free time that got paired with.
+                case "MatchWithExistingAppointment":
+                    db.editAppointment(apptId, firstName, null, null, apptDateTime, apptDateEnd, null, null, true, false, "EditForm");
+                    break;
+
+            }
+            this.Hide();
+            this.Close();
+        }
     }
 }

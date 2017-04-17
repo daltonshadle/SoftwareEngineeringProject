@@ -334,7 +334,7 @@ namespace Tutor_Master
                 Appointment a = arrayToDisplay[currentIndex];
 
                 Database db = new Database();
-                db.editAppointment(a.getID(), null, null, course, a.getStartTime(), a.getEndTime(), a.getFreeTimeProf(), user, false, false);
+                db.editAppointment(a.getID(), null, null, course, a.getStartTime(), a.getEndTime(), a.getFreeTimeProf(), user, false, false, "MatchWithExistingAppointment");
                 db.sendMessage(user, tutor, "Free Time Filled.", user + " has requested to be tutored by you.", false, DateTime.Now, course, a.getID());
 
                 MessageBox.Show("A request message has been sent to " + tutor);
