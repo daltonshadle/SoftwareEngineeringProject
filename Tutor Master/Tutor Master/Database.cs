@@ -118,6 +118,31 @@ namespace Tutor_Master
                 this.CloseConnection();
             }
         }
+
+        //Function to change the user password
+        public void changePassword(string username, string newPassword)
+        {
+            string query = "UPDATE profile SET password = @newPassword WHERE username = @username";
+
+            if (this.OpenConnection())
+            {
+                SqlCeCommand cmd = new SqlCeCommand();
+                cmd.CommandText = query;
+                cmd.Parameters.Add("@username", username);
+                cmd.Parameters.Add("@newPassword", newPassword);
+                cmd.Connection = con;
+                try
+                {
+                    cmd.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+
+                this.CloseConnection();
+            }
+        }
    
         //Simply checks if username is in database
         public bool isUsernameInDataBase(string user)
@@ -343,6 +368,32 @@ namespace Tutor_Master
 
                 cmd.Parameters.Add("@ID", apptId);              
 
+                cmd.Connection = con;
+                try
+                {
+                    cmd.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+
+                this.CloseConnection();
+            }
+        }
+
+        //Delete old free time appointments
+        public void deleteOldFreeTimeAppointments()
+        {
+            Database db = new Database();
+
+            string query = "DELETE FROM appointment WHERE ([isFreeTimeSession] = 'True' AND endTime < GETDATE())";
+
+            if (this.OpenConnection())
+            {
+                SqlCeCommand cmd = new SqlCeCommand();
+
+                cmd.CommandText = query;
                 cmd.Connection = con;
                 try
                 {

@@ -29,6 +29,7 @@ namespace Tutor_Master
 
             List<string> listOfProfileInfo;
             Database db = new Database();
+            db.deleteOldFreeTimeAppointments();
             listOfProfileInfo = db.getProfileInfo(username);
             user = username;
             first = listOfProfileInfo[0];
