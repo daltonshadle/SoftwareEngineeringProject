@@ -26,6 +26,7 @@ namespace Tutor_Master
         private int apptId;
         private string user, otherUser;
         private bool isApproved;
+        private bool isFreeTime;
         
         //private Appointment infoAppointment;
 
@@ -86,33 +87,30 @@ namespace Tutor_Master
             apptDateEndTime = endDateDateTime;
             apptDateEnd = a.getEndTime();
             apptDateEndDate = apptDateEnd.Date;
-            
-            //Problem here: Can't get username so I can't distinguish between tutoring and tuteeing for learning
-            /*if (apptType == "Learning")
-            {
-                if (username == db.getAppointmentById(id).getTutor())
-                    apptType = "Tutoring";
-                else
-                    apptType = "Tuteeing";
-            }*/
 
-            if (apptType != "" && apptType != null){
+            if (apptType == "Free time")
+            {
+                isFreeTime = true;
+                lblTypeVal.Text = apptType;
+                secondName = null;
+            }
+            else if (apptType == "Learning")
+            {
+                isFreeTime = false;
                 lblTypeVal.Text = apptType;
             }
-            else{
-                lblTypeVal.Text = "-------";
-            }
 
-
-            if (firstName != "" && firstName != null){
+            if (firstName != "" && firstName != null)
+            {
                 lblTutorVal.Text = firstName;
             }
-            else{
-                lblTutorVal.Text = "-------";
+            else
+            {
+                lblTuteeVal.Text = "-------";
             }
 
-
-            if (secondName != "" && secondName != null){
+            if (!isFreeTime){
+                isFreeTime = false;
                 lblTuteeVal.Text = secondName;
             }
             else
@@ -125,6 +123,7 @@ namespace Tutor_Master
                 lblCourseVal.Text = apptCourse;
             }
             else{
+                apptCourse = null;
                 lblCourseVal.Text = "-------";
             }
 
@@ -133,6 +132,7 @@ namespace Tutor_Master
                 lblPlaceVal.Text = apptPlace;
             }
             else{
+                apptPlace = null;
                 lblPlaceVal.Text = "-------";
             }
 
@@ -253,6 +253,7 @@ namespace Tutor_Master
                         lblCoursePanel.Visible = true;
                         cbxCourseList.Visible = true;
                         cbxCourseList.Text = apptCourse;
+                        cbxCourseList.SelectedItem = apptCourse;
                         
                         Database db = new Database();
                         List<string> tutorCourses = db.getCourseList(firstName, true);
@@ -289,7 +290,16 @@ namespace Tutor_Master
 
         private void btnConfirmEdit_Click(object sender, EventArgs e)
         {
+            string freeTimeProf;
             //Re-assign all of the info for course, place, startTime, and endTime
+            if (apptType == "Learning")
+                freeTimeProf = null;
+            else
+            {
+                freeTimeProf = firstName;
+                firstName = null;
+                secondName = null;
+            }
             if (cbxCourseList.Visible == true)
                 apptCourse = cbxCourseList.SelectedItem.ToString();
             if (txtMeetingPlace.Visible == true)
@@ -302,14 +312,11 @@ namespace Tutor_Master
 
             //Edit the appointment and send the message.
             Database db = new Database();
-            int messageId = db.getMessageIdFromAppt(apptId);
-            if (messageId != -1)
-            {
-                db.approveMessageDetailsFromAppointment(messageId, true);
-                //db.editAppointment(apptId, (secondName != ""), apptPlace, 
-                db.editAppointment(apptId, null, apptPlace, apptCourse, apptDateTime, apptDateEnd, firstName, secondName, false, true);
-                db.sendMessage(user, otherUser, "Appoinment Request Confirmed", user + " has confirmed your appointment regarding " + apptCourse, true, DateTime.Now, apptCourse, apptId);
-            }
+           
+            db.editAppointment(apptId, freeTimeProf, apptPlace, apptCourse, apptDateTime, apptDateEnd, firstName, secondName, isFreeTime, false);
+            //db.editAppointment(apptId, null, apptPlace, apptCourse, apptDateTime, apptDateEnd, firstName, secondName, false, true);
+            db.sendMessage(user, otherUser, "Appoinment edited", user + " has edited your appointment for " + apptCourse, true, DateTime.Now, apptCourse, apptId);
+            
             this.Hide();
             this.Close();
         }
