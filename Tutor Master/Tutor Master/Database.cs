@@ -329,6 +329,14 @@ namespace Tutor_Master
                         else{
                             newAppointment.setIsApproved((bool)dataReader["isApproved"]);
                         }
+                        if (dataReader["source"] == DBNull.Value)
+                        {
+                            newAppointment.setSource(null);
+                        }
+                        else
+                        {
+                            newAppointment.setSource((string)dataReader["source"]);
+                        }
                         newAppointment.setStartTime((DateTime)dataReader["startTime"]);
                         newAppointment.setEndTime((DateTime)dataReader["endTime"]);
                         newAppointment.setIsFreeTimeSession((bool)dataReader["isFreeTimeSession"]);

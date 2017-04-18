@@ -31,6 +31,7 @@ namespace Tutor_Master
         private DateTime prevDate1, prevDate2; //this is just for syncing the date pickers
         private bool initialValue1, initialValue2;
         private string source;
+        private bool courseChanged = false;
         
         //private Appointment infoAppointment;
 
@@ -223,13 +224,10 @@ namespace Tutor_Master
         private void btnApprove_Click(object sender, EventArgs e)
         {
             Database db = new Database();
-            int messageId = db.getMessageIdFromAppt(apptId);
-            if (messageId != -1)
-            {
-                db.approveMessageDetailsFromAppointment(messageId, true);
-                db.editAppointment(apptId, null, apptPlace, apptCourse, apptDateTime, apptDateEnd, firstName, secondName, false, true, "ApprovedInEditForm");
-                db.sendMessage(user, otherUser, "Appoinment Request Confirmed", user + " has confirmed your appointment regarding " + apptCourse, true, DateTime.Now, apptCourse, apptId);
-            }
+
+            db.editAppointment(apptId, null, apptPlace, apptCourse, apptDateTime, apptDateEnd, firstName, secondName, false, true, "ApprovedInEditForm");
+            db.sendMessage(user, otherUser, "Appoinment Request Confirmed", user + " has confirmed your appointment regarding " + apptCourse, true, DateTime.Now, apptCourse, apptId);
+            
             this.Hide();
             this.Close();
         }
@@ -306,12 +304,12 @@ namespace Tutor_Master
                 firstName = null;
                 secondName = null;
             }
-            if (cbxCourseList.Visible == true)
-                apptCourse = cbxCourseList.SelectedItem.ToString();
+            //if (sourceChanged == true)
+            //    apptCourse = cbxCourseList.SelectedItem.ToString();
             if (txtMeetingPlace.Visible == true)
                 apptPlace = txtMeetingPlace.Text;
-            //apptDateTime = dateTimeDay1.Value + dateTimeTime1.Value;
-            //apptDateEnd = dateTimeDay1.Value + dateTimeTime1.Value;
+            apptDateTime = dateTimeDay1.Value.Date + dateTimeTime1.Value.TimeOfDay;
+            apptDateEnd = dateTimeDay2.Value.Date + dateTimeTime2.Value.TimeOfDay;
 
             
 
@@ -440,6 +438,32 @@ namespace Tutor_Master
             }
             this.Hide();
             this.Close();
+        }
+
+        private void cbxCourseList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            apptCourse = cbxCourseList.SelectedItem.ToString();
+            courseChanged = true;
+        }
+
+        private void dateTimeDay1_ValueChanged(object sender, EventArgs e)
+        {
+            //Scott fill
+        }
+
+        private void dateTimeDay2_ValueChanged(object sender, EventArgs e)
+        {
+            //Scott fill
+        }
+
+        private void dateTimeTime1_ValueChanged(object sender, EventArgs e)
+        {
+            //Scott fill
+        }
+
+        private void dateTimeTime2_ValueChanged(object sender, EventArgs e)
+        {
+            //Scott fill
         }
     }
 }

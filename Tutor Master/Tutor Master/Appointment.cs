@@ -114,6 +114,11 @@ namespace Tutor_Master
             return source;
         }
 
+        public void setSource(string src)
+        {
+            source = src;
+        }
+
         public DateTime getStartTime()
         {
             return startTime;

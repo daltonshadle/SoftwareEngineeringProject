@@ -280,6 +280,7 @@
             this.dateTimeTime2.ShowUpDown = true;
             this.dateTimeTime2.Size = new System.Drawing.Size(105, 20);
             this.dateTimeTime2.TabIndex = 5;
+            this.dateTimeTime2.ValueChanged += new System.EventHandler(this.dateTimeTime2_ValueChanged);
             // 
             // dateTimeTime1
             // 
@@ -289,6 +290,7 @@
             this.dateTimeTime1.ShowUpDown = true;
             this.dateTimeTime1.Size = new System.Drawing.Size(105, 20);
             this.dateTimeTime1.TabIndex = 4;
+            this.dateTimeTime1.ValueChanged += new System.EventHandler(this.dateTimeTime1_ValueChanged);
             // 
             // dateTimeDay2
             // 
@@ -297,6 +299,7 @@
             this.dateTimeDay2.Name = "dateTimeDay2";
             this.dateTimeDay2.Size = new System.Drawing.Size(101, 20);
             this.dateTimeDay2.TabIndex = 2;
+            this.dateTimeDay2.ValueChanged += new System.EventHandler(this.dateTimeDay2_ValueChanged);
             // 
             // dateTimeDay1
             // 
@@ -305,6 +308,7 @@
             this.dateTimeDay1.Name = "dateTimeDay1";
             this.dateTimeDay1.Size = new System.Drawing.Size(101, 20);
             this.dateTimeDay1.TabIndex = 0;
+            this.dateTimeDay1.ValueChanged += new System.EventHandler(this.dateTimeDay1_ValueChanged);
             // 
             // lblEndTimePanel
             // 
@@ -340,6 +344,7 @@
             this.cbxCourseList.Name = "cbxCourseList";
             this.cbxCourseList.Size = new System.Drawing.Size(121, 21);
             this.cbxCourseList.TabIndex = 47;
+            this.cbxCourseList.SelectedIndexChanged += new System.EventHandler(this.cbxCourseList_SelectedIndexChanged);
             // 
             // lblPlacePanel
             // 
