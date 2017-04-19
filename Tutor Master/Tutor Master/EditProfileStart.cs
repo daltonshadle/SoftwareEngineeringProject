@@ -16,6 +16,7 @@ namespace Tutor_Master
         public EditProfileStart(string name, bool isTutee, bool isTutor)
         {
             InitializeComponent();
+            this.Icon = Tutor_Master.Properties.Resources.favicon;
             username = name;
 
             checkBoxTutee.Visible = isTutee;
