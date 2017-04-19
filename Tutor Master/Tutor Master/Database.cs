@@ -2064,7 +2064,7 @@ namespace Tutor_Master
         public List<string> getAllProfiles()
         {
             List<string> allProfiles = new List<string>();
-            string query = "SELECT username FROM profile";
+            string query = "SELECT username, isFaculty, isAdmin FROM profile";
 
             if (this.OpenConnection())
             {
@@ -2078,10 +2078,17 @@ namespace Tutor_Master
 
                     //Read the data and store them in the list
                     string user = "";
+                    string isFaculty = "";
+                    string isAdmin = "";
                     while (dataReader.Read())
                     {
+                        
                         user = dataReader["username"].ToString() + "";
-                        allProfiles.Add(user);
+                        isFaculty = dataReader["isFaculty"].ToString() + "";
+                        isAdmin = dataReader["isAdmin"].ToString() + "";
+
+                        if ((!isFaculty.Equals("True")) && (!isAdmin.Equals("True")))
+                            allProfiles.Add(user);
                     }
 
                     //close Data Reader

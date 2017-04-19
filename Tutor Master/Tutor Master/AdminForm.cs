@@ -35,12 +35,12 @@ namespace Tutor_Master
             if (first != "")
             {
                 this.Text = FirstCharToUpper(first) + " " + FirstCharToUpper(last);
-                lblNameAndUser.Text = FirstCharToUpper(first) + " " + FirstCharToUpper(last) + " - " + user;
+                lblNameAndUser.Text = FirstCharToUpper(first) + " " + FirstCharToUpper(last) + " - " + admin;
             }
             else
             {
-                this.Text = user;
-                lblNameAndUser.Text = user;
+                this.Text = admin;
+                lblNameAndUser.Text = admin;
             }
         }
 
@@ -56,6 +56,7 @@ namespace Tutor_Master
         {
             Database db = new Database();
 
+            
             listOfAllProfiles = db.getAllProfiles();
 
             lvAllProfiles.Items.Clear();
@@ -63,6 +64,7 @@ namespace Tutor_Master
             {
                 lvAllProfiles.Items.Add(listOfAllProfiles[i]);
             }
+            updatelvAllProfiles();
 
         }
 
@@ -83,7 +85,8 @@ namespace Tutor_Master
 
         private void btnPassword_Click(object sender, EventArgs e)
         {
-
+            //Function: Assigns a default password to a user, sends message to user to remind them to change it afterward.
+            //TODO: needs a database function
         }
 
         //Allows the administrator to delete profiles
@@ -93,14 +96,20 @@ namespace Tutor_Master
 
             //Needs to be more updated. Needs to delete appointments (and messages)
             db.deleteAccount(user);
+            initListView();
         }
 
         private void lvAllProfiles_SelectedIndexChanged(object sender, EventArgs e)
         {
+            updatelvAllProfiles();
+        }
+
+        private void updatelvAllProfiles()
+        {
             if (lvAllProfiles.SelectedItems.Count == 1)
             {
                 panelButtons.Visible = true;
-               
+
                 ListView.SelectedIndexCollection indexes = this.lvAllProfiles.SelectedIndices;
                 if (indexes.Count > 1)
                     MessageBox.Show("Can only view one profile at a time.");
@@ -114,7 +123,15 @@ namespace Tutor_Master
                     }
                 }
             }
+            else
+            {
+                panelButtons.Visible = false;
+            }
         }
 
+        private void AdminForm_Activated(object sender, System.EventArgs e)
+        {
+            initListView();        
+        }
     }
 }
