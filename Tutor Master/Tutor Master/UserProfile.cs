@@ -272,5 +272,11 @@ namespace Tutor_Master
         {
             weekCalendar.assignWeeklyAppointments(user);
         }
+
+        private void buttonEditProfile_Click(object sender, EventArgs e)
+        {
+            var newForm = new EditProfileStart(user, tuteeAcc, tutorAcc);
+            newForm.Show();
+        }
     }
 }
