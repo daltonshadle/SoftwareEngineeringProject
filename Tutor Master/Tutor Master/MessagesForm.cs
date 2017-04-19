@@ -64,6 +64,8 @@ namespace Tutor_Master
         {
             INBOX = false;
             lblMessages.Text = "Sent Messages";
+            btnApprove.Visible = false;
+            btnReject.Visible = false;
             lvMessages.Items.Clear();
             sentMessageList.Clear();
             sentMessageList = db.getSentMail(user);
@@ -101,35 +103,6 @@ namespace Tutor_Master
             }
         }
 
-        /*private void btnView_Click(object sender, EventArgs e)
-        {
-            if (lvMessages.SelectedItems.Count == 0)
-                MessageBox.Show("No message selected");
-            else
-            {
-                rtbMessageDetails.Clear();
-                ListView.SelectedIndexCollection indexes = this.lvMessages.SelectedIndices;
-                if (indexes.Count > 1)
-                    MessageBox.Show("Can only view details of one message at a time.");
-                else
-                {
-                    foreach (int index in indexes)
-                    {
-                        if (INBOX)
-                        {
-                            rtbMessageDetails.AppendText(inboxMessageList[index].getMessage());
-                            currentIndex = index;
-                        }
-                        else
-                        {
-                            rtbMessageDetails.AppendText(sentMessageList[index].getMessage());
-                            currentIndex = index;
-                        }
-                    }
-                }
-            }
-        }*/
-
         private void lvMessages_SelectedIndexChanged_1(object sender, EventArgs e)
         {
             if (lvMessages.SelectedItems.Count == 1)
@@ -158,13 +131,6 @@ namespace Tutor_Master
         }
 
 
-        private void btnLogout_Click(object sender, EventArgs e)
-        {
-            var form = new StartForm();
-            form.Show();
-            this.Hide();
-        }
-
         private void btnApprove_Click(object sender, EventArgs e)
         {
             Database db = new Database();
@@ -175,18 +141,19 @@ namespace Tutor_Master
 
             if (messageId != -1)
             {
-                if (appt.getEndTime() > DateTime.Now)
+                if (lvMessages.SelectedItems[0].SubItems[4].Text == "False" && appt.getEndTime() > DateTime.Now)
                 {
                     db.approveMessageDetailsFromAppointment(messageId, true);
                     db.editAppointment(appt.getID(), null, appt.getMeetingPlace(), appt.getCourse(), appt.getStartTime(), appt.getEndTime(), appt.getTutor(), appt.getTutee(), false, true);
                     db.sendMessage(user, appt.getTutee(), "Appoinment Request Confirmed", user + " has confirmed your appointment regarding " + appt.getCourse(), true, DateTime.Now, appt.getCourse(), appt.getID());
                 }
                 else {
-                    MessageBox.Show("Appointment end time has passed.");
+                    if (appt.getEndTime() < DateTime.Now)
+                        MessageBox.Show("Appointment end time has passed.");
+                    else
+                        MessageBox.Show("Appointment has already by handled.");
                 }
             }
-            this.Hide();
-            this.Close();
         }
 
         private void btnReject_Click(object sender, EventArgs e)
@@ -204,8 +171,6 @@ namespace Tutor_Master
                 //db.editAppointment(
                 db.sendMessage(user, appt.getTutee(), "Appoinment Request Confirmed", user + " has confirmed your appointment regarding " + appt.getCourse(), true, DateTime.Now, appt.getCourse(), appt.getID());
             }
-            this.Hide();
-            this.Close();
         }
 
 

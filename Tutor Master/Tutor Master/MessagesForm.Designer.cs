@@ -207,6 +207,7 @@
             this.Controls.Add(this.btnInbox);
             this.Controls.Add(this.lvMessages);
             this.Name = "MessagesForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Messages";
             this.ResumeLayout(false);
             this.PerformLayout();
