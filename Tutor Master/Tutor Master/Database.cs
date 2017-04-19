@@ -1373,24 +1373,24 @@ namespace Tutor_Master
                     //Read the data and store them in the list
                     while (dataReader.Read())
                     {
-                        list.Add(dataReader["firstName"] + "");
-                        list.Add(dataReader["lastName"] + "");
-                        list.Add(dataReader["isTutor"] + "");
-                        list.Add(dataReader["isTutee"] + "");
-                        list.Add(dataReader["tuteeCourse1"] + "");
-                        list.Add(dataReader["tuteeCourse2"] + "");
-                        list.Add(dataReader["tuteeCourse3"] + "");
-                        list.Add(dataReader["tuteeCourse4"] + "");
-                        list.Add(dataReader["tutorCourse1"] + "");
-                        list.Add(dataReader["tutorCourse2"] + "");
-                        list.Add(dataReader["tutorCourse3"] + "");
-                        list.Add(dataReader["tutorCourse4"] + "");
-                        list.Add(dataReader["course1Approved"] + "");
-                        list.Add(dataReader["course2Approved"] + "");
-                        list.Add(dataReader["course3Approved"] + "");
-                        list.Add(dataReader["course4Approved"] + "");
-                        list.Add(dataReader["isFaculty"] + "");
-                        list.Add(dataReader["isAdmin"] + "");
+                        list.Add(dataReader["firstName"] + ""); //0
+                        list.Add(dataReader["lastName"] + "");  //1
+                        list.Add(dataReader["isTutor"] + "");   //2
+                        list.Add(dataReader["isTutee"] + "");   //3 
+                        list.Add(dataReader["tuteeCourse1"] + "");  //4
+                        list.Add(dataReader["tuteeCourse2"] + "");  //5
+                        list.Add(dataReader["tuteeCourse3"] + "");  //6
+                        list.Add(dataReader["tuteeCourse4"] + "");  //7
+                        list.Add(dataReader["tutorCourse1"] + "");  //8
+                        list.Add(dataReader["tutorCourse2"] + "");  //9
+                        list.Add(dataReader["tutorCourse3"] + "");  //10
+                        list.Add(dataReader["tutorCourse4"] + "");  //11
+                        list.Add(dataReader["course1Approved"] + "");   //12
+                        list.Add(dataReader["course2Approved"] + "");   //13
+                        list.Add(dataReader["course3Approved"] + "");   //14
+                        list.Add(dataReader["course4Approved"] + "");   //15
+                        list.Add(dataReader["isFaculty"] + ""); //16
+                        list.Add(dataReader["isAdmin"] + "");   //17
                     }
 
                     //close Data Reader
