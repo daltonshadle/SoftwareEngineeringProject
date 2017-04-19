@@ -37,17 +37,31 @@ namespace Tutor_Master
             if (accountValid)
             {
                 Database db = new Database();
-                if (db.isFacultyAccount(username))
+               
+                if (db.isAdminAccount(username))
                 {
-                    var profile = new FacultyForm(username);
+                    //Sign in as admin
+                    var profile = new AdminForm(username);
                     profile.Show();
                     this.Hide();
                 }
                 else
                 {
-                    var profile = new UserProfile(username);
-                    profile.Show();
-                    this.Hide();
+                    if (db.isFacultyAccount(username))
+                    {
+                        //Sign in as faculty
+                        var profile = new FacultyForm(username);
+                        profile.Show();
+                        this.Hide();
+                    }
+                    else
+                    {
+                        //Sign in as ordinary user
+                        var profile = new UserProfile(username);
+                        profile.Show();
+                        this.Hide();
+                    }
+                    
                 }
                 //move to profile form, successfully signed in
             }

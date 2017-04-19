@@ -1306,7 +1306,7 @@ namespace Tutor_Master
             }
         }
 
-        //This function is for the user to delete their accound
+        //This function is for the user to delete their account
         public void userDeleteAccount(string username, string password)
         {
             bool isValidDelete = false;
@@ -1868,6 +1868,50 @@ namespace Tutor_Master
 
         }
 
+        //figures out if the profile is an admin profile or not
+        public bool isAdminAccount(string user)
+        {
+            string query = "SELECT isAdmin FROM profile WHERE username = @username";
+
+            if (this.OpenConnection())
+            {
+                SqlCeCommand cmd = new SqlCeCommand();
+                cmd.CommandText = query;
+                cmd.Parameters.Add("@username", user);
+                cmd.Connection = con;
+                try
+                {
+                    SqlCeDataReader dataReader = cmd.ExecuteReader();
+
+                    //Read the data and store them in the list
+                    string isAdmin = "";
+                    while (dataReader.Read())
+                    {
+                        isAdmin = dataReader["isAdmin"] + "";
+                    }
+
+                    //close Data Reader
+                    dataReader.Close();
+                    this.CloseConnection();
+
+                    if (isAdmin == "True")
+                        return true;
+                    else
+                        return false;
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    this.CloseConnection();
+                    return false;
+                }
+            }
+            else
+                return false;
+
+        }
+
         //Get message idea given an appointment
         public int getMessageIdFromAppt(int apptId)
         {
@@ -2014,6 +2058,48 @@ namespace Tutor_Master
             {
                 MessageBox.Show("Course not applicable to tutor.");
             }
+        }
+
+        //returns list of all profiles
+        public List<string> getAllProfiles()
+        {
+            List<string> allProfiles = new List<string>();
+            string query = "SELECT username FROM profile";
+
+            if (this.OpenConnection())
+            {
+                SqlCeCommand cmd = new SqlCeCommand();
+                cmd.CommandText = query;
+                //cmd.Parameters.Add("@username", user);
+                cmd.Connection = con;
+                try
+                {
+                    SqlCeDataReader dataReader = cmd.ExecuteReader();
+
+                    //Read the data and store them in the list
+                    string user = "";
+                    while (dataReader.Read())
+                    {
+                        user = dataReader["username"].ToString() + "";
+                        allProfiles.Add(user);
+                    }
+
+                    //close Data Reader
+                    dataReader.Close();
+                    this.CloseConnection();
+                    return allProfiles;
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    allProfiles.Clear();
+                    this.CloseConnection();
+                    return allProfiles;
+                }
+            }
+            return allProfiles;
+
         }
     }
 }
