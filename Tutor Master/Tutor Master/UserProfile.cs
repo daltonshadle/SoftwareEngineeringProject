@@ -11,7 +11,7 @@ namespace Tutor_Master
 {
     public partial class UserProfile : Form
     {
-        private string first, last, user;
+        private string first, last, user, adminName;
         private bool tutorAcc, tuteeAcc, facultyAcc, adminAcc;
         private string courseapp1, courseapp2, courseapp3, courseapp4;
 
@@ -55,11 +55,7 @@ namespace Tutor_Master
             else
                 facultyAcc = false;
 
-            string admina = listOfProfileInfo[17];
-            if (admina == "True")
-                adminAcc = true;
-            else
-                adminAcc = false;
+            adminAcc = false;
 
             for (int i = 4; i < 8; i++)
             {
@@ -71,7 +67,7 @@ namespace Tutor_Master
                 if (listOfProfileInfo[i] != "")
                 {
                     tutorCoursesList.Add(listOfProfileInfo[i]);
-                    courseAppList.Add(listOfProfileInfo[i+4]);
+                    courseAppList.Add(listOfProfileInfo[i + 4]);
                 }
             }
             /*for (int i = 12; i < 15; i++)
@@ -148,6 +144,17 @@ namespace Tutor_Master
 
             //Update the week calendar
             weekCalendar.assignWeeklyAppointments(user);
+        }
+
+        public UserProfile(string username, bool admin, string adminName)
+            : this(username)
+        //This constructor will only be called by the administrator. Updates information accordingly
+        {
+            adminAcc = admin;
+            this.adminName = adminName;
+            lblAdmin.Visible = true;
+            btnAdmin.Visible = true;
+            panelAdmin.Visible = true;
         }
 
         private void btnAddTutorCourses_Click(object sender, EventArgs e)
@@ -263,6 +270,13 @@ namespace Tutor_Master
         private void UserProfile_Activated(object sender, System.EventArgs e)
         {
             weekCalendar.assignWeeklyAppointments(user);
+        }
+
+        private void btnAdmin_Click(object sender, EventArgs e)
+        {
+            var profile = new AdminForm(adminName);
+            profile.Show();
+            this.Hide();
         }
     }
 }

@@ -220,9 +220,6 @@ namespace Tutor_Master
             panelEdit.Visible = true;
             initializePanel();
             btnConfirmEdit.Visible = true;
-            //var appointmentEditor = new AppointmentEditForm(apptType, apptPlace, apptCourse, apptTime, apptDateTime, apptDateEnd, firstName, secondName, apptId);
-            //appointmentEditor.Show();
-            //this.Hide();
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -234,21 +231,40 @@ namespace Tutor_Master
 
         private void btnApprove_Click(object sender, EventArgs e)
         {
-            Database db = new Database();
+            //Check to see if all of the fields are filled in. Specifically, Place must be checked
 
-            db.editAppointment(apptId, null, apptPlace, apptCourse, apptDateStartTime, apptDateEnd, firstName, secondName, false, true, "ApprovedInEditForm");
-            db.sendMessage(user, otherUser, "Appoinment Request Confirmed", user + " has confirmed your appointment regarding " + apptCourse, true, DateTime.Now, apptCourse, apptId);
 
-            this.Hide();
-            this.Close();
+
+
+            if (apptPlace != null)
+            {
+                Database db = new Database();
+
+                db.editAppointment(apptId, null, apptPlace, apptCourse, apptDateStartTime, apptDateEnd, firstName, secondName, false, true, "ApprovedInEditForm");
+                db.sendMessage(user, otherUser, "Appoinment Request Confirmed", user + " has confirmed your appointment regarding " + apptCourse, true, DateTime.Now, apptCourse, apptId);
+
+                this.Hide();
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Appointment needs a place. Add place and click \"Approve\" again.");
+                this.Width = 680;
+                panelEdit.Visible = true;
+                lblPlacePanel.Visible = true;
+                txtMeetingPlace.Visible = true;
+                btnConfirmEdit.Visible = true;
+            }
         }
 
         private void initializePanel()
         {
+            panelTime.Visible = true;
             dateTimeDay1.Value = apptDateStartTime.Date;
             dateTimeTime1.Value = apptDateStartTime;
             dateTimeDay2.Value = apptDateEnd.Date;
             dateTimeTime2.Value = apptDateEnd;
+            btnConfirmEdit.Visible = true;
 
             switch (apptType)
             {
@@ -324,28 +340,39 @@ namespace Tutor_Master
             apptDateEnd = dateTimeDay2.Value.Date + dateTimeTime2.Value.TimeOfDay;
 
 
-            //Check to see if the times work for both people. If so: 
-            if (verifyTimes())
+
+            //Check if the place is nonempty
+            if (apptPlace != "")
             {
-                //Edit the appointment and send the message.
-                Database db = new Database();
+                //Check to see if the times work for both people. If so: 
+                if (verifyTimes())
+                {
+                    //Edit the appointment and send the message.
+                    Database db = new Database();
 
-                db.editAppointment(apptId, freeTimeProf, apptPlace, apptCourse, apptDateStartTime, apptDateEnd, firstName, secondName, isFreeTime, isApproved, "EditForm");
-                db.sendMessage(user, otherUser, "Appoinment edited", user + " has edited an appointment with you: \n\tCourse now: " + apptCourse
-                    + "\n\tPlace now: " + apptPlace
-                    + "\n\tNow from: " + apptDateStartDate.ToShortDateString() + " at " + apptDateStartTime.ToShortTimeString()
-                    + "\n\tUntil: " + apptDateEndDate.ToShortTimeString() + " at " + apptDateEnd.ToShortTimeString()
-                    , true, DateTime.Now, apptCourse, apptId);
+                    db.editAppointment(apptId, freeTimeProf, apptPlace, apptCourse, apptDateStartTime, apptDateEnd, firstName, secondName, isFreeTime, isApproved, "EditForm");
+                    db.sendMessage(user, otherUser, "Appoinment edited", user + " has edited an appointment with you: \n\tCourse now: " + apptCourse
+                        + "\n\tPlace now: " + apptPlace
+                        + "\n\tNow from: " + apptDateStartDate.ToShortDateString() + " at " + apptDateStartTime.ToShortTimeString()
+                        + "\n\tUntil: " + apptDateEndDate.ToShortTimeString() + " at " + apptDateEnd.ToShortTimeString()
+                        , true, DateTime.Now, apptCourse, apptId);
 
-                this.Hide();
-                this.Close();
+                    this.Hide();
+                    this.Close();
+                }
+                else
+                {
+                    //Times don't work for one or both of the people.
+                    MessageBox.Show("This time frame does not work for you or for the other person.");
+
+                }
             }
+            //If the place is empty
             else
             {
-                //Times don't work for one or both of the people.
-                MessageBox.Show("This time frame does not work for you or for the other person.");
-
+                MessageBox.Show("Place field was left empty. Must be filled.");
             }
+
         }
 
         private void initializeTimers()
@@ -377,33 +404,7 @@ namespace Tutor_Master
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
-            if (initialValue1)
-            {
-                initialValue1 = false;
-                return;
-            }
 
-            DateTime dt = dateTimeTime1.Value;
-            TimeSpan diff = dt - prevTime1;
-
-
-            if (diff.Ticks < 0)
-            {
-                dateTimeTime1.Value = prevTime1.AddMinutes(-15);
-            }
-            else
-            {
-                dateTimeTime1.Value = prevTime1.AddMinutes(15);
-            }
-
-            //Debug.WriteLine("Timer 1 " + diff.Ticks.ToString());
-
-            if (dateTimeTime2.Value <= dateTimeTime1.Value)
-            {
-                dateTimeTime2.Value = prevTime1.AddMinutes(15);
-            }
-
-            prevTime1 = dateTimeTime1.Value;
         }
 
         private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
@@ -435,6 +436,7 @@ namespace Tutor_Master
             }
 
             prevTime2 = dateTimeTime2.Value;
+            apptDateEnd = dateTimeTime2.Value;
         }
 
         private void btnReject_Click(object sender, EventArgs e)
@@ -480,16 +482,6 @@ namespace Tutor_Master
             apptDateEndDate = dateTimeDay2.Value;
         }
 
-        private void dateTimeTime1_ValueChanged(object sender, EventArgs e)
-        {
-            apptDateStartTime = dateTimeTime1.Value;
-        }
-
-        private void dateTimeTime2_ValueChanged(object sender, EventArgs e)
-        {
-            apptDateEnd = dateTimeTime2.Value;
-        }
-
         //Check to see if the times work for both people
         private bool verifyTimes()
         {
@@ -515,24 +507,52 @@ namespace Tutor_Master
 
                 while (good && it < builderAppoint.Count)
                 {
-                    bool temp = false;
+                    bool timeConflict = false;
+                    bool sameIds = false;
 
                     Appointment a = builderAppoint[it];
-                    temp = !isTimeInBetween(a.getStartTime(), a.getEndTime(), startTime, endTime);
+                    timeConflict = isTimeInBetween(a.getStartTime(), a.getEndTime(), startTime, endTime);
+                    sameIds = (apptId == a.getID());
 
-                    good = temp;
+                    if (!timeConflict)
+                    {
+                        //Good if there is no time conflict
+                        good = true;
+                    }
+                    else
+                    {
+                        if (!sameIds)
+                        {
+                            //Good if there is a time conflict but the only conflict is itself.
+                            good = false;
+                        }
+                    }
                     it++;
                 }
 
                 it = 0;
                 while (good && it < otherAppoint.Count)
                 {
-                    bool temp = false;
+                    bool timeConflict = false;
+                    bool sameIds = false;
 
                     Appointment a = otherAppoint[it];
-                    temp = !isTimeInBetween(a.getStartTime(), a.getEndTime(), startTime, endTime);
+                    timeConflict = isTimeInBetween(a.getStartTime(), a.getEndTime(), startTime, endTime);
+                    sameIds = (apptId == a.getID());
 
-                    good = temp;
+                    if (!timeConflict)
+                    {
+                        //Good if there is no time conflict
+                        good = true;
+                    }
+                    else
+                    {
+                        if (!sameIds)
+                        {
+                            //Good if there is a time conflict but the only conflict is itself.
+                            good = false;
+                        }
+                    }
                     it++;
                 }
 

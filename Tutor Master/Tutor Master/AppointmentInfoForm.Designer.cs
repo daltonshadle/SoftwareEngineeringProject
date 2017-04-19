@@ -271,6 +271,7 @@
             this.panelTime.Name = "panelTime";
             this.panelTime.Size = new System.Drawing.Size(291, 61);
             this.panelTime.TabIndex = 49;
+            this.panelTime.Visible = false;
             // 
             // dateTimeTime2
             // 
@@ -280,7 +281,7 @@
             this.dateTimeTime2.ShowUpDown = true;
             this.dateTimeTime2.Size = new System.Drawing.Size(105, 20);
             this.dateTimeTime2.TabIndex = 5;
-            this.dateTimeTime2.ValueChanged += new System.EventHandler(this.dateTimeTime2_ValueChanged);
+            this.dateTimeTime2.ValueChanged += new System.EventHandler(this.dateTimePicker2_ValueChanged);
             // 
             // dateTimeTime1
             // 
@@ -290,7 +291,7 @@
             this.dateTimeTime1.ShowUpDown = true;
             this.dateTimeTime1.Size = new System.Drawing.Size(105, 20);
             this.dateTimeTime1.TabIndex = 4;
-            this.dateTimeTime1.ValueChanged += new System.EventHandler(this.dateTimeTime1_ValueChanged);
+            this.dateTimeTime1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
             // 
             // dateTimeDay2
             // 
@@ -336,6 +337,7 @@
             this.txtMeetingPlace.Name = "txtMeetingPlace";
             this.txtMeetingPlace.Size = new System.Drawing.Size(121, 20);
             this.txtMeetingPlace.TabIndex = 48;
+            this.txtMeetingPlace.Visible = false;
             // 
             // cbxCourseList
             // 
@@ -344,6 +346,7 @@
             this.cbxCourseList.Name = "cbxCourseList";
             this.cbxCourseList.Size = new System.Drawing.Size(121, 21);
             this.cbxCourseList.TabIndex = 47;
+            this.cbxCourseList.Visible = false;
             this.cbxCourseList.SelectedIndexChanged += new System.EventHandler(this.cbxCourseList_SelectedIndexChanged);
             // 
             // lblPlacePanel
@@ -354,6 +357,7 @@
             this.lblPlacePanel.Size = new System.Drawing.Size(37, 13);
             this.lblPlacePanel.TabIndex = 45;
             this.lblPlacePanel.Text = "Place:";
+            this.lblPlacePanel.Visible = false;
             // 
             // lblCoursePanel
             // 
@@ -363,6 +367,7 @@
             this.lblCoursePanel.Size = new System.Drawing.Size(43, 13);
             this.lblCoursePanel.TabIndex = 44;
             this.lblCoursePanel.Text = "Course:";
+            this.lblCoursePanel.Visible = false;
             // 
             // panelEdit
             // 
@@ -430,6 +435,7 @@
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnEdit);
             this.Name = "AppointmentInfoForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AppointmentInfoForm";
             this.panelTime.ResumeLayout(false);
             this.panelTime.PerformLayout();

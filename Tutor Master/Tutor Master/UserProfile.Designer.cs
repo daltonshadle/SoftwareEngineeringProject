@@ -42,9 +42,13 @@
             this.btnRefinedSearch = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.lblAdmin = new System.Windows.Forms.Label();
+            this.btnAdmin = new System.Windows.Forms.Button();
             this.weekCalendar = new Tutor_Master.WeekCalendar();
+            this.panelAdmin = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.panelAdmin.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnLogout
@@ -205,6 +209,31 @@
             this.panel2.Size = new System.Drawing.Size(1079, 43);
             this.panel2.TabIndex = 16;
             // 
+            // lblAdmin
+            // 
+            this.lblAdmin.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lblAdmin.AutoSize = true;
+            this.lblAdmin.Font = new System.Drawing.Font("Elephant", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAdmin.ForeColor = System.Drawing.Color.Gold;
+            this.lblAdmin.Location = new System.Drawing.Point(20, 27);
+            this.lblAdmin.Name = "lblAdmin";
+            this.lblAdmin.Size = new System.Drawing.Size(423, 27);
+            this.lblAdmin.TabIndex = 17;
+            this.lblAdmin.Text = "YOU ARE VIEWING AS AN ADMIN.";
+            this.lblAdmin.Visible = false;
+            // 
+            // btnAdmin
+            // 
+            this.btnAdmin.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnAdmin.Location = new System.Drawing.Point(163, 56);
+            this.btnAdmin.Name = "btnAdmin";
+            this.btnAdmin.Size = new System.Drawing.Size(149, 23);
+            this.btnAdmin.TabIndex = 18;
+            this.btnAdmin.Text = "Return to admin page.\r\n";
+            this.btnAdmin.UseVisualStyleBackColor = true;
+            this.btnAdmin.Visible = false;
+            this.btnAdmin.Click += new System.EventHandler(this.btnAdmin_Click);
+            // 
             // weekCalendar
             // 
             this.weekCalendar.Anchor = System.Windows.Forms.AnchorStyles.Top;
@@ -215,12 +244,24 @@
             this.weekCalendar.Size = new System.Drawing.Size(1079, 383);
             this.weekCalendar.TabIndex = 7;
             // 
+            // panelAdmin
+            // 
+            this.panelAdmin.BackColor = System.Drawing.Color.DarkGoldenrod;
+            this.panelAdmin.Controls.Add(this.lblAdmin);
+            this.panelAdmin.Controls.Add(this.btnAdmin);
+            this.panelAdmin.Location = new System.Drawing.Point(548, 95);
+            this.panelAdmin.Name = "panelAdmin";
+            this.panelAdmin.Size = new System.Drawing.Size(466, 100);
+            this.panelAdmin.TabIndex = 19;
+            this.panelAdmin.Visible = false;
+            // 
             // UserProfile
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.SteelBlue;
             this.ClientSize = new System.Drawing.Size(1107, 715);
+            this.Controls.Add(this.panelAdmin);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.weekCalendar);
@@ -232,6 +273,8 @@
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            this.panelAdmin.ResumeLayout(false);
+            this.panelAdmin.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -253,5 +296,8 @@
         private System.Windows.Forms.Button btnRefinedSearch;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Label lblAdmin;
+        private System.Windows.Forms.Button btnAdmin;
+        private System.Windows.Forms.Panel panelAdmin;
     }
 }
