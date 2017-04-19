@@ -132,6 +132,7 @@ namespace Tutor_Master
                         next.Show();
                     }
                     else if (code == 2000) {
+                        db.setTutorStatus(username, true);
                         var next = new UserProfile(username);
                         this.Hide();
                         next.Show();

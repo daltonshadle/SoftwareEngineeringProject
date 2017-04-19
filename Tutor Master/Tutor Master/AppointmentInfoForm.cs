@@ -232,30 +232,14 @@ namespace Tutor_Master
         private void btnApprove_Click(object sender, EventArgs e)
         {
             //Check to see if all of the fields are filled in. Specifically, Place must be checked
-<<<<<<< HEAD
 
             if (apptPlace != null)
             {
                 Database db = new Database();
                 int messageId = db.getMessageIdFromAppt(apptId);
-                db.approveMessageDetailsFromAppointment(messageId, true);
-=======
-            Database db = new Database();
-            int messageId = db.getMessageIdFromAppt(apptId);
-            db.approveMessageDetailsFromAppointment(messageId, true);
-            db.editAppointment(apptId, null, apptPlace, apptCourse, apptDateStartTime, apptDateEnd, firstName, secondName, false, true, "ApprovedInEditForm");
-            db.sendMessage(user, otherUser, "Appoinment Request Confirmed", user + " has confirmed your appointment regarding " + apptCourse, true, DateTime.Now, apptCourse, apptId);
-
-
-
-            if (apptPlace != null)
-            {
-                //Database db = new Database();
-
->>>>>>> 773dcbed1e3b231ee239b4690df9f6b28a6ea7ec
+                db.approveMessageDetailsFromAppointment(messageId, true);         
                 db.editAppointment(apptId, null, apptPlace, apptCourse, apptDateStartTime, apptDateEnd, firstName, secondName, false, true, "ApprovedInEditForm");
                 db.sendMessage(user, otherUser, "Appoinment Request Confirmed", user + " has confirmed your appointment regarding " + apptCourse, true, DateTime.Now, apptCourse, apptId);
-
 
                 this.Hide();
                 this.Close();

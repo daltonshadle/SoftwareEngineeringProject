@@ -247,17 +247,19 @@
             // 
             // panelAdmin
             // 
+            this.panelAdmin.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.panelAdmin.BackColor = System.Drawing.Color.DarkGoldenrod;
             this.panelAdmin.Controls.Add(this.lblAdmin);
             this.panelAdmin.Controls.Add(this.btnAdmin);
-            this.panelAdmin.Location = new System.Drawing.Point(548, 95);
+            this.panelAdmin.Location = new System.Drawing.Point(562, 109);
             this.panelAdmin.Name = "panelAdmin";
             this.panelAdmin.Size = new System.Drawing.Size(466, 100);
             this.panelAdmin.TabIndex = 19;
             this.panelAdmin.Visible = false;
+            // 
             // buttonEditProfile
             // 
-            this.buttonEditProfile.Location = new System.Drawing.Point(837, 133);
+            this.buttonEditProfile.Location = new System.Drawing.Point(763, 75);
             this.buttonEditProfile.Name = "buttonEditProfile";
             this.buttonEditProfile.Size = new System.Drawing.Size(75, 23);
             this.buttonEditProfile.TabIndex = 17;

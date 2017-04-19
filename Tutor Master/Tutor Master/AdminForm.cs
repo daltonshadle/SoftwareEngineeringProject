@@ -21,7 +21,7 @@ namespace Tutor_Master
             admin = username;
             listOfAllProfiles = new List<string>();
             initName();
-            initListView();
+            initListView("");
         }
 
         //Function to display name at top of screen
@@ -52,7 +52,7 @@ namespace Tutor_Master
             return input.First().ToString().ToUpper() + input.Substring(1);
         }
 
-        public void initListView()
+        public void initListView(string searchBy)
         {
             Database db = new Database();
 
@@ -62,7 +62,10 @@ namespace Tutor_Master
             lvAllProfiles.Items.Clear();
             for (int i = 0; i < listOfAllProfiles.Count; i++)
             {
-                lvAllProfiles.Items.Add(listOfAllProfiles[i]);
+                string profileName = listOfAllProfiles[i];
+
+                if (profileName.Contains(searchBy))
+                    lvAllProfiles.Items.Add(listOfAllProfiles[i]);
             }
             updatelvAllProfiles();
 
@@ -96,7 +99,7 @@ namespace Tutor_Master
 
             //Needs to be more updated. Needs to delete appointments (and messages)
             db.deleteAccount(user);
-            initListView();
+            initListView("");
         }
 
         private void lvAllProfiles_SelectedIndexChanged(object sender, EventArgs e)
@@ -131,7 +134,13 @@ namespace Tutor_Master
 
         private void AdminForm_Activated(object sender, System.EventArgs e)
         {
-            initListView();        
+            initListView("");        
+        }
+
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            string searchBy = txtSearch.Text;
+            initListView(searchBy);
         }
     }
 }
