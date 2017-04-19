@@ -272,18 +272,17 @@ namespace Tutor_Master
             weekCalendar.assignWeeklyAppointments(user);
         }
 
-<<<<<<< HEAD
         private void btnAdmin_Click(object sender, EventArgs e)
         {
             var profile = new AdminForm(adminName);
             profile.Show();
             this.Hide();
-=======
+        }
+
         private void buttonEditProfile_Click(object sender, EventArgs e)
         {
             var newForm = new EditProfileStart(user, tuteeAcc, tutorAcc);
             newForm.Show();
->>>>>>> a99f444a4ad45f3aa3ad282b2b374d674fd927c7
         }
     }
 }

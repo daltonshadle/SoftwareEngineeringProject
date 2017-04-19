@@ -1165,6 +1165,7 @@ namespace Tutor_Master
             }
         }
 
+        //Delete a tutors list
         public void deleteTutorList(string username)
         {
             string query = "DELETE FROM tutorCourses WHERE username = @username";
@@ -1188,7 +1189,7 @@ namespace Tutor_Master
             }
         }
         
-
+        //Delete a tutees list
         public void deleteTuteeList(string username)
         {
             string query = "DELETE FROM tuteeCourses WHERE username = @username";
@@ -1198,6 +1199,34 @@ namespace Tutor_Master
                 SqlCeCommand cmd = new SqlCeCommand();
 
                 cmd.CommandText = query;
+                cmd.Connection = con;
+                try
+                {
+                    cmd.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+
+                this.CloseConnection();
+            }
+        }
+
+        //Set the approved status of courses in the database
+        public void setCourseApproval(string username, bool course1, bool course2, bool course3, bool course4)
+        {
+            string query = "UPDATE tutorCourses SET course1Approved = @course1, course2Approved = @course2, course3Approved = @course3, course4Approved = @course4 WHERE username = @username";
+
+            if (this.OpenConnection())
+            {
+                SqlCeCommand cmd = new SqlCeCommand();
+                cmd.CommandText = query;
+                cmd.Parameters.Add("@username", username);
+                cmd.Parameters.Add("@course1", course1);
+                cmd.Parameters.Add("@course2", course2);
+                cmd.Parameters.Add("@course3", course3);
+                cmd.Parameters.Add("@course4", course4);
                 cmd.Connection = con;
                 try
                 {
@@ -1252,6 +1281,90 @@ namespace Tutor_Master
             }
             else
                 return list;
+        }
+
+        //gets all locations
+        public List<string> getAllLocations()
+        {
+            string query;
+            query = "SELECT name FROM location";
+
+            List<string> list = new List<string>();
+
+            if (this.OpenConnection())
+            {
+                SqlCeCommand cmd = new SqlCeCommand();
+                cmd.CommandText = query;
+                cmd.Connection = con;
+                try
+                {
+                    SqlCeDataReader dataReader = cmd.ExecuteReader();
+
+                    //Read the data and store them in the list
+                    while (dataReader.Read())
+                    {
+                        string tempstring = dataReader.GetString(0);
+                        list.Add(tempstring);
+                    }
+
+                    //close Data Reader
+                    dataReader.Close();
+                    this.CloseConnection();
+                    return list;
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    list.Clear();
+                    this.CloseConnection();
+                    return list;
+                }
+            }
+            else
+                return list;
+        }
+
+        //gets a user password
+        public string getUserPassword(string username)
+        {
+            string query;
+            query = "SELECT password FROM profile WHERE username = @username";
+
+            string pass = "";
+
+            if (this.OpenConnection())
+            {
+                SqlCeCommand cmd = new SqlCeCommand();
+                cmd.Parameters.Add("@username", username);
+                cmd.CommandText = query;
+                cmd.Connection = con;
+                try
+                {
+                    SqlCeDataReader dataReader = cmd.ExecuteReader();
+
+                    //Read the data and store them in the list
+                    while (dataReader.Read())
+                    {
+                        pass = dataReader["name"].ToString() + "";
+                        
+                    }
+
+                    //close Data Reader
+                    dataReader.Close();
+                    this.CloseConnection();
+                    return pass;
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    this.CloseConnection();
+                    return pass;
+                }
+            }
+            else
+                return pass;
         }
 
         //set the isTutor value to the value passed in

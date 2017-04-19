@@ -45,11 +45,8 @@
             this.lblAdmin = new System.Windows.Forms.Label();
             this.btnAdmin = new System.Windows.Forms.Button();
             this.weekCalendar = new Tutor_Master.WeekCalendar();
-<<<<<<< HEAD
             this.panelAdmin = new System.Windows.Forms.Panel();
-=======
             this.buttonEditProfile = new System.Windows.Forms.Button();
->>>>>>> a99f444a4ad45f3aa3ad282b2b374d674fd927c7
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panelAdmin.SuspendLayout();
@@ -248,7 +245,6 @@
             this.weekCalendar.Size = new System.Drawing.Size(1079, 383);
             this.weekCalendar.TabIndex = 7;
             // 
-<<<<<<< HEAD
             // panelAdmin
             // 
             this.panelAdmin.BackColor = System.Drawing.Color.DarkGoldenrod;
@@ -259,7 +255,6 @@
             this.panelAdmin.Size = new System.Drawing.Size(466, 100);
             this.panelAdmin.TabIndex = 19;
             this.panelAdmin.Visible = false;
-=======
             // buttonEditProfile
             // 
             this.buttonEditProfile.Location = new System.Drawing.Point(837, 133);
@@ -269,7 +264,6 @@
             this.buttonEditProfile.Text = "Edit Profile";
             this.buttonEditProfile.UseVisualStyleBackColor = true;
             this.buttonEditProfile.Click += new System.EventHandler(this.buttonEditProfile_Click);
->>>>>>> a99f444a4ad45f3aa3ad282b2b374d674fd927c7
             // 
             // UserProfile
             // 
@@ -277,11 +271,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.SteelBlue;
             this.ClientSize = new System.Drawing.Size(1107, 715);
-<<<<<<< HEAD
             this.Controls.Add(this.panelAdmin);
-=======
             this.Controls.Add(this.buttonEditProfile);
->>>>>>> a99f444a4ad45f3aa3ad282b2b374d674fd927c7
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.weekCalendar);
@@ -316,12 +307,9 @@
         private System.Windows.Forms.Button btnRefinedSearch;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
-<<<<<<< HEAD
         private System.Windows.Forms.Label lblAdmin;
         private System.Windows.Forms.Button btnAdmin;
         private System.Windows.Forms.Panel panelAdmin;
-=======
         private System.Windows.Forms.Button buttonEditProfile;
->>>>>>> a99f444a4ad45f3aa3ad282b2b374d674fd927c7
     }
 }

@@ -287,7 +287,7 @@ namespace Tutor_Master
                         //This is where we will send a message if a person is doing a learning appointment
                         //send message to other person.
 
-                        string msg = builderProf + " has requested to make a tutoring appointment for course: " + course + " at " + startTime.ToShortDateString();
+                        string msg = builderProf + " has requested to make a tutoring appointment for course: " + course + " at " + startTime.ToShortTimeString() + "on " + startTime.ToShortDateString();
                         Database db = new Database();
                         db.sendMessage(builderProf, otherProfName, "Request for appointment", msg, true, DateTime.Now, course, a.getID());
                     }

@@ -233,22 +233,14 @@ namespace Tutor_Master
         {
             //Check to see if all of the fields are filled in. Specifically, Place must be checked
 
-<<<<<<< HEAD
-            int messageId = db.getMessageIdFromAppt(apptId);
-            db.approveMessageDetailsFromAppointment(messageId, true);
-            db.editAppointment(apptId, null, apptPlace, apptCourse, apptDateStartTime, apptDateEnd, firstName, secondName, false, true, "ApprovedInEditForm");
-            db.sendMessage(user, otherUser, "Appoinment Request Confirmed", user + " has confirmed your appointment regarding " + apptCourse, true, DateTime.Now, apptCourse, apptId);
-=======
->>>>>>> 1106e1176c405bf046237c0884f20cfb14228427
-
-
-
             if (apptPlace != null)
             {
                 Database db = new Database();
-
+                int messageId = db.getMessageIdFromAppt(apptId);
+                db.approveMessageDetailsFromAppointment(messageId, true);
                 db.editAppointment(apptId, null, apptPlace, apptCourse, apptDateStartTime, apptDateEnd, firstName, secondName, false, true, "ApprovedInEditForm");
                 db.sendMessage(user, otherUser, "Appoinment Request Confirmed", user + " has confirmed your appointment regarding " + apptCourse, true, DateTime.Now, apptCourse, apptId);
+
 
                 this.Hide();
                 this.Close();
