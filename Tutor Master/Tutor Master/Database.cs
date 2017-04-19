@@ -540,6 +540,7 @@ namespace Tutor_Master
                         appt.setStartTime((DateTime)dataReader["startTime"]);
                         appt.setEndTime((DateTime)dataReader["endTime"]);
                         appt.setIsFreeTimeSession((bool)dataReader["isFreeTimeSession"]);
+                        appt.setSource(dataReader["source"].ToString());
                         appt.setID(id); //Scott added this.
                         //appointmentList.Add(newAppointment);
                     }
@@ -1409,6 +1410,62 @@ namespace Tutor_Master
             else
                 return list;
         }
+
+        //Edits a current profile
+        /*public void editProfileInfo(string firstName, string lastName, string password)
+        {
+            string query;
+            query = "UPDATE profile SET ";
+
+
+            List<string> list = new List<string>();
+
+            if (this.OpenConnection())
+            {
+                SqlCeCommand cmd = new SqlCeCommand();
+                cmd.CommandText = query;
+                cmd.Parameters.Add("@username", username);
+                cmd.Connection = con;
+                try
+                {
+                    SqlCeDataReader dataReader = cmd.ExecuteReader();
+
+                    //Read the data and store them in the list
+                    while (dataReader.Read())
+                    {
+                        list.Add(dataReader["firstName"] + "");
+                        list.Add(dataReader["lastName"] + "");
+                        list.Add(dataReader["isTutor"] + "");
+                        list.Add(dataReader["isTutee"] + "");
+                        list.Add(dataReader["tuteeCourse1"] + "");
+                        list.Add(dataReader["tuteeCourse2"] + "");
+                        list.Add(dataReader["tuteeCourse3"] + "");
+                        list.Add(dataReader["tuteeCourse4"] + "");
+                        list.Add(dataReader["tutorCourse1"] + "");
+                        list.Add(dataReader["tutorCourse2"] + "");
+                        list.Add(dataReader["tutorCourse3"] + "");
+                        list.Add(dataReader["tutorCourse4"] + "");
+                        list.Add(dataReader["course1Approved"] + "");
+                        list.Add(dataReader["course2Approved"] + "");
+                        list.Add(dataReader["course3Approved"] + "");
+                        list.Add(dataReader["course4Approved"] + "");
+                        list.Add(dataReader["isFaculty"] + "");
+                        list.Add(dataReader["isAdmin"] + "");
+                    }
+
+                    //close Data Reader
+                    dataReader.Close();
+                    this.CloseConnection();
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    this.CloseConnection();
+                }
+            }
+            
+        }*/
         
         //Garrett: create apptId in message tables and insert apptId variable into them
         //create a message to send between users

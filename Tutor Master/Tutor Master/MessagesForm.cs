@@ -26,8 +26,6 @@ namespace Tutor_Master
             user = username;
             sentMessageList = db.getSentMail(username);
             inboxMessageList = db.getInbox(username);
-
-
             for (int i = 0; i < inboxMessageList.Count(); i++)
             {
                 ListViewItem listItem = new ListViewItem(inboxMessageList[i].getFromUser());
@@ -119,6 +117,18 @@ namespace Tutor_Master
                         {
                             rtbMessageDetails.AppendText(inboxMessageList[index].getMessage());
                             currentIndex = index;
+                            Messages message = inboxMessageList[currentIndex];
+                            Appointment appt = db.getAppointmentById(message.getApptId());
+                            if (lvMessages.SelectedItems[0].SubItems[4].Text == "True" || appt.getEndTime() < DateTime.Now)
+                            {
+                                btnApprove.Visible = false;
+                                btnReject.Visible = false;
+                            }
+                            else
+                            {
+                                btnApprove.Visible = true;
+                                btnReject.Visible = true;
+                            }
                         }
                         else
                         {
@@ -162,17 +172,65 @@ namespace Tutor_Master
 
             Messages message = inboxMessageList[currentIndex];
             Appointment appt = db.getAppointmentById(message.getApptId());
+            string source = appt.getSource();
             int messageId = message.getIdNum();
 
             if (messageId != -1)
             {
-                db.approveMessageDetailsFromAppointment(messageId, false);
-                db.editAppointment(appt.getID(), null, appt.getMeetingPlace(), appt.getCourse(), appt.getStartTime(), appt.getEndTime(), appt.getTutor(), appt.getTutee(), false, true, "ApprovedInMessage");
-                //db.editAppointment(
-                db.sendMessage(user, appt.getTutee(), "Appoinment Request Confirmed", user + " has confirmed your appointment regarding " + appt.getCourse(), true, DateTime.Now, appt.getCourse(), appt.getID());
+                if (lvMessages.SelectedItems[0].SubItems[4].Text == "False" && appt.getEndTime() > DateTime.Now)
+                {
+                    string messageStr = "Your request to be tutored by " + user + " was rejected.";
+                    string subject = "Appointment Rejected";
+                    switch (source)
+                    {
+                        //Run this if the appointment was created by a tutee
+                        case "TuteeMatch":
+                            db.approveMessageDetailsFromAppointment(messageId, true);
+                            db.sendMessage(user, appt.getTutee(), subject, messageStr, false, DateTime.Now, appt.getCourse(), appt.getID());
+                            db.deleteAppointment(appt.getID());
+                            break;
+
+                        //Run this if the appointment was a free time that got paired with.
+                        case "MatchWithExistingAppointment":
+                            db.approveMessageDetailsFromAppointment(messageId, true);
+                            db.sendMessage(user, appt.getTutee(), subject, messageStr, false, DateTime.Now, appt.getCourse(), appt.getID());
+                            db.editAppointment(appt.getID(), user, null, null, appt.getStartTime(), appt.getEndTime(), null, null, true, false, "EditForm");
+                            break;
+
+                        }
+                    }
+                else
+                {
+                    if (appt.getEndTime() < DateTime.Now)
+                        MessageBox.Show("Appointment end time has passed.");
+                    else
+                        MessageBox.Show("Appointment has already by handled.");
+                }
             }
         }
 
+
+        /*string message = "Your request to be tutored by " + user + " was rejected.";
+            string subject = "Appointment Rejected";
+            switch (source)
+            {
+                //Run this if the appointment was created by a tutee
+                case "TuteeMatch":
+                    int messageId = db.getMessageIdFromAppt(apptId);
+                    db.approveMessageDetailsFromAppointment(messageId, true);
+                    db.sendMessage(user, otherUser, subject, message, false, DateTime.Now, apptCourse, apptId);
+                    db.deleteAppointment(apptId);
+                    break;
+
+                //Run this if the appointment was a free time that got paired with.
+                case "MatchWithExistingAppointment":
+                    messageId = db.getMessageIdFromAppt(apptId);
+                    db.approveMessageDetailsFromAppointment(messageId, true);
+                    db.sendMessage(user, otherUser, subject, message, false, DateTime.Now, apptCourse, apptId);
+                    db.editAppointment(apptId, firstName, null, null, apptDateStartTime, apptDateEnd, null, null, true, false, "EditForm");
+                    break;
+
+            }*/
 
 
 

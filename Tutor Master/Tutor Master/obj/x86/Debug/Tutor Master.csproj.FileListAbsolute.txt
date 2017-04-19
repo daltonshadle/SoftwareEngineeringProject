@@ -28,7 +28,6 @@ F:\cs-225 project\SoftwareEngineering2\Tutor Master\Tutor Master\bin\Debug\Tutor
 F:\cs-225 project\SoftwareEngineering2\Tutor Master\Tutor Master\bin\Debug\Tutor Master.pdb
 F:\cs-225 project\SoftwareEngineering2\Tutor Master\Tutor Master\obj\x86\Debug\Tutor Master.csprojResolveAssemblyReference.cache
 F:\cs-225 project\SoftwareEngineering2\Tutor Master\Tutor Master\obj\x86\Debug\Tutor_Master.AppointmentBlock.resources
-F:\cs-225 project\SoftwareEngineering2\Tutor Master\Tutor Master\obj\x86\Debug\Tutor_Master.AppointmentBuilderForm.resources
 F:\cs-225 project\SoftwareEngineering2\Tutor Master\Tutor Master\obj\x86\Debug\Tutor_Master.AppointmentEditForm.resources
 F:\cs-225 project\SoftwareEngineering2\Tutor Master\Tutor Master\obj\x86\Debug\Tutor_Master.AppointmentInfoForm.resources
 F:\cs-225 project\SoftwareEngineering2\Tutor Master\Tutor Master\obj\x86\Debug\Tutor_Master.FacultyForm.resources

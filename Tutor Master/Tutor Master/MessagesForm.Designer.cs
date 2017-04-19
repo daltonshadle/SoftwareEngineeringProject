@@ -178,6 +178,7 @@
             this.btnApprove.TabIndex = 23;
             this.btnApprove.Text = "Approve";
             this.btnApprove.UseVisualStyleBackColor = true;
+            this.btnApprove.Visible = false;
             this.btnApprove.Click += new System.EventHandler(this.btnApprove_Click);
             // 
             // btnReject
@@ -188,6 +189,7 @@
             this.btnReject.TabIndex = 24;
             this.btnReject.Text = "Reject";
             this.btnReject.UseVisualStyleBackColor = true;
+            this.btnReject.Visible = false;
             this.btnReject.Click += new System.EventHandler(this.btnReject_Click);
             // 
             // MessagesForm

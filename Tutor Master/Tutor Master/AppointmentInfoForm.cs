@@ -236,6 +236,8 @@ namespace Tutor_Master
         {
             Database db = new Database();
 
+            int messageId = db.getMessageIdFromAppt(apptId);
+            db.approveMessageDetailsFromAppointment(messageId, true);
             db.editAppointment(apptId, null, apptPlace, apptCourse, apptDateStartTime, apptDateEnd, firstName, secondName, false, true, "ApprovedInEditForm");
             db.sendMessage(user, otherUser, "Appoinment Request Confirmed", user + " has confirmed your appointment regarding " + apptCourse, true, DateTime.Now, apptCourse, apptId);
 
@@ -441,21 +443,23 @@ namespace Tutor_Master
         {
             Database db = new Database();
 
+            string message = "Your request to be tutored by " + user + " was rejected.";
+            string subject = "Appointment Rejected";
             switch (source)
             {
                 //Run this if the appointment was created by a tutee
                 case "TuteeMatch":
+                    int messageId = db.getMessageIdFromAppt(apptId);
+                    db.approveMessageDetailsFromAppointment(messageId, true);
+                    db.sendMessage(user, otherUser, subject, message, false, DateTime.Now, apptCourse, apptId);
                     db.deleteAppointment(apptId);
-                    break;
-
-                //Run this if the appointment was changed by a user editing it
-                case "EditFrom":
-
-                    //somehow try to revert it to its old settings
                     break;
 
                 //Run this if the appointment was a free time that got paired with.
                 case "MatchWithExistingAppointment":
+                    messageId = db.getMessageIdFromAppt(apptId);
+                    db.approveMessageDetailsFromAppointment(messageId, true);
+                    db.sendMessage(user, otherUser, subject, message, false, DateTime.Now, apptCourse, apptId);
                     db.editAppointment(apptId, firstName, null, null, apptDateStartTime, apptDateEnd, null, null, true, false, "EditForm");
                     break;
 
