@@ -397,6 +397,7 @@
             this.btnReject.TabIndex = 55;
             this.btnReject.Text = "Reject";
             this.btnReject.UseVisualStyleBackColor = true;
+            this.btnReject.Visible = false;
             this.btnReject.Click += new System.EventHandler(this.btnReject_Click);
             // 
             // AppointmentInfoForm

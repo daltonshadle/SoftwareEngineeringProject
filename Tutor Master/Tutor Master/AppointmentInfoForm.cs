@@ -11,13 +11,13 @@ namespace Tutor_Master
 {
     public partial class AppointmentInfoForm : Form
     {
-   
+
         private string apptType;
         private string apptPlace;
         private string apptCourse;
         private string apptTime;
-        private DateTime apptDateTime;
-        private DateTime apptDate;
+        private DateTime apptDateStartTime;
+        private DateTime apptDateStartDate;
         private string apptDateEndTime;
         private DateTime apptDateEndDate;
         private DateTime apptDateEnd;
@@ -32,10 +32,10 @@ namespace Tutor_Master
         private bool initialValue1, initialValue2;
         private string source;
         private bool courseChanged = false;
-        
+
         //private Appointment infoAppointment;
 
-    
+
         public AppointmentInfoForm()
         {
             InitializeComponent();
@@ -87,8 +87,8 @@ namespace Tutor_Master
             displayApproveButton();
             this.Width = 280;
 
-            apptDateTime = a.getStartTime();
-            apptDate = apptDateTime.Date;
+            apptDateStartTime = a.getStartTime();
+            apptDateStartDate = apptDateStartTime.Date;
 
             apptDateEndTime = endDateDateTime;
             apptDateEnd = a.getEndTime();
@@ -115,7 +115,8 @@ namespace Tutor_Master
                 lblTuteeVal.Text = "-------";
             }
 
-            if (!isFreeTime){
+            if (!isFreeTime)
+            {
                 isFreeTime = false;
                 lblTuteeVal.Text = secondName;
             }
@@ -125,36 +126,44 @@ namespace Tutor_Master
             }
 
 
-            if (apptCourse != "" && apptCourse != null){
+            if (apptCourse != "" && apptCourse != null)
+            {
                 lblCourseVal.Text = apptCourse;
             }
-            else{
+            else
+            {
                 apptCourse = null;
                 lblCourseVal.Text = "-------";
             }
 
 
-            if (apptPlace != "" && apptPlace != null){
+            if (apptPlace != "" && apptPlace != null)
+            {
                 lblPlaceVal.Text = apptPlace;
             }
-            else{
+            else
+            {
                 apptPlace = null;
                 lblPlaceVal.Text = "-------";
             }
 
 
-            if (apptTime != "" && apptTime != null){
+            if (apptTime != "" && apptTime != null)
+            {
                 lblTimeVal.Text = apptTime;
             }
-            else{
+            else
+            {
                 lblTimeVal.Text = "-------";
             }
 
 
-            if (apptDate != null){
-                lblDateVal.Text = apptDate.ToShortDateString();
+            if (apptDateStartDate != null)
+            {
+                lblDateVal.Text = apptDateStartDate.ToShortDateString();
             }
-            else{
+            else
+            {
                 lblDateVal.Text = "-------";
             }
 
@@ -183,11 +192,13 @@ namespace Tutor_Master
             {
                 this.Height = 390;
                 btnApprove.Visible = true;
+                btnReject.Visible = true;
             }
             else
             {
                 this.Height = 330;
                 btnApprove.Visible = false;
+                btnReject.Visible = false;
             }
             initializeTimers();
         }
@@ -225,15 +236,20 @@ namespace Tutor_Master
         {
             Database db = new Database();
 
-            db.editAppointment(apptId, null, apptPlace, apptCourse, apptDateTime, apptDateEnd, firstName, secondName, false, true, "ApprovedInEditForm");
+            db.editAppointment(apptId, null, apptPlace, apptCourse, apptDateStartTime, apptDateEnd, firstName, secondName, false, true, "ApprovedInEditForm");
             db.sendMessage(user, otherUser, "Appoinment Request Confirmed", user + " has confirmed your appointment regarding " + apptCourse, true, DateTime.Now, apptCourse, apptId);
-            
+
             this.Hide();
             this.Close();
         }
 
         private void initializePanel()
         {
+            dateTimeDay1.Value = apptDateStartTime.Date;
+            dateTimeTime1.Value = apptDateStartTime;
+            dateTimeDay2.Value = apptDateEnd.Date;
+            dateTimeTime2.Value = apptDateEnd;
+
             switch (apptType)
             {
                 case "Freetime":
@@ -241,10 +257,6 @@ namespace Tutor_Master
                     cbxCourseList.Visible = false;
                     lblPlacePanel.Visible = false;
                     txtMeetingPlace.Visible = false;
-                    dateTimeDay1.Value = apptDateTime;
-                    dateTimeTime1.Value = apptDateTime;
-                    dateTimeDay2.Value = apptDateEnd;
-                    dateTimeTime2.Value = apptDateEnd;
                     break;
 
                 case "Learning":
@@ -258,7 +270,7 @@ namespace Tutor_Master
                         cbxCourseList.Visible = true;
                         cbxCourseList.Text = apptCourse;
                         cbxCourseList.SelectedItem = apptCourse;
-                        
+
                         Database db = new Database();
                         List<string> tutorCourses = db.getCourseList(firstName, true);
                         List<string> tuteeCourses = db.getCourseList(secondName, false);
@@ -308,21 +320,32 @@ namespace Tutor_Master
             //    apptCourse = cbxCourseList.SelectedItem.ToString();
             if (txtMeetingPlace.Visible == true)
                 apptPlace = txtMeetingPlace.Text;
-            apptDateTime = dateTimeDay1.Value.Date + dateTimeTime1.Value.TimeOfDay;
+            apptDateStartTime = dateTimeDay1.Value.Date + dateTimeTime1.Value.TimeOfDay;
             apptDateEnd = dateTimeDay2.Value.Date + dateTimeTime2.Value.TimeOfDay;
 
-            
 
+            //Check to see if the times work for both people. If so: 
+            if (verifyTimes())
+            {
+                //Edit the appointment and send the message.
+                Database db = new Database();
 
-            //Edit the appointment and send the message.
-            Database db = new Database();
-           
-            db.editAppointment(apptId, freeTimeProf, apptPlace, apptCourse, apptDateTime, apptDateEnd, firstName, secondName, isFreeTime, false, "EditForm");
-            //db.editAppointment(apptId, null, apptPlace, apptCourse, apptDateTime, apptDateEnd, firstName, secondName, false, true);
-            db.sendMessage(user, otherUser, "Appoinment edited", user + " has edited your appointment for " + apptCourse, true, DateTime.Now, apptCourse, apptId);
-            
-            this.Hide();
-            this.Close();
+                db.editAppointment(apptId, freeTimeProf, apptPlace, apptCourse, apptDateStartTime, apptDateEnd, firstName, secondName, isFreeTime, isApproved, "EditForm");
+                db.sendMessage(user, otherUser, "Appoinment edited", user + " has edited an appointment with you: \n\tCourse now: " + apptCourse
+                    + "\n\tPlace now: " + apptPlace
+                    + "\n\tNow from: " + apptDateStartDate.ToShortDateString() + " at " + apptDateStartTime.ToShortTimeString()
+                    + "\n\tUntil: " + apptDateEndDate.ToShortTimeString() + " at " + apptDateEnd.ToShortTimeString()
+                    , true, DateTime.Now, apptCourse, apptId);
+
+                this.Hide();
+                this.Close();
+            }
+            else
+            {
+                //Times don't work for one or both of the people.
+                MessageBox.Show("This time frame does not work for you or for the other person.");
+
+            }
         }
 
         private void initializeTimers()
@@ -418,7 +441,8 @@ namespace Tutor_Master
         {
             Database db = new Database();
 
-            switch(source) {
+            switch (source)
+            {
                 //Run this if the appointment was created by a tutee
                 case "TuteeMatch":
                     db.deleteAppointment(apptId);
@@ -432,7 +456,7 @@ namespace Tutor_Master
 
                 //Run this if the appointment was a free time that got paired with.
                 case "MatchWithExistingAppointment":
-                    db.editAppointment(apptId, firstName, null, null, apptDateTime, apptDateEnd, null, null, true, false, "EditForm");
+                    db.editAppointment(apptId, firstName, null, null, apptDateStartTime, apptDateEnd, null, null, true, false, "EditForm");
                     break;
 
             }
@@ -448,22 +472,99 @@ namespace Tutor_Master
 
         private void dateTimeDay1_ValueChanged(object sender, EventArgs e)
         {
-            //Scott fill
+            apptDateStartDate = dateTimeDay1.Value;
         }
 
         private void dateTimeDay2_ValueChanged(object sender, EventArgs e)
         {
-            //Scott fill
+            apptDateEndDate = dateTimeDay2.Value;
         }
 
         private void dateTimeTime1_ValueChanged(object sender, EventArgs e)
         {
-            //Scott fill
+            apptDateStartTime = dateTimeTime1.Value;
         }
 
         private void dateTimeTime2_ValueChanged(object sender, EventArgs e)
         {
-            //Scott fill
+            apptDateEnd = dateTimeTime2.Value;
+        }
+
+        //Check to see if the times work for both people
+        private bool verifyTimes()
+        {
+            bool good = false;
+            DateTime startTime = dateTimeDay1.Value.Date + dateTimeTime1.Value.TimeOfDay;
+            DateTime endTime = dateTimeDay2.Value.Date + dateTimeTime2.Value.TimeOfDay;
+            TimeSpan apptSpan = endTime - startTime;
+
+            good = (startTime > DateTime.Now && endTime > DateTime.Now &&
+                    startTime < endTime && apptSpan.TotalMilliseconds <= 3 * 60 * 60 * 1000); //appt time up to 3 hours
+
+            //commenting this to fix the overflow on datetime problem
+
+            if (good)
+            {
+
+                //checking both profile times to see if they conflict with the start and end times
+                Database db = new Database();
+                List<Appointment> builderAppoint = db.getDailyAppointments(firstName);
+                List<Appointment> otherAppoint = db.getDailyAppointments(secondName);
+
+                int it = 0;
+
+                while (good && it < builderAppoint.Count)
+                {
+                    bool temp = false;
+
+                    Appointment a = builderAppoint[it];
+                    temp = !isTimeInBetween(a.getStartTime(), a.getEndTime(), startTime, endTime);
+
+                    good = temp;
+                    it++;
+                }
+
+                it = 0;
+                while (good && it < otherAppoint.Count)
+                {
+                    bool temp = false;
+
+                    Appointment a = otherAppoint[it];
+                    temp = !isTimeInBetween(a.getStartTime(), a.getEndTime(), startTime, endTime);
+
+                    good = temp;
+                    it++;
+                }
+
+            }
+            else
+            {
+                if (apptType == "FreeTime" && good)
+                {
+                    Database db = new Database();
+                    List<Appointment> builderAppoint = db.getDailyAppointments(firstName);
+
+                    int it = 0;
+
+                    while (good && it < builderAppoint.Count)
+                    {
+                        bool temp = false;
+
+                        Appointment a = builderAppoint[it];
+                        temp = !isTimeInBetween(a.getStartTime(), a.getEndTime(), startTime, endTime);
+
+                        good = temp;
+                        it++;
+                    }
+                }
+            }
+            return good;
+        }
+
+        //Helper function for verifying validity of times
+        private bool isTimeInBetween(DateTime startTime, DateTime endTime, DateTime startTimeInQuestion, DateTime endTimeInQuestion)
+        {
+            return (startTime <= endTimeInQuestion && startTimeInQuestion <= endTime);
         }
     }
 }
