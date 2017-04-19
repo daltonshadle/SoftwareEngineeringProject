@@ -49,6 +49,7 @@
             this.lblLegendTutoring = new System.Windows.Forms.Label();
             this.pnlLegendPending = new System.Windows.Forms.Panel();
             this.lblLegendPending = new System.Windows.Forms.Label();
+            this.btnRightArrow = new System.Windows.Forms.Button();
             this.panelSun.SuspendLayout();
             this.panelMon.SuspendLayout();
             this.panelTues.SuspendLayout();
@@ -250,11 +251,20 @@
             this.lblLegendPending.TabIndex = 2;
             this.lblLegendPending.Text = "Pending Tutoring Session";
             // 
+            // btnRightArrow
+            // 
+            this.btnRightArrow.Location = new System.Drawing.Point(527, 4);
+            this.btnRightArrow.Name = "btnRightArrow";
+            this.btnRightArrow.Size = new System.Drawing.Size(75, 23);
+            this.btnRightArrow.TabIndex = 13;
+            this.btnRightArrow.UseVisualStyleBackColor = true;
+            // 
             // WeekCalendar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.Controls.Add(this.btnRightArrow);
             this.Controls.Add(this.pnlLegendPending);
             this.Controls.Add(this.pnlLegendTutoring);
             this.Controls.Add(this.pnlLegendFreetime);
@@ -316,5 +326,6 @@
         private System.Windows.Forms.Label lblLegendFreetime;
         private System.Windows.Forms.Label lblLegendTutoring;
         private System.Windows.Forms.Label lblLegendPending;
+        private System.Windows.Forms.Button btnRightArrow;
     }
 }

@@ -208,7 +208,9 @@ namespace Tutor_Master
             }
         }
 
-        private void changeTutorFunction()
+        private void changeTutorFunction() //Dalton: editProfile is now a function. 
+            //To change courses you have to delete the old ones and then add the new ones. 
+            //Kind of a pain in the ass but it was easiest on my end
         {
             if (checkTutor.Checked)
             {

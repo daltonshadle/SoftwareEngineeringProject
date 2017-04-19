@@ -393,8 +393,6 @@ namespace Tutor_Master
         //Delete old free time appointments
         public void deleteOldFreeTimeAppointments()
         {
-            Database db = new Database();
-
             string query = "DELETE FROM appointment WHERE ([isFreeTimeSession] = 'True' AND endTime < GETDATE())";
 
             if (this.OpenConnection())
@@ -1120,7 +1118,7 @@ namespace Tutor_Master
 
         //if the courses what someone can tutor, pass in true
         //if the courses what someone wants to be tutored, pass in false
-        //only use this function during registration
+        //only use this function during registration or after courses have been deleted
         public void addNewCourseList(string username, List<string> courseList, bool isTutor)
         {
             string query;
@@ -1164,6 +1162,53 @@ namespace Tutor_Master
                     MessageBox.Show(ex.Message);
                     this.CloseConnection();
                 }
+            }
+        }
+
+        public void deleteTutorList(string username)
+        {
+            string query = "DELETE FROM tutorCourses WHERE username = @username";
+            
+            if (this.OpenConnection())
+            {
+                SqlCeCommand cmd = new SqlCeCommand();
+
+                cmd.CommandText = query;
+                cmd.Connection = con;
+                try
+                {
+                    cmd.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+
+                this.CloseConnection();
+            }
+        }
+        
+
+        public void deleteTuteeList(string username)
+        {
+            string query = "DELETE FROM tuteeCourses WHERE username = @username";
+
+            if (this.OpenConnection())
+            {
+                SqlCeCommand cmd = new SqlCeCommand();
+
+                cmd.CommandText = query;
+                cmd.Connection = con;
+                try
+                {
+                    cmd.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+
+                this.CloseConnection();
             }
         }
 
@@ -1412,11 +1457,11 @@ namespace Tutor_Master
         }
 
         //Edits a current profile
-        /*public void editProfileInfo(string firstName, string lastName, string password)
+        //Username is not edited but is needed so that the right profile can be edited
+        public void editProfileInfo(string username, string firstName, string lastName, string password, bool isTutor, bool isTutee)
         {
             string query;
-            query = "UPDATE profile SET ";
-
+            query = "UPDATE profile SET firstName = @firstName, lastName = @lastName, password = @password, isTutor = @isTutor, isTutee = @isTutee WHERE username = @username";
 
             List<string> list = new List<string>();
 
@@ -1425,49 +1470,24 @@ namespace Tutor_Master
                 SqlCeCommand cmd = new SqlCeCommand();
                 cmd.CommandText = query;
                 cmd.Parameters.Add("@username", username);
+                cmd.Parameters.Add("@firstName", firstName);
+                cmd.Parameters.Add("@lastName", lastName);
+                cmd.Parameters.Add("@isTutor", isTutor);
+                cmd.Parameters.Add("@isTutee", isTutee);
                 cmd.Connection = con;
                 try
                 {
-                    SqlCeDataReader dataReader = cmd.ExecuteReader();
-
-                    //Read the data and store them in the list
-                    while (dataReader.Read())
-                    {
-                        list.Add(dataReader["firstName"] + "");
-                        list.Add(dataReader["lastName"] + "");
-                        list.Add(dataReader["isTutor"] + "");
-                        list.Add(dataReader["isTutee"] + "");
-                        list.Add(dataReader["tuteeCourse1"] + "");
-                        list.Add(dataReader["tuteeCourse2"] + "");
-                        list.Add(dataReader["tuteeCourse3"] + "");
-                        list.Add(dataReader["tuteeCourse4"] + "");
-                        list.Add(dataReader["tutorCourse1"] + "");
-                        list.Add(dataReader["tutorCourse2"] + "");
-                        list.Add(dataReader["tutorCourse3"] + "");
-                        list.Add(dataReader["tutorCourse4"] + "");
-                        list.Add(dataReader["course1Approved"] + "");
-                        list.Add(dataReader["course2Approved"] + "");
-                        list.Add(dataReader["course3Approved"] + "");
-                        list.Add(dataReader["course4Approved"] + "");
-                        list.Add(dataReader["isFaculty"] + "");
-                        list.Add(dataReader["isAdmin"] + "");
-                    }
-
-                    //close Data Reader
-                    dataReader.Close();
-                    this.CloseConnection();
-
+                    cmd.ExecuteNonQuery();
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
-                    this.CloseConnection();
                 }
+                this.CloseConnection();
             }
             
-        }*/
+        }
         
-        //Garrett: create apptId in message tables and insert apptId variable into them
         //create a message to send between users
         public void sendMessage(string fromUser, string toUser, string subject, string message, bool? approved, DateTime sentTime, string courseName, int appointmentID)
         {

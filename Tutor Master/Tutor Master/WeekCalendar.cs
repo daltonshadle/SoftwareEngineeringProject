@@ -6,6 +6,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Drawing.Drawing2D;
 
 namespace Tutor_Master
 {
@@ -19,6 +20,37 @@ namespace Tutor_Master
         {
             InitializeComponent();
             updateWeekLabel();
+            WeekCalendar_Load();
+        }
+
+        private void WeekCalendar_Load()
+        {
+            // Define the points in the polygonal path.
+            Point[] pts = {
+        new Point( 2,  6),
+        new Point(14,  6),
+        new Point(14,  2),
+        new Point(22, 10),
+        new Point(14, 18),
+        new Point(14, 14),
+        new Point( 2, 14)
+    };
+
+            // Make the GraphicsPath.
+            GraphicsPath polygon_path = new GraphicsPath(FillMode.Winding);
+            polygon_path.AddPolygon(pts);
+
+            // Convert the GraphicsPath into a Region.
+            Region polygon_region = new Region(polygon_path);
+
+            // Constrain the button to the region.
+            btnRightArrow.Region = polygon_region;
+
+            // Make the button big enough to hold the whole region.
+            btnRightArrow.SetBounds(
+                btnRightArrow.Location.X,
+                btnRightArrow.Location.Y,
+                pts[3].X + 5, pts[4].Y + 5);
         }
 
         public void assignWeeklyAppointments(string user)
