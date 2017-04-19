@@ -24,6 +24,7 @@ namespace Tutor_Master
         private Appointment buildingAppt;
         private string userProf;
         private bool isApproved;
+        private string source;
 
         public AppointmentBlock()
         {
@@ -42,6 +43,7 @@ namespace Tutor_Master
             id = a.getID();
             userProf = username;
             isApproved = a.getIsApproved();
+            source = a.getSource();
 
             bool b = a.getIsFreeTimeSession();
             if (b)
@@ -130,7 +132,7 @@ namespace Tutor_Master
         private void AppointmentBlock_Click(object sender, EventArgs e)
         {
             //MessageBox.Show("Appointment clicked");
-            Form form = new AppointmentInfoForm(this.apptType, this.apptPlace, this.apptCourse, this.apptTime, this.endDate, this.firstName, this.secondName, this.id, this.userProf, this.isApproved);
+            Form form = new AppointmentInfoForm(this.apptType, this.apptPlace, this.apptCourse, this.apptTime, this.endDate, this.firstName, this.secondName, this.id, this.userProf, this.isApproved, this.source);
             form.FormClosing += new FormClosingEventHandler(AppointmentForm_FormClosing);
             //Form form = new AppointmentInfoForm(this.apptType, this.id);
             form.Show();

@@ -175,9 +175,15 @@ namespace Tutor_Master
 
             if (messageId != -1)
             {
-                db.approveMessageDetailsFromAppointment(messageId, true);
-                db.editAppointment(appt.getID(), null, appt.getMeetingPlace(), appt.getCourse(), appt.getStartTime(), appt.getEndTime(), appt.getTutor(), appt.getTutee(), false, true);
-                db.sendMessage(user, appt.getTutee(), "Appoinment Request Confirmed", user + " has confirmed your appointment regarding " + appt.getCourse(), true, DateTime.Now, appt.getCourse(), appt.getID());
+                if (appt.getEndTime() > DateTime.Now)
+                {
+                    db.approveMessageDetailsFromAppointment(messageId, true);
+                    db.editAppointment(appt.getID(), null, appt.getMeetingPlace(), appt.getCourse(), appt.getStartTime(), appt.getEndTime(), appt.getTutor(), appt.getTutee(), false, true, "ApprovedInMessage");
+                    db.sendMessage(user, appt.getTutee(), "Appoinment Request Confirmed", user + " has confirmed your appointment regarding " + appt.getCourse(), true, DateTime.Now, appt.getCourse(), appt.getID());
+                }
+                else {
+                    MessageBox.Show("Appointment end time has passed.");
+                }
             }
             this.Hide();
             this.Close();
@@ -194,7 +200,7 @@ namespace Tutor_Master
             if (messageId != -1)
             {
                 db.approveMessageDetailsFromAppointment(messageId, false);
-                db.editAppointment(appt.getID(), null, appt.getMeetingPlace(), appt.getCourse(), appt.getStartTime(), appt.getEndTime(), appt.getTutor(), appt.getTutee(), false, true);
+                db.editAppointment(appt.getID(), null, appt.getMeetingPlace(), appt.getCourse(), appt.getStartTime(), appt.getEndTime(), appt.getTutor(), appt.getTutee(), false, true, "ApprovedInMessage");
                 //db.editAppointment(
                 db.sendMessage(user, appt.getTutee(), "Appoinment Request Confirmed", user + " has confirmed your appointment regarding " + appt.getCourse(), true, DateTime.Now, appt.getCourse(), appt.getID());
             }

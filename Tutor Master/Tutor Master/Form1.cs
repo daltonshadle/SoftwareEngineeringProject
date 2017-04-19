@@ -48,13 +48,5 @@ namespace Tutor_Master
                     break;
             }
         }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            var newForm = new AppointmentBuilderForm();
-            newForm.Show();
-            this.Hide();
-
-        }
     }
 }

@@ -118,6 +118,31 @@ namespace Tutor_Master
                 this.CloseConnection();
             }
         }
+
+        //Function to change the user password
+        public void changePassword(string username, string newPassword)
+        {
+            string query = "UPDATE profile SET password = @newPassword WHERE username = @username";
+
+            if (this.OpenConnection())
+            {
+                SqlCeCommand cmd = new SqlCeCommand();
+                cmd.CommandText = query;
+                cmd.Parameters.Add("@username", username);
+                cmd.Parameters.Add("@newPassword", newPassword);
+                cmd.Connection = con;
+                try
+                {
+                    cmd.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+
+                this.CloseConnection();
+            }
+        }
    
         //Simply checks if username is in database
         public bool isUsernameInDataBase(string user)
@@ -164,10 +189,10 @@ namespace Tutor_Master
         }
 
         //adds an appointment to the appointments table
-        public void addAppointment(string free, string meetingPlace, string course, DateTime startTime, DateTime endTime, string tutor, string tutee, bool isFreeTime, bool isApproved)
+        public void addAppointment(string free, string meetingPlace, string course, DateTime startTime, DateTime endTime, string tutor, string tutee, bool isFreeTime, bool isApproved, string source)
         {
             {
-                string query = "INSERT INTO appointment ([free time], tutor, tutee, courseName, meetingPlace, startTime, endTime, isFreeTimeSession, isApproved) VALUES (@freeTime, @tutor, @tutee, @courseName, @meetingPlace, @startTime, @endTime, @isFreeTime, @isApproved)";
+                string query = "INSERT INTO appointment ([free time], tutor, tutee, courseName, meetingPlace, startTime, endTime, isFreeTimeSession, isApproved, source) VALUES (@freeTime, @tutor, @tutee, @courseName, @meetingPlace, @startTime, @endTime, @isFreeTime, @isApproved, @source)";
 
                 if (this.OpenConnection())
                 {
@@ -211,6 +236,12 @@ namespace Tutor_Master
                     cmd.Parameters.Add("@endTime", endTime);
                     cmd.Parameters.Add("@isFreeTime", isFreeTime);
                     cmd.Parameters.Add("@isApproved", isApproved);
+                    if (source == null)
+                    {
+                        cmd.Parameters.Add("@source", DBNull.Value);
+                    }
+                    else
+                        cmd.Parameters.Add("@source", source);
                     cmd.Connection = con;
                     try
                     {
@@ -298,6 +329,14 @@ namespace Tutor_Master
                         else{
                             newAppointment.setIsApproved((bool)dataReader["isApproved"]);
                         }
+                        if (dataReader["source"] == DBNull.Value)
+                        {
+                            newAppointment.setSource(null);
+                        }
+                        else
+                        {
+                            newAppointment.setSource((string)dataReader["source"]);
+                        }
                         newAppointment.setStartTime((DateTime)dataReader["startTime"]);
                         newAppointment.setEndTime((DateTime)dataReader["endTime"]);
                         newAppointment.setIsFreeTimeSession((bool)dataReader["isFreeTimeSession"]);
@@ -351,10 +390,36 @@ namespace Tutor_Master
             }
         }
 
-        //Edit an appointment -- just reassign values to everything that makes up an appointment
-        public void editAppointment(int apptId, string free, string meetingPlace, string course, DateTime startTime, DateTime endTime, string tutor, string tutee, bool isFreeTime, bool? isApproved)
+        //Delete old free time appointments
+        public void deleteOldFreeTimeAppointments()
         {
-            string query = "UPDATE appointment SET [free time] = @free, tutor = @tutor, tutee = @tutee, courseName = @course, meetingPlace = @meetingPlace, startTime = @startTime, endTime = @endTime, isFreeTimeSession = @isFreeTime, isApproved = @isApproved WHERE [id number] = @apptId";
+            Database db = new Database();
+
+            string query = "DELETE FROM appointment WHERE ([isFreeTimeSession] = 'True' AND endTime < GETDATE())";
+
+            if (this.OpenConnection())
+            {
+                SqlCeCommand cmd = new SqlCeCommand();
+
+                cmd.CommandText = query;
+                cmd.Connection = con;
+                try
+                {
+                    cmd.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+
+                this.CloseConnection();
+            }
+        }
+
+        //Edit an appointment -- just reassign values to everything that makes up an appointment
+        public void editAppointment(int apptId, string free, string meetingPlace, string course, DateTime startTime, DateTime endTime, string tutor, string tutee, bool isFreeTime, bool? isApproved, string source)
+        {
+            string query = "UPDATE appointment SET [free time] = @free, tutor = @tutor, tutee = @tutee, courseName = @course, meetingPlace = @meetingPlace, startTime = @startTime, endTime = @endTime, isFreeTimeSession = @isFreeTime, isApproved = @isApproved, source = @source WHERE [id number] = @apptId";
 
             if (this.OpenConnection())
             {
@@ -388,6 +453,10 @@ namespace Tutor_Master
                     cmd.Parameters.Add("@isApproved", DBNull.Value);
                 else
                     cmd.Parameters.Add("@isApproved", isApproved);
+                if (source == null)
+                    cmd.Parameters.Add("@source", DBNull.Value);
+                else
+                    cmd.Parameters.Add("@source", source);
                 cmd.Connection = con;
                 
                 try

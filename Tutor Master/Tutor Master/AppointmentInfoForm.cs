@@ -11,13 +11,13 @@ namespace Tutor_Master
 {
     public partial class AppointmentInfoForm : Form
     {
-   
+
         private string apptType;
         private string apptPlace;
         private string apptCourse;
         private string apptTime;
-        private DateTime apptDateTime;
-        private DateTime apptDate;
+        private DateTime apptDateStartTime;
+        private DateTime apptDateStartDate;
         private string apptDateEndTime;
         private DateTime apptDateEndDate;
         private DateTime apptDateEnd;
@@ -27,14 +27,19 @@ namespace Tutor_Master
         private string user, otherUser;
         private bool isApproved;
         private bool isFreeTime;
-        
+        private DateTime prevTime1, prevTime2; //this is just for the 15 minute increments for time
+        private DateTime prevDate1, prevDate2; //this is just for syncing the date pickers
+        private bool initialValue1, initialValue2;
+        private string source;
+        private bool courseChanged = false;
+
         //private Appointment infoAppointment;
 
-    
+
         public AppointmentInfoForm()
         {
             InitializeComponent();
-            this.Width = 280; 
+            this.Width = 280;
             displayApproveButton();
         }
 
@@ -50,7 +55,7 @@ namespace Tutor_Master
 
         }
 
-        public AppointmentInfoForm(string type, string place, string course, string datetime, string endDateDateTime, string fname, string sname, int id, string username, bool approved)
+        public AppointmentInfoForm(string type, string place, string course, string datetime, string endDateDateTime, string fname, string sname, int id, string username, bool approved, string src)
         {
             apptId = id;
             Appointment a = new Appointment();
@@ -75,14 +80,15 @@ namespace Tutor_Master
             }
 
             isApproved = approved;
+            source = src;
 
             InitializeComponent();
 
             displayApproveButton();
             this.Width = 280;
 
-            apptDateTime = a.getStartTime();
-            apptDate = apptDateTime.Date;
+            apptDateStartTime = a.getStartTime();
+            apptDateStartDate = apptDateStartTime.Date;
 
             apptDateEndTime = endDateDateTime;
             apptDateEnd = a.getEndTime();
@@ -109,7 +115,8 @@ namespace Tutor_Master
                 lblTuteeVal.Text = "-------";
             }
 
-            if (!isFreeTime){
+            if (!isFreeTime)
+            {
                 isFreeTime = false;
                 lblTuteeVal.Text = secondName;
             }
@@ -119,36 +126,44 @@ namespace Tutor_Master
             }
 
 
-            if (apptCourse != "" && apptCourse != null){
+            if (apptCourse != "" && apptCourse != null)
+            {
                 lblCourseVal.Text = apptCourse;
             }
-            else{
+            else
+            {
                 apptCourse = null;
                 lblCourseVal.Text = "-------";
             }
 
 
-            if (apptPlace != "" && apptPlace != null){
+            if (apptPlace != "" && apptPlace != null)
+            {
                 lblPlaceVal.Text = apptPlace;
             }
-            else{
+            else
+            {
                 apptPlace = null;
                 lblPlaceVal.Text = "-------";
             }
 
 
-            if (apptTime != "" && apptTime != null){
+            if (apptTime != "" && apptTime != null)
+            {
                 lblTimeVal.Text = apptTime;
             }
-            else{
+            else
+            {
                 lblTimeVal.Text = "-------";
             }
 
 
-            if (apptDate != null){
-                lblDateVal.Text = apptDate.ToShortDateString();
+            if (apptDateStartDate != null)
+            {
+                lblDateVal.Text = apptDateStartDate.ToShortDateString();
             }
-            else{
+            else
+            {
                 lblDateVal.Text = "-------";
             }
 
@@ -175,14 +190,17 @@ namespace Tutor_Master
         {
             if ((user == firstName) && (apptType == "Learning") && (isApproved == false))
             {
-                this.Height = 360;
+                this.Height = 390;
                 btnApprove.Visible = true;
+                btnReject.Visible = true;
             }
             else
             {
                 this.Height = 330;
                 btnApprove.Visible = false;
+                btnReject.Visible = false;
             }
+            initializeTimers();
         }
 
 
@@ -217,19 +235,21 @@ namespace Tutor_Master
         private void btnApprove_Click(object sender, EventArgs e)
         {
             Database db = new Database();
-            int messageId = db.getMessageIdFromAppt(apptId);
-            if (messageId != -1)
-            {
-                db.approveMessageDetailsFromAppointment(messageId, true);
-                db.editAppointment(apptId, null, apptPlace, apptCourse, apptDateTime, apptDateEnd, firstName, secondName, false, true);
-                db.sendMessage(user, otherUser, "Appoinment Request Confirmed", user + " has confirmed your appointment regarding " + apptCourse, true, DateTime.Now, apptCourse, apptId);
-            }
+
+            db.editAppointment(apptId, null, apptPlace, apptCourse, apptDateStartTime, apptDateEnd, firstName, secondName, false, true, "ApprovedInEditForm");
+            db.sendMessage(user, otherUser, "Appoinment Request Confirmed", user + " has confirmed your appointment regarding " + apptCourse, true, DateTime.Now, apptCourse, apptId);
+
             this.Hide();
             this.Close();
         }
 
         private void initializePanel()
         {
+            dateTimeDay1.Value = apptDateStartTime.Date;
+            dateTimeTime1.Value = apptDateStartTime;
+            dateTimeDay2.Value = apptDateEnd.Date;
+            dateTimeTime2.Value = apptDateEnd;
+
             switch (apptType)
             {
                 case "Freetime":
@@ -237,10 +257,6 @@ namespace Tutor_Master
                     cbxCourseList.Visible = false;
                     lblPlacePanel.Visible = false;
                     txtMeetingPlace.Visible = false;
-                    dateTimeDay1.Value = apptDateTime;
-                    dateTimeTime1.Value = apptDateTime;
-                    dateTimeDay2.Value = apptDateEnd;
-                    dateTimeTime2.Value = apptDateEnd;
                     break;
 
                 case "Learning":
@@ -254,7 +270,7 @@ namespace Tutor_Master
                         cbxCourseList.Visible = true;
                         cbxCourseList.Text = apptCourse;
                         cbxCourseList.SelectedItem = apptCourse;
-                        
+
                         Database db = new Database();
                         List<string> tutorCourses = db.getCourseList(firstName, true);
                         List<string> tuteeCourses = db.getCourseList(secondName, false);
@@ -300,27 +316,255 @@ namespace Tutor_Master
                 firstName = null;
                 secondName = null;
             }
-            if (cbxCourseList.Visible == true)
-                apptCourse = cbxCourseList.SelectedItem.ToString();
+            //if (sourceChanged == true)
+            //    apptCourse = cbxCourseList.SelectedItem.ToString();
             if (txtMeetingPlace.Visible == true)
                 apptPlace = txtMeetingPlace.Text;
-            //apptDateTime = dateTimeDay1.Value + dateTimeTime1.Value;
-            //apptDateEnd = dateTimeDay1.Value + dateTimeTime1.Value;
-
-            
+            apptDateStartTime = dateTimeDay1.Value.Date + dateTimeTime1.Value.TimeOfDay;
+            apptDateEnd = dateTimeDay2.Value.Date + dateTimeTime2.Value.TimeOfDay;
 
 
-            //Edit the appointment and send the message.
+            //Check to see if the times work for both people. If so: 
+            if (verifyTimes())
+            {
+                //Edit the appointment and send the message.
+                Database db = new Database();
+
+                db.editAppointment(apptId, freeTimeProf, apptPlace, apptCourse, apptDateStartTime, apptDateEnd, firstName, secondName, isFreeTime, isApproved, "EditForm");
+                db.sendMessage(user, otherUser, "Appoinment edited", user + " has edited an appointment with you: \n\tCourse now: " + apptCourse
+                    + "\n\tPlace now: " + apptPlace
+                    + "\n\tNow from: " + apptDateStartDate.ToShortDateString() + " at " + apptDateStartTime.ToShortTimeString()
+                    + "\n\tUntil: " + apptDateEndDate.ToShortTimeString() + " at " + apptDateEnd.ToShortTimeString()
+                    , true, DateTime.Now, apptCourse, apptId);
+
+                this.Hide();
+                this.Close();
+            }
+            else
+            {
+                //Times don't work for one or both of the people.
+                MessageBox.Show("This time frame does not work for you or for the other person.");
+
+            }
+        }
+
+        private void initializeTimers()
+        {
+            dateTimeTime1.Format = DateTimePickerFormat.Custom;
+            dateTimeTime1.CustomFormat = "hh:mm tt";
+            dateTimeTime2.Format = DateTimePickerFormat.Custom;
+            dateTimeTime2.CustomFormat = "hh:mm tt";
+
+            DateTime dt = DateTime.Now;
+            if (dt.Minute % 15 > 15)
+            {
+                initialValue1 = true;
+                initialValue2 = true;
+                dateTimeTime1.Value = dt.AddMinutes(dt.Minute % 15 + 15);
+                dateTimeTime2.Value = dt.AddMinutes(dt.Minute % 15 + 30);
+            }
+            else
+            {
+                initialValue1 = true;
+                initialValue2 = true;
+                dateTimeTime1.Value = dt.AddMinutes(-(dt.Minute % 15) + 15);
+                dateTimeTime2.Value = dt.AddMinutes(-(dt.Minute % 15) + 30);
+            }
+
+            prevTime1 = dateTimeTime1.Value;
+            prevTime2 = dateTimeTime2.Value;
+        }
+
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+            if (initialValue1)
+            {
+                initialValue1 = false;
+                return;
+            }
+
+            DateTime dt = dateTimeTime1.Value;
+            TimeSpan diff = dt - prevTime1;
+
+
+            if (diff.Ticks < 0)
+            {
+                dateTimeTime1.Value = prevTime1.AddMinutes(-15);
+            }
+            else
+            {
+                dateTimeTime1.Value = prevTime1.AddMinutes(15);
+            }
+
+            //Debug.WriteLine("Timer 1 " + diff.Ticks.ToString());
+
+            if (dateTimeTime2.Value <= dateTimeTime1.Value)
+            {
+                dateTimeTime2.Value = prevTime1.AddMinutes(15);
+            }
+
+            prevTime1 = dateTimeTime1.Value;
+        }
+
+        private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
+        {
+            if (initialValue2)
+            {
+                initialValue2 = false;
+                return;
+            }
+
+            DateTime dt = dateTimeTime2.Value;
+            TimeSpan diff = dt - prevTime2;
+
+
+            if (diff.Ticks < 0)
+            {
+                dateTimeTime2.Value = prevTime2.AddMinutes(-15);
+            }
+            else
+            {
+                dateTimeTime2.Value = prevTime2.AddMinutes(15);
+            }
+
+            //Debug.WriteLine("Timer 2 " + diff.Ticks.ToString());
+
+            if (dateTimeTime1.Value >= dateTimeTime2.Value)
+            {
+                dateTimeTime1.Value = prevTime2.AddMinutes(-15);
+            }
+
+            prevTime2 = dateTimeTime2.Value;
+        }
+
+        private void btnReject_Click(object sender, EventArgs e)
+        {
             Database db = new Database();
-           
-            db.editAppointment(apptId, freeTimeProf, apptPlace, apptCourse, apptDateTime, apptDateEnd, firstName, secondName, isFreeTime, false);
-            //db.editAppointment(apptId, null, apptPlace, apptCourse, apptDateTime, apptDateEnd, firstName, secondName, false, true);
-            db.sendMessage(user, otherUser, "Appoinment edited", user + " has edited your appointment for " + apptCourse, true, DateTime.Now, apptCourse, apptId);
-            
+
+            switch (source)
+            {
+                //Run this if the appointment was created by a tutee
+                case "TuteeMatch":
+                    db.deleteAppointment(apptId);
+                    break;
+
+                //Run this if the appointment was changed by a user editing it
+                case "EditFrom":
+
+                    //somehow try to revert it to its old settings
+                    break;
+
+                //Run this if the appointment was a free time that got paired with.
+                case "MatchWithExistingAppointment":
+                    db.editAppointment(apptId, firstName, null, null, apptDateStartTime, apptDateEnd, null, null, true, false, "EditForm");
+                    break;
+
+            }
             this.Hide();
             this.Close();
         }
 
+        private void cbxCourseList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            apptCourse = cbxCourseList.SelectedItem.ToString();
+            courseChanged = true;
+        }
 
+        private void dateTimeDay1_ValueChanged(object sender, EventArgs e)
+        {
+            apptDateStartDate = dateTimeDay1.Value;
+        }
+
+        private void dateTimeDay2_ValueChanged(object sender, EventArgs e)
+        {
+            apptDateEndDate = dateTimeDay2.Value;
+        }
+
+        private void dateTimeTime1_ValueChanged(object sender, EventArgs e)
+        {
+            apptDateStartTime = dateTimeTime1.Value;
+        }
+
+        private void dateTimeTime2_ValueChanged(object sender, EventArgs e)
+        {
+            apptDateEnd = dateTimeTime2.Value;
+        }
+
+        //Check to see if the times work for both people
+        private bool verifyTimes()
+        {
+            bool good = false;
+            DateTime startTime = dateTimeDay1.Value.Date + dateTimeTime1.Value.TimeOfDay;
+            DateTime endTime = dateTimeDay2.Value.Date + dateTimeTime2.Value.TimeOfDay;
+            TimeSpan apptSpan = endTime - startTime;
+
+            good = (startTime > DateTime.Now && endTime > DateTime.Now &&
+                    startTime < endTime && apptSpan.TotalMilliseconds <= 3 * 60 * 60 * 1000); //appt time up to 3 hours
+
+            //commenting this to fix the overflow on datetime problem
+
+            if (good)
+            {
+
+                //checking both profile times to see if they conflict with the start and end times
+                Database db = new Database();
+                List<Appointment> builderAppoint = db.getDailyAppointments(firstName);
+                List<Appointment> otherAppoint = db.getDailyAppointments(secondName);
+
+                int it = 0;
+
+                while (good && it < builderAppoint.Count)
+                {
+                    bool temp = false;
+
+                    Appointment a = builderAppoint[it];
+                    temp = !isTimeInBetween(a.getStartTime(), a.getEndTime(), startTime, endTime);
+
+                    good = temp;
+                    it++;
+                }
+
+                it = 0;
+                while (good && it < otherAppoint.Count)
+                {
+                    bool temp = false;
+
+                    Appointment a = otherAppoint[it];
+                    temp = !isTimeInBetween(a.getStartTime(), a.getEndTime(), startTime, endTime);
+
+                    good = temp;
+                    it++;
+                }
+
+            }
+            else
+            {
+                if (apptType == "FreeTime" && good)
+                {
+                    Database db = new Database();
+                    List<Appointment> builderAppoint = db.getDailyAppointments(firstName);
+
+                    int it = 0;
+
+                    while (good && it < builderAppoint.Count)
+                    {
+                        bool temp = false;
+
+                        Appointment a = builderAppoint[it];
+                        temp = !isTimeInBetween(a.getStartTime(), a.getEndTime(), startTime, endTime);
+
+                        good = temp;
+                        it++;
+                    }
+                }
+            }
+            return good;
+        }
+
+        //Helper function for verifying validity of times
+        private bool isTimeInBetween(DateTime startTime, DateTime endTime, DateTime startTimeInQuestion, DateTime endTimeInQuestion)
+        {
+            return (startTime <= endTimeInQuestion && startTimeInQuestion <= endTime);
+        }
     }
 }
