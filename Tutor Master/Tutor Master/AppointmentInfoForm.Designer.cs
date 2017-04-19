@@ -62,6 +62,7 @@
             this.lblCoursePanel = new System.Windows.Forms.Label();
             this.panelEdit = new System.Windows.Forms.Panel();
             this.btnConfirmEdit = new System.Windows.Forms.Button();
+            this.btnReject = new System.Windows.Forms.Button();
             this.panelTime.SuspendLayout();
             this.panelEdit.SuspendLayout();
             this.SuspendLayout();
@@ -276,16 +277,20 @@
             this.dateTimeTime2.Format = System.Windows.Forms.DateTimePickerFormat.Time;
             this.dateTimeTime2.Location = new System.Drawing.Point(186, 36);
             this.dateTimeTime2.Name = "dateTimeTime2";
+            this.dateTimeTime2.ShowUpDown = true;
             this.dateTimeTime2.Size = new System.Drawing.Size(105, 20);
             this.dateTimeTime2.TabIndex = 5;
+            this.dateTimeTime2.ValueChanged += new System.EventHandler(this.dateTimeTime2_ValueChanged);
             // 
             // dateTimeTime1
             // 
             this.dateTimeTime1.Format = System.Windows.Forms.DateTimePickerFormat.Time;
             this.dateTimeTime1.Location = new System.Drawing.Point(186, 5);
             this.dateTimeTime1.Name = "dateTimeTime1";
+            this.dateTimeTime1.ShowUpDown = true;
             this.dateTimeTime1.Size = new System.Drawing.Size(105, 20);
             this.dateTimeTime1.TabIndex = 4;
+            this.dateTimeTime1.ValueChanged += new System.EventHandler(this.dateTimeTime1_ValueChanged);
             // 
             // dateTimeDay2
             // 
@@ -294,6 +299,7 @@
             this.dateTimeDay2.Name = "dateTimeDay2";
             this.dateTimeDay2.Size = new System.Drawing.Size(101, 20);
             this.dateTimeDay2.TabIndex = 2;
+            this.dateTimeDay2.ValueChanged += new System.EventHandler(this.dateTimeDay2_ValueChanged);
             // 
             // dateTimeDay1
             // 
@@ -302,6 +308,7 @@
             this.dateTimeDay1.Name = "dateTimeDay1";
             this.dateTimeDay1.Size = new System.Drawing.Size(101, 20);
             this.dateTimeDay1.TabIndex = 0;
+            this.dateTimeDay1.ValueChanged += new System.EventHandler(this.dateTimeDay1_ValueChanged);
             // 
             // lblEndTimePanel
             // 
@@ -337,6 +344,7 @@
             this.cbxCourseList.Name = "cbxCourseList";
             this.cbxCourseList.Size = new System.Drawing.Size(121, 21);
             this.cbxCourseList.TabIndex = 47;
+            this.cbxCourseList.SelectedIndexChanged += new System.EventHandler(this.cbxCourseList_SelectedIndexChanged);
             // 
             // lblPlacePanel
             // 
@@ -381,11 +389,23 @@
             this.btnConfirmEdit.Visible = false;
             this.btnConfirmEdit.Click += new System.EventHandler(this.btnConfirmEdit_Click);
             // 
+            // btnReject
+            // 
+            this.btnReject.Location = new System.Drawing.Point(85, 323);
+            this.btnReject.Name = "btnReject";
+            this.btnReject.Size = new System.Drawing.Size(75, 23);
+            this.btnReject.TabIndex = 55;
+            this.btnReject.Text = "Reject";
+            this.btnReject.UseVisualStyleBackColor = true;
+            this.btnReject.Visible = false;
+            this.btnReject.Click += new System.EventHandler(this.btnReject_Click);
+            // 
             // AppointmentInfoForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(663, 321);
+            this.ClientSize = new System.Drawing.Size(663, 353);
+            this.Controls.Add(this.btnReject);
             this.Controls.Add(this.btnConfirmEdit);
             this.Controls.Add(this.panelEdit);
             this.Controls.Add(this.btnApprove);
@@ -456,6 +476,7 @@
         private System.Windows.Forms.DateTimePicker dateTimeTime2;
         private System.Windows.Forms.DateTimePicker dateTimeTime1;
         private System.Windows.Forms.Button btnConfirmEdit;
+        private System.Windows.Forms.Button btnReject;
 
     }
 }

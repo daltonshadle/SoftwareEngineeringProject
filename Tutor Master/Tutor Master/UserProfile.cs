@@ -208,15 +208,6 @@ namespace Tutor_Master
             this.Hide();
         }
 
-        private void btnAddApp_Click(object sender, EventArgs e)
-        {
-            Profile temp = new Profile(user);
-            var appBuilder = new AppointmentBuilderForm(temp, tutorAcc, tuteeAcc);
-            appBuilder.FormClosing += new FormClosingEventHandler(appBuilder_FormClosing);
-            appBuilder.Show();
-            //this.Hide();
-        }
-
         void appBuilder_FormClosing(object sender, FormClosingEventArgs e)
         {
             weekCalendar.assignWeeklyAppointments(user);

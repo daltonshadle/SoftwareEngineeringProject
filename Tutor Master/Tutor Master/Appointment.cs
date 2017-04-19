@@ -22,6 +22,7 @@ namespace Tutor_Master
         private bool isApproved;
         private int apptID;
         private string meetingType;
+        private string source;
 
         //all the public functions
 
@@ -40,7 +41,7 @@ namespace Tutor_Master
             isApproved = false;
             apptID = -1;
         }
-        public Appointment(string tempMeetingType, string tempPlace, string tempCourse, DateTime tempStartTime, DateTime tempEndTime, string tempTutor,  string tempTutee, bool isAppointApproved)
+        public Appointment(string tempMeetingType, string tempPlace, string tempCourse, DateTime tempStartTime, DateTime tempEndTime, string tempTutor,  string tempTutee, bool isAppointApproved, string src)
         {
             meetingPlace = tempPlace;
             course = tempCourse;
@@ -52,10 +53,12 @@ namespace Tutor_Master
             isApproved = isAppointApproved;
             apptID = -1;
             meetingType = tempMeetingType;
+            source = src;
+            
         }
 
         //Will work on getting rid of this function
-        public Appointment(string tempMeetingType, string tempPlace, string tempCourse, DateTime tempStartTime, DateTime tempEndTime, Profile tempTutor, Profile tempTutee, bool isAppointApproved)
+        public Appointment(string tempMeetingType, string tempPlace, string tempCourse, DateTime tempStartTime, DateTime tempEndTime, Profile tempTutor, Profile tempTutee, bool isAppointApproved, string src)
 
         {
             //validation of these parameters can be done before the creation of the appointment object
@@ -70,6 +73,7 @@ namespace Tutor_Master
             isApproved = isAppointApproved;
             apptID = -1; 
             meetingType = tempMeetingType;
+            source = src;
         }
 
         public Appointment(DateTime tempStartTime, DateTime tempEndTime, string owner)
@@ -103,6 +107,16 @@ namespace Tutor_Master
         }
         public bool getIsApproved() {
             return isApproved;
+        }
+
+        public string getSource()
+        {
+            return source;
+        }
+
+        public void setSource(string src)
+        {
+            source = src;
         }
 
         public DateTime getStartTime()
@@ -218,12 +232,12 @@ namespace Tutor_Master
             if (isFreeTimeSession)
             {
                 //add freetime appt
-                db.addAppointment(freeTimeProf, null, null, startTime, endTime, null, null, isFreeTimeSession, isApproved); 
+                db.addAppointment(freeTimeProf, null, null, startTime, endTime, null, null, isFreeTimeSession, isApproved, source); 
             }
             else
             { 
                 //add tutor/tutee appt
-                db.addAppointment(null, meetingPlace, course, startTime, endTime, tutorProf, tuteeProf, isFreeTimeSession, isApproved);
+                db.addAppointment(null, meetingPlace, course, startTime, endTime, tutorProf, tuteeProf, isFreeTimeSession, isApproved, source);
             }
         }
 
