@@ -29,13 +29,13 @@
         private void InitializeComponent()
         {
             this.panelWhole = new System.Windows.Forms.Panel();
-            this.btnCancel = new System.Windows.Forms.Button();
-            this.buttonConfirm = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.checkBoxPassword = new System.Windows.Forms.CheckBox();
-            this.checkBoxName = new System.Windows.Forms.CheckBox();
-            this.checkBoxTutee = new System.Windows.Forms.CheckBox();
             this.checkBoxTutor = new System.Windows.Forms.CheckBox();
+            this.checkBoxTutee = new System.Windows.Forms.CheckBox();
+            this.checkBoxName = new System.Windows.Forms.CheckBox();
+            this.checkBoxPassword = new System.Windows.Forms.CheckBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.buttonConfirm = new System.Windows.Forms.Button();
+            this.btnCancel = new System.Windows.Forms.Button();
             this.panelWhole.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -55,54 +55,15 @@
             this.panelWhole.Size = new System.Drawing.Size(260, 219);
             this.panelWhole.TabIndex = 0;
             // 
-            // btnCancel
+            // checkBoxTutor
             // 
-            this.btnCancel.Location = new System.Drawing.Point(35, 184);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(75, 23);
-            this.btnCancel.TabIndex = 0;
-            this.btnCancel.Text = "Cancel";
-            this.btnCancel.UseVisualStyleBackColor = true;
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
-            // 
-            // buttonConfirm
-            // 
-            this.buttonConfirm.Location = new System.Drawing.Point(146, 184);
-            this.buttonConfirm.Name = "buttonConfirm";
-            this.buttonConfirm.Size = new System.Drawing.Size(75, 23);
-            this.buttonConfirm.TabIndex = 1;
-            this.buttonConfirm.Text = "Confirm";
-            this.buttonConfirm.UseVisualStyleBackColor = true;
-            this.buttonConfirm.Click += new System.EventHandler(this.buttonConfirm_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(52, 18);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(159, 13);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "What fields do you want to edit?";
-            // 
-            // checkBoxPassword
-            // 
-            this.checkBoxPassword.AutoSize = true;
-            this.checkBoxPassword.Location = new System.Drawing.Point(80, 46);
-            this.checkBoxPassword.Name = "checkBoxPassword";
-            this.checkBoxPassword.Size = new System.Drawing.Size(72, 17);
-            this.checkBoxPassword.TabIndex = 3;
-            this.checkBoxPassword.Text = "Password";
-            this.checkBoxPassword.UseVisualStyleBackColor = true;
-            // 
-            // checkBoxName
-            // 
-            this.checkBoxName.AutoSize = true;
-            this.checkBoxName.Location = new System.Drawing.Point(80, 79);
-            this.checkBoxName.Name = "checkBoxName";
-            this.checkBoxName.Size = new System.Drawing.Size(54, 17);
-            this.checkBoxName.TabIndex = 4;
-            this.checkBoxName.Text = "Name";
-            this.checkBoxName.UseVisualStyleBackColor = true;
+            this.checkBoxTutor.AutoSize = true;
+            this.checkBoxTutor.Location = new System.Drawing.Point(80, 113);
+            this.checkBoxTutor.Name = "checkBoxTutor";
+            this.checkBoxTutor.Size = new System.Drawing.Size(101, 17);
+            this.checkBoxTutor.TabIndex = 6;
+            this.checkBoxTutor.Text = "Tutor Properties";
+            this.checkBoxTutor.UseVisualStyleBackColor = true;
             // 
             // checkBoxTutee
             // 
@@ -114,15 +75,54 @@
             this.checkBoxTutee.Text = "Tutee Properties";
             this.checkBoxTutee.UseVisualStyleBackColor = true;
             // 
-            // checkBoxTutor
+            // checkBoxName
             // 
-            this.checkBoxTutor.AutoSize = true;
-            this.checkBoxTutor.Location = new System.Drawing.Point(80, 113);
-            this.checkBoxTutor.Name = "checkBoxTutor";
-            this.checkBoxTutor.Size = new System.Drawing.Size(101, 17);
-            this.checkBoxTutor.TabIndex = 6;
-            this.checkBoxTutor.Text = "Tutor Properties";
-            this.checkBoxTutor.UseVisualStyleBackColor = true;
+            this.checkBoxName.AutoSize = true;
+            this.checkBoxName.Location = new System.Drawing.Point(80, 79);
+            this.checkBoxName.Name = "checkBoxName";
+            this.checkBoxName.Size = new System.Drawing.Size(54, 17);
+            this.checkBoxName.TabIndex = 4;
+            this.checkBoxName.Text = "Name";
+            this.checkBoxName.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxPassword
+            // 
+            this.checkBoxPassword.AutoSize = true;
+            this.checkBoxPassword.Location = new System.Drawing.Point(80, 46);
+            this.checkBoxPassword.Name = "checkBoxPassword";
+            this.checkBoxPassword.Size = new System.Drawing.Size(72, 17);
+            this.checkBoxPassword.TabIndex = 3;
+            this.checkBoxPassword.Text = "Password";
+            this.checkBoxPassword.UseVisualStyleBackColor = true;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(52, 18);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(159, 13);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "What fields do you want to edit?";
+            // 
+            // buttonConfirm
+            // 
+            this.buttonConfirm.Location = new System.Drawing.Point(146, 184);
+            this.buttonConfirm.Name = "buttonConfirm";
+            this.buttonConfirm.Size = new System.Drawing.Size(75, 23);
+            this.buttonConfirm.TabIndex = 1;
+            this.buttonConfirm.Text = "Confirm";
+            this.buttonConfirm.UseVisualStyleBackColor = true;
+            this.buttonConfirm.Click += new System.EventHandler(this.buttonConfirm_Click);
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.Location = new System.Drawing.Point(35, 184);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(75, 23);
+            this.btnCancel.TabIndex = 0;
+            this.btnCancel.Text = "Cancel";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // EditProfileStart
             // 
@@ -132,6 +132,7 @@
             this.ClientSize = new System.Drawing.Size(284, 243);
             this.Controls.Add(this.panelWhole);
             this.Name = "EditProfileStart";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Edit Profile";
             this.panelWhole.ResumeLayout(false);
             this.panelWhole.PerformLayout();

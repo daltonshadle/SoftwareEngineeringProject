@@ -13,6 +13,7 @@ namespace Tutor_Master
     public partial class EditProfileInfo : Form
     {
         private const int MAX_NUM_COURSES = 4;
+        private bool isAllEditGood = true;
         private string first, last, user, pass;
         private bool isTutee, isTutor, isFaculty, isAdmin;
         private int numTuteeCourses = 0, numTutorCourses = 0, numApprovedCourses = 0;
@@ -23,6 +24,11 @@ namespace Tutor_Master
         List<string> profileInfo;
 
         private bool changePass, changeName, changeTutor, changeTutee;
+
+        private string newFirst, newLast, newPass;
+        private bool newIsTutee, newIsTutor, newIsFaculty, newIsAdmin;
+
+        Database db = new Database();
 
         public EditProfileInfo(string username)
         {
@@ -122,148 +128,229 @@ namespace Tutor_Master
 
         private void btnConfirm_Click(object sender, EventArgs e)
         {
+            isAllEditGood = true;
+
             if (changeName)
             {
                 changeNameFunction();
             }
-            if (changePass)
+            else 
+            {
+                newFirst = first;
+                newLast = last;
+            }
+
+            if (changePass && isAllEditGood)
             {
                 changePasswordFunction();
             }
-            if (changeTutee)
+            else 
+            {
+                newPass = pass;
+            }
+
+            if (changeTutee && isAllEditGood)
             {
                 changeTuteeFunction();
                 //tuteeCourseList should be updated
             }
-            if (changeTutor)
+            else
+            {
+                newIsTutee = isTutee;
+            }
+
+            if (changeTutor && isAllEditGood)
             {
                 changeTutorFunction();
                 //tutorCourseList should be updated
                 //tutorApprovedCourseList should be updated
+            }
+            else
+            {
+                newIsTutor = isTutor;
+            }
+
+            //all good to go with the edit
+            if (isAllEditGood)
+            { 
+                //confirm edit of person and add info to database
+                //close form and have user form refresh
+                db.editProfileInfo(user, newFirst, newLast, newPass, newIsTutor, newIsTutee);
+                this.Hide();
             }
 
         }
 
         private void changeNameFunction() 
         {
-            if (!txtFirstName.Text.Equals("") && !txtLastName.Text.Equals(""))
+            Database db = new Database();
+
+            if (changeName)
             {
-                //update profile first and last in database
+                //checking to see if name had been editted
+                if (!txtFirstName.Text.Equals("") && !txtLastName.Text.Equals(""))
+                {
+                    //update profile first and last in database
+                    newFirst = txtFirstName.Text;
+                    newLast = txtLastName.Text;
+                }
+                else
+                {
+                    MessageBox.Show("Please enter first and last name.");
+                    isAllEditGood = false;
+                }
             }
             else 
             {
-                MessageBox.Show("Please enter first and last name.");
+                newFirst = first;
+                newLast = last;
             }
         }
 
         private void changePasswordFunction()
         {
-            if (txtNewPassword.Text.Equals(txtConfirmPassword.Text) && !txtConfirmPassword.Text.Equals(""))
+            if (changePass)
             {
-                if (txtConfirmPassword.Text.Length < 6)
+                //checking to see if the pass was editted
+                if (txtNewPassword.Text.Equals(txtConfirmPassword.Text) && !txtConfirmPassword.Text.Equals(""))
                 {
-                    //update profile password in database
+                    if (txtConfirmPassword.Text.Length < 6)
+                    {
+                        //update profile password in database
+                        newPass = txtNewPassword.Text;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Password must be atleast 6 characters.");
+                        isAllEditGood = false;
+                    }
                 }
-                else 
+                else
                 {
-                    MessageBox.Show("Password must be atleast 6 characters.");
+                    MessageBox.Show("Please enter mathcing passwords.");
+                    isAllEditGood = false;
                 }
             }
-            else
+            else 
             {
-                MessageBox.Show("Please enter mathcing passwords.");
+                newPass = pass;
             }
         }
 
         private void changeTuteeFunction() 
         {
-            if (checkTutee.Checked)
+            if (changeTutee)
             {
-                //still a tutee, possibly changing courses
-                if (checkListTuteeCourses.CheckedItems.Count <= MAX_NUM_COURSES && checkListTuteeCourses.CheckedItems.Count > 0)
+                if (checkTutee.Checked)
                 {
-                    //is in the limit for number of courses allowed
-                    //update tutee courses in database
-                    tuteeCoursesList.Clear();
-                    List<string> selected = new List<string>();
-
-                    foreach (CheckBox item in checkListTuteeCourses.Items)
+                    //still a tutee, possibly changing courses
+                    if (checkListTuteeCourses.CheckedItems.Count <= MAX_NUM_COURSES && checkListTuteeCourses.CheckedItems.Count > 0)
                     {
-                        //makes selected item list
-                        if (item.Checked)
-                            selected.Add(item.Text);
-                    }
+                        //is in the limit for number of courses allowed
+                        //update tutee courses in database
+                        tuteeCoursesList.Clear();
+                        List<string> selected = new List<string>();
 
-                    //tutee course list know has all selected items, need to add to database
-                    tuteeCoursesList = selected;
-                }
-                else 
-                {
-                    MessageBox.Show("Must have between 1 - 4 tutee courses selected.");
-                }
-            }
-            else 
-            { 
-                //no longer a tutee, change isTutee bool and clear tutee courses
-            }
-        }
-
-        private void changeTutorFunction() //Dalton: editProfile is now a function. 
-            //To change courses you have to delete the old ones and then add the new ones. 
-            //Kind of a pain in the ass but it was easiest on my end
-        {
-            if (checkTutor.Checked)
-            {
-                //still a tutor, possibly changing courses
-                if (checkListTutorCourses.CheckedItems.Count <= MAX_NUM_COURSES && checkListTutorCourses.CheckedItems.Count > 0)
-                {
-                    //is in the limit for number of courses allowed
-                    //update tutor courses in database
-                    List<string> selected = new List<string>();
-                    List<bool> approvedBoolList = new List<bool>();
-
-                    Database db = new Database();
-
-                    foreach (CheckBox item in checkListTutorCourses.Items)
-                    {
-                        //makes selected item list
-                        if (item.Checked)
-                            selected.Add(item.Text);
-                    }
-
-                    for (int i = 0; i < selected.Count; i++) 
-                    {
-                        if (tutorCourseApprovedList.Contains(selected[i]))
+                        foreach (CheckBox item in checkListTuteeCourses.Items)
                         {
-                            approvedBoolList.Add(true);
-                            tutorCourseApprovedList.Insert(i, "true");
+                            //makes selected item list
+                            if (item.Checked)
+                                selected.Add(item.Text);
                         }
-                        else 
-                        {
-                            //not approved, send message for approval
-                            approvedBoolList.Add(false);
-                            tutorCourseApprovedList.Insert(i, "false");
-                            //Messages m = new Messages();
-                        }
+
+                        //tutee course list know has all selected items, need to add to database
+                        tuteeCoursesList = selected;
+                        newIsTutee = true;
+
+                        db.addNewCourseList(user, tuteeCoursesList, false);
                     }
-
-                    //tutor course list is updated to selected items
-                    //approved bools are updated and message sent
-                    tutorCoursesList.Clear();
-                    tutorCoursesList = selected;
-
-
-
+                    else
+                    {
+                        MessageBox.Show("Must have between 1 - 4 tutee courses selected.");
+                        isAllEditGood = false;
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Must have between 1 - 4 tutor courses selected.");
+                    //no longer a tutee, change isTutee bool and clear tutee courses
+                    newIsTutee = false;
                 }
             }
             else
             {
-                //no longer a tutor, change isTutor bool and clear tutor courses
+                newIsTutee = isTutee;
             }
+
+        }
+
+        private void changeTutorFunction()
+        {
+            if (changeTutor)
+            {
+                //checking to see if tutor status was editted
+                if (checkTutor.Checked)
+                {
+                    //still a tutor, possibly changing courses
+                    if (checkListTutorCourses.CheckedItems.Count <= MAX_NUM_COURSES && checkListTutorCourses.CheckedItems.Count > 0)
+                    {
+                        //is in the limit for number of courses allowed
+                        //update tutor courses in database
+                        List<string> selected = new List<string>();
+                        List<bool> approvedBoolList = new List<bool>();
+
+                        foreach (CheckBox item in checkListTutorCourses.Items)
+                        {
+                            //makes selected item list
+                            if (item.Checked)
+                                selected.Add(item.Text);
+                        }
+
+                        for (int i = 0; i < selected.Count; i++)
+                        {
+                            if (tutorCourseApprovedList.Contains(selected[i]))
+                            {
+                                approvedBoolList.Add(true);
+                                tutorCourseApprovedList.Insert(i, "true");
+                            }
+                            else
+                            {
+                                //not approved, send message for approval
+                                approvedBoolList.Add(false);
+                                tutorCourseApprovedList.Insert(i, "false");
+                                string facultyApprover = db.getFacultyApprover(selected[i]);
+                                db.sendMessage(user, facultyApprover, "Tutor Request", user + " is requesting to tutor " + selected[i], false, DateTime.Now, selected[i], -1);
+                            }
+                        }
+
+                        //tutor course list is updated to selected items
+                        //approved bools are updated and message sent
+                        tutorCoursesList.Clear();
+                        tutorCoursesList = selected;
+
+                        newIsTutor = true;
+                        db.deleteTutorList(user);
+                        db.addNewCourseList(user, tutorCoursesList, true);
+                        //add is approved bool list here
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("Must have between 1 - 4 tutor courses selected.");
+                        isAllEditGood = false;
+                    }
+                }
+                else
+                {
+                    //no longer a tutor, change isTutor bool and clear tutor courses
+                    newIsTutor = false;
+                    db.deleteTutorList(user);
+                }
+            }
+            else
+            {
+                newIsTutor = isTutor;
+            }
+
         }
 
 

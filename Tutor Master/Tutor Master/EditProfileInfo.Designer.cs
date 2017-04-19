@@ -243,7 +243,7 @@
             this.Controls.Add(this.panelWhole);
             this.Name = "EditProfileInfo";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Edit Profile Information";
+            this.Text = "Edit Profile";
             this.panelWhole.ResumeLayout(false);
             this.panelTutee.ResumeLayout(false);
             this.panelTutee.PerformLayout();
