@@ -19,21 +19,29 @@ namespace Tutor_Master
             this.Icon = Tutor_Master.Properties.Resources.favicon;
             username = name;
 
-            checkBoxTutee.Visible = isTutee;
-            checkBoxTutor.Visible = isTutor;
+            //checkBoxTutee.Visible = isTutee;
+            //checkBoxTutor.Visible = isTutor;
 
         }
 
         private void buttonConfirm_Click(object sender, EventArgs e)
         {
-            var newEditForm = new EditProfileInfo(username, checkBoxPassword.Checked, checkBoxName.Checked, checkBoxTutor.Checked, checkBoxTutee.Checked);
-            newEditForm.Show();
-            this.Hide();
+            if(isOneChecked())
+            {
+                var newEditForm = new EditProfileInfo(username, checkBoxPassword.Checked, checkBoxName.Checked, checkBoxTutor.Checked, checkBoxTutee.Checked);
+                newEditForm.Show();
+                this.Hide();
+            }
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Hide();
+        }
+
+        private bool isOneChecked() 
+        { 
+            return checkBoxPassword.Checked || checkBoxName.Checked || checkBoxTutor.Checked || checkBoxTutee.Checked;
         }
     }
 }

@@ -22,6 +22,7 @@ namespace Tutor_Master
         public UserProfile(string username)
         {
             InitializeComponent();
+            this.Icon = Tutor_Master.Properties.Resources.favicon;
 
             tuteeCoursesList = new List<string>();
             tutorCoursesList = new List<string>();
@@ -70,11 +71,6 @@ namespace Tutor_Master
                     courseAppList.Add(listOfProfileInfo[i + 4]);
                 }
             }
-            /*for (int i = 12; i < 15; i++)
-            {
-                if (listOfProfileInfo[i] != "")
-                    courseAppList.Add(listOfProfileInfo[i]);
-            }*/
 
             if (first != "")
             {
@@ -86,8 +82,6 @@ namespace Tutor_Master
                 this.Text = username;
                 lblNameAndUser.Text = username;
             }
-
-            this.Icon = Tutor_Master.Properties.Resources.favicon;
 
             //MessageBox.Show(tutorCoursesList[0] + tutorCoursesList[1] + tutorCoursesList[2] + tutorCoursesList[3]);
 
@@ -171,34 +165,6 @@ namespace Tutor_Master
             next.Show();
         }
 
-
-        /*// In event method.
-        private void NewButton_Click(object sender, EventArgs e)
-        {
-            Button btn = (Button) sender;
-
-            // Find the programatically created button and assign its onClick event
-            if (btn.Name == ("buttAddTutor"))
-            {
-                var next = new Registration2(user, tutorAcc, tuteeAcc, 2000);   //2000 is the id for coming from userprofile
-                this.Hide();
-                next.Show();
-           
-            }
-            if (btn.Name == ("buttAddTutee"))
-            {
-                var next = new Registration3(user);
-                this.Hide();
-                next.Show();
-            
-            }
-        
-        }*/
-
-
-        //Function casts the first letter of the string to be capitalized...
-        //But not sure if we really want that honestly.
-
         //This would assume that we automatically cast usernames to lower so that coolTerry7 == coolterry7
         public string FirstLetterToUpper(string str)
         {
@@ -269,7 +235,65 @@ namespace Tutor_Master
 
         private void UserProfile_Activated(object sender, System.EventArgs e)
         {
+            updateAllTexts();
             weekCalendar.assignWeeklyAppointments(user);
+        }
+
+        private void updateAllTexts() 
+        {
+            if (first != "")
+            {
+                this.Text = FirstLetterToUpper(first) + " " + FirstLetterToUpper(last);
+                lblNameAndUser.Text = FirstLetterToUpper(first) + " " + FirstLetterToUpper(last) + " - " + user;
+            }
+            else
+            {
+                this.Text = user;
+                lblNameAndUser.Text = user;
+            }
+
+            var tutorListView = listView1;
+            listView1.Clear();
+ 
+            if (tutorCoursesList.Count > 0)
+            {
+                for (int x = 0; x < tutorCoursesList.Count; x++)
+                {
+                    if (tutorCoursesList[x] != "")
+                    {
+                        if (courseAppList[x] == "False")
+                            tutorListView.Items.Add(tutorCoursesList[x] + " - Rejected");
+                        else if (courseAppList[x] == "")
+                            tutorListView.Items.Add(tutorCoursesList[x] + " - Pending");
+                        else
+                            tutorListView.Items.Add(tutorCoursesList[x] + "\n");
+                    }
+                }
+                tutorListView.Visible = true;
+            }
+            else
+            {
+                btnAddTutorCourses.Visible = true;
+            }
+
+            var tuteeListView = listView2;
+            listView2.Clear();
+
+            if (tuteeCoursesList.Count > 0)
+            {
+                for (int x = 0; x < tuteeCoursesList.Count; x++)
+                {
+                    if (tuteeCoursesList[x] != "")
+                    {
+                        tuteeListView.Items.Add(tuteeCoursesList[x] + "\n");
+                    }
+                }
+                tuteeListView.Visible = true;
+            }
+            else
+            {
+                btnAddTuteeCourses.Visible = true;
+            }
         }
 
         private void btnAdmin_Click(object sender, EventArgs e)
