@@ -118,31 +118,6 @@ namespace Tutor_Master
                 this.CloseConnection();
             }
         }
-
-        //Function to change the user password
-        public void changePassword(string username, string newPassword)
-        {
-            string query = "UPDATE profile SET password = @newPassword WHERE username = @username";
-
-            if (this.OpenConnection())
-            {
-                SqlCeCommand cmd = new SqlCeCommand();
-                cmd.CommandText = query;
-                cmd.Parameters.Add("@username", username);
-                cmd.Parameters.Add("@newPassword", newPassword);
-                cmd.Connection = con;
-                try
-                {
-                    cmd.ExecuteNonQuery();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-
-                this.CloseConnection();
-            }
-        }
    
         //Simply checks if username is in database
         public bool isUsernameInDataBase(string user)
@@ -1214,7 +1189,7 @@ namespace Tutor_Master
         }
 
         //Set the approved status of courses in the database
-        public void setCourseApproval(string username, bool course1, bool course2, bool course3, bool course4)
+        public void setCourseApproval(string username, bool? course1, bool? course2, bool? course3, bool? course4)
         {
             string query = "UPDATE tutorCourses SET course1Approved = @course1, course2Approved = @course2, course3Approved = @course3, course4Approved = @course4 WHERE username = @username";
 
@@ -1223,10 +1198,26 @@ namespace Tutor_Master
                 SqlCeCommand cmd = new SqlCeCommand();
                 cmd.CommandText = query;
                 cmd.Parameters.Add("@username", username);
-                cmd.Parameters.Add("@course1", course1);
-                cmd.Parameters.Add("@course2", course2);
-                cmd.Parameters.Add("@course3", course3);
-                cmd.Parameters.Add("@course4", course4);
+                if(course1 == null)
+                    cmd.Parameters.Add("@course1", DBNull.Value);
+                else
+                    cmd.Parameters.Add("@course1", course1);
+
+                if (course2 == null)
+                    cmd.Parameters.Add("@course2", DBNull.Value);
+                else
+                    cmd.Parameters.Add("@course2", course2);
+
+                if (course3 == null)
+                    cmd.Parameters.Add("@course3", DBNull.Value);
+                else
+                    cmd.Parameters.Add("@course3", course3);
+
+                if (course4 == null)
+                    cmd.Parameters.Add("@course4", DBNull.Value);
+                else
+                    cmd.Parameters.Add("@course4", course4);
+
                 cmd.Connection = con;
                 try
                 {
@@ -1346,7 +1337,7 @@ namespace Tutor_Master
                     //Read the data and store them in the list
                     while (dataReader.Read())
                     {
-                        pass = dataReader["name"].ToString() + "";
+                        pass = dataReader["password"].ToString() + "";
                         
                     }
 
@@ -1583,6 +1574,7 @@ namespace Tutor_Master
                 SqlCeCommand cmd = new SqlCeCommand();
                 cmd.CommandText = query;
                 cmd.Parameters.Add("@username", username);
+                cmd.Parameters.Add("@password", password);
                 cmd.Parameters.Add("@firstName", firstName);
                 cmd.Parameters.Add("@lastName", lastName);
                 cmd.Parameters.Add("@isTutor", isTutor);
@@ -1622,11 +1614,27 @@ namespace Tutor_Master
                 cmdSent.Parameters.Add("@toUser", toUser);
                 cmdReceived.Parameters.Add("@toUser", toUser);
 
-                cmdSent.Parameters.Add("@subject", subject);
-                cmdReceived.Parameters.Add("@subject", subject);
+                if (subject == null)
+                {
+                    cmdSent.Parameters.Add("@subject", DBNull.Value);
+                    cmdReceived.Parameters.Add("@subject", DBNull.Value);
+                }
+                else
+                {
+                    cmdSent.Parameters.Add("@subject", subject);
+                    cmdReceived.Parameters.Add("@subject", subject);
+                }
 
-                cmdSent.Parameters.Add("@message", message);
-                cmdReceived.Parameters.Add("@message", message);
+                if (message == null)
+                {
+                    cmdSent.Parameters.Add("@message", DBNull.Value);
+                    cmdReceived.Parameters.Add("@message", DBNull.Value);
+                }
+                else
+                {
+                    cmdSent.Parameters.Add("@message", message);
+                    cmdReceived.Parameters.Add("@message", message);
+                }
 
                 if (approved == null)
                 {
@@ -1642,11 +1650,27 @@ namespace Tutor_Master
                 cmdSent.Parameters.Add("@sentTime", sentTime);
                 cmdReceived.Parameters.Add("@sentTime", sentTime);
 
-                cmdSent.Parameters.Add("@course", courseName);
-                cmdReceived.Parameters.Add("@course", courseName);
+                if (courseName == null)
+                {
+                    cmdSent.Parameters.Add("@course", DBNull.Value);
+                    cmdReceived.Parameters.Add("@course", DBNull.Value);
+                }
+                else
+                {
+                    cmdSent.Parameters.Add("@course", courseName);
+                    cmdReceived.Parameters.Add("@course", courseName);
+                }
 
-                cmdSent.Parameters.Add("@apptId", appointmentID);
-                cmdReceived.Parameters.Add("@apptId", appointmentID);
+                if (appointmentID == null)
+                {
+                    cmdSent.Parameters.Add("@apptId", -1);
+                    cmdReceived.Parameters.Add("@apptId", -1);
+                }
+                else
+                {
+                    cmdSent.Parameters.Add("@apptId", appointmentID);
+                    cmdReceived.Parameters.Add("@apptId", appointmentID);
+                }
 
                 cmdSent.Connection = con;
                 cmdReceived.Connection = con;
