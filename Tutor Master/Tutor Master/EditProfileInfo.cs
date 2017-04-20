@@ -178,6 +178,7 @@ namespace Tutor_Master
                 //confirm edit of person and add info to database
                 //close form and have user form refresh
                 db.editProfileInfo(user, newFirst, newLast, newPass, newIsTutor, newIsTutee);
+                this.Close();
                 this.Hide();
             }
 

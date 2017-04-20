@@ -28,10 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UserProfile));
             this.btnLogout = new System.Windows.Forms.Button();
             this.lbTutor = new System.Windows.Forms.Label();
-            this.listView1 = new System.Windows.Forms.ListView();
-            this.listView2 = new System.Windows.Forms.ListView();
+            this.tutorListView = new System.Windows.Forms.ListView();
+            this.tuteeListView = new System.Windows.Forms.ListView();
             this.label1 = new System.Windows.Forms.Label();
             this.btnViewCal = new System.Windows.Forms.Button();
             this.btnMatchingAppoint = new System.Windows.Forms.Button();
@@ -42,11 +43,11 @@
             this.btnRefinedSearch = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.buttonEditProfile = new System.Windows.Forms.Button();
             this.lblAdmin = new System.Windows.Forms.Label();
             this.btnAdmin = new System.Windows.Forms.Button();
             this.weekCalendar = new Tutor_Master.WeekCalendar();
             this.panelAdmin = new System.Windows.Forms.Panel();
-            this.buttonEditProfile = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panelAdmin.SuspendLayout();
@@ -72,26 +73,26 @@
             this.lbTutor.TabIndex = 3;
             this.lbTutor.Text = "Courses for tutoring:";
             // 
-            // listView1
+            // tutorListView
             // 
-            this.listView1.Location = new System.Drawing.Point(14, 43);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(119, 101);
-            this.listView1.TabIndex = 4;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.SmallIcon;
-            this.listView1.Visible = false;
+            this.tutorListView.Location = new System.Drawing.Point(14, 43);
+            this.tutorListView.Name = "tutorListView";
+            this.tutorListView.Size = new System.Drawing.Size(119, 101);
+            this.tutorListView.TabIndex = 4;
+            this.tutorListView.UseCompatibleStateImageBehavior = false;
+            this.tutorListView.View = System.Windows.Forms.View.SmallIcon;
+            this.tutorListView.Visible = false;
             // 
-            // listView2
+            // tuteeListView
             // 
-            this.listView2.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-            this.listView2.Location = new System.Drawing.Point(178, 43);
-            this.listView2.Name = "listView2";
-            this.listView2.Size = new System.Drawing.Size(119, 101);
-            this.listView2.TabIndex = 6;
-            this.listView2.UseCompatibleStateImageBehavior = false;
-            this.listView2.View = System.Windows.Forms.View.SmallIcon;
-            this.listView2.Visible = false;
+            this.tuteeListView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.tuteeListView.Location = new System.Drawing.Point(178, 43);
+            this.tuteeListView.Name = "tuteeListView";
+            this.tuteeListView.Size = new System.Drawing.Size(119, 101);
+            this.tuteeListView.TabIndex = 6;
+            this.tuteeListView.UseCompatibleStateImageBehavior = false;
+            this.tuteeListView.View = System.Windows.Forms.View.SmallIcon;
+            this.tuteeListView.Visible = false;
             // 
             // label1
             // 
@@ -185,9 +186,9 @@
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel1.Controls.Add(this.btnAddTuteeCourses);
             this.panel1.Controls.Add(this.btnAddTutorCourses);
-            this.panel1.Controls.Add(this.listView2);
+            this.panel1.Controls.Add(this.tuteeListView);
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.listView1);
+            this.panel1.Controls.Add(this.tutorListView);
             this.panel1.Controls.Add(this.lbTutor);
             this.panel1.Location = new System.Drawing.Point(12, 75);
             this.panel1.Name = "panel1";
@@ -210,6 +211,16 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1079, 43);
             this.panel2.TabIndex = 16;
+            // 
+            // buttonEditProfile
+            // 
+            this.buttonEditProfile.Location = new System.Drawing.Point(453, 7);
+            this.buttonEditProfile.Name = "buttonEditProfile";
+            this.buttonEditProfile.Size = new System.Drawing.Size(75, 23);
+            this.buttonEditProfile.TabIndex = 17;
+            this.buttonEditProfile.Text = "Edit Profile";
+            this.buttonEditProfile.UseVisualStyleBackColor = true;
+            this.buttonEditProfile.Click += new System.EventHandler(this.buttonEditProfile_Click);
             // 
             // lblAdmin
             // 
@@ -248,7 +259,7 @@
             // 
             // panelAdmin
             // 
-            this.panelAdmin.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.panelAdmin.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.panelAdmin.BackColor = System.Drawing.Color.DarkGoldenrod;
             this.panelAdmin.Controls.Add(this.lblAdmin);
             this.panelAdmin.Controls.Add(this.btnAdmin);
@@ -257,16 +268,6 @@
             this.panelAdmin.Size = new System.Drawing.Size(466, 100);
             this.panelAdmin.TabIndex = 19;
             this.panelAdmin.Visible = false;
-            // 
-            // buttonEditProfile
-            // 
-            this.buttonEditProfile.Location = new System.Drawing.Point(453, 7);
-            this.buttonEditProfile.Name = "buttonEditProfile";
-            this.buttonEditProfile.Size = new System.Drawing.Size(75, 23);
-            this.buttonEditProfile.TabIndex = 17;
-            this.buttonEditProfile.Text = "Edit Profile";
-            this.buttonEditProfile.UseVisualStyleBackColor = true;
-            this.buttonEditProfile.Click += new System.EventHandler(this.buttonEditProfile_Click);
             // 
             // UserProfile
             // 
@@ -278,6 +279,7 @@
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.weekCalendar);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "UserProfile";
             this.Text = "User Profile";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
@@ -296,8 +298,8 @@
 
         private System.Windows.Forms.Button btnLogout;
         private System.Windows.Forms.Label lbTutor;
-        private System.Windows.Forms.ListView listView1;
-        private System.Windows.Forms.ListView listView2;
+        private System.Windows.Forms.ListView tutorListView;
+        private System.Windows.Forms.ListView tuteeListView;
         private System.Windows.Forms.Label label1;
         private WeekCalendar weekCalendar;
         private System.Windows.Forms.Button btnViewCal;
