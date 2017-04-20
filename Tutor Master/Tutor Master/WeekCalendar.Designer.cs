@@ -50,6 +50,7 @@
             this.pnlLegendPending = new System.Windows.Forms.Panel();
             this.lblLegendPending = new System.Windows.Forms.Label();
             this.btnRightArrow = new System.Windows.Forms.Button();
+            this.btnLeftArrow = new System.Windows.Forms.Button();
             this.panelSun.SuspendLayout();
             this.panelMon.SuspendLayout();
             this.panelTues.SuspendLayout();
@@ -253,17 +254,30 @@
             // 
             // btnRightArrow
             // 
+            this.btnRightArrow.BackColor = System.Drawing.SystemColors.Control;
             this.btnRightArrow.Location = new System.Drawing.Point(527, 4);
             this.btnRightArrow.Name = "btnRightArrow";
             this.btnRightArrow.Size = new System.Drawing.Size(75, 23);
             this.btnRightArrow.TabIndex = 13;
-            this.btnRightArrow.UseVisualStyleBackColor = true;
+            this.btnRightArrow.UseVisualStyleBackColor = false;
+            this.btnRightArrow.Click += new System.EventHandler(this.btnRightArrow_Click);
+            // 
+            // btnLeftArrow
+            // 
+            this.btnLeftArrow.BackColor = System.Drawing.SystemColors.Control;
+            this.btnLeftArrow.Location = new System.Drawing.Point(358, 4);
+            this.btnLeftArrow.Name = "btnLeftArrow";
+            this.btnLeftArrow.Size = new System.Drawing.Size(75, 23);
+            this.btnLeftArrow.TabIndex = 14;
+            this.btnLeftArrow.UseVisualStyleBackColor = false;
+            this.btnLeftArrow.Click += new System.EventHandler(this.btnLeftArrow_Click);
             // 
             // WeekCalendar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.Controls.Add(this.btnLeftArrow);
             this.Controls.Add(this.btnRightArrow);
             this.Controls.Add(this.pnlLegendPending);
             this.Controls.Add(this.pnlLegendTutoring);
@@ -327,5 +341,6 @@
         private System.Windows.Forms.Label lblLegendTutoring;
         private System.Windows.Forms.Label lblLegendPending;
         private System.Windows.Forms.Button btnRightArrow;
+        private System.Windows.Forms.Button btnLeftArrow;
     }
 }
