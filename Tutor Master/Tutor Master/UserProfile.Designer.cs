@@ -200,6 +200,7 @@
             this.panel2.BackColor = System.Drawing.Color.LightSteelBlue;
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel2.Controls.Add(this.btnRefinedSearch);
+            this.panel2.Controls.Add(this.buttonEditProfile);
             this.panel2.Controls.Add(this.btnViewMessages);
             this.panel2.Controls.Add(this.lblNameAndUser);
             this.panel2.Controls.Add(this.btnMatchingAppoint);
@@ -259,7 +260,7 @@
             // 
             // buttonEditProfile
             // 
-            this.buttonEditProfile.Location = new System.Drawing.Point(763, 75);
+            this.buttonEditProfile.Location = new System.Drawing.Point(453, 7);
             this.buttonEditProfile.Name = "buttonEditProfile";
             this.buttonEditProfile.Size = new System.Drawing.Size(75, 23);
             this.buttonEditProfile.TabIndex = 17;
@@ -274,7 +275,6 @@
             this.BackColor = System.Drawing.Color.SteelBlue;
             this.ClientSize = new System.Drawing.Size(1107, 715);
             this.Controls.Add(this.panelAdmin);
-            this.Controls.Add(this.buttonEditProfile);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.weekCalendar);
