@@ -1148,7 +1148,7 @@ namespace Tutor_Master
             if (this.OpenConnection())
             {
                 SqlCeCommand cmd = new SqlCeCommand();
-
+                cmd.Parameters.Add("@username", username);
                 cmd.CommandText = query;
                 cmd.Connection = con;
                 try
@@ -1172,7 +1172,7 @@ namespace Tutor_Master
             if (this.OpenConnection())
             {
                 SqlCeCommand cmd = new SqlCeCommand();
-
+                cmd.Parameters.Add("@username", username);
                 cmd.CommandText = query;
                 cmd.Connection = con;
                 try
