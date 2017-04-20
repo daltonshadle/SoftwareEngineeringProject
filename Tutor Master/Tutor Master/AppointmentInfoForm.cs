@@ -232,12 +232,14 @@ namespace Tutor_Master
         private void btnApprove_Click(object sender, EventArgs e)
         {
             //Check to see if all of the fields are filled in. Specifically, Place must be checked
-
             if (apptPlace != null)
             {
+                //Database db = new Database();
+
                 Database db = new Database();
                 int messageId = db.getMessageIdFromAppt(apptId);
-                db.approveMessageDetailsFromAppointment(messageId, true);         
+
+                db.approveMessageDetailsFromAppointment(messageId, true);
                 db.editAppointment(apptId, null, apptPlace, apptCourse, apptDateStartTime, apptDateEnd, firstName, secondName, false, true, "ApprovedInEditForm");
                 db.sendMessage(user, otherUser, "Appoinment Request Confirmed", user + " has confirmed your appointment regarding " + apptCourse, true, DateTime.Now, apptCourse, apptId);
 
@@ -253,6 +255,7 @@ namespace Tutor_Master
                 txtMeetingPlace.Visible = true;
                 btnConfirmEdit.Visible = true;
             }
+
         }
 
         private void initializePanel()

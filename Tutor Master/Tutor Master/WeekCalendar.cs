@@ -15,53 +15,77 @@ namespace Tutor_Master
 
         List<Appointment> appointmentList;
         string username;
+        DateTime currentDate;
 
         public WeekCalendar()
         {
             InitializeComponent();
-            updateWeekLabel();
+            updateWeekLabel(DateTime.Now);
             WeekCalendar_Load();
         }
 
         private void WeekCalendar_Load()
         {
             // Define the points in the polygonal path.
-            Point[] pts = {
-        new Point( 2,  6),
-        new Point(14,  6),
-        new Point(14,  2),
-        new Point(22, 10),
-        new Point(14, 18),
-        new Point(14, 14),
-        new Point( 2, 14)
+            Point[] ptsRight = {
+        new Point(12,  6),
+        new Point(24,  6),
+        new Point(24,  2),
+        new Point(32, 10),
+        new Point(24, 18),
+        new Point(24, 14),
+        new Point(12, 14)
+    };
+            Point[] ptsLeft = {
+        new Point(12,  10),
+        new Point(20,  2),
+        new Point(20,  6),
+        new Point(32,  6),
+        new Point(32, 14),
+        new Point(20, 14),
+        new Point(20, 18)
     };
 
             // Make the GraphicsPath.
             GraphicsPath polygon_path = new GraphicsPath(FillMode.Winding);
-            polygon_path.AddPolygon(pts);
+            polygon_path.AddPolygon(ptsRight);
+            GraphicsPath polygon_path2 = new GraphicsPath(FillMode.Winding);
+            polygon_path2.AddPolygon(ptsLeft);
 
             // Convert the GraphicsPath into a Region.
             Region polygon_region = new Region(polygon_path);
+            Region polygon_region2 = new Region(polygon_path2);
 
             // Constrain the button to the region.
             btnRightArrow.Region = polygon_region;
+            btnLeftArrow.Region = polygon_region2;
 
             // Make the button big enough to hold the whole region.
             btnRightArrow.SetBounds(
                 btnRightArrow.Location.X,
                 btnRightArrow.Location.Y,
-                pts[3].X + 5, pts[4].Y + 5);
+                ptsRight[3].X + 5, ptsRight[4].Y + 5);
+
+            btnLeftArrow.SetBounds(
+                btnLeftArrow.Location.X,
+                btnLeftArrow.Location.Y,
+                ptsLeft[3].X + 5, ptsLeft[4].Y + 5);
         }
 
         public void assignWeeklyAppointments(string user)
         {
             username = user;
+            currentDate = DateTime.Now;
             //fetch the appointments
+            assignWeeklyAppointmentsHelper(currentDate);
+        }
+
+        private void assignWeeklyAppointmentsHelper(DateTime date)
+        {
             Database db = new Database();
-            appointmentList = db.getDailyAppointments(user);
+            appointmentList = db.getDailyAppointments(username);
 
             //fetch the dates of the week
-            DateTime date = DateTime.Now;
             while (date.DayOfWeek != DayOfWeek.Sunday)
             {
                 date = date.AddDays(-1);
@@ -76,7 +100,7 @@ namespace Tutor_Master
             DateTime Thursday = date.AddDays(4);
             DateTime Friday = date.AddDays(5);
             DateTime Saturday = date.AddDays(6);
-         
+
             displayDay(Sunday, panelSun);
             displayDay(Monday, panelMon);
             displayDay(Tuesday, panelTues);
@@ -161,9 +185,8 @@ namespace Tutor_Master
             }
         }
 
-        public void updateWeekLabel() {
+        public void updateWeekLabel(DateTime date) {
 
-            DateTime date = DateTime.Now;
             while (date.DayOfWeek != DayOfWeek.Saturday)
             {
                 date = date.AddDays(-1);
@@ -193,5 +216,22 @@ namespace Tutor_Master
             panelSat.Controls.Add(lblSaturday);
             
         }
+
+        private void btnRightArrow_Click(object sender, EventArgs e)
+        {
+            //fetch the appointments
+            currentDate = currentDate.AddDays(7);
+            updateWeekLabel(currentDate);
+            assignWeeklyAppointmentsHelper(currentDate);
+        }
+
+        private void btnLeftArrow_Click(object sender, EventArgs e)
+        {
+            //fetch the appointments
+            currentDate = currentDate.AddDays(-7);
+            updateWeekLabel(currentDate);
+            assignWeeklyAppointmentsHelper(currentDate);
+        }
+
     }
 }
