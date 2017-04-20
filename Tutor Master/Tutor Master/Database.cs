@@ -1620,6 +1620,37 @@ namespace Tutor_Master
             }
             
         }
+
+        //Edits a current profile's password
+        //Username is not edited but is needed so that the right profile can be edited
+        //Function would be called only by administrator
+        public void editPassword(string username, string password)
+        {
+            string query;
+            query = "UPDATE profile SET password = @password WHERE username = @username";
+
+            List<string> list = new List<string>();
+
+            if (this.OpenConnection())
+            {
+                SqlCeCommand cmd = new SqlCeCommand();
+                cmd.CommandText = query;
+                cmd.Parameters.Add("@username", username);
+                cmd.Parameters.Add("@password", password);
+
+                cmd.Connection = con;
+                try
+                {
+                    cmd.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                this.CloseConnection();
+            }
+
+        }
         
         //create a message to send between users
         public void sendMessage(string fromUser, string toUser, string subject, string message, bool? approved, DateTime sentTime, string courseName, int appointmentID)

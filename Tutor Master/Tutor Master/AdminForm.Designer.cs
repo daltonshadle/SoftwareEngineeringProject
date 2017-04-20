@@ -53,7 +53,7 @@
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel3.Controls.Add(this.btnLogout);
             this.panel3.Controls.Add(this.lblNameAndUser);
-            this.panel3.Location = new System.Drawing.Point(142, 12);
+            this.panel3.Location = new System.Drawing.Point(168, 12);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(1087, 43);
             this.panel3.TabIndex = 15;
@@ -86,7 +86,7 @@
             this.columnHeader1});
             this.lvAllProfiles.FullRowSelect = true;
             this.lvAllProfiles.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-            this.lvAllProfiles.Location = new System.Drawing.Point(551, 182);
+            this.lvAllProfiles.Location = new System.Drawing.Point(577, 183);
             this.lvAllProfiles.Name = "lvAllProfiles";
             this.lvAllProfiles.Size = new System.Drawing.Size(220, 313);
             this.lvAllProfiles.TabIndex = 17;
@@ -107,7 +107,7 @@
             this.panelButtons.Controls.Add(this.btnDelete);
             this.panelButtons.Controls.Add(this.btnPassword);
             this.panelButtons.Controls.Add(this.btnSignIn);
-            this.panelButtons.Location = new System.Drawing.Point(863, 243);
+            this.panelButtons.Location = new System.Drawing.Point(889, 244);
             this.panelButtons.Name = "panelButtons";
             this.panelButtons.Size = new System.Drawing.Size(200, 187);
             this.panelButtons.TabIndex = 18;
@@ -167,7 +167,7 @@
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel1.Controls.Add(this.lblSearch);
             this.panel1.Controls.Add(this.txtSearch);
-            this.panel1.Location = new System.Drawing.Point(340, 274);
+            this.panel1.Location = new System.Drawing.Point(366, 275);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(170, 76);
             this.panel1.TabIndex = 21;
@@ -177,7 +177,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.SteelBlue;
-            this.ClientSize = new System.Drawing.Size(1312, 687);
+            this.ClientSize = new System.Drawing.Size(1365, 689);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panelButtons);
             this.Controls.Add(this.lvAllProfiles);
