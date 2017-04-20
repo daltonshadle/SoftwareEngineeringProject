@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MonthCalendarForm));
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblDailyAppointments = new System.Windows.Forms.Label();
             this.monthCalendar1 = new Tutor_Master.MonthCalendar();
@@ -35,9 +36,11 @@
             // 
             // panel1
             // 
+            this.panel1.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel1.Location = new System.Drawing.Point(282, 28);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(720, 525);
+            this.panel1.Size = new System.Drawing.Size(730, 285);
             this.panel1.TabIndex = 1;
             this.panel1.Visible = false;
             // 
@@ -61,10 +64,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.SteelBlue;
             this.ClientSize = new System.Drawing.Size(548, 326);
             this.Controls.Add(this.lblDailyAppointments);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.monthCalendar1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MonthCalendarForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Month Calendar";

@@ -46,8 +46,8 @@
             this.buttonEditProfile = new System.Windows.Forms.Button();
             this.lblAdmin = new System.Windows.Forms.Label();
             this.btnAdmin = new System.Windows.Forms.Button();
-            this.weekCalendar = new Tutor_Master.WeekCalendar();
             this.panelAdmin = new System.Windows.Forms.Panel();
+            this.weekCalendar = new Tutor_Master.WeekCalendar();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panelAdmin.SuspendLayout();
@@ -67,7 +67,7 @@
             // lbTutor
             // 
             this.lbTutor.AutoSize = true;
-            this.lbTutor.Location = new System.Drawing.Point(23, 18);
+            this.lbTutor.Location = new System.Drawing.Point(45, 18);
             this.lbTutor.Name = "lbTutor";
             this.lbTutor.Size = new System.Drawing.Size(101, 13);
             this.lbTutor.TabIndex = 3;
@@ -75,9 +75,9 @@
             // 
             // tutorListView
             // 
-            this.tutorListView.Location = new System.Drawing.Point(14, 43);
+            this.tutorListView.Location = new System.Drawing.Point(24, 43);
             this.tutorListView.Name = "tutorListView";
-            this.tutorListView.Size = new System.Drawing.Size(119, 101);
+            this.tutorListView.Size = new System.Drawing.Size(150, 101);
             this.tutorListView.TabIndex = 4;
             this.tutorListView.UseCompatibleStateImageBehavior = false;
             this.tutorListView.View = System.Windows.Forms.View.SmallIcon;
@@ -86,9 +86,9 @@
             // tuteeListView
             // 
             this.tuteeListView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-            this.tuteeListView.Location = new System.Drawing.Point(178, 43);
+            this.tuteeListView.Location = new System.Drawing.Point(199, 43);
             this.tuteeListView.Name = "tuteeListView";
-            this.tuteeListView.Size = new System.Drawing.Size(119, 101);
+            this.tuteeListView.Size = new System.Drawing.Size(150, 101);
             this.tuteeListView.TabIndex = 6;
             this.tuteeListView.UseCompatibleStateImageBehavior = false;
             this.tuteeListView.View = System.Windows.Forms.View.SmallIcon;
@@ -97,7 +97,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(175, 18);
+            this.label1.Location = new System.Drawing.Point(214, 18);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(122, 13);
             this.label1.TabIndex = 5;
@@ -148,7 +148,7 @@
             // 
             // btnAddTutorCourses
             // 
-            this.btnAddTutorCourses.Location = new System.Drawing.Point(35, 72);
+            this.btnAddTutorCourses.Location = new System.Drawing.Point(59, 72);
             this.btnAddTutorCourses.Name = "btnAddTutorCourses";
             this.btnAddTutorCourses.Size = new System.Drawing.Size(75, 23);
             this.btnAddTutorCourses.TabIndex = 12;
@@ -159,7 +159,7 @@
             // 
             // btnAddTuteeCourses
             // 
-            this.btnAddTuteeCourses.Location = new System.Drawing.Point(201, 72);
+            this.btnAddTuteeCourses.Location = new System.Drawing.Point(238, 72);
             this.btnAddTuteeCourses.Name = "btnAddTuteeCourses";
             this.btnAddTuteeCourses.Size = new System.Drawing.Size(75, 23);
             this.btnAddTuteeCourses.TabIndex = 13;
@@ -192,7 +192,7 @@
             this.panel1.Controls.Add(this.lbTutor);
             this.panel1.Location = new System.Drawing.Point(12, 75);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(315, 157);
+            this.panel1.Size = new System.Drawing.Size(375, 157);
             this.panel1.TabIndex = 15;
             // 
             // panel2
@@ -247,16 +247,6 @@
             this.btnAdmin.Visible = false;
             this.btnAdmin.Click += new System.EventHandler(this.btnAdmin_Click);
             // 
-            // weekCalendar
-            // 
-            this.weekCalendar.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.weekCalendar.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.weekCalendar.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.weekCalendar.Location = new System.Drawing.Point(12, 253);
-            this.weekCalendar.Name = "weekCalendar";
-            this.weekCalendar.Size = new System.Drawing.Size(1079, 383);
-            this.weekCalendar.TabIndex = 7;
-            // 
             // panelAdmin
             // 
             this.panelAdmin.Anchor = System.Windows.Forms.AnchorStyles.Top;
@@ -268,6 +258,16 @@
             this.panelAdmin.Size = new System.Drawing.Size(466, 100);
             this.panelAdmin.TabIndex = 19;
             this.panelAdmin.Visible = false;
+            // 
+            // weekCalendar
+            // 
+            this.weekCalendar.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.weekCalendar.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.weekCalendar.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.weekCalendar.Location = new System.Drawing.Point(12, 253);
+            this.weekCalendar.Name = "weekCalendar";
+            this.weekCalendar.Size = new System.Drawing.Size(1079, 383);
+            this.weekCalendar.TabIndex = 7;
             // 
             // UserProfile
             // 

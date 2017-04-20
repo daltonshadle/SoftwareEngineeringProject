@@ -57,20 +57,6 @@ namespace Tutor_Master
             assignEditableProfileInfo();
 
             adminAcc = false;   //bool isAdmin is set to false in this constructor. Only other constructor can make it true
-
-            for (int i = 4; i < 8; i++)
-            {
-                if (listOfProfileInfo[i] != "")
-                    tuteeCoursesList.Add(listOfProfileInfo[i]); //list of tutee courses
-            }
-            for (int i = 8; i < 12; i++)
-            {
-                if (listOfProfileInfo[i] != "") 
-                {
-                    tutorCoursesList.Add(listOfProfileInfo[i]); //list of tutor courses                    
-                }
-                courseAppList.Add(listOfProfileInfo[i + 4]);//list of tutor courses eligible for tutoring (not pending or rejected)
-            }
         }
 
         //Sets all values that might be editable
@@ -78,6 +64,10 @@ namespace Tutor_Master
         {
             Database db = new Database();
             List<string> listOfProfileInfo = db.getProfileInfo(user);
+
+            tuteeCoursesList = new List<string>();
+            tutorCoursesList = new List<string>();
+            courseAppList = new List<string>();
 
             first = listOfProfileInfo[0];   //string first name
             last = listOfProfileInfo[1];    //string last name
@@ -93,6 +83,20 @@ namespace Tutor_Master
                 tuteeAcc = true;
             else
                 tuteeAcc = false;
+
+            for (int i = 4; i < 8; i++)
+            {
+                if (listOfProfileInfo[i] != "")
+                    tuteeCoursesList.Add(listOfProfileInfo[i]); //list of tutee courses
+            }
+            for (int i = 8; i < 12; i++)
+            {
+                if (listOfProfileInfo[i] != "")
+                {
+                    tutorCoursesList.Add(listOfProfileInfo[i]); //list of tutor courses                    
+                }
+                courseAppList.Add(listOfProfileInfo[i + 4]);//list of tutor courses eligible for tutoring (not pending or rejected)
+            }
         }
 
         //Updates the name panel and the form name
@@ -139,9 +143,11 @@ namespace Tutor_Master
                     }
                 }
                 tutorListView.Visible = true;
+                btnAddTutorCourses.Visible = false;
             }
             else
             {
+                tutorListView.Visible = false;
                 btnAddTutorCourses.Visible = true;
             }
         }
@@ -156,18 +162,15 @@ namespace Tutor_Master
                 {
                     if (tuteeCoursesList[x] != "")
                     {
-                        if (courseAppList[x] == "False")
-                            tuteeListView.Items.Add(tuteeCoursesList[x] + " - Rejected");
-                        else if (courseAppList[x] == "")
-                            tuteeListView.Items.Add(tuteeCoursesList[x] + " - Pending");
-                        else
-                            tuteeListView.Items.Add(tuteeCoursesList[x] + "\n");
+                        tuteeListView.Items.Add(tuteeCoursesList[x] + "\n");
                     }
                 }
                 tuteeListView.Visible = true;
+                btnAddTuteeCourses.Visible = false;
             }
             else
             {
+                tuteeListView.Visible = false;
                 btnAddTuteeCourses.Visible = true;
             }
         }
