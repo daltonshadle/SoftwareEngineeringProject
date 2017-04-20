@@ -38,8 +38,12 @@
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnPassword = new System.Windows.Forms.Button();
             this.btnSignIn = new System.Windows.Forms.Button();
+            this.lblSearch = new System.Windows.Forms.Label();
+            this.txtSearch = new System.Windows.Forms.TextBox();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.panel3.SuspendLayout();
             this.panelButtons.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel3
@@ -49,7 +53,7 @@
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel3.Controls.Add(this.btnLogout);
             this.panel3.Controls.Add(this.lblNameAndUser);
-            this.panel3.Location = new System.Drawing.Point(12, 12);
+            this.panel3.Location = new System.Drawing.Point(142, 12);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(1087, 43);
             this.panel3.TabIndex = 15;
@@ -77,11 +81,12 @@
             // 
             // lvAllProfiles
             // 
+            this.lvAllProfiles.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lvAllProfiles.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1});
             this.lvAllProfiles.FullRowSelect = true;
             this.lvAllProfiles.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-            this.lvAllProfiles.Location = new System.Drawing.Point(251, 94);
+            this.lvAllProfiles.Location = new System.Drawing.Point(551, 182);
             this.lvAllProfiles.Name = "lvAllProfiles";
             this.lvAllProfiles.Size = new System.Drawing.Size(220, 313);
             this.lvAllProfiles.TabIndex = 17;
@@ -96,12 +101,13 @@
             // 
             // panelButtons
             // 
+            this.panelButtons.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.panelButtons.BackColor = System.Drawing.Color.LightSteelBlue;
             this.panelButtons.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panelButtons.Controls.Add(this.btnDelete);
             this.panelButtons.Controls.Add(this.btnPassword);
             this.panelButtons.Controls.Add(this.btnSignIn);
-            this.panelButtons.Location = new System.Drawing.Point(563, 155);
+            this.panelButtons.Location = new System.Drawing.Point(863, 243);
             this.panelButtons.Name = "panelButtons";
             this.panelButtons.Size = new System.Drawing.Size(200, 187);
             this.panelButtons.TabIndex = 18;
@@ -137,12 +143,42 @@
             this.btnSignIn.UseVisualStyleBackColor = true;
             this.btnSignIn.Click += new System.EventHandler(this.btnSignIn_Click);
             // 
+            // lblSearch
+            // 
+            this.lblSearch.AutoSize = true;
+            this.lblSearch.Location = new System.Drawing.Point(35, 17);
+            this.lblSearch.Name = "lblSearch";
+            this.lblSearch.Size = new System.Drawing.Size(104, 13);
+            this.lblSearch.TabIndex = 19;
+            this.lblSearch.Text = "Search by username";
+            // 
+            // txtSearch
+            // 
+            this.txtSearch.Location = new System.Drawing.Point(21, 33);
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.Size = new System.Drawing.Size(132, 20);
+            this.txtSearch.TabIndex = 20;
+            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
+            // 
+            // panel1
+            // 
+            this.panel1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.panel1.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel1.Controls.Add(this.lblSearch);
+            this.panel1.Controls.Add(this.txtSearch);
+            this.panel1.Location = new System.Drawing.Point(340, 274);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(170, 76);
+            this.panel1.TabIndex = 21;
+            // 
             // AdminForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.SteelBlue;
-            this.ClientSize = new System.Drawing.Size(1052, 516);
+            this.ClientSize = new System.Drawing.Size(1312, 687);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.panelButtons);
             this.Controls.Add(this.lvAllProfiles);
             this.Controls.Add(this.panel3);
@@ -153,6 +189,8 @@
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.panelButtons.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -168,6 +206,9 @@
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnPassword;
         private System.Windows.Forms.Button btnSignIn;
+        private System.Windows.Forms.Label lblSearch;
+        private System.Windows.Forms.TextBox txtSearch;
+        private System.Windows.Forms.Panel panel1;
 
     }
 }

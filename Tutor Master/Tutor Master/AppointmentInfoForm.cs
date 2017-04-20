@@ -238,9 +238,13 @@ namespace Tutor_Master
 
                 Database db = new Database();
                 int messageId = db.getMessageIdFromAppt(apptId);
+
                 db.approveMessageDetailsFromAppointment(messageId, true);
                 db.editAppointment(apptId, null, apptPlace, apptCourse, apptDateStartTime, apptDateEnd, firstName, secondName, false, true, "ApprovedInEditForm");
                 db.sendMessage(user, otherUser, "Appoinment Request Confirmed", user + " has confirmed your appointment regarding " + apptCourse, true, DateTime.Now, apptCourse, apptId);
+
+                this.Hide();
+                this.Close();
             }
             else
             {
@@ -252,8 +256,6 @@ namespace Tutor_Master
                 btnConfirmEdit.Visible = true;
             }
 
-            this.Hide();
-            this.Close();
         }
 
         private void initializePanel()

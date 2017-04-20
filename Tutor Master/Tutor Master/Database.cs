@@ -1466,29 +1466,49 @@ namespace Tutor_Master
             string queryProfile = "DELETE FROM profile WHERE username = @username";
             string queryTuteeCourse = "DELETE FROM tuteeCourses WHERE username = @username";
             string queryTutorCourse = "DELETE FROM tutorCourses WHERE username = @username";
+            string queryAppointment = "DELETE FROM appointment WHERE ([free time] = @username OR tutor = @username OR tutee = @username)";
+            string queryReceivedMessages = "DELETE FROM receivedMessages WHERE toUserName = @username";
+            string querySentMessages = "DELETE FROM sentMessages WHERE fromUserName = @username";
 
             if (this.OpenConnection())
             {
                 SqlCeCommand cmdDeleteProfile = new SqlCeCommand();
                 SqlCeCommand cmdDeleteTuteeCourse = new SqlCeCommand();
                 SqlCeCommand cmdDeleteTutorCourse = new SqlCeCommand();
+                SqlCeCommand cmdDeleteAppointment = new SqlCeCommand();
+                SqlCeCommand cmdDeleteReceivedMessages = new SqlCeCommand();
+                SqlCeCommand cmdDeleteSentMessages = new SqlCeCommand();
 
                 cmdDeleteProfile.CommandText = queryProfile;
                 cmdDeleteTuteeCourse.CommandText = queryTuteeCourse;
                 cmdDeleteTutorCourse.CommandText = queryTutorCourse;
+                cmdDeleteAppointment.CommandText = queryAppointment;
+                cmdDeleteReceivedMessages.CommandText = queryReceivedMessages;
+                cmdDeleteSentMessages.CommandText = querySentMessages;
 
                 cmdDeleteProfile.Parameters.Add("@username", username);
                 cmdDeleteTuteeCourse.Parameters.Add("@username", username);
                 cmdDeleteTutorCourse.Parameters.Add("@username", username);
+                cmdDeleteAppointment.Parameters.Add("@username", username);
+                cmdDeleteReceivedMessages.Parameters.Add("@username", username);
+                cmdDeleteSentMessages.Parameters.Add("@username", username);
 
                 cmdDeleteTutorCourse.Connection = con;
                 cmdDeleteTuteeCourse.Connection = con;
                 cmdDeleteProfile.Connection = con;
+                cmdDeleteAppointment.Connection = con;
+                cmdDeleteReceivedMessages.Connection = con;
+                cmdDeleteSentMessages.Connection = con;
+
                 try
-                {
+                {      
                     cmdDeleteProfile.ExecuteNonQuery();
                     cmdDeleteTuteeCourse.ExecuteNonQuery();
                     cmdDeleteTutorCourse.ExecuteNonQuery();
+                    cmdDeleteAppointment.ExecuteNonQuery();
+                    cmdDeleteReceivedMessages.ExecuteNonQuery();
+                    cmdDeleteSentMessages.ExecuteNonQuery();
+                    
                 }
                 catch (Exception ex)
                 {
