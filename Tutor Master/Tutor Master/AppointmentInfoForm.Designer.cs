@@ -61,14 +61,11 @@
             this.lblPlacePanel = new System.Windows.Forms.Label();
             this.lblCoursePanel = new System.Windows.Forms.Label();
             this.panelEdit = new System.Windows.Forms.Panel();
+            this.cbxMeetingPlace = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.btnConfirmEdit = new System.Windows.Forms.Button();
             this.btnReject = new System.Windows.Forms.Button();
-<<<<<<< HEAD
-            this.cbxMeetingPlace = new System.Windows.Forms.ComboBox();
-=======
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
->>>>>>> 83b7ccb164e50703e68835c3f90606c47b703771
             this.panelTime.SuspendLayout();
             this.panelEdit.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -338,21 +335,10 @@
             this.lblStartTimePanel.TabIndex = 0;
             this.lblStartTimePanel.Text = "Start Time:";
             // 
-<<<<<<< HEAD
-=======
-            // txtMeetingPlace
-            // 
-            this.txtMeetingPlace.Location = new System.Drawing.Point(93, 66);
-            this.txtMeetingPlace.Name = "txtMeetingPlace";
-            this.txtMeetingPlace.Size = new System.Drawing.Size(121, 20);
-            this.txtMeetingPlace.TabIndex = 48;
-            this.txtMeetingPlace.Visible = false;
-            // 
->>>>>>> 83b7ccb164e50703e68835c3f90606c47b703771
             // cbxCourseList
             // 
             this.cbxCourseList.FormattingEnabled = true;
-            this.cbxCourseList.Location = new System.Drawing.Point(93, 39);
+            this.cbxCourseList.Location = new System.Drawing.Point(93, 33);
             this.cbxCourseList.Name = "cbxCourseList";
             this.cbxCourseList.Size = new System.Drawing.Size(121, 21);
             this.cbxCourseList.TabIndex = 47;
@@ -362,7 +348,7 @@
             // lblPlacePanel
             // 
             this.lblPlacePanel.AutoSize = true;
-            this.lblPlacePanel.Location = new System.Drawing.Point(44, 66);
+            this.lblPlacePanel.Location = new System.Drawing.Point(44, 63);
             this.lblPlacePanel.Name = "lblPlacePanel";
             this.lblPlacePanel.Size = new System.Drawing.Size(37, 13);
             this.lblPlacePanel.TabIndex = 45;
@@ -372,7 +358,7 @@
             // lblCoursePanel
             // 
             this.lblCoursePanel.AutoSize = true;
-            this.lblCoursePanel.Location = new System.Drawing.Point(38, 42);
+            this.lblCoursePanel.Location = new System.Drawing.Point(38, 36);
             this.lblCoursePanel.Name = "lblCoursePanel";
             this.lblCoursePanel.Size = new System.Drawing.Size(43, 13);
             this.lblCoursePanel.TabIndex = 44;
@@ -383,11 +369,8 @@
             // 
             this.panelEdit.BackColor = System.Drawing.Color.LightSteelBlue;
             this.panelEdit.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-<<<<<<< HEAD
             this.panelEdit.Controls.Add(this.cbxMeetingPlace);
-=======
             this.panelEdit.Controls.Add(this.label1);
->>>>>>> 83b7ccb164e50703e68835c3f90606c47b703771
             this.panelEdit.Controls.Add(this.panelTime);
             this.panelEdit.Controls.Add(this.cbxCourseList);
             this.panelEdit.Controls.Add(this.lblPlacePanel);
@@ -397,6 +380,24 @@
             this.panelEdit.Size = new System.Drawing.Size(337, 183);
             this.panelEdit.TabIndex = 53;
             this.panelEdit.Visible = false;
+            // 
+            // cbxMeetingPlace
+            // 
+            this.cbxMeetingPlace.FormattingEnabled = true;
+            this.cbxMeetingPlace.Location = new System.Drawing.Point(93, 60);
+            this.cbxMeetingPlace.Name = "cbxMeetingPlace";
+            this.cbxMeetingPlace.Size = new System.Drawing.Size(121, 21);
+            this.cbxMeetingPlace.TabIndex = 50;
+            this.cbxMeetingPlace.SelectedIndexChanged += new System.EventHandler(this.cbxMeetingPlace_SelectedIndexChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(138, 11);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(76, 13);
+            this.label1.TabIndex = 50;
+            this.label1.Text = "Edit fields here";
             // 
             // btnConfirmEdit
             // 
@@ -420,15 +421,6 @@
             this.btnReject.Visible = false;
             this.btnReject.Click += new System.EventHandler(this.btnReject_Click);
             // 
-<<<<<<< HEAD
-            // cbxMeetingPlace
-            // 
-            this.cbxMeetingPlace.FormattingEnabled = true;
-            this.cbxMeetingPlace.Location = new System.Drawing.Point(93, 39);
-            this.cbxMeetingPlace.Name = "cbxMeetingPlace";
-            this.cbxMeetingPlace.Size = new System.Drawing.Size(121, 21);
-            this.cbxMeetingPlace.TabIndex = 50;
-=======
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.LightSteelBlue;
@@ -459,16 +451,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(242, 347);
             this.panel1.TabIndex = 56;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(138, 11);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(76, 13);
-            this.label1.TabIndex = 50;
-            this.label1.Text = "Edit fields here";
->>>>>>> 83b7ccb164e50703e68835c3f90606c47b703771
             // 
             // AppointmentInfoForm
             // 
@@ -530,12 +512,8 @@
         private System.Windows.Forms.DateTimePicker dateTimeTime1;
         private System.Windows.Forms.Button btnConfirmEdit;
         private System.Windows.Forms.Button btnReject;
-<<<<<<< HEAD
         private System.Windows.Forms.ComboBox cbxMeetingPlace;
-=======
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label1;
->>>>>>> 83b7ccb164e50703e68835c3f90606c47b703771
-
     }
 }

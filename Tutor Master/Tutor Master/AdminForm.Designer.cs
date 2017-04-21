@@ -55,15 +55,16 @@
             this.panel3.Controls.Add(this.lblNameAndUser);
             this.panel3.Location = new System.Drawing.Point(168, 12);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1087, 43);
+            this.panel3.Size = new System.Drawing.Size(1087, 73);
             this.panel3.TabIndex = 15;
             // 
             // btnLogout
             // 
             this.btnLogout.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnLogout.Location = new System.Drawing.Point(995, 7);
+            this.btnLogout.BackgroundImage = global::Tutor_Master.Properties.Resources.Door_50_1_;
+            this.btnLogout.Location = new System.Drawing.Point(1016, 3);
             this.btnLogout.Name = "btnLogout";
-            this.btnLogout.Size = new System.Drawing.Size(75, 23);
+            this.btnLogout.Size = new System.Drawing.Size(55, 59);
             this.btnLogout.TabIndex = 11;
             this.btnLogout.Text = "Logout";
             this.btnLogout.UseVisualStyleBackColor = true;

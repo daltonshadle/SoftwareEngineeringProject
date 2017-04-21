@@ -113,6 +113,26 @@ namespace Tutor_Master.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Door_50_1_1 {
+            get {
+                object obj = ResourceManager.GetObject("Door-50(1)1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Door_50_1_2 {
+            get {
+                object obj = ResourceManager.GetObject("Door-50(1)2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Edit_48 {
             get {
                 object obj = ResourceManager.GetObject("Edit-48", resourceCulture);

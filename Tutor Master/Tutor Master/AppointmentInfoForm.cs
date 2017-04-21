@@ -57,6 +57,8 @@ namespace Tutor_Master
 
         public AppointmentInfoForm(string type, string place, string course, string datetime, string endDateDateTime, string fname, string sname, int id, string username, bool approved, string src)
         {
+            InitializeComponent();
+
             apptId = id;
             Appointment a = new Appointment();
             Database db = new Database();
@@ -83,8 +85,6 @@ namespace Tutor_Master
             isApproved = approved;
             source = src;
 
-            InitializeComponent();
-
             displayApproveButton();
             this.Width = 280;
 
@@ -95,7 +95,7 @@ namespace Tutor_Master
             apptDateEnd = a.getEndTime();
             apptDateEndDate = apptDateEnd.Date;
 
-            if (apptType == "Free time")
+            if (apptType == "Freetime")
             {
                 isFreeTime = true;
                 lblTypeVal.Text = apptType;
@@ -204,8 +204,6 @@ namespace Tutor_Master
             initializeTimers();
         }
 
-
-
         /*
          *  If someone wishes to edit an appointment, this is what should happen:
          *      Starts an ApptEditForm filled with the existing info,
@@ -233,7 +231,7 @@ namespace Tutor_Master
         private void btnApprove_Click(object sender, EventArgs e)
         {
             //Check to see if all of the fields are filled in. Specifically, Place must be checked
-            if (apptPlace != null || (txtMeetingPlace.Text != "" && txtMeetingPlace != null))
+            if (apptPlace != null || cbxMeetingPlace.SelectedItem != null)
             {
                 //Database db = new Database();
 
@@ -253,13 +251,8 @@ namespace Tutor_Master
                 this.Width = 645;
                 panelEdit.Visible = true;
                 lblPlacePanel.Visible = true;
-<<<<<<< HEAD
                 cbxMeetingPlace.Visible = true;
-                btnConfirmEdit.Visible = true;
-=======
-                txtMeetingPlace.Visible = true;
                 btnConfirmEdit.Visible = false;
->>>>>>> 83b7ccb164e50703e68835c3f90606c47b703771
             }
 
         }
@@ -314,6 +307,7 @@ namespace Tutor_Master
                         {
                             cbxCourseList.Items.Add(comboBoxArray[c]);
                         }
+
                     }
                     else
                     {
@@ -605,6 +599,11 @@ namespace Tutor_Master
             {
                 cbxMeetingPlace.Items.Add(placeList[i]);
             }
+        }
+
+        private void cbxMeetingPlace_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            apptPlace = cbxMeetingPlace.SelectedItem.ToString();
         }
     }
 }

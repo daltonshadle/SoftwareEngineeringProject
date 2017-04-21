@@ -24,6 +24,9 @@ namespace Tutor_Master
             activeList = new List<string>();
             initName();
             initListView("");
+
+            System.Windows.Forms.ToolTip ToolTip1 = new System.Windows.Forms.ToolTip();
+            ToolTip1.SetToolTip(this.btnLogout, "Logout");
         }
 
         //Function to display name at top of screen
