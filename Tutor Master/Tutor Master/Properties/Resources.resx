@@ -139,6 +139,9 @@
   <data name="Message-48" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Message-48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Door-50(1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Door-50(1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="small_animated_pizza" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\small_animated_pizza.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -151,13 +154,16 @@
   <data name="Appointment Reminders-48" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Appointment Reminders-48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Door-50(1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Door-50(1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="small_pizza_still" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\small_pizza_still.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Calendar-48" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Calendar-48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="small_pizza_still" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\small_pizza_still.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Door-50(1)1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Door-50(1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Door-50(1)2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Door-50(1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

@@ -44,15 +44,22 @@
             this.lblInfo = new System.Windows.Forms.Label();
             this.dateTimeEndDate = new System.Windows.Forms.DateTimePicker();
             this.rtbInfo = new System.Windows.Forms.RichTextBox();
+<<<<<<< HEAD
             this.lvMatches = new System.Windows.Forms.ListView();
             this.btnAskToJoin = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+=======
+>>>>>>> 82fbae01b1275173bf003e3489bc73a428b143b1
             this.btnAskToJoin = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.lvMatches = new System.Windows.Forms.ListView();
+<<<<<<< HEAD
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+=======
+            this.Appointments = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+>>>>>>> 82fbae01b1275173bf003e3489bc73a428b143b1
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -261,25 +268,27 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(220, 182);
             this.panel2.TabIndex = 24;
+            this.panel2.Visible = false;
             // 
             // lvMatches
             // 
-            this.lvMatches.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lvMatches.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader1});
+            this.Appointments});
+            this.lvMatches.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lvMatches.FullRowSelect = true;
             this.lvMatches.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-            this.lvMatches.Location = new System.Drawing.Point(76, 132);
+            this.lvMatches.Location = new System.Drawing.Point(37, 250);
             this.lvMatches.Name = "lvMatches";
-            this.lvMatches.Size = new System.Drawing.Size(220, 313);
+            this.lvMatches.Size = new System.Drawing.Size(220, 210);
             this.lvMatches.TabIndex = 25;
             this.lvMatches.UseCompatibleStateImageBehavior = false;
-            this.lvMatches.View = System.Windows.Forms.View.Details;
+            this.lvMatches.View = System.Windows.Forms.View.List;
+            this.lvMatches.SelectedIndexChanged += new System.EventHandler(this.lvMatches_SelectedIndexChanged);
             // 
-            // columnHeader1
+            // Appointments
             // 
-            this.columnHeader1.Text = "Usernames:";
-            this.columnHeader1.Width = 199;
+            this.Appointments.Text = "Appointments:";
+            this.Appointments.Width = 203;
             // 
             // SearchRefinementForm
             // 
@@ -298,7 +307,7 @@
             this.MaximumSize = new System.Drawing.Size(570, 550);
             this.MinimumSize = new System.Drawing.Size(290, 250);
             this.Name = "SearchRefinementForm";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Refined Searching";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -328,6 +337,6 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.ListView lvMatches;
-        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ColumnHeader Appointments;
     }
 }

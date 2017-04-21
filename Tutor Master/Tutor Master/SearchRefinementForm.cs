@@ -175,6 +175,7 @@ namespace Tutor_Master
                     stateOfProgress = 1;
                     btnMoreFields.Text = "Show Less Criteria";
                     this.Width = 570;
+                    panel2.Visible = true;
                     lblStartDate.Visible = true;
                     lblEndDate.Visible = true;
                     lblTutor.Visible = true;
@@ -191,6 +192,7 @@ namespace Tutor_Master
                     if(this.Height != 550)
                         this.Width = 289;
 
+                    panel2.Visible = false;
                     startDate = DateTime.MinValue;
                     endDate = DateTime.MinValue;
                     lblStartDate.Visible = false;
@@ -208,7 +210,6 @@ namespace Tutor_Master
 
         }
 
-
         private void btnSearch_Click(object sender, EventArgs e)
         {
             Database db = new Database();
@@ -222,8 +223,8 @@ namespace Tutor_Master
             courseSet = getCourseSet(course);
 
             masterSearchSet = intersection(masterSearchSet, courseSet);
-            
-            
+
+            bool operate = false;
             if (checkDates.Checked)
             {
                 dateSet = db.getAppointmentDateSet(dateTimeStartDate.Value, dateTimeEndDate.Value);
@@ -235,21 +236,24 @@ namespace Tutor_Master
                 if (comboTutor.SelectedItem == null)
                 {
                     MessageBox.Show("Search by tutor is checked but not filled.");
+                    operate = false;
                 }                   
                 else
                 {
                     tutorSet = db.getAppointmentTutorSet(comboTutor.SelectedItem.ToString());
                     masterSearchSet = intersection(masterSearchSet, tutorSet);
+                    operate = true;
                 }
 
 
             }
-            
-            setToDisplay = masterSearchSet;
-            listToDisplay = masterSearchSet.OrderBy(o => o.getStartTime()).ToList<Appointment>();
 
-            displayAppointments();
-            
+            if (operate)
+            {
+                setToDisplay = masterSearchSet;
+                listToDisplay = masterSearchSet.OrderBy(o => o.getStartTime()).ToList<Appointment>();
+                displayAppointments();
+            }
         }
 
         private void displayAppointments()
@@ -273,7 +277,7 @@ namespace Tutor_Master
 
         private void lvMatches_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (lvMatches.SelectedItems.Count == 0)
+            if (lvMatches.SelectedItems.Count != 1)
                 rtbInfo.Clear();
             else
             {
@@ -348,5 +352,7 @@ namespace Tutor_Master
                 MessageBox.Show("One and only one appointment must be selected.");
             }
         }
+
+
     }
 }

@@ -642,7 +642,8 @@ namespace Tutor_Master
             HashSet<Appointment> appointmentSet = new HashSet<Appointment>();
 
             string query;
-            query = "SELECT * FROM appointment WHERE  ([courseName] = @course)";
+            query = "SELECT * FROM appointment INNER JOIN (SELECT username FROM tutorCourses WHERE (course1 = @course OR course2 = @course OR course3 = @course OR course4 = @course)) temp ON appointment.[free time] = temp.username";
+            //query2 = "SELECT username FROM tutorCourses WHERE (course1 = @course OR course2 = @course OR course3 = @course OR course4 = @course)";  WHERE ([courseName] = @course)
 
             if (this.OpenConnection())
             {

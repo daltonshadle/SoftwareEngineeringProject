@@ -85,6 +85,8 @@ namespace Tutor_Master
             Database db = new Database();
             appointmentList = db.getDailyAppointments(username);
 
+            updateWeekLabel(date);
+
             //fetch the dates of the week
             while (date.DayOfWeek != DayOfWeek.Sunday)
             {

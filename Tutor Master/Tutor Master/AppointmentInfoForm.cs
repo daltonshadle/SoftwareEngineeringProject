@@ -96,7 +96,7 @@ namespace Tutor_Master
             apptDateEnd = a.getEndTime();
             apptDateEndDate = apptDateEnd.Date;
 
-            if (apptType == "Free time")
+            if (apptType == "Freetime")
             {
                 isFreeTime = true;
                 lblTypeVal.Text = apptType;
@@ -205,8 +205,6 @@ namespace Tutor_Master
             initializeTimers();
         }
 
-
-
         /*
          *  If someone wishes to edit an appointment, this is what should happen:
          *      Starts an ApptEditForm filled with the existing info,
@@ -234,7 +232,11 @@ namespace Tutor_Master
         private void btnApprove_Click(object sender, EventArgs e)
         {
             //Check to see if all of the fields are filled in. Specifically, Place must be checked
+<<<<<<< HEAD
             if (apptPlace != null || (cbxMeetingPlace.Text != "" && cbxMeetingPlace != null))
+=======
+            if (apptPlace != null || cbxMeetingPlace.SelectedItem != null)
+>>>>>>> 82fbae01b1275173bf003e3489bc73a428b143b1
             {
                 //Database db = new Database();
 
@@ -311,6 +313,7 @@ namespace Tutor_Master
                         {
                             cbxCourseList.Items.Add(comboBoxArray[c]);
                         }
+
                     }
                     else
                     {
@@ -602,6 +605,11 @@ namespace Tutor_Master
             {
                 cbxMeetingPlace.Items.Add(placeList[i]);
             }
+        }
+
+        private void cbxMeetingPlace_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            apptPlace = cbxMeetingPlace.SelectedItem.ToString();
         }
     }
 }
