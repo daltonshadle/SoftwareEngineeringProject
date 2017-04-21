@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AppointmentInfoForm));
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.lblTutor = new System.Windows.Forms.Label();
@@ -62,14 +63,20 @@
             this.panelEdit = new System.Windows.Forms.Panel();
             this.btnConfirmEdit = new System.Windows.Forms.Button();
             this.btnReject = new System.Windows.Forms.Button();
+<<<<<<< HEAD
             this.cbxMeetingPlace = new System.Windows.Forms.ComboBox();
+=======
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+>>>>>>> 83b7ccb164e50703e68835c3f90606c47b703771
             this.panelTime.SuspendLayout();
             this.panelEdit.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnEdit
             // 
-            this.btnEdit.Location = new System.Drawing.Point(86, 235);
+            this.btnEdit.Location = new System.Drawing.Point(79, 225);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(75, 23);
             this.btnEdit.TabIndex = 4;
@@ -79,7 +86,7 @@
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(85, 264);
+            this.btnDelete.Location = new System.Drawing.Point(78, 254);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(75, 23);
             this.btnDelete.TabIndex = 6;
@@ -90,7 +97,7 @@
             // lblTutor
             // 
             this.lblTutor.AutoSize = true;
-            this.lblTutor.Location = new System.Drawing.Point(63, 42);
+            this.lblTutor.Location = new System.Drawing.Point(56, 32);
             this.lblTutor.Name = "lblTutor";
             this.lblTutor.Size = new System.Drawing.Size(66, 13);
             this.lblTutor.TabIndex = 7;
@@ -99,7 +106,7 @@
             // lblTutee
             // 
             this.lblTutee.AutoSize = true;
-            this.lblTutee.Location = new System.Drawing.Point(60, 68);
+            this.lblTutee.Location = new System.Drawing.Point(53, 58);
             this.lblTutee.Name = "lblTutee";
             this.lblTutee.Size = new System.Drawing.Size(69, 13);
             this.lblTutee.TabIndex = 8;
@@ -108,7 +115,7 @@
             // lblCourse
             // 
             this.lblCourse.AutoSize = true;
-            this.lblCourse.Location = new System.Drawing.Point(83, 93);
+            this.lblCourse.Location = new System.Drawing.Point(76, 83);
             this.lblCourse.Name = "lblCourse";
             this.lblCourse.Size = new System.Drawing.Size(43, 13);
             this.lblCourse.TabIndex = 9;
@@ -117,7 +124,7 @@
             // lblPlace
             // 
             this.lblPlace.AutoSize = true;
-            this.lblPlace.Location = new System.Drawing.Point(89, 117);
+            this.lblPlace.Location = new System.Drawing.Point(82, 107);
             this.lblPlace.Name = "lblPlace";
             this.lblPlace.Size = new System.Drawing.Size(37, 13);
             this.lblPlace.TabIndex = 10;
@@ -126,7 +133,7 @@
             // lblType
             // 
             this.lblType.AutoSize = true;
-            this.lblType.Location = new System.Drawing.Point(37, 18);
+            this.lblType.Location = new System.Drawing.Point(30, 8);
             this.lblType.Name = "lblType";
             this.lblType.Size = new System.Drawing.Size(92, 13);
             this.lblType.TabIndex = 11;
@@ -135,7 +142,7 @@
             // lblTypeVal
             // 
             this.lblTypeVal.AutoSize = true;
-            this.lblTypeVal.Location = new System.Drawing.Point(135, 18);
+            this.lblTypeVal.Location = new System.Drawing.Point(128, 8);
             this.lblTypeVal.Name = "lblTypeVal";
             this.lblTypeVal.Size = new System.Drawing.Size(19, 13);
             this.lblTypeVal.TabIndex = 12;
@@ -144,7 +151,7 @@
             // lblTutorVal
             // 
             this.lblTutorVal.AutoSize = true;
-            this.lblTutorVal.Location = new System.Drawing.Point(135, 42);
+            this.lblTutorVal.Location = new System.Drawing.Point(128, 32);
             this.lblTutorVal.Name = "lblTutorVal";
             this.lblTutorVal.Size = new System.Drawing.Size(19, 13);
             this.lblTutorVal.TabIndex = 13;
@@ -153,7 +160,7 @@
             // lblTuteeVal
             // 
             this.lblTuteeVal.AutoSize = true;
-            this.lblTuteeVal.Location = new System.Drawing.Point(135, 68);
+            this.lblTuteeVal.Location = new System.Drawing.Point(128, 58);
             this.lblTuteeVal.Name = "lblTuteeVal";
             this.lblTuteeVal.Size = new System.Drawing.Size(19, 13);
             this.lblTuteeVal.TabIndex = 14;
@@ -162,7 +169,7 @@
             // lblCourseVal
             // 
             this.lblCourseVal.AutoSize = true;
-            this.lblCourseVal.Location = new System.Drawing.Point(135, 93);
+            this.lblCourseVal.Location = new System.Drawing.Point(128, 83);
             this.lblCourseVal.Name = "lblCourseVal";
             this.lblCourseVal.Size = new System.Drawing.Size(19, 13);
             this.lblCourseVal.TabIndex = 15;
@@ -171,7 +178,7 @@
             // lblPlaceVal
             // 
             this.lblPlaceVal.AutoSize = true;
-            this.lblPlaceVal.Location = new System.Drawing.Point(135, 117);
+            this.lblPlaceVal.Location = new System.Drawing.Point(128, 107);
             this.lblPlaceVal.Name = "lblPlaceVal";
             this.lblPlaceVal.Size = new System.Drawing.Size(19, 13);
             this.lblPlaceVal.TabIndex = 16;
@@ -180,7 +187,7 @@
             // lblTime
             // 
             this.lblTime.AutoSize = true;
-            this.lblTime.Location = new System.Drawing.Point(72, 139);
+            this.lblTime.Location = new System.Drawing.Point(65, 129);
             this.lblTime.Name = "lblTime";
             this.lblTime.Size = new System.Drawing.Size(54, 13);
             this.lblTime.TabIndex = 17;
@@ -189,7 +196,7 @@
             // lblTimeVal
             // 
             this.lblTimeVal.AutoSize = true;
-            this.lblTimeVal.Location = new System.Drawing.Point(135, 139);
+            this.lblTimeVal.Location = new System.Drawing.Point(128, 129);
             this.lblTimeVal.Name = "lblTimeVal";
             this.lblTimeVal.Size = new System.Drawing.Size(19, 13);
             this.lblTimeVal.TabIndex = 18;
@@ -198,7 +205,7 @@
             // lblDate
             // 
             this.lblDate.AutoSize = true;
-            this.lblDate.Location = new System.Drawing.Point(70, 161);
+            this.lblDate.Location = new System.Drawing.Point(63, 151);
             this.lblDate.Name = "lblDate";
             this.lblDate.Size = new System.Drawing.Size(56, 13);
             this.lblDate.TabIndex = 19;
@@ -207,7 +214,7 @@
             // lblDateVal
             // 
             this.lblDateVal.AutoSize = true;
-            this.lblDateVal.Location = new System.Drawing.Point(135, 161);
+            this.lblDateVal.Location = new System.Drawing.Point(128, 151);
             this.lblDateVal.Name = "lblDateVal";
             this.lblDateVal.Size = new System.Drawing.Size(19, 13);
             this.lblDateVal.TabIndex = 20;
@@ -216,7 +223,7 @@
             // lblEndDateVal
             // 
             this.lblEndDateVal.AutoSize = true;
-            this.lblEndDateVal.Location = new System.Drawing.Point(135, 205);
+            this.lblEndDateVal.Location = new System.Drawing.Point(128, 195);
             this.lblEndDateVal.Name = "lblEndDateVal";
             this.lblEndDateVal.Size = new System.Drawing.Size(19, 13);
             this.lblEndDateVal.TabIndex = 24;
@@ -225,7 +232,7 @@
             // lblEndDate
             // 
             this.lblEndDate.AutoSize = true;
-            this.lblEndDate.Location = new System.Drawing.Point(70, 205);
+            this.lblEndDate.Location = new System.Drawing.Point(63, 195);
             this.lblEndDate.Name = "lblEndDate";
             this.lblEndDate.Size = new System.Drawing.Size(53, 13);
             this.lblEndDate.TabIndex = 23;
@@ -234,7 +241,7 @@
             // lblEndTimeVal
             // 
             this.lblEndTimeVal.AutoSize = true;
-            this.lblEndTimeVal.Location = new System.Drawing.Point(135, 183);
+            this.lblEndTimeVal.Location = new System.Drawing.Point(128, 173);
             this.lblEndTimeVal.Name = "lblEndTimeVal";
             this.lblEndTimeVal.Size = new System.Drawing.Size(19, 13);
             this.lblEndTimeVal.TabIndex = 22;
@@ -243,7 +250,7 @@
             // lblEndTime
             // 
             this.lblEndTime.AutoSize = true;
-            this.lblEndTime.Location = new System.Drawing.Point(72, 183);
+            this.lblEndTime.Location = new System.Drawing.Point(65, 173);
             this.lblEndTime.Name = "lblEndTime";
             this.lblEndTime.Size = new System.Drawing.Size(51, 13);
             this.lblEndTime.TabIndex = 21;
@@ -251,7 +258,7 @@
             // 
             // btnApprove
             // 
-            this.btnApprove.Location = new System.Drawing.Point(86, 294);
+            this.btnApprove.Location = new System.Drawing.Point(79, 284);
             this.btnApprove.Name = "btnApprove";
             this.btnApprove.Size = new System.Drawing.Size(75, 23);
             this.btnApprove.TabIndex = 25;
@@ -267,7 +274,7 @@
             this.panelTime.Controls.Add(this.dateTimeDay1);
             this.panelTime.Controls.Add(this.lblEndTimePanel);
             this.panelTime.Controls.Add(this.lblStartTimePanel);
-            this.panelTime.Location = new System.Drawing.Point(21, 59);
+            this.panelTime.Location = new System.Drawing.Point(21, 82);
             this.panelTime.Name = "panelTime";
             this.panelTime.Size = new System.Drawing.Size(296, 61);
             this.panelTime.TabIndex = 49;
@@ -331,10 +338,21 @@
             this.lblStartTimePanel.TabIndex = 0;
             this.lblStartTimePanel.Text = "Start Time:";
             // 
+<<<<<<< HEAD
+=======
+            // txtMeetingPlace
+            // 
+            this.txtMeetingPlace.Location = new System.Drawing.Point(93, 66);
+            this.txtMeetingPlace.Name = "txtMeetingPlace";
+            this.txtMeetingPlace.Size = new System.Drawing.Size(121, 20);
+            this.txtMeetingPlace.TabIndex = 48;
+            this.txtMeetingPlace.Visible = false;
+            // 
+>>>>>>> 83b7ccb164e50703e68835c3f90606c47b703771
             // cbxCourseList
             // 
             this.cbxCourseList.FormattingEnabled = true;
-            this.cbxCourseList.Location = new System.Drawing.Point(93, 16);
+            this.cbxCourseList.Location = new System.Drawing.Point(93, 39);
             this.cbxCourseList.Name = "cbxCourseList";
             this.cbxCourseList.Size = new System.Drawing.Size(121, 21);
             this.cbxCourseList.TabIndex = 47;
@@ -344,7 +362,7 @@
             // lblPlacePanel
             // 
             this.lblPlacePanel.AutoSize = true;
-            this.lblPlacePanel.Location = new System.Drawing.Point(44, 43);
+            this.lblPlacePanel.Location = new System.Drawing.Point(44, 66);
             this.lblPlacePanel.Name = "lblPlacePanel";
             this.lblPlacePanel.Size = new System.Drawing.Size(37, 13);
             this.lblPlacePanel.TabIndex = 45;
@@ -354,7 +372,7 @@
             // lblCoursePanel
             // 
             this.lblCoursePanel.AutoSize = true;
-            this.lblCoursePanel.Location = new System.Drawing.Point(38, 19);
+            this.lblCoursePanel.Location = new System.Drawing.Point(38, 42);
             this.lblCoursePanel.Name = "lblCoursePanel";
             this.lblCoursePanel.Size = new System.Drawing.Size(43, 13);
             this.lblCoursePanel.TabIndex = 44;
@@ -363,21 +381,26 @@
             // 
             // panelEdit
             // 
+            this.panelEdit.BackColor = System.Drawing.Color.LightSteelBlue;
             this.panelEdit.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+<<<<<<< HEAD
             this.panelEdit.Controls.Add(this.cbxMeetingPlace);
+=======
+            this.panelEdit.Controls.Add(this.label1);
+>>>>>>> 83b7ccb164e50703e68835c3f90606c47b703771
             this.panelEdit.Controls.Add(this.panelTime);
             this.panelEdit.Controls.Add(this.cbxCourseList);
             this.panelEdit.Controls.Add(this.lblPlacePanel);
             this.panelEdit.Controls.Add(this.lblCoursePanel);
-            this.panelEdit.Location = new System.Drawing.Point(275, 73);
+            this.panelEdit.Location = new System.Drawing.Point(276, 72);
             this.panelEdit.Name = "panelEdit";
-            this.panelEdit.Size = new System.Drawing.Size(337, 145);
+            this.panelEdit.Size = new System.Drawing.Size(337, 183);
             this.panelEdit.TabIndex = 53;
             this.panelEdit.Visible = false;
             // 
             // btnConfirmEdit
             // 
-            this.btnConfirmEdit.Location = new System.Drawing.Point(416, 235);
+            this.btnConfirmEdit.Location = new System.Drawing.Point(417, 261);
             this.btnConfirmEdit.Name = "btnConfirmEdit";
             this.btnConfirmEdit.Size = new System.Drawing.Size(75, 23);
             this.btnConfirmEdit.TabIndex = 54;
@@ -388,7 +411,7 @@
             // 
             // btnReject
             // 
-            this.btnReject.Location = new System.Drawing.Point(85, 323);
+            this.btnReject.Location = new System.Drawing.Point(78, 313);
             this.btnReject.Name = "btnReject";
             this.btnReject.Size = new System.Drawing.Size(75, 23);
             this.btnReject.TabIndex = 55;
@@ -397,6 +420,7 @@
             this.btnReject.Visible = false;
             this.btnReject.Click += new System.EventHandler(this.btnReject_Click);
             // 
+<<<<<<< HEAD
             // cbxMeetingPlace
             // 
             this.cbxMeetingPlace.FormattingEnabled = true;
@@ -404,36 +428,59 @@
             this.cbxMeetingPlace.Name = "cbxMeetingPlace";
             this.cbxMeetingPlace.Size = new System.Drawing.Size(121, 21);
             this.cbxMeetingPlace.TabIndex = 50;
+=======
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel1.Controls.Add(this.lblType);
+            this.panel1.Controls.Add(this.btnReject);
+            this.panel1.Controls.Add(this.btnEdit);
+            this.panel1.Controls.Add(this.btnDelete);
+            this.panel1.Controls.Add(this.lblTutor);
+            this.panel1.Controls.Add(this.btnApprove);
+            this.panel1.Controls.Add(this.lblTutee);
+            this.panel1.Controls.Add(this.lblEndDateVal);
+            this.panel1.Controls.Add(this.lblCourse);
+            this.panel1.Controls.Add(this.lblEndDate);
+            this.panel1.Controls.Add(this.lblPlace);
+            this.panel1.Controls.Add(this.lblEndTimeVal);
+            this.panel1.Controls.Add(this.lblTypeVal);
+            this.panel1.Controls.Add(this.lblEndTime);
+            this.panel1.Controls.Add(this.lblTutorVal);
+            this.panel1.Controls.Add(this.lblDateVal);
+            this.panel1.Controls.Add(this.lblTuteeVal);
+            this.panel1.Controls.Add(this.lblDate);
+            this.panel1.Controls.Add(this.lblCourseVal);
+            this.panel1.Controls.Add(this.lblTimeVal);
+            this.panel1.Controls.Add(this.lblPlaceVal);
+            this.panel1.Controls.Add(this.lblTime);
+            this.panel1.Location = new System.Drawing.Point(12, 12);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(242, 347);
+            this.panel1.TabIndex = 56;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(138, 11);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(76, 13);
+            this.label1.TabIndex = 50;
+            this.label1.Text = "Edit fields here";
+>>>>>>> 83b7ccb164e50703e68835c3f90606c47b703771
             // 
             // AppointmentInfoForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(663, 353);
-            this.Controls.Add(this.btnReject);
+            this.BackColor = System.Drawing.Color.SteelBlue;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.ClientSize = new System.Drawing.Size(631, 381);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnConfirmEdit);
             this.Controls.Add(this.panelEdit);
-            this.Controls.Add(this.btnApprove);
-            this.Controls.Add(this.lblEndDateVal);
-            this.Controls.Add(this.lblEndDate);
-            this.Controls.Add(this.lblEndTimeVal);
-            this.Controls.Add(this.lblEndTime);
-            this.Controls.Add(this.lblDateVal);
-            this.Controls.Add(this.lblDate);
-            this.Controls.Add(this.lblTimeVal);
-            this.Controls.Add(this.lblTime);
-            this.Controls.Add(this.lblPlaceVal);
-            this.Controls.Add(this.lblCourseVal);
-            this.Controls.Add(this.lblTuteeVal);
-            this.Controls.Add(this.lblTutorVal);
-            this.Controls.Add(this.lblTypeVal);
-            this.Controls.Add(this.lblType);
-            this.Controls.Add(this.lblPlace);
-            this.Controls.Add(this.lblCourse);
-            this.Controls.Add(this.lblTutee);
-            this.Controls.Add(this.lblTutor);
-            this.Controls.Add(this.btnDelete);
-            this.Controls.Add(this.btnEdit);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "AppointmentInfoForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AppointmentInfoForm";
@@ -441,8 +488,9 @@
             this.panelTime.PerformLayout();
             this.panelEdit.ResumeLayout(false);
             this.panelEdit.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -482,7 +530,12 @@
         private System.Windows.Forms.DateTimePicker dateTimeTime1;
         private System.Windows.Forms.Button btnConfirmEdit;
         private System.Windows.Forms.Button btnReject;
+<<<<<<< HEAD
         private System.Windows.Forms.ComboBox cbxMeetingPlace;
+=======
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label label1;
+>>>>>>> 83b7ccb164e50703e68835c3f90606c47b703771
 
     }
 }
