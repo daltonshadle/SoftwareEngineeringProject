@@ -203,6 +203,7 @@ namespace Tutor_Master
             updateTutorListView();
             updateTuteeListView();
             weekCalendar.assignWeeklyAppointments(user);
+            initMessagePreview();
             button1.Image = Properties.Resources.small_pizza_still;
         }
 
@@ -286,6 +287,7 @@ namespace Tutor_Master
 
         private void initMessagePreview() 
         {
+            lvMessagesPreview.Items.Clear();
             sentMessageList = db.getSentMail(user);
             inboxMessageList = db.getInbox(user);
             for (int i = 0; i < inboxMessageList.Count(); i++)

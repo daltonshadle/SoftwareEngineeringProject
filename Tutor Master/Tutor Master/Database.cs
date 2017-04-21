@@ -1712,16 +1712,9 @@ namespace Tutor_Master
                     cmdReceived.Parameters.Add("@course", courseName);
                 }
 
-                if (appointmentID == null)
-                {
-                    cmdSent.Parameters.Add("@apptId", -1);
-                    cmdReceived.Parameters.Add("@apptId", -1);
-                }
-                else
-                {
-                    cmdSent.Parameters.Add("@apptId", appointmentID);
-                    cmdReceived.Parameters.Add("@apptId", appointmentID);
-                }
+              
+                cmdSent.Parameters.Add("@apptId", appointmentID);
+                cmdReceived.Parameters.Add("@apptId", appointmentID);
 
                 cmdSent.Connection = con;
                 cmdReceived.Connection = con;
@@ -2103,7 +2096,7 @@ namespace Tutor_Master
         //Get message idea given an appointment
         public int getMessageIdFromAppt(int apptId)
         {
-            string query = "SELECT [id number] FROM sentMessages WHERE (apptId = @apptId AND subject = 'Free Time Filled.')";
+            string query = "SELECT [id number] FROM sentMessages WHERE (apptId = @apptId AND subject IN ('Free Time Filled.', 'Request for appointment'))";
             int messageId = -1;
 
             if (this.OpenConnection())

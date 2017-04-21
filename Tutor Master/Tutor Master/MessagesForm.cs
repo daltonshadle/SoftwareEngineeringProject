@@ -115,11 +115,15 @@ namespace Tutor_Master
                 {
                     messageID = inboxMessageList[currentIndex].getIdNum();
                     db.deleteMessageFromInbox(messageID);
+                    inboxMessageList.Clear();
+                    inboxMessageList = db.getInbox(user);
                 }
                 else
                 {
                     messageID = sentMessageList[currentIndex].getIdNum();
                     db.deleteMessageFromSentMail(messageID);
+                    sentMessageList.Clear();
+                    sentMessageList = db.getSentMail(user);
                 }
                 rtbMessageDetails.Clear();
             }
@@ -180,6 +184,10 @@ namespace Tutor_Master
                     db.approveMessageDetailsFromAppointment(messageId, true);
                     db.editAppointment(appt.getID(), null, appt.getMeetingPlace(), appt.getCourse(), appt.getStartTime(), appt.getEndTime(), appt.getTutor(), appt.getTutee(), false, true, "ApprovedInMessage");
                     db.sendMessage(user, appt.getTutee(), "Appoinment Request Confirmed", user + " has confirmed your appointment regarding " + appt.getCourse(), true, DateTime.Now, appt.getCourse(), appt.getID());
+
+                    lvMessages.SelectedItems[0].SubItems[4].Text = "True";
+                    rtbMessageDetails.Clear();
+                    rtbMessageDetails.AppendText("Done");
                 }
                 else {
                     if (appt.getEndTime() < DateTime.Now)
@@ -212,6 +220,9 @@ namespace Tutor_Master
                             db.approveMessageDetailsFromAppointment(messageId, true);
                             db.sendMessage(user, appt.getTutee(), subject, messageStr, false, DateTime.Now, appt.getCourse(), appt.getID());
                             db.deleteAppointment(appt.getID());
+                            lvMessages.SelectedItems[0].SubItems[4].Text = "True";
+                            rtbMessageDetails.Clear();
+                            rtbMessageDetails.AppendText("Done");
                             break;
 
                         //Run this if the appointment was a free time that got paired with.
@@ -219,6 +230,10 @@ namespace Tutor_Master
                             db.approveMessageDetailsFromAppointment(messageId, true);
                             db.sendMessage(user, appt.getTutee(), subject, messageStr, false, DateTime.Now, appt.getCourse(), appt.getID());
                             db.editAppointment(appt.getID(), user, null, null, appt.getStartTime(), appt.getEndTime(), null, null, true, false, "EditForm");
+                            
+                            lvMessages.SelectedItems[0].SubItems[4].Text = "True";
+                            rtbMessageDetails.Clear();
+                            rtbMessageDetails.AppendText("Done");
                             break;
 
                         }

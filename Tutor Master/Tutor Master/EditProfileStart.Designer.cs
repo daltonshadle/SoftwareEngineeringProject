@@ -36,20 +36,27 @@
             this.label1 = new System.Windows.Forms.Label();
             this.buttonConfirm = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
+            this.panelPasswordCheck = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.buttonPasswordConfirm = new System.Windows.Forms.Button();
+            this.buttonPasswordCancel = new System.Windows.Forms.Button();
+            this.txtPassword = new System.Windows.Forms.TextBox();
             this.panelWhole.SuspendLayout();
+            this.panelPasswordCheck.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelWhole
             // 
             this.panelWhole.BackColor = System.Drawing.Color.LightSteelBlue;
             this.panelWhole.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panelWhole.Controls.Add(this.panelPasswordCheck);
+            this.panelWhole.Controls.Add(this.buttonPasswordCancel);
             this.panelWhole.Controls.Add(this.checkBoxTutor);
             this.panelWhole.Controls.Add(this.checkBoxTutee);
             this.panelWhole.Controls.Add(this.checkBoxName);
             this.panelWhole.Controls.Add(this.checkBoxPassword);
             this.panelWhole.Controls.Add(this.label1);
             this.panelWhole.Controls.Add(this.buttonConfirm);
-            this.panelWhole.Controls.Add(this.btnCancel);
             this.panelWhole.Location = new System.Drawing.Point(12, 12);
             this.panelWhole.Name = "panelWhole";
             this.panelWhole.Size = new System.Drawing.Size(260, 219);
@@ -116,13 +123,64 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(35, 184);
+            this.btnCancel.Location = new System.Drawing.Point(40, 184);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 0;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
+            // panelPasswordCheck
+            // 
+            this.panelPasswordCheck.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.panelPasswordCheck.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panelPasswordCheck.Controls.Add(this.txtPassword);
+            this.panelPasswordCheck.Controls.Add(this.label2);
+            this.panelPasswordCheck.Controls.Add(this.buttonPasswordConfirm);
+            this.panelPasswordCheck.Controls.Add(this.btnCancel);
+            this.panelPasswordCheck.Location = new System.Drawing.Point(-2, -2);
+            this.panelPasswordCheck.Name = "panelPasswordCheck";
+            this.panelPasswordCheck.Size = new System.Drawing.Size(260, 219);
+            this.panelPasswordCheck.TabIndex = 7;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(75, 47);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(115, 13);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "Enter password to edit.";
+            // 
+            // buttonPasswordConfirm
+            // 
+            this.buttonPasswordConfirm.Location = new System.Drawing.Point(146, 184);
+            this.buttonPasswordConfirm.Name = "buttonPasswordConfirm";
+            this.buttonPasswordConfirm.Size = new System.Drawing.Size(75, 23);
+            this.buttonPasswordConfirm.TabIndex = 1;
+            this.buttonPasswordConfirm.Text = "Confirm";
+            this.buttonPasswordConfirm.UseVisualStyleBackColor = true;
+            this.buttonPasswordConfirm.Click += new System.EventHandler(this.buttonPasswordConfirm_Click);
+            // 
+            // buttonPasswordCancel
+            // 
+            this.buttonPasswordCancel.Location = new System.Drawing.Point(40, 184);
+            this.buttonPasswordCancel.Name = "buttonPasswordCancel";
+            this.buttonPasswordCancel.Size = new System.Drawing.Size(75, 23);
+            this.buttonPasswordCancel.TabIndex = 0;
+            this.buttonPasswordCancel.Text = "Cancel";
+            this.buttonPasswordCancel.UseVisualStyleBackColor = true;
+            this.buttonPasswordCancel.Click += new System.EventHandler(this.buttonPasswordCancel_Click);
+            // 
+            // txtPassword
+            // 
+            this.txtPassword.Location = new System.Drawing.Point(55, 87);
+            this.txtPassword.Name = "txtPassword";
+            this.txtPassword.PasswordChar = '*';
+            this.txtPassword.Size = new System.Drawing.Size(156, 20);
+            this.txtPassword.TabIndex = 3;
+            this.txtPassword.UseSystemPasswordChar = true;
             // 
             // EditProfileStart
             // 
@@ -136,6 +194,8 @@
             this.Text = "Edit Profile";
             this.panelWhole.ResumeLayout(false);
             this.panelWhole.PerformLayout();
+            this.panelPasswordCheck.ResumeLayout(false);
+            this.panelPasswordCheck.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -150,5 +210,10 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button buttonConfirm;
         private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.Panel panelPasswordCheck;
+        private System.Windows.Forms.TextBox txtPassword;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button buttonPasswordConfirm;
+        private System.Windows.Forms.Button buttonPasswordCancel;
     }
 }

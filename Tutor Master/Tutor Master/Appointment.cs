@@ -229,6 +229,7 @@ namespace Tutor_Master
             //db.addAppointment(null, getMeetingPlace(), getCourse(), getStartTime(), getEndTime(), getTutor(), getTutee());
             Database db = new Database();
 
+
             if (isFreeTimeSession)
             {
                 //add freetime appt

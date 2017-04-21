@@ -465,7 +465,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "AppointmentInfoForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "AppointmentInfoForm";
+            this.Text = "Appointment Information";
             this.panelTime.ResumeLayout(false);
             this.panelTime.PerformLayout();
             this.panelEdit.ResumeLayout(false);

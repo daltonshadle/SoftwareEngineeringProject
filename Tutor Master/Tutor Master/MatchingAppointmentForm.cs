@@ -273,7 +273,7 @@ namespace Tutor_Master
                                 string msg = builderProf + " has requested to make a weekly tutoring appointment for course: " + course + " at " + startTime.ToShortTimeString() + " on " + startTime.DayOfWeek.ToString() + "s";
                                 Database db = new Database();
                               
-                                db.sendMessage(builderProf, otherProfName, "Request for appointment", msg, true, DateTime.Now, course, a.getID());
+                                db.sendMessage(builderProf, otherProfName, "Request for appointment", msg, false, DateTime.Now, course, a.getID());
                             }
                         }
                     }
@@ -288,7 +288,7 @@ namespace Tutor_Master
 
                         string msg = builderProf + " has requested to make a tutoring appointment for course: " + course + " at " + startTime.ToShortTimeString() + " on " + startTime.ToShortDateString();
                         Database db = new Database();
-                        db.sendMessage(builderProf, otherProfName, "Request for appointment", msg, true, DateTime.Now, course, a.getID());
+                        db.sendMessage(builderProf, otherProfName, "Request for appointment", msg, false, DateTime.Now, course, a.getID());
                     }
                 }
                 this.Hide();
@@ -358,6 +358,10 @@ namespace Tutor_Master
                         temp = !isTimeInBetween(a.getStartTime(), a.getEndTime(), startTime, endTime);
 
                         good = temp;
+                        if (!good)
+                        {
+                            MessageBox.Show("One of your appointments is already scheduled for this time.");
+                        }
                         it++;
                     }
 
@@ -370,6 +374,10 @@ namespace Tutor_Master
                         temp = !isTimeInBetween(a.getStartTime(), a.getEndTime(), startTime, endTime);
 
                         good = temp;
+                        if (!good)
+                        {
+                            MessageBox.Show("One of the tutor's appointments is already scheduled for this time.");
+                        }
                         it++;
                     }
 
@@ -392,6 +400,11 @@ namespace Tutor_Master
 
                         good = temp;
                         it++;
+                    }
+
+                    if (!good)
+                    {
+                        MessageBox.Show("One of your appointments is already scheduled for this time.");
                     }
                 }
             }

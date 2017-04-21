@@ -45,5 +45,25 @@ namespace Tutor_Master
         { 
             return checkBoxPassword.Checked || checkBoxName.Checked || checkBoxTutor.Checked || checkBoxTutee.Checked;
         }
+
+        private void buttonPasswordCancel_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+        }
+
+        private void buttonPasswordConfirm_Click(object sender, EventArgs e)
+        {
+            Database db = new Database();
+            string pass = txtPassword.Text;
+
+            if (db.getUserPassword(username).Equals(pass))
+            {
+                panelPasswordCheck.Visible = false;
+            }
+            else 
+            {
+                MessageBox.Show("Invalid password");
+            }
+        }
     }
 }

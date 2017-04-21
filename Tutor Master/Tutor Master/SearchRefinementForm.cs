@@ -224,7 +224,7 @@ namespace Tutor_Master
 
             masterSearchSet = intersection(masterSearchSet, courseSet);
 
-            bool operate = false;
+            bool operate = true;
             if (checkDates.Checked)
             {
                 dateSet = db.getAppointmentDateSet(dateTimeStartDate.Value, dateTimeEndDate.Value);

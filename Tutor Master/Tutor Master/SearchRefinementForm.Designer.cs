@@ -202,7 +202,7 @@
             // 
             // lvMatches
             // 
-            this.lvMatches.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] { });
+            //this.lvMatches.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] { });
             this.lvMatches.FullRowSelect = true;
             this.lvMatches.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.lvMatches.Location = new System.Drawing.Point(37, 250);
