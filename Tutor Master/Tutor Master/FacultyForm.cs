@@ -27,6 +27,8 @@ namespace Tutor_Master
             sentMessageList = db.getSentMail(username);
             inboxMessageList = db.getInbox(username);
 
+            System.Windows.Forms.ToolTip ToolTip1 = new System.Windows.Forms.ToolTip();
+            ToolTip1.SetToolTip(this.btnLogout, "Logout");
             initName();
             this.Icon = Tutor_Master.Properties.Resources.favicon;
             
