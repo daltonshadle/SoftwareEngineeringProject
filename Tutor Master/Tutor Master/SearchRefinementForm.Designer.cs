@@ -44,22 +44,11 @@
             this.lblInfo = new System.Windows.Forms.Label();
             this.dateTimeEndDate = new System.Windows.Forms.DateTimePicker();
             this.rtbInfo = new System.Windows.Forms.RichTextBox();
-<<<<<<< HEAD
             this.lvMatches = new System.Windows.Forms.ListView();
             this.btnAskToJoin = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
-=======
->>>>>>> 82fbae01b1275173bf003e3489bc73a428b143b1
-            this.btnAskToJoin = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.lvMatches = new System.Windows.Forms.ListView();
-<<<<<<< HEAD
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-=======
             this.Appointments = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
->>>>>>> 82fbae01b1275173bf003e3489bc73a428b143b1
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();

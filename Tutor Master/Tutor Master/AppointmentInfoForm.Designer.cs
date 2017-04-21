@@ -384,18 +384,15 @@
             // cbxMeetingPlace
             // 
             this.cbxMeetingPlace.FormattingEnabled = true;
-<<<<<<< HEAD
             this.cbxMeetingPlace.Location = new System.Drawing.Point(93, 63);
             this.cbxMeetingPlace.Name = "cbxMeetingPlace";
             this.cbxMeetingPlace.Size = new System.Drawing.Size(121, 21);
             this.cbxMeetingPlace.TabIndex = 50;
-=======
             this.cbxMeetingPlace.Location = new System.Drawing.Point(93, 60);
             this.cbxMeetingPlace.Name = "cbxMeetingPlace";
             this.cbxMeetingPlace.Size = new System.Drawing.Size(121, 21);
             this.cbxMeetingPlace.TabIndex = 50;
             this.cbxMeetingPlace.SelectedIndexChanged += new System.EventHandler(this.cbxMeetingPlace_SelectedIndexChanged);
->>>>>>> 82fbae01b1275173bf003e3489bc73a428b143b1
             // 
             // label1
             // 
@@ -522,9 +519,5 @@
         private System.Windows.Forms.ComboBox cbxMeetingPlace;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label1;
-<<<<<<< HEAD
-
-=======
->>>>>>> 82fbae01b1275173bf003e3489bc73a428b143b1
     }
 }

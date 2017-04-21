@@ -232,11 +232,9 @@ namespace Tutor_Master
         private void btnApprove_Click(object sender, EventArgs e)
         {
             //Check to see if all of the fields are filled in. Specifically, Place must be checked
-<<<<<<< HEAD
-            if (apptPlace != null || (cbxMeetingPlace.Text != "" && cbxMeetingPlace != null))
-=======
+
             if (apptPlace != null || cbxMeetingPlace.SelectedItem != null)
->>>>>>> 82fbae01b1275173bf003e3489bc73a428b143b1
+
             {
                 //Database db = new Database();
 
