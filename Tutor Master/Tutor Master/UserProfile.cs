@@ -12,93 +12,133 @@ namespace Tutor_Master
     public partial class UserProfile : Form
     {
         private string first, last, user, adminName;
-        private bool tutorAcc, tuteeAcc, facultyAcc, adminAcc;
-        private string courseapp1, courseapp2, courseapp3, courseapp4;
+        private bool tutorAcc, tuteeAcc, adminAcc;
 
-        List<string> tuteeCoursesList;
-        List<string> tutorCoursesList;
-        List<string> courseAppList;
+        List<string> tuteeCoursesList = new List<string>();
+        List<string> tutorCoursesList = new List<string>();
+        List<string> courseAppList = new List<string>();
 
+        private List<Messages> sentMessageList;
+        private List<Messages> inboxMessageList;
+        Database db = new Database();
+
+        //Normal constructor. Will be called by tutors and tutees, not by admin
         public UserProfile(string username)
         {
             InitializeComponent();
+
+            user = username;
+
+            //Clear old free time appointments so they can't be matched with in the future
+            Database db = new Database();
+            db.deleteOldFreeTimeAppointments();
+
+            //Assign all of the info
+            assignProfileInfo();
+
+            //Display appropriate information
+            updateAllDisplays();
+
+            //initializing hovers for buttons
+            initButtonHovers();
+        }
+
+        //This constructor will only be called by the administrator. Updates information accordingly
+        public UserProfile(string username, bool admin, string adminName)
+            : this(username)
+        {
+            adminAcc = admin;
+            this.adminName = adminName;
+            lblAdmin.Visible = true;
+            btnAdmin.Visible = true;
+            panelAdmin.Visible = true;
+            int shrink = panelAdmin.Width + 15;
+            panelMessage.Size = new Size(panelMessage.Width - shrink, panelMessage.Height);
+            lvMessagesPreview.Size = new Size(lvMessagesPreview.Width - shrink, lvMessagesPreview.Height);
+        }
+
+        //Retrieves information about user and sets all the values
+        public void assignProfileInfo()
+        {
+            Database db = new Database();
+            List<string> listOfProfileInfo = db.getProfileInfo(user);
+
+            //Sets editable information for user profile
+            assignEditableProfileInfo();
+            initMessagePreview();
+
+            adminAcc = false;   //bool isAdmin is set to false in this constructor. Only other constructor can make it true
+        }
+
+        //Sets all values that might be editable
+        public void assignEditableProfileInfo()
+        {
+            Database db = new Database();
+            List<string> listOfProfileInfo = db.getProfileInfo(user);
 
             tuteeCoursesList = new List<string>();
             tutorCoursesList = new List<string>();
             courseAppList = new List<string>();
 
-            List<string> listOfProfileInfo;
-            Database db = new Database();
-            db.deleteOldFreeTimeAppointments();
-            listOfProfileInfo = db.getProfileInfo(username);
-            user = username;
-            first = listOfProfileInfo[0];
-            last = listOfProfileInfo[1];
+            first = listOfProfileInfo[0];   //string first name
+            last = listOfProfileInfo[1];    //string last name
 
-            string tutora = listOfProfileInfo[2];
+            string tutora = listOfProfileInfo[2];   //bool isTutor
             if (tutora == "True")
                 tutorAcc = true;
             else
                 tutorAcc = false;
 
-            string tuteea = listOfProfileInfo[3];
+            string tuteea = listOfProfileInfo[3];   //bool isTutee
             if (tuteea == "True")
                 tuteeAcc = true;
             else
                 tuteeAcc = false;
 
-            string facultya = listOfProfileInfo[16];
-            if (facultya == "True")
-            {
-                facultyAcc = true;
-            }
-            else
-                facultyAcc = false;
-
-            adminAcc = false;
-
             for (int i = 4; i < 8; i++)
             {
                 if (listOfProfileInfo[i] != "")
-                    tuteeCoursesList.Add(listOfProfileInfo[i]);
+                    tuteeCoursesList.Add(listOfProfileInfo[i]); //list of tutee courses
             }
             for (int i = 8; i < 12; i++)
             {
                 if (listOfProfileInfo[i] != "")
                 {
-                    tutorCoursesList.Add(listOfProfileInfo[i]);
-                    courseAppList.Add(listOfProfileInfo[i + 4]);
+                    tutorCoursesList.Add(listOfProfileInfo[i]); //list of tutor courses                    
                 }
+                courseAppList.Add(listOfProfileInfo[i + 4]);//list of tutor courses eligible for tutoring (not pending or rejected)
             }
-            /*for (int i = 12; i < 15; i++)
-            {
-                if (listOfProfileInfo[i] != "")
-                    courseAppList.Add(listOfProfileInfo[i]);
-            }*/
+        }
 
+        //Updates the name panel and the form name
+        public void displayName()
+        {
             if (first != "")
             {
                 this.Text = FirstLetterToUpper(first) + " " + FirstLetterToUpper(last);
-                lblNameAndUser.Text = FirstLetterToUpper(first) + " " + FirstLetterToUpper(last) + " - " + username;
+                lblNameAndUser.Text = FirstLetterToUpper(first) + " " + FirstLetterToUpper(last) + " - " + user;
             }
             else
             {
-                this.Text = username;
-                lblNameAndUser.Text = username;
+                this.Text = user;
+                lblNameAndUser.Text = user;
             }
+        }
 
-            this.Icon = Tutor_Master.Properties.Resources.favicon;
+        //Helper function for displaying name
+        //This would assume that we automatically cast usernames to lower so that coolTerry7 == coolterry7
+        public string FirstLetterToUpper(string str)
+        {
+            if (str.Length > 1)
+                return char.ToUpper(str[0]) + str.Substring(1);
 
-            //MessageBox.Show(tutorCoursesList[0] + tutorCoursesList[1] + tutorCoursesList[2] + tutorCoursesList[3]);
+            return str.ToUpper();
+        }
 
-
-            var tutorListView = listView1;
-
-            //Point a = tutorListView.Location;
-            //MessageBox.Show("tutor list box " + a.X + " " + a.Y);
-
-
-            // If so, loop through all checked items and print results. 
+        //Updates list view for tutor courses 
+        public void updateTutorListView()
+        {
+            tutorListView.Clear();
             if (tutorCoursesList.Count > 0)
             {
                 for (int x = 0; x < tutorCoursesList.Count; x++)
@@ -114,18 +154,19 @@ namespace Tutor_Master
                     }
                 }
                 tutorListView.Visible = true;
+                btnAddTutorCourses.Visible = false;
             }
             else
             {
+                tutorListView.Visible = false;
                 btnAddTutorCourses.Visible = true;
             }
+        }
 
-            var tuteeListView = listView2;
-            ;
-            //Point b = tuteeListView.Location;
-            //MessageBox.Show("tutee list box " + b.X + " " + b.Y);
-
-
+        //Updates list view for tutee courses 
+        public void updateTuteeListView()
+        {
+            tuteeListView.Clear();
             if (tuteeCoursesList.Count > 0)
             {
                 for (int x = 0; x < tuteeCoursesList.Count; x++)
@@ -136,27 +177,37 @@ namespace Tutor_Master
                     }
                 }
                 tuteeListView.Visible = true;
+                btnAddTuteeCourses.Visible = false;
             }
             else
             {
+                tuteeListView.Visible = false;
                 btnAddTuteeCourses.Visible = true;
             }
-
-            //Update the week calendar
-            weekCalendar.assignWeeklyAppointments(user);
         }
 
-        public UserProfile(string username, bool admin, string adminName)
-            : this(username)
-        //This constructor will only be called by the administrator. Updates information accordingly
+        //Action when this page becomes active again
+        private void UserProfile_Activated(object sender, System.EventArgs e)
         {
-            adminAcc = admin;
-            this.adminName = adminName;
-            lblAdmin.Visible = true;
-            btnAdmin.Visible = true;
-            panelAdmin.Visible = true;
+            updateAllDisplays();
         }
 
+        //Run both on creation of page and whenever page becomes active again
+        private void updateAllDisplays() 
+        {
+            //Some profile info must be re-assigned here. If user edits their profile info, the new info must be set
+            assignEditableProfileInfo();
+
+            //Update all the displays
+            displayName();
+            updateTutorListView();
+            updateTuteeListView();
+            weekCalendar.assignWeeklyAppointments(user);
+            button1.Image = Properties.Resources.small_pizza_still;
+        }
+
+
+        //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Registering button clicks~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         private void btnAddTutorCourses_Click(object sender, EventArgs e)
         {
             var next = new Registration2(user, tutorAcc, tuteeAcc, tuteeCoursesList, 2000);   //2000 is the id for coming from userprofile
@@ -171,56 +222,11 @@ namespace Tutor_Master
             next.Show();
         }
 
-
-        /*// In event method.
-        private void NewButton_Click(object sender, EventArgs e)
-        {
-            Button btn = (Button) sender;
-
-            // Find the programatically created button and assign its onClick event
-            if (btn.Name == ("buttAddTutor"))
-            {
-                var next = new Registration2(user, tutorAcc, tuteeAcc, 2000);   //2000 is the id for coming from userprofile
-                this.Hide();
-                next.Show();
-           
-            }
-            if (btn.Name == ("buttAddTutee"))
-            {
-                var next = new Registration3(user);
-                this.Hide();
-                next.Show();
-            
-            }
-        
-        }*/
-
-
-        //Function casts the first letter of the string to be capitalized...
-        //But not sure if we really want that honestly.
-
-        //This would assume that we automatically cast usernames to lower so that coolTerry7 == coolterry7
-        public string FirstLetterToUpper(string str)
-        {
-            if (str.Length > 1)
-                return char.ToUpper(str[0]) + str.Substring(1);
-
-            return str.ToUpper();
-        }
-
         private void btnLogout_Click(object sender, EventArgs e)
         {
             var form = new StartForm();
             form.Show();
             this.Hide();
-        }
-
-        void appBuilder_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            weekCalendar.assignWeeklyAppointments(user);
-
-            //need to hide the other form
-            //throw new NotImplementedException();
         }
 
         private void btnViewCal_Click(object sender, EventArgs e)
@@ -233,16 +239,8 @@ namespace Tutor_Master
         private void btnMatchingAppoint_Click(object sender, EventArgs e)
         {
             var matchingForm = new MatchingAppointmentForm(user, tutorAcc, tuteeAcc);
-            matchingForm.FormClosing += new FormClosingEventHandler(matchingForm_FormClosing);
+            //matchingForm.FormClosing += new FormClosingEventHandler(matchingForm_FormClosing);
             matchingForm.Show();
-        }
-
-        void matchingForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            weekCalendar.assignWeeklyAppointments(user);
-
-            //need to hide the other form
-            //throw new NotImplementedException();
         }
 
         private void btnViewMessages_Click(object sender, EventArgs e)
@@ -257,7 +255,7 @@ namespace Tutor_Master
             if (tuteeCoursesList.Count > 0)
             {
                 var refine = new SearchRefinementForm(user);
-                refine.FormClosing += new FormClosingEventHandler(matchingForm_FormClosing);
+                //refine.FormClosing += new FormClosingEventHandler(matchingForm_FormClosing);
                 refine.Show();
             }
             //If user is not a tutee:
@@ -265,11 +263,6 @@ namespace Tutor_Master
             {
                 MessageBox.Show("This search is for users looking for someone to tutor them.");
             }
-        }
-
-        private void UserProfile_Activated(object sender, System.EventArgs e)
-        {
-            weekCalendar.assignWeeklyAppointments(user);
         }
 
         private void btnAdmin_Click(object sender, EventArgs e)
@@ -284,5 +277,59 @@ namespace Tutor_Master
             var newForm = new EditProfileStart(user, tuteeAcc, tutorAcc);
             newForm.Show();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            button1.Image = Properties.Resources.small_animated_pizza;
+            System.Diagnostics.Process.Start("firefox.exe", "http://www.dominos.com");
+        }
+
+        private void initMessagePreview() 
+        {
+            sentMessageList = db.getSentMail(user);
+            inboxMessageList = db.getInbox(user);
+            for (int i = 0; i < inboxMessageList.Count(); i++)
+            {
+                ListViewItem listItem = new ListViewItem(inboxMessageList[i].getFromUser());
+                listItem.SubItems.Add(inboxMessageList[i].getToUser());
+                listItem.SubItems.Add(inboxMessageList[i].getSubject());
+                DateTime tempDate = inboxMessageList[i].getTimeSent();
+                listItem.SubItems.Add(tempDate.ToString("MM/dd/yyyy h:mm tt"));
+                listItem.SubItems.Add(inboxMessageList[i].getPending().ToString());
+                lvMessagesPreview.Items.Add(listItem);
+            }
+
+        }
+
+        private void btnLogout_MouseHover(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void initButtonHovers()
+        {
+            System.Windows.Forms.ToolTip ToolTip1 = new System.Windows.Forms.ToolTip();
+            ToolTip1.SetToolTip(this.btnLogout, "Logout");
+            ToolTip1.SetToolTip(this.buttonEditProfile, "Edit Profile");
+            ToolTip1.SetToolTip(this.btnViewCal, "View Calendar");
+            ToolTip1.SetToolTip(this.btnViewMessages, "View Messages");
+            ToolTip1.SetToolTip(this.btnMatchingAppoint, "Make Appointment");
+            ToolTip1.SetToolTip(this.btnRefinedSearch, "Refined Search");
+        }
+
+        private void lvMessages_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+            int index = lvMessagesPreview.FocusedItem.Index;
+            if (index != null)
+            {
+                var newMessageForm = new MessagesForm(user, index);
+                newMessageForm.Show();
+            }
+        }
+
+
+
+
+
     }
 }

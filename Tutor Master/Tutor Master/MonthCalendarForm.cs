@@ -114,6 +114,7 @@ namespace Tutor_Master
                     panel1.Controls.Add(a);
                 }
                 panel1.Visible = true;
+
             }
             else
                 panel1.Visible = false;
@@ -129,6 +130,7 @@ namespace Tutor_Master
         {
             int x;
             int col = iteration/3;
+            panel1.Width = 105 + col * 120;
             x = (col*120);
 
             return x;

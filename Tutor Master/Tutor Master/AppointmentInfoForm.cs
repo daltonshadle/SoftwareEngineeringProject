@@ -39,7 +39,7 @@ namespace Tutor_Master
         public AppointmentInfoForm()
         {
             InitializeComponent();
-            this.Width = 280;
+            this.Width = 285;
             displayApproveButton();
         }
 
@@ -61,6 +61,7 @@ namespace Tutor_Master
             Appointment a = new Appointment();
             Database db = new Database();
             a = db.getAppointmentById(apptId);
+            initMeetingPlacesComboBox();
 
             apptType = type;
             apptTime = datetime;
@@ -190,7 +191,7 @@ namespace Tutor_Master
         {
             if ((user == firstName) && (apptType == "Learning") && (isApproved == false))
             {
-                this.Height = 390;
+                this.Height = 420;
                 btnApprove.Visible = true;
                 btnReject.Visible = true;
             }
@@ -216,7 +217,7 @@ namespace Tutor_Master
          */
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            this.Width = 680;
+            this.Width = 645;
             panelEdit.Visible = true;
             initializePanel();
             btnConfirmEdit.Visible = true;
@@ -232,7 +233,7 @@ namespace Tutor_Master
         private void btnApprove_Click(object sender, EventArgs e)
         {
             //Check to see if all of the fields are filled in. Specifically, Place must be checked
-            if (apptPlace != null)
+            if (apptPlace != null || (txtMeetingPlace.Text != "" && txtMeetingPlace != null))
             {
                 //Database db = new Database();
 
@@ -249,11 +250,16 @@ namespace Tutor_Master
             else
             {
                 MessageBox.Show("Appointment needs a place. Add place and click \"Approve\" again.");
-                this.Width = 680;
+                this.Width = 645;
                 panelEdit.Visible = true;
                 lblPlacePanel.Visible = true;
-                txtMeetingPlace.Visible = true;
+<<<<<<< HEAD
+                cbxMeetingPlace.Visible = true;
                 btnConfirmEdit.Visible = true;
+=======
+                txtMeetingPlace.Visible = true;
+                btnConfirmEdit.Visible = false;
+>>>>>>> 83b7ccb164e50703e68835c3f90606c47b703771
             }
 
         }
@@ -273,13 +279,13 @@ namespace Tutor_Master
                     lblCoursePanel.Visible = false;
                     cbxCourseList.Visible = false;
                     lblPlacePanel.Visible = false;
-                    txtMeetingPlace.Visible = false;
+                    cbxMeetingPlace.Visible = false;
                     break;
 
                 case "Learning":
                     lblPlacePanel.Visible = true;
-                    txtMeetingPlace.Visible = true;
-                    txtMeetingPlace.Text = apptPlace;
+                    cbxMeetingPlace.Visible = true;
+                    cbxMeetingPlace.Text = apptPlace;
 
                     if (user == secondName)
                     {
@@ -335,8 +341,8 @@ namespace Tutor_Master
             }
             //if (sourceChanged == true)
             //    apptCourse = cbxCourseList.SelectedItem.ToString();
-            if (txtMeetingPlace.Visible == true)
-                apptPlace = txtMeetingPlace.Text;
+            if (cbxMeetingPlace.Visible == true)
+                apptPlace = cbxMeetingPlace.Text;
             apptDateStartTime = dateTimeDay1.Value.Date + dateTimeTime1.Value.TimeOfDay;
             apptDateEnd = dateTimeDay2.Value.Date + dateTimeTime2.Value.TimeOfDay;
 
@@ -588,6 +594,17 @@ namespace Tutor_Master
         private bool isTimeInBetween(DateTime startTime, DateTime endTime, DateTime startTimeInQuestion, DateTime endTimeInQuestion)
         {
             return (startTime <= endTimeInQuestion && startTimeInQuestion <= endTime);
+        }
+
+        private void initMeetingPlacesComboBox()
+        {
+            Database db = new Database();
+            List<string> placeList = db.getAllLocations();
+
+            for (int i = 0; i < placeList.Count; i++)
+            {
+                cbxMeetingPlace.Items.Add(placeList[i]);
+            }
         }
     }
 }

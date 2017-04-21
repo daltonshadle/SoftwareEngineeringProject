@@ -65,6 +65,7 @@ namespace Tutor_Master
 
             initializeBuilderApptTypeCollection();
             initializeBuilderCourseCollection();
+            initMeetingPlacesComboBox();
             
         }
 
@@ -87,7 +88,8 @@ namespace Tutor_Master
                     cbxCourseList.Text = "";
 
                     for (int x = 0; x < builderTuteeCourses.Count; x++) { 
-                        cbxCourseList.Items.Add(builderTuteeCourses[x]);
+                        if (builderTuteeCourses[x] != "")
+                            cbxCourseList.Items.Add(builderTuteeCourses[x]);
                     }
 
                     panelCourse.Visible = true;
@@ -205,15 +207,8 @@ namespace Tutor_Master
             startTime = dateTimeDay1.Value.Date + dateTimeTime1.Value.TimeOfDay;
             endTime = dateTimeDay2.Value.Date + dateTimeTime2.Value.TimeOfDay;
 
-            //well this is just to make sure that appointments dont overlap
-            //ex. one ends at 3:00 and one starts at 3:00
-            startTime = startTime.AddMilliseconds(-startTime.Millisecond);
-            startTime = startTime.AddSeconds(-startTime.Second+1);
-            endTime = endTime.AddMilliseconds(-endTime.Millisecond);
-            endTime = endTime.AddSeconds(-endTime.Second);
-
             string type = cbxTypeAppt.Text.ToString();
-            string place = txtMeetingPlace.Text.ToString();
+            string place = cbxMeetingPlace.Text.ToString();
             string otherProfName = cbxProfileList.Text.ToString();
             course = cbxCourseList.Text.ToString();
 
@@ -228,6 +223,7 @@ namespace Tutor_Master
                         if (verifyWeeklyTimes()) 
                         {
                             for (int i = 0; i < udbWeeks.Value; i++) {
+                                offsetStartAndEndTimes();
                                 DateTime tempStart = startTime, tempEnd = endTime;
                                 tempStart = tempStart.AddDays(7 * i);
                                 tempEnd = tempEnd.AddDays(7 * i);
@@ -240,6 +236,7 @@ namespace Tutor_Master
                     }
                     else
                     {
+                        offsetStartAndEndTimes();
                         Appointment a = new Appointment(startTime, endTime, builderProf);
                         //free time needs no message
                         a.addAppointmentToDatabase();
@@ -264,6 +261,7 @@ namespace Tutor_Master
                         {
                             for (int i = 0; i < udbWeeks.Value; i++)
                             {
+                                offsetStartAndEndTimes();
                                 DateTime tempStart = startTime, tempEnd = endTime;
                                 tempStart = tempStart = tempStart.AddDays(7 * i);
                                 tempEnd = tempEnd = tempEnd.AddDays(7 * i);
@@ -281,6 +279,7 @@ namespace Tutor_Master
                     }
                     else
                     {
+                        offsetStartAndEndTimes();
                         Appointment a = new Appointment(type, place, course, startTime, endTime, tutorProf, tuteeProf, false, "TuteeMatch");
                         a.addAppointmentToDatabase();
 
@@ -297,8 +296,19 @@ namespace Tutor_Master
             }
         }
 
+        private void offsetStartAndEndTimes() 
+        {
+            //well this is just to make sure that appointments dont overlap
+            //ex. one ends at 3:00:00 and one starts at 3:00:01
+            startTime = startTime.AddMilliseconds(-startTime.Millisecond);
+            startTime = startTime.AddSeconds(-startTime.Second + 1);
+            endTime = endTime.AddMilliseconds(-endTime.Millisecond);
+            endTime = endTime.AddSeconds(-endTime.Second);
+        }
+
         private bool isTimeInBetween(DateTime startTime, DateTime endTime, DateTime startTimeInQuestion, DateTime endTimeInQuestion)
         {
+            //Dalton: problem occured here where starttimeinquestion = 4:15:45 and endtime = 4:15:45
             return (startTime <= endTimeInQuestion && startTimeInQuestion <= endTime);
         }
 
@@ -314,7 +324,7 @@ namespace Tutor_Master
 
         private bool verifyMeetingPlace()
         {
-            String tempPlace = txtMeetingPlace.Text.ToString();
+            String tempPlace = cbxMeetingPlace.Text.ToString();
             return (!tempPlace.Equals(""));
         }
 
@@ -550,24 +560,56 @@ namespace Tutor_Master
             }
 
             DateTime dt = dateTimeTime1.Value;
+            DateTime tempHold = dt;
             TimeSpan diff = dt - prevTime1;
 
+            double totalMin = diff.TotalHours * 60;
 
-            if (diff.Ticks < 0)
+            //just checking to see if user invoked or program invoked
+            if (Math.Abs(totalMin) != 15)
             {
-                dateTimeTime1.Value = prevTime1.AddMinutes(-15);
+                //user invoked and the checking if minutes were changed
+                if (Math.Abs(totalMin) <= 59)
+                {
+                    //minutes were changed
+                    if (totalMin < 0)
+                    {
+                        //minutes were lowered and checking for the wrap around
+                        //at the top of the hour
+                        if (totalMin == -59)
+                        {
+                            tempHold = prevTime1.AddMinutes(15);
+                        }
+                        else
+                        { 
+                            tempHold = prevTime1.AddMinutes(-15);
+                        }
+                    }
+                    else
+                    {
+                        //minutes were raised and checking for the wrap around
+                        //at the top of the hour
+                        if (totalMin > 0)
+                        {
+                            if (totalMin == 59)
+                            {
+                                tempHold = prevTime1.AddMinutes(-15);
+                            }
+                            else
+                            {
+                                tempHold = prevTime1.AddMinutes(15);
+                            }
+                        }
+                    }
+                }
             }
-            else
+
+            if (tempHold >= dateTimeTime2.Value)
             {
-                dateTimeTime1.Value = prevTime1.AddMinutes(15);
+                dateTimeTime2.Value = tempHold.AddMinutes(15);
             }
 
-            Debug.WriteLine("Timer 1 " + diff.Ticks.ToString());
-
-            if (dateTimeTime2.Value <= dateTimeTime1.Value) {
-                dateTimeTime2.Value = prevTime1.AddMinutes(15);
-            }
-            
+            dateTimeTime1.Value = tempHold;
             prevTime1 = dateTimeTime1.Value;
         }
 
@@ -580,24 +622,56 @@ namespace Tutor_Master
             }
 
             DateTime dt = dateTimeTime2.Value;
+            DateTime tempHold = dt;
             TimeSpan diff = dt - prevTime2;
 
+            double totalMin = diff.TotalHours * 60;
 
-            if (diff.Ticks < 0)
+            //just checking to see if user invoked or program invoked
+            if (Math.Abs(totalMin) != 15)
             {
-                dateTimeTime2.Value = prevTime2.AddMinutes(-15);
+                //user invoked and the checking if minutes were changed
+                if (Math.Abs(totalMin) <= 59)
+                {
+                    //minutes were changed
+                    if (totalMin < 0)
+                    {
+                        //minutes were lowered and checking for the wrap around
+                        //at the top of the hour
+                        if (totalMin == -59)
+                        {
+                            tempHold = prevTime2.AddMinutes(15);
+                        }
+                        else
+                        {
+                            tempHold = prevTime2.AddMinutes(-15);
+                        }
+                    }
+                    else
+                    {
+                        if (totalMin > 0)
+                        {
+                            //minutes were raised and checking for wrap around
+                            //at the top of the hour
+                            if (totalMin == 59)
+                            {
+                                tempHold = prevTime2.AddMinutes(-15);
+                            }
+                            else
+                            {
+                                tempHold = prevTime2.AddMinutes(15);
+                            }
+                        }
+                    }
+                }
             }
-            else
+
+            if (tempHold <= dateTimeTime1.Value)
             {
-                dateTimeTime2.Value = prevTime2.AddMinutes(15);
+                dateTimeTime1.Value = tempHold.AddMinutes(-15);
             }
 
-            Debug.WriteLine("Timer 2 " + diff.Ticks.ToString());
-
-            if (dateTimeTime1.Value >= dateTimeTime2.Value) {
-                dateTimeTime1.Value = prevTime2.AddMinutes(-15);
-            }
-
+            dateTimeTime2.Value = tempHold;
             prevTime2 = dateTimeTime2.Value;
         }
 
@@ -631,6 +705,18 @@ namespace Tutor_Master
                 dateTimeDay1.Value = dateTimeDay2.Value;
             }
         }
+
+        private void initMeetingPlacesComboBox() 
+        {
+            Database db = new Database();
+            List<string> placeList = db.getAllLocations();
+
+            for(int i = 0; i < placeList.Count; i++)
+            {
+                cbxMeetingPlace.Items.Add(placeList[i]);
+            }
+        }
+
 
 
     }

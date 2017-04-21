@@ -60,6 +60,8 @@ namespace Tutor_Master
             Database db = new Database();
             profileInfo = db.getProfileInfo(username);
 
+            pass = db.getUserPassword(username);
+
             first = profileInfo[0];
             last = profileInfo[1];
             if(!profileInfo[2].Equals(""))
@@ -151,7 +153,15 @@ namespace Tutor_Master
 
             if (changeTutee && isAllEditGood)
             {
-                changeTuteeFunction();
+                if (checkTutorAndTuteeCourseOverlap())
+                {
+                    //don't overlap and all is good
+                    changeTuteeFunction();
+                }
+                else {
+                    isAllEditGood = false;
+                    MessageBox.Show("Tutor and tutee courses cannot overlap.");
+                }
                 //tuteeCourseList should be updated
             }
             else
@@ -161,9 +171,17 @@ namespace Tutor_Master
 
             if (changeTutor && isAllEditGood)
             {
-                changeTutorFunction();
-                //tutorCourseList should be updated
-                //tutorApprovedCourseList should be updated
+                if (checkTutorAndTuteeCourseOverlap())
+                {
+                    changeTutorFunction();
+                    //tutorCourseList should be updated
+                    //tutorApprovedCourseList should be updated
+                }
+                else 
+                {
+                    isAllEditGood = false;
+                    MessageBox.Show("Tutor and tutee courses cannot overlap.");
+                }
             }
             else
             {
@@ -176,6 +194,7 @@ namespace Tutor_Master
                 //confirm edit of person and add info to database
                 //close form and have user form refresh
                 db.editProfileInfo(user, newFirst, newLast, newPass, newIsTutor, newIsTutee);
+                this.Close();
                 this.Hide();
             }
 
@@ -214,7 +233,7 @@ namespace Tutor_Master
                 //checking to see if the pass was editted
                 if (txtNewPassword.Text.Equals(txtConfirmPassword.Text) && !txtConfirmPassword.Text.Equals(""))
                 {
-                    if (txtConfirmPassword.Text.Length < 6)
+                    if (txtConfirmPassword.Text.ToString().Length >= 6)
                     {
                         //update profile password in database
                         newPass = txtNewPassword.Text;
@@ -227,7 +246,7 @@ namespace Tutor_Master
                 }
                 else
                 {
-                    MessageBox.Show("Please enter mathcing passwords.");
+                    MessageBox.Show("Please enter matching passwords.");
                     isAllEditGood = false;
                 }
             }
@@ -251,17 +270,15 @@ namespace Tutor_Master
                         tuteeCoursesList.Clear();
                         List<string> selected = new List<string>();
 
-                        foreach (CheckBox item in checkListTuteeCourses.Items)
+                        for (int x = 0; x < checkListTuteeCourses.CheckedItems.Count; x++)
                         {
-                            //makes selected item list
-                            if (item.Checked)
-                                selected.Add(item.Text);
+                            selected.Add(checkListTuteeCourses.CheckedItems[x].ToString());
                         }
 
                         //tutee course list know has all selected items, need to add to database
                         tuteeCoursesList = selected;
                         newIsTutee = true;
-
+                        db.deleteTuteeList(user);
                         db.addNewCourseList(user, tuteeCoursesList, false);
                     }
                     else
@@ -274,6 +291,7 @@ namespace Tutor_Master
                 {
                     //no longer a tutee, change isTutee bool and clear tutee courses
                     newIsTutee = false;
+                    db.deleteTuteeList(user);
                 }
             }
             else
@@ -298,25 +316,32 @@ namespace Tutor_Master
                         List<string> selected = new List<string>();
                         List<bool> approvedBoolList = new List<bool>();
 
-                        foreach (CheckBox item in checkListTutorCourses.Items)
+                        for (int x = 0; x < checkListTutorCourses.CheckedItems.Count; x++)
                         {
-                            //makes selected item list
-                            if (item.Checked)
-                                selected.Add(item.Text);
+                            selected.Add(checkListTutorCourses.CheckedItems[x].ToString());
                         }
 
                         for (int i = 0; i < selected.Count; i++)
                         {
-                            if (tutorCourseApprovedList.Contains(selected[i]))
+                            if (tutorCoursesList.Contains(selected[i]))
                             {
-                                approvedBoolList.Add(true);
-                                tutorCourseApprovedList.Insert(i, "true");
+                                //need to check approval here
+                                if (tutorCourseApprovedList[tutorCoursesList.IndexOf(selected[i])] == "True")
+                                {
+                                    approvedBoolList.Add(true);
+                                    //tutorCourseApprovedList.Insert(i, "true");
+                                }
+                                else 
+                                {
+                                    approvedBoolList.Add(false);
+                                    //tutorCourseApprovedList.Insert(i, "false");
+                                }
                             }
                             else
                             {
                                 //not approved, send message for approval
                                 approvedBoolList.Add(false);
-                                tutorCourseApprovedList.Insert(i, "false");
+                                //tutorCourseApprovedList.Insert(i, "false");
                                 string facultyApprover = db.getFacultyApprover(selected[i]);
                                 db.sendMessage(user, facultyApprover, "Tutor Request", user + " is requesting to tutor " + selected[i], false, DateTime.Now, selected[i], -1);
                             }
@@ -329,8 +354,9 @@ namespace Tutor_Master
 
                         newIsTutor = true;
                         db.deleteTutorList(user);
+
                         db.addNewCourseList(user, tutorCoursesList, true);
-                        //add is approved bool list here
+                        setApprovedTutorCourses(approvedBoolList, user);
 
                     }
                     else
@@ -353,7 +379,54 @@ namespace Tutor_Master
 
         }
 
+        private void setApprovedTutorCourses(List<bool> courseList, string username)
+        {
+            List<bool?> approved = new List<bool?>();
 
+            for (int i = 0; i < 4; i++)
+            {
+                if (i < courseList.Count)
+                {
+                    if (courseList[i])
+                    {
+                        approved.Add(true);
+                    }
+                    else
+                    {
+                        approved.Add(null);
+                    }
+                }
+                else 
+                {
+                    approved.Add(null);
+                }
+            }
+
+            db.setCourseApproval(username, approved[0], approved[1], approved[2], approved[3]);
+        }
+
+        private bool checkTutorAndTuteeCourseOverlap() 
+        {
+            bool good = true;
+
+            List<string> selectedTutee = new List<string>();
+
+            for (int x = 0; x < checkListTuteeCourses.CheckedItems.Count; x++)
+            {
+                selectedTutee.Add(checkListTuteeCourses.CheckedItems[x].ToString());
+            }
+
+            for (int x = 0; x < checkListTutorCourses.CheckedItems.Count; x++)
+            {
+                if (selectedTutee.Contains(checkListTutorCourses.CheckedItems[x].ToString()))
+                {
+                    good = false;
+                    break;
+                }
+            }
+
+            return good;
+        }
 
     }
 }

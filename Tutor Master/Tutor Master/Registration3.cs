@@ -45,7 +45,6 @@ namespace Tutor_Master
             this.Icon = Tutor_Master.Properties.Resources.favicon;
             initFeaturesList();
 
-            tutorAcc = false;
             tuteeAcc = true;
             username = user;
             tutorClassesList = list;
@@ -109,6 +108,7 @@ namespace Tutor_Master
                 //Faculty gets emailed here.
 
                 Database db = new Database();
+                db.setTuteeStatus(username, true);
                 db.addNewCourseList(username, tuteeClassesList, false);
 
                 var next = new UserProfile(username);
