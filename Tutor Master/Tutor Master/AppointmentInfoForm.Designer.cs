@@ -56,13 +56,13 @@
             this.dateTimeDay1 = new System.Windows.Forms.DateTimePicker();
             this.lblEndTimePanel = new System.Windows.Forms.Label();
             this.lblStartTimePanel = new System.Windows.Forms.Label();
-            this.txtMeetingPlace = new System.Windows.Forms.TextBox();
             this.cbxCourseList = new System.Windows.Forms.ComboBox();
             this.lblPlacePanel = new System.Windows.Forms.Label();
             this.lblCoursePanel = new System.Windows.Forms.Label();
             this.panelEdit = new System.Windows.Forms.Panel();
             this.btnConfirmEdit = new System.Windows.Forms.Button();
             this.btnReject = new System.Windows.Forms.Button();
+            this.cbxMeetingPlace = new System.Windows.Forms.ComboBox();
             this.panelTime.SuspendLayout();
             this.panelEdit.SuspendLayout();
             this.SuspendLayout();
@@ -269,7 +269,7 @@
             this.panelTime.Controls.Add(this.lblStartTimePanel);
             this.panelTime.Location = new System.Drawing.Point(21, 59);
             this.panelTime.Name = "panelTime";
-            this.panelTime.Size = new System.Drawing.Size(291, 61);
+            this.panelTime.Size = new System.Drawing.Size(296, 61);
             this.panelTime.TabIndex = 49;
             this.panelTime.Visible = false;
             // 
@@ -331,14 +331,6 @@
             this.lblStartTimePanel.TabIndex = 0;
             this.lblStartTimePanel.Text = "Start Time:";
             // 
-            // txtMeetingPlace
-            // 
-            this.txtMeetingPlace.Location = new System.Drawing.Point(93, 43);
-            this.txtMeetingPlace.Name = "txtMeetingPlace";
-            this.txtMeetingPlace.Size = new System.Drawing.Size(121, 20);
-            this.txtMeetingPlace.TabIndex = 48;
-            this.txtMeetingPlace.Visible = false;
-            // 
             // cbxCourseList
             // 
             this.cbxCourseList.FormattingEnabled = true;
@@ -372,8 +364,8 @@
             // panelEdit
             // 
             this.panelEdit.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panelEdit.Controls.Add(this.cbxMeetingPlace);
             this.panelEdit.Controls.Add(this.panelTime);
-            this.panelEdit.Controls.Add(this.txtMeetingPlace);
             this.panelEdit.Controls.Add(this.cbxCourseList);
             this.panelEdit.Controls.Add(this.lblPlacePanel);
             this.panelEdit.Controls.Add(this.lblCoursePanel);
@@ -404,6 +396,14 @@
             this.btnReject.UseVisualStyleBackColor = true;
             this.btnReject.Visible = false;
             this.btnReject.Click += new System.EventHandler(this.btnReject_Click);
+            // 
+            // cbxMeetingPlace
+            // 
+            this.cbxMeetingPlace.FormattingEnabled = true;
+            this.cbxMeetingPlace.Location = new System.Drawing.Point(93, 39);
+            this.cbxMeetingPlace.Name = "cbxMeetingPlace";
+            this.cbxMeetingPlace.Size = new System.Drawing.Size(121, 21);
+            this.cbxMeetingPlace.TabIndex = 50;
             // 
             // AppointmentInfoForm
             // 
@@ -474,7 +474,6 @@
         private System.Windows.Forms.DateTimePicker dateTimeDay1;
         private System.Windows.Forms.Label lblEndTimePanel;
         private System.Windows.Forms.Label lblStartTimePanel;
-        private System.Windows.Forms.TextBox txtMeetingPlace;
         private System.Windows.Forms.ComboBox cbxCourseList;
         private System.Windows.Forms.Label lblPlacePanel;
         private System.Windows.Forms.Label lblCoursePanel;
@@ -483,6 +482,7 @@
         private System.Windows.Forms.DateTimePicker dateTimeTime1;
         private System.Windows.Forms.Button btnConfirmEdit;
         private System.Windows.Forms.Button btnReject;
+        private System.Windows.Forms.ComboBox cbxMeetingPlace;
 
     }
 }

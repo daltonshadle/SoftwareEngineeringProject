@@ -18,6 +18,10 @@ namespace Tutor_Master
         List<string> tutorCoursesList = new List<string>();
         List<string> courseAppList = new List<string>();
 
+        private List<Messages> sentMessageList;
+        private List<Messages> inboxMessageList;
+        Database db = new Database();
+
         //Normal constructor. Will be called by tutors and tutees, not by admin
         public UserProfile(string username)
         {
@@ -34,6 +38,9 @@ namespace Tutor_Master
 
             //Display appropriate information
             updateAllDisplays();
+
+            //initializing hovers for buttons
+            initButtonHovers();
         }
 
         //This constructor will only be called by the administrator. Updates information accordingly
@@ -45,6 +52,9 @@ namespace Tutor_Master
             lblAdmin.Visible = true;
             btnAdmin.Visible = true;
             panelAdmin.Visible = true;
+            int shrink = panelAdmin.Width + 15;
+            panelMessage.Size = new Size(panelMessage.Width - shrink, panelMessage.Height);
+            lvMessagesPreview.Size = new Size(lvMessagesPreview.Width - shrink, lvMessagesPreview.Height);
         }
 
         //Retrieves information about user and sets all the values
@@ -55,6 +65,7 @@ namespace Tutor_Master
 
             //Sets editable information for user profile
             assignEditableProfileInfo();
+            initMessagePreview();
 
             adminAcc = false;   //bool isAdmin is set to false in this constructor. Only other constructor can make it true
         }
@@ -191,7 +202,8 @@ namespace Tutor_Master
             displayName();
             updateTutorListView();
             updateTuteeListView();
-            weekCalendar.assignWeeklyAppointments(user);   
+            weekCalendar.assignWeeklyAppointments(user);
+            button1.Image = Properties.Resources.small_pizza_still;
         }
 
 
@@ -268,7 +280,56 @@ namespace Tutor_Master
 
         private void button1_Click(object sender, EventArgs e)
         {
+            button1.Image = Properties.Resources.small_animated_pizza;
             System.Diagnostics.Process.Start("firefox.exe", "http://www.dominos.com");
         }
+
+        private void initMessagePreview() 
+        {
+            sentMessageList = db.getSentMail(user);
+            inboxMessageList = db.getInbox(user);
+            for (int i = 0; i < inboxMessageList.Count(); i++)
+            {
+                ListViewItem listItem = new ListViewItem(inboxMessageList[i].getFromUser());
+                listItem.SubItems.Add(inboxMessageList[i].getToUser());
+                listItem.SubItems.Add(inboxMessageList[i].getSubject());
+                DateTime tempDate = inboxMessageList[i].getTimeSent();
+                listItem.SubItems.Add(tempDate.ToString("MM/dd/yyyy h:mm tt"));
+                listItem.SubItems.Add(inboxMessageList[i].getPending().ToString());
+                lvMessagesPreview.Items.Add(listItem);
+            }
+
+        }
+
+        private void btnLogout_MouseHover(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void initButtonHovers()
+        {
+            System.Windows.Forms.ToolTip ToolTip1 = new System.Windows.Forms.ToolTip();
+            ToolTip1.SetToolTip(this.btnLogout, "Logout");
+            ToolTip1.SetToolTip(this.buttonEditProfile, "Edit Profile");
+            ToolTip1.SetToolTip(this.btnViewCal, "View Calendar");
+            ToolTip1.SetToolTip(this.btnViewMessages, "View Messages");
+            ToolTip1.SetToolTip(this.btnMatchingAppoint, "Make Appointment");
+            ToolTip1.SetToolTip(this.btnRefinedSearch, "Refined Search");
+        }
+
+        private void lvMessages_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+            int index = lvMessagesPreview.FocusedItem.Index;
+            if (index != null)
+            {
+                var newMessageForm = new MessagesForm(user, index);
+                newMessageForm.Show();
+            }
+        }
+
+
+
+
+
     }
 }

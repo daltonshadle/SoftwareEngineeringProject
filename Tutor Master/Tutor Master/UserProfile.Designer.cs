@@ -48,22 +48,32 @@
             this.btnAdmin = new System.Windows.Forms.Button();
             this.panelAdmin = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
+            this.panelMessage = new System.Windows.Forms.Panel();
+            this.lvMessagesPreview = new System.Windows.Forms.ListView();
+            this.From = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Subject = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Date = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Done = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.To = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.weekCalendar = new Tutor_Master.WeekCalendar();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panelAdmin.SuspendLayout();
+            this.panelMessage.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnLogout
             // 
             this.btnLogout.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btnLogout.Location = new System.Drawing.Point(972, 7);
+            this.btnLogout.Image = global::Tutor_Master.Properties.Resources.Door_50_1_;
+            this.btnLogout.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnLogout.Location = new System.Drawing.Point(1006, 7);
             this.btnLogout.Name = "btnLogout";
-            this.btnLogout.Size = new System.Drawing.Size(75, 23);
+            this.btnLogout.Size = new System.Drawing.Size(55, 59);
             this.btnLogout.TabIndex = 1;
-            this.btnLogout.Text = "Logout";
             this.btnLogout.UseVisualStyleBackColor = true;
             this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
+            this.btnLogout.MouseHover += new System.EventHandler(this.btnLogout_MouseHover);
             // 
             // lbTutor
             // 
@@ -107,22 +117,22 @@
             // btnViewCal
             // 
             this.btnViewCal.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btnViewCal.Location = new System.Drawing.Point(869, 7);
+            this.btnViewCal.Image = global::Tutor_Master.Properties.Resources.Calendar_48;
+            this.btnViewCal.Location = new System.Drawing.Point(884, 7);
             this.btnViewCal.Name = "btnViewCal";
-            this.btnViewCal.Size = new System.Drawing.Size(97, 23);
+            this.btnViewCal.Size = new System.Drawing.Size(55, 59);
             this.btnViewCal.TabIndex = 9;
-            this.btnViewCal.Text = "View Calendar";
             this.btnViewCal.UseVisualStyleBackColor = true;
             this.btnViewCal.Click += new System.EventHandler(this.btnViewCal_Click);
             // 
             // btnMatchingAppoint
             // 
             this.btnMatchingAppoint.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btnMatchingAppoint.Location = new System.Drawing.Point(749, 7);
+            this.btnMatchingAppoint.Image = global::Tutor_Master.Properties.Resources.Appointment_Reminders_48;
+            this.btnMatchingAppoint.Location = new System.Drawing.Point(762, 7);
             this.btnMatchingAppoint.Name = "btnMatchingAppoint";
-            this.btnMatchingAppoint.Size = new System.Drawing.Size(114, 23);
+            this.btnMatchingAppoint.Size = new System.Drawing.Size(55, 59);
             this.btnMatchingAppoint.TabIndex = 10;
-            this.btnMatchingAppoint.Text = "Make Appointment";
             this.btnMatchingAppoint.UseVisualStyleBackColor = true;
             this.btnMatchingAppoint.Click += new System.EventHandler(this.btnMatchingAppoint_Click);
             // 
@@ -130,7 +140,7 @@
             // 
             this.lblNameAndUser.AutoSize = true;
             this.lblNameAndUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNameAndUser.Location = new System.Drawing.Point(8, 2);
+            this.lblNameAndUser.Location = new System.Drawing.Point(10, 17);
             this.lblNameAndUser.Name = "lblNameAndUser";
             this.lblNameAndUser.Size = new System.Drawing.Size(86, 31);
             this.lblNameAndUser.TabIndex = 10;
@@ -139,11 +149,11 @@
             // btnViewMessages
             // 
             this.btnViewMessages.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btnViewMessages.Location = new System.Drawing.Point(653, 7);
+            this.btnViewMessages.Image = global::Tutor_Master.Properties.Resources.Message_48;
+            this.btnViewMessages.Location = new System.Drawing.Point(823, 7);
             this.btnViewMessages.Name = "btnViewMessages";
-            this.btnViewMessages.Size = new System.Drawing.Size(90, 23);
+            this.btnViewMessages.Size = new System.Drawing.Size(55, 59);
             this.btnViewMessages.TabIndex = 11;
-            this.btnViewMessages.Text = "View Messages";
             this.btnViewMessages.UseVisualStyleBackColor = true;
             this.btnViewMessages.Click += new System.EventHandler(this.btnViewMessages_Click);
             // 
@@ -172,11 +182,11 @@
             // btnRefinedSearch
             // 
             this.btnRefinedSearch.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btnRefinedSearch.Location = new System.Drawing.Point(534, 7);
+            this.btnRefinedSearch.Image = global::Tutor_Master.Properties.Resources.Search_Property_48;
+            this.btnRefinedSearch.Location = new System.Drawing.Point(701, 7);
             this.btnRefinedSearch.Name = "btnRefinedSearch";
-            this.btnRefinedSearch.Size = new System.Drawing.Size(113, 23);
+            this.btnRefinedSearch.Size = new System.Drawing.Size(55, 59);
             this.btnRefinedSearch.TabIndex = 14;
-            this.btnRefinedSearch.Text = "Refined Searching";
             this.btnRefinedSearch.UseVisualStyleBackColor = true;
             this.btnRefinedSearch.Click += new System.EventHandler(this.btnRefinedSearch_Click);
             // 
@@ -191,7 +201,7 @@
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.tutorListView);
             this.panel1.Controls.Add(this.lbTutor);
-            this.panel1.Location = new System.Drawing.Point(12, 75);
+            this.panel1.Location = new System.Drawing.Point(12, 104);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(375, 157);
             this.panel1.TabIndex = 15;
@@ -201,25 +211,26 @@
             this.panel2.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.panel2.BackColor = System.Drawing.Color.LightSteelBlue;
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel2.Controls.Add(this.button1);
             this.panel2.Controls.Add(this.btnRefinedSearch);
-            this.panel2.Controls.Add(this.buttonEditProfile);
             this.panel2.Controls.Add(this.btnViewMessages);
-            this.panel2.Controls.Add(this.lblNameAndUser);
             this.panel2.Controls.Add(this.btnMatchingAppoint);
             this.panel2.Controls.Add(this.btnViewCal);
+            this.panel2.Controls.Add(this.buttonEditProfile);
+            this.panel2.Controls.Add(this.lblNameAndUser);
             this.panel2.Controls.Add(this.btnLogout);
             this.panel2.Location = new System.Drawing.Point(12, 12);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1079, 43);
+            this.panel2.Size = new System.Drawing.Size(1079, 73);
             this.panel2.TabIndex = 16;
             // 
             // buttonEditProfile
             // 
-            this.buttonEditProfile.Location = new System.Drawing.Point(453, 7);
+            this.buttonEditProfile.Image = global::Tutor_Master.Properties.Resources.Edit_48;
+            this.buttonEditProfile.Location = new System.Drawing.Point(945, 7);
             this.buttonEditProfile.Name = "buttonEditProfile";
-            this.buttonEditProfile.Size = new System.Drawing.Size(75, 23);
+            this.buttonEditProfile.Size = new System.Drawing.Size(55, 59);
             this.buttonEditProfile.TabIndex = 17;
-            this.buttonEditProfile.Text = "Edit Profile";
             this.buttonEditProfile.UseVisualStyleBackColor = true;
             this.buttonEditProfile.Click += new System.EventHandler(this.buttonEditProfile_Click);
             // 
@@ -227,19 +238,19 @@
             // 
             this.lblAdmin.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblAdmin.AutoSize = true;
-            this.lblAdmin.Font = new System.Drawing.Font("Elephant", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAdmin.ForeColor = System.Drawing.Color.White;
-            this.lblAdmin.Location = new System.Drawing.Point(20, 27);
+            this.lblAdmin.Font = new System.Drawing.Font("Elephant", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAdmin.ForeColor = System.Drawing.Color.Black;
+            this.lblAdmin.Location = new System.Drawing.Point(22, 45);
             this.lblAdmin.Name = "lblAdmin";
-            this.lblAdmin.Size = new System.Drawing.Size(423, 27);
+            this.lblAdmin.Size = new System.Drawing.Size(179, 21);
             this.lblAdmin.TabIndex = 17;
-            this.lblAdmin.Text = "YOU ARE VIEWING AS AN ADMIN.";
+            this.lblAdmin.Text = "ADMIN WARNING";
             this.lblAdmin.Visible = false;
             // 
             // btnAdmin
             // 
             this.btnAdmin.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnAdmin.Location = new System.Drawing.Point(163, 56);
+            this.btnAdmin.Location = new System.Drawing.Point(38, 97);
             this.btnAdmin.Name = "btnAdmin";
             this.btnAdmin.Size = new System.Drawing.Size(149, 23);
             this.btnAdmin.TabIndex = 18;
@@ -250,33 +261,88 @@
             // 
             // panelAdmin
             // 
-            this.panelAdmin.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.panelAdmin.BackColor = System.Drawing.Color.DarkRed;
+            this.panelAdmin.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.panelAdmin.BackColor = System.Drawing.Color.Yellow;
             this.panelAdmin.Controls.Add(this.lblAdmin);
             this.panelAdmin.Controls.Add(this.btnAdmin);
-            this.panelAdmin.Location = new System.Drawing.Point(514, 107);
+            this.panelAdmin.Location = new System.Drawing.Point(874, 104);
             this.panelAdmin.Name = "panelAdmin";
-            this.panelAdmin.Size = new System.Drawing.Size(466, 100);
+            this.panelAdmin.Size = new System.Drawing.Size(217, 157);
             this.panelAdmin.TabIndex = 19;
             this.panelAdmin.Visible = false;
             // 
             // button1
             // 
             this.button1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.button1.Image = global::Tutor_Master.Properties.Resources.small_animated_pizza;
-            this.button1.Location = new System.Drawing.Point(1040, 75);
+            this.button1.Image = global::Tutor_Master.Properties.Resources.small_pizza_still;
+            this.button1.Location = new System.Drawing.Point(641, 7);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(51, 50);
+            this.button1.Size = new System.Drawing.Size(55, 59);
             this.button1.TabIndex = 20;
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // panelMessage
+            // 
+            this.panelMessage.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.panelMessage.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.panelMessage.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panelMessage.Controls.Add(this.lvMessagesPreview);
+            this.panelMessage.Location = new System.Drawing.Point(418, 104);
+            this.panelMessage.Name = "panelMessage";
+            this.panelMessage.Size = new System.Drawing.Size(673, 157);
+            this.panelMessage.TabIndex = 21;
+            // 
+            // lvMessagesPreview
+            // 
+            this.lvMessagesPreview.Activation = System.Windows.Forms.ItemActivation.OneClick;
+            this.lvMessagesPreview.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.From,
+            this.Subject,
+            this.Date,
+            this.Done,
+            this.To});
+            this.lvMessagesPreview.FullRowSelect = true;
+            this.lvMessagesPreview.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.lvMessagesPreview.Location = new System.Drawing.Point(30, 18);
+            this.lvMessagesPreview.MultiSelect = false;
+            this.lvMessagesPreview.Name = "lvMessagesPreview";
+            this.lvMessagesPreview.Size = new System.Drawing.Size(611, 126);
+            this.lvMessagesPreview.TabIndex = 13;
+            this.lvMessagesPreview.UseCompatibleStateImageBehavior = false;
+            this.lvMessagesPreview.View = System.Windows.Forms.View.Details;
+            this.lvMessagesPreview.SelectedIndexChanged += new System.EventHandler(this.lvMessages_SelectedIndexChanged_1);
+            // 
+            // From
+            // 
+            this.From.Text = "From";
+            this.From.Width = 69;
+            // 
+            // Subject
+            // 
+            this.Subject.Text = "To";
+            this.Subject.Width = 108;
+            // 
+            // Date
+            // 
+            this.Date.Text = "Subject";
+            this.Date.Width = 242;
+            // 
+            // Done
+            // 
+            this.Done.Text = "Date";
+            this.Done.Width = 124;
+            // 
+            // To
+            // 
+            this.To.Text = "Done";
             // 
             // weekCalendar
             // 
             this.weekCalendar.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.weekCalendar.BackColor = System.Drawing.Color.LightSteelBlue;
             this.weekCalendar.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.weekCalendar.Location = new System.Drawing.Point(12, 253);
+            this.weekCalendar.Location = new System.Drawing.Point(12, 278);
             this.weekCalendar.Name = "weekCalendar";
             this.weekCalendar.Size = new System.Drawing.Size(1079, 383);
             this.weekCalendar.TabIndex = 7;
@@ -287,11 +353,11 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.SteelBlue;
             this.ClientSize = new System.Drawing.Size(1107, 715);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.panelAdmin);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.weekCalendar);
+            this.Controls.Add(this.panelAdmin);
+            this.Controls.Add(this.panelMessage);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "UserProfile";
             this.Text = "User Profile";
@@ -303,6 +369,7 @@
             this.panel2.PerformLayout();
             this.panelAdmin.ResumeLayout(false);
             this.panelAdmin.PerformLayout();
+            this.panelMessage.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -329,5 +396,12 @@
         private System.Windows.Forms.Panel panelAdmin;
         private System.Windows.Forms.Button buttonEditProfile;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Panel panelMessage;
+        private System.Windows.Forms.ListView lvMessagesPreview;
+        private System.Windows.Forms.ColumnHeader From;
+        private System.Windows.Forms.ColumnHeader Subject;
+        private System.Windows.Forms.ColumnHeader Date;
+        private System.Windows.Forms.ColumnHeader Done;
+        private System.Windows.Forms.ColumnHeader To;
     }
 }

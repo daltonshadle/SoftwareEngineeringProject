@@ -45,10 +45,10 @@
             this.dateTimeEndDate = new System.Windows.Forms.DateTimePicker();
             this.rtbInfo = new System.Windows.Forms.RichTextBox();
             this.lvMatches = new System.Windows.Forms.ListView();
+            this.columnAppointments = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnAskToJoin = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.columnAppointments = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -56,7 +56,7 @@
             // lblHeader
             // 
             this.lblHeader.AutoSize = true;
-            this.lblHeader.Location = new System.Drawing.Point(35, 0);
+            this.lblHeader.Location = new System.Drawing.Point(35, 15);
             this.lblHeader.Name = "lblHeader";
             this.lblHeader.Size = new System.Drawing.Size(147, 13);
             this.lblHeader.TabIndex = 0;
@@ -215,6 +215,11 @@
             this.lvMatches.View = System.Windows.Forms.View.Details;
             this.lvMatches.SelectedIndexChanged += new System.EventHandler(this.lvMatches_SelectedIndexChanged);
             // 
+            // columnAppointments
+            // 
+            this.columnAppointments.Text = "Appointments";
+            this.columnAppointments.Width = 203;
+            // 
             // btnAskToJoin
             // 
             this.btnAskToJoin.Location = new System.Drawing.Point(341, 397);
@@ -257,11 +262,6 @@
             this.panel2.Size = new System.Drawing.Size(220, 182);
             this.panel2.TabIndex = 24;
             // 
-            // columnAppointments
-            // 
-            this.columnAppointments.Text = "Appointments";
-            this.columnAppointments.Width = 203;
-            // 
             // SearchRefinementForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -280,7 +280,7 @@
             this.MinimumSize = new System.Drawing.Size(290, 250);
             this.Name = "SearchRefinementForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
-            this.Text = "SearchRefinementForm";
+            this.Text = "Refined Searching";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);

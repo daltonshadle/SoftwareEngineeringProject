@@ -38,6 +38,30 @@ namespace Tutor_Master
             }
         }
 
+        public MessagesForm(string username, int index)
+        {
+            InitializeComponent();
+            user = username;
+            sentMessageList = db.getSentMail(username);
+            inboxMessageList = db.getInbox(username);
+            for (int i = 0; i < inboxMessageList.Count(); i++)
+            {
+                ListViewItem listItem = new ListViewItem(inboxMessageList[i].getFromUser());
+                listItem.SubItems.Add(inboxMessageList[i].getToUser());
+                listItem.SubItems.Add(inboxMessageList[i].getSubject());
+                DateTime tempDate = inboxMessageList[i].getTimeSent();
+                listItem.SubItems.Add(tempDate.ToString("MM/dd/yyyy h:mm tt"));
+                listItem.SubItems.Add(inboxMessageList[i].getPending().ToString());
+                lvMessages.Items.Add(listItem);
+            }
+
+            if (lvMessages.Items.Count > 0)
+            {
+                lvMessages.Items[index].Selected = true;
+                lvMessages.Select();
+            }
+        }
+
         private void btnInbox_Click(object sender, EventArgs e)
         {
             INBOX = true;

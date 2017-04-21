@@ -201,6 +201,7 @@
             // pnlLegendFreetime
             // 
             this.pnlLegendFreetime.BackColor = System.Drawing.Color.Yellow;
+            this.pnlLegendFreetime.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnlLegendFreetime.Controls.Add(this.lblLegendFreetime);
             this.pnlLegendFreetime.Location = new System.Drawing.Point(914, 155);
             this.pnlLegendFreetime.Name = "pnlLegendFreetime";
@@ -219,6 +220,7 @@
             // pnlLegendTutoring
             // 
             this.pnlLegendTutoring.BackColor = System.Drawing.Color.LimeGreen;
+            this.pnlLegendTutoring.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnlLegendTutoring.Controls.Add(this.lblLegendTutoring);
             this.pnlLegendTutoring.Location = new System.Drawing.Point(914, 118);
             this.pnlLegendTutoring.Name = "pnlLegendTutoring";
@@ -237,6 +239,7 @@
             // pnlLegendPending
             // 
             this.pnlLegendPending.BackColor = System.Drawing.Color.Red;
+            this.pnlLegendPending.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnlLegendPending.Controls.Add(this.lblLegendPending);
             this.pnlLegendPending.Location = new System.Drawing.Point(914, 192);
             this.pnlLegendPending.Name = "pnlLegendPending";

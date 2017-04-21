@@ -65,6 +65,7 @@ namespace Tutor_Master
 
             initializeBuilderApptTypeCollection();
             initializeBuilderCourseCollection();
+            initMeetingPlacesComboBox();
             
         }
 
@@ -207,7 +208,7 @@ namespace Tutor_Master
             endTime = dateTimeDay2.Value.Date + dateTimeTime2.Value.TimeOfDay;
 
             string type = cbxTypeAppt.Text.ToString();
-            string place = txtMeetingPlace.Text.ToString();
+            string place = cbxMeetingPlace.Text.ToString();
             string otherProfName = cbxProfileList.Text.ToString();
             course = cbxCourseList.Text.ToString();
 
@@ -323,7 +324,7 @@ namespace Tutor_Master
 
         private bool verifyMeetingPlace()
         {
-            String tempPlace = txtMeetingPlace.Text.ToString();
+            String tempPlace = cbxMeetingPlace.Text.ToString();
             return (!tempPlace.Equals(""));
         }
 
@@ -704,6 +705,18 @@ namespace Tutor_Master
                 dateTimeDay1.Value = dateTimeDay2.Value;
             }
         }
+
+        private void initMeetingPlacesComboBox() 
+        {
+            Database db = new Database();
+            List<string> placeList = db.getAllLocations();
+
+            for(int i = 0; i < placeList.Count; i++)
+            {
+                cbxMeetingPlace.Items.Add(placeList[i]);
+            }
+        }
+
 
 
     }

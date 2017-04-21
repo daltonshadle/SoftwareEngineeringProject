@@ -38,7 +38,6 @@
             this.panelCourse = new System.Windows.Forms.Panel();
             this.cbxCourseList = new System.Windows.Forms.ComboBox();
             this.lblCourse = new System.Windows.Forms.Label();
-            this.txtMeetingPlace = new System.Windows.Forms.TextBox();
             this.lblMeetingPlace = new System.Windows.Forms.Label();
             this.panelTime = new System.Windows.Forms.Panel();
             this.dateTimeTime2 = new System.Windows.Forms.DateTimePicker();
@@ -54,6 +53,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.panelWeeklyAppt = new System.Windows.Forms.Panel();
             this.cbxWeeklyApt = new System.Windows.Forms.CheckBox();
+            this.cbxMeetingPlace = new System.Windows.Forms.ComboBox();
             this.panelApptType.SuspendLayout();
             this.panelOtherProfile.SuspendLayout();
             this.panelCourse.SuspendLayout();
@@ -162,13 +162,6 @@
             this.lblCourse.TabIndex = 1;
             this.lblCourse.Text = "Course: ";
             // 
-            // txtMeetingPlace
-            // 
-            this.txtMeetingPlace.Location = new System.Drawing.Point(161, 7);
-            this.txtMeetingPlace.Name = "txtMeetingPlace";
-            this.txtMeetingPlace.Size = new System.Drawing.Size(121, 20);
-            this.txtMeetingPlace.TabIndex = 0;
-            // 
             // lblMeetingPlace
             // 
             this.lblMeetingPlace.AutoSize = true;
@@ -251,8 +244,8 @@
             // panelMeetingPlace
             // 
             this.panelMeetingPlace.BackColor = System.Drawing.Color.Transparent;
+            this.panelMeetingPlace.Controls.Add(this.cbxMeetingPlace);
             this.panelMeetingPlace.Controls.Add(this.lblMeetingPlace);
-            this.panelMeetingPlace.Controls.Add(this.txtMeetingPlace);
             this.panelMeetingPlace.Location = new System.Drawing.Point(6, 191);
             this.panelMeetingPlace.Name = "panelMeetingPlace";
             this.panelMeetingPlace.Size = new System.Drawing.Size(291, 33);
@@ -337,6 +330,14 @@
             this.cbxWeeklyApt.UseVisualStyleBackColor = true;
             this.cbxWeeklyApt.CheckedChanged += new System.EventHandler(this.cbxWeeklyApt_CheckedChanged);
             // 
+            // cbxMeetingPlace
+            // 
+            this.cbxMeetingPlace.FormattingEnabled = true;
+            this.cbxMeetingPlace.Location = new System.Drawing.Point(161, 7);
+            this.cbxMeetingPlace.Name = "cbxMeetingPlace";
+            this.cbxMeetingPlace.Size = new System.Drawing.Size(121, 21);
+            this.cbxMeetingPlace.TabIndex = 3;
+            // 
             // MatchingAppointmentForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -380,7 +381,6 @@
         private System.Windows.Forms.Panel panelCourse;
         private System.Windows.Forms.ComboBox cbxCourseList;
         private System.Windows.Forms.Label lblCourse;
-        private System.Windows.Forms.TextBox txtMeetingPlace;
         private System.Windows.Forms.Label lblMeetingPlace;
         private System.Windows.Forms.Panel panelTime;
         private System.Windows.Forms.DateTimePicker dateTimeTime2;
@@ -396,5 +396,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panelWeeklyAppt;
         private System.Windows.Forms.CheckBox cbxWeeklyApt;
+        private System.Windows.Forms.ComboBox cbxMeetingPlace;
     }
 }
