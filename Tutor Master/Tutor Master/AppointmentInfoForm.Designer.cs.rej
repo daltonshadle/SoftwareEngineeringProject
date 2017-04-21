@@ -1,0 +1,15 @@
+diff a/Tutor Master/Tutor Master/AppointmentInfoForm.Designer.cs b/Tutor Master/Tutor Master/AppointmentInfoForm.Designer.cs	(rejected hunks)
+@@ -388,6 +388,13 @@
+              this.cbxMeetingPlace.Name = "cbxMeetingPlace";
+              this.cbxMeetingPlace.Size = new System.Drawing.Size(121, 21);
+              this.cbxMeetingPlace.TabIndex = 50;
+++<<<<<<< HEAD
+++=======
++             this.cbxMeetingPlace.Location = new System.Drawing.Point(93, 60);
++             this.cbxMeetingPlace.Name = "cbxMeetingPlace";
++             this.cbxMeetingPlace.Size = new System.Drawing.Size(121, 21);
++             this.cbxMeetingPlace.TabIndex = 50;
+++>>>>>>> 590ea25161a8266f505efdb0773761e557f15c25
+              this.cbxMeetingPlace.SelectedIndexChanged += new System.EventHandler(this.cbxMeetingPlace_SelectedIndexChanged);
+              // 
+              // label1
