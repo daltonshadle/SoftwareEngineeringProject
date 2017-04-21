@@ -17,14 +17,16 @@ namespace Tutor_Master
             Application.SetCompatibleTextRenderingDefault(false);
 
             Database db = new Database();
-            DateTime dt = new DateTime(2017, 4, 1);
+            db.getAppointmentCourseSet("CS2");
+            //MessageBox.Show("Good?");
+            /*DateTime dt = new DateTime(2017, 4, 1);
 
             HashSet<Appointment> courses = db.getAppointmentCourseSet("CS1");
             HashSet<Appointment> places = db.getAppointmentPlaceSet("library");
             HashSet<Appointment> tutors = db.getAppointmentTutorSet("coolTerry7");
             HashSet<Appointment> dates = db.getAppointmentDateSet(dt, DateTime.Now);
 
-            HashSet<Appointment> intersect = intersection(tutors, courses);
+            HashSet<Appointment> intersect = intersection(tutors, courses);*/
 
             //db.editAppointment(1, null, "library", null, DateTime.Now, DateTime.Now, null, null, false, true);
             Application.Run(new StartForm());
