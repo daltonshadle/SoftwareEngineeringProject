@@ -320,11 +320,11 @@ namespace Tutor_Master
 
         private void lvMessages_SelectedIndexChanged_1(object sender, EventArgs e)
         {
-            int index = lvMessagesPreview.FocusedItem.Index;
-            if (index != null)
+            if (lvMessagesPreview.FocusedItem != null)
             {
+                int index = lvMessagesPreview.FocusedItem.Index;
                 var newMessageForm = new MessagesForm(user, index);
-                newMessageForm.Show();
+                newMessageForm.ShowDialog();
             }
         }
 

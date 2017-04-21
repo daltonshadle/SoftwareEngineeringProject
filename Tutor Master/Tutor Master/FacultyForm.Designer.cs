@@ -190,11 +190,13 @@
             // btnLogout
             // 
             this.btnLogout.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnLogout.Location = new System.Drawing.Point(995, 7);
+            this.btnLogout.Image = global::Tutor_Master.Properties.Resources.Door_50_1_;
+            this.btnLogout.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnLogout.Location = new System.Drawing.Point(1006, 7);
             this.btnLogout.Name = "btnLogout";
-            this.btnLogout.Size = new System.Drawing.Size(75, 23);
+            this.btnLogout.Size = new System.Drawing.Size(55, 59);
             this.btnLogout.TabIndex = 11;
-            this.btnLogout.Text = "Logout";
+            this.btnLogout.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnLogout.UseVisualStyleBackColor = true;
             this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
             // 
@@ -208,7 +210,7 @@
             this.panel1.Controls.Add(this.rtbMessageDetails);
             this.panel1.Controls.Add(this.lblMessageDetails);
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Location = new System.Drawing.Point(716, 80);
+            this.panel1.Location = new System.Drawing.Point(716, 99);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(383, 213);
             this.panel1.TabIndex = 12;
@@ -223,7 +225,7 @@
             this.panel2.Controls.Add(this.btnInbox);
             this.panel2.Controls.Add(this.lvMessages);
             this.panel2.Controls.Add(this.lblMessages);
-            this.panel2.Location = new System.Drawing.Point(12, 80);
+            this.panel2.Location = new System.Drawing.Point(12, 99);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(635, 418);
             this.panel2.TabIndex = 13;
@@ -237,14 +239,14 @@
             this.panel3.Controls.Add(this.btnLogout);
             this.panel3.Location = new System.Drawing.Point(12, 11);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1087, 43);
+            this.panel3.Size = new System.Drawing.Size(1087, 73);
             this.panel3.TabIndex = 14;
             // 
             // lblNameAndUser
             // 
             this.lblNameAndUser.AutoSize = true;
             this.lblNameAndUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNameAndUser.Location = new System.Drawing.Point(3, 0);
+            this.lblNameAndUser.Location = new System.Drawing.Point(10, 17);
             this.lblNameAndUser.Name = "lblNameAndUser";
             this.lblNameAndUser.Size = new System.Drawing.Size(86, 31);
             this.lblNameAndUser.TabIndex = 12;

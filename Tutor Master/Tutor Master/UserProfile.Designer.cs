@@ -65,6 +65,7 @@
             // btnLogout
             // 
             this.btnLogout.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btnLogout.Image = global::Tutor_Master.Properties.Resources.Door_50_1_;
             this.btnLogout.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnLogout.Location = new System.Drawing.Point(1006, 7);
             this.btnLogout.Name = "btnLogout";
@@ -116,6 +117,7 @@
             // btnViewCal
             // 
             this.btnViewCal.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btnViewCal.Image = global::Tutor_Master.Properties.Resources.Calendar_48;
             this.btnViewCal.Location = new System.Drawing.Point(884, 7);
             this.btnViewCal.Name = "btnViewCal";
             this.btnViewCal.Size = new System.Drawing.Size(55, 59);
@@ -126,6 +128,7 @@
             // btnMatchingAppoint
             // 
             this.btnMatchingAppoint.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btnMatchingAppoint.Image = global::Tutor_Master.Properties.Resources.Appointment_Reminders_48;
             this.btnMatchingAppoint.Location = new System.Drawing.Point(762, 7);
             this.btnMatchingAppoint.Name = "btnMatchingAppoint";
             this.btnMatchingAppoint.Size = new System.Drawing.Size(55, 59);
@@ -146,6 +149,7 @@
             // btnViewMessages
             // 
             this.btnViewMessages.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btnViewMessages.Image = global::Tutor_Master.Properties.Resources.Message_48;
             this.btnViewMessages.Location = new System.Drawing.Point(823, 7);
             this.btnViewMessages.Name = "btnViewMessages";
             this.btnViewMessages.Size = new System.Drawing.Size(55, 59);
@@ -178,6 +182,7 @@
             // btnRefinedSearch
             // 
             this.btnRefinedSearch.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btnRefinedSearch.Image = global::Tutor_Master.Properties.Resources.Search_Property_48;
             this.btnRefinedSearch.Location = new System.Drawing.Point(701, 7);
             this.btnRefinedSearch.Name = "btnRefinedSearch";
             this.btnRefinedSearch.Size = new System.Drawing.Size(55, 59);
@@ -222,6 +227,7 @@
             // button1
             // 
             this.button1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.button1.Image = global::Tutor_Master.Properties.Resources.small_pizza_still;
             this.button1.Location = new System.Drawing.Point(641, 7);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(55, 59);
@@ -231,6 +237,7 @@
             // 
             // buttonEditProfile
             // 
+            this.buttonEditProfile.Image = global::Tutor_Master.Properties.Resources.Edit_48;
             this.buttonEditProfile.Location = new System.Drawing.Point(945, 7);
             this.buttonEditProfile.Name = "buttonEditProfile";
             this.buttonEditProfile.Size = new System.Drawing.Size(55, 59);
