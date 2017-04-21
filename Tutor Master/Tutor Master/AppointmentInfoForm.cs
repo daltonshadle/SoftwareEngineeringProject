@@ -226,6 +226,7 @@ namespace Tutor_Master
         {
             Database db = new Database();
             db.deleteAppointment(apptId);
+            db.sendMessage(user, otherUser, "Appointment deleted", user + " has deleted your appointment for " + apptCourse, true, DateTime.Now, apptCourse, apptId);
             this.Hide();
         }
 
