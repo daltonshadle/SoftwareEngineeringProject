@@ -315,6 +315,7 @@ namespace Tutor_Master
             ToolTip1.SetToolTip(this.btnViewMessages, "View Messages");
             ToolTip1.SetToolTip(this.btnMatchingAppoint, "Make Appointment");
             ToolTip1.SetToolTip(this.btnRefinedSearch, "Refined Search");
+            ToolTip1.SetToolTip(this.button1, "Order Pizza");
         }
 
         private void lvMessages_SelectedIndexChanged_1(object sender, EventArgs e)
