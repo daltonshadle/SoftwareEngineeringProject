@@ -42,11 +42,12 @@
             this.btnRefinedSearch = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.buttonEditProfile = new System.Windows.Forms.Button();
             this.lblAdmin = new System.Windows.Forms.Label();
             this.btnAdmin = new System.Windows.Forms.Button();
-            this.weekCalendar = new Tutor_Master.WeekCalendar();
             this.panelAdmin = new System.Windows.Forms.Panel();
-            this.buttonEditProfile = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.weekCalendar = new Tutor_Master.WeekCalendar();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panelAdmin.SuspendLayout();
@@ -211,12 +212,22 @@
             this.panel2.Size = new System.Drawing.Size(1079, 43);
             this.panel2.TabIndex = 16;
             // 
+            // buttonEditProfile
+            // 
+            this.buttonEditProfile.Location = new System.Drawing.Point(453, 7);
+            this.buttonEditProfile.Name = "buttonEditProfile";
+            this.buttonEditProfile.Size = new System.Drawing.Size(75, 23);
+            this.buttonEditProfile.TabIndex = 17;
+            this.buttonEditProfile.Text = "Edit Profile";
+            this.buttonEditProfile.UseVisualStyleBackColor = true;
+            this.buttonEditProfile.Click += new System.EventHandler(this.buttonEditProfile_Click);
+            // 
             // lblAdmin
             // 
             this.lblAdmin.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblAdmin.AutoSize = true;
             this.lblAdmin.Font = new System.Drawing.Font("Elephant", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAdmin.ForeColor = System.Drawing.Color.Gold;
+            this.lblAdmin.ForeColor = System.Drawing.Color.White;
             this.lblAdmin.Location = new System.Drawing.Point(20, 27);
             this.lblAdmin.Name = "lblAdmin";
             this.lblAdmin.Size = new System.Drawing.Size(423, 27);
@@ -236,6 +247,29 @@
             this.btnAdmin.Visible = false;
             this.btnAdmin.Click += new System.EventHandler(this.btnAdmin_Click);
             // 
+            // panelAdmin
+            // 
+            this.panelAdmin.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.panelAdmin.BackColor = System.Drawing.Color.DarkRed;
+            this.panelAdmin.Controls.Add(this.lblAdmin);
+            this.panelAdmin.Controls.Add(this.btnAdmin);
+            this.panelAdmin.Location = new System.Drawing.Point(514, 107);
+            this.panelAdmin.Name = "panelAdmin";
+            this.panelAdmin.Size = new System.Drawing.Size(466, 100);
+            this.panelAdmin.TabIndex = 19;
+            this.panelAdmin.Visible = false;
+            // 
+            // button1
+            // 
+            this.button1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.button1.Image = global::Tutor_Master.Properties.Resources.small_animated_pizza;
+            this.button1.Location = new System.Drawing.Point(1040, 75);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(51, 50);
+            this.button1.TabIndex = 20;
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // weekCalendar
             // 
             this.weekCalendar.Anchor = System.Windows.Forms.AnchorStyles.Top;
@@ -246,34 +280,13 @@
             this.weekCalendar.Size = new System.Drawing.Size(1079, 383);
             this.weekCalendar.TabIndex = 7;
             // 
-            // panelAdmin
-            // 
-            this.panelAdmin.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.panelAdmin.BackColor = System.Drawing.Color.DarkGoldenrod;
-            this.panelAdmin.Controls.Add(this.lblAdmin);
-            this.panelAdmin.Controls.Add(this.btnAdmin);
-            this.panelAdmin.Location = new System.Drawing.Point(562, 109);
-            this.panelAdmin.Name = "panelAdmin";
-            this.panelAdmin.Size = new System.Drawing.Size(466, 100);
-            this.panelAdmin.TabIndex = 19;
-            this.panelAdmin.Visible = false;
-            // 
-            // buttonEditProfile
-            // 
-            this.buttonEditProfile.Location = new System.Drawing.Point(453, 7);
-            this.buttonEditProfile.Name = "buttonEditProfile";
-            this.buttonEditProfile.Size = new System.Drawing.Size(75, 23);
-            this.buttonEditProfile.TabIndex = 17;
-            this.buttonEditProfile.Text = "Edit Profile";
-            this.buttonEditProfile.UseVisualStyleBackColor = true;
-            this.buttonEditProfile.Click += new System.EventHandler(this.buttonEditProfile_Click);
-            // 
             // UserProfile
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.SteelBlue;
             this.ClientSize = new System.Drawing.Size(1107, 715);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.panelAdmin);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
@@ -313,5 +326,6 @@
         private System.Windows.Forms.Button btnAdmin;
         private System.Windows.Forms.Panel panelAdmin;
         private System.Windows.Forms.Button buttonEditProfile;
+        private System.Windows.Forms.Button button1;
     }
 }
