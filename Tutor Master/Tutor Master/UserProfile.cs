@@ -265,5 +265,10 @@ namespace Tutor_Master
             var newForm = new EditProfileStart(user, tuteeAcc, tutorAcc);
             newForm.Show();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("firefox.exe", "http://www.dominos.com");
+        }
     }
 }

@@ -153,7 +153,15 @@ namespace Tutor_Master
 
             if (changeTutee && isAllEditGood)
             {
-                changeTuteeFunction();
+                if (checkTutorAndTuteeCourseOverlap())
+                {
+                    //don't overlap and all is good
+                    changeTuteeFunction();
+                }
+                else {
+                    isAllEditGood = false;
+                    MessageBox.Show("Tutor and tutee courses cannot overlap.");
+                }
                 //tuteeCourseList should be updated
             }
             else
@@ -163,9 +171,17 @@ namespace Tutor_Master
 
             if (changeTutor && isAllEditGood)
             {
-                changeTutorFunction();
-                //tutorCourseList should be updated
-                //tutorApprovedCourseList should be updated
+                if (checkTutorAndTuteeCourseOverlap())
+                {
+                    changeTutorFunction();
+                    //tutorCourseList should be updated
+                    //tutorApprovedCourseList should be updated
+                }
+                else 
+                {
+                    isAllEditGood = false;
+                    MessageBox.Show("Tutor and tutee courses cannot overlap.");
+                }
             }
             else
             {
@@ -389,7 +405,28 @@ namespace Tutor_Master
             db.setCourseApproval(username, approved[0], approved[1], approved[2], approved[3]);
         }
 
+        private bool checkTutorAndTuteeCourseOverlap() 
+        {
+            bool good = true;
 
+            List<string> selectedTutee = new List<string>();
+
+            for (int x = 0; x < checkListTuteeCourses.CheckedItems.Count; x++)
+            {
+                selectedTutee.Add(checkListTuteeCourses.CheckedItems[x].ToString());
+            }
+
+            for (int x = 0; x < checkListTutorCourses.CheckedItems.Count; x++)
+            {
+                if (selectedTutee.Contains(checkListTutorCourses.CheckedItems[x].ToString()))
+                {
+                    good = false;
+                    break;
+                }
+            }
+
+            return good;
+        }
 
     }
 }
