@@ -25,20 +25,24 @@ namespace Tutor_Master
         private string tutor;
         private List<string> tutorList;
         private List<string> placeList;
-        HashSet<Appointment> setToDisplay = new HashSet<Appointment>();
-        private Appointment[] arrayToDisplay;
+        HashSet<Appointment> setToDisplay;
+        List<Appointment> listToDisplay;
         private int currentIndex = -1;   //used for the selecting items in listview
 
         public SearchRefinementForm()
         {
             InitializeComponent();
             stateOfProgress = 0;
+            setToDisplay = new HashSet<Appointment>();
+            listToDisplay = new List<Appointment>();
         }
 
         public SearchRefinementForm(string username)
         {
             InitializeComponent();
             stateOfProgress = 0;
+            setToDisplay = new HashSet<Appointment>();
+            listToDisplay = new List<Appointment>();
             user = username;
 
             Database db = new Database();
@@ -53,7 +57,7 @@ namespace Tutor_Master
             course = allProfileInfo[4];
 
             this.Width = 290;
-            this.Height = 250;
+            this.Height = 270;
 
             startDate = DateTime.MinValue;
             endDate = DateTime.MinValue;
@@ -170,7 +174,7 @@ namespace Tutor_Master
                 case 0:
                     stateOfProgress = 1;
                     btnMoreFields.Text = "Show Less Criteria";
-                    this.Width = 550;
+                    this.Width = 570;
                     lblStartDate.Visible = true;
                     lblEndDate.Visible = true;
                     lblTutor.Visible = true;
@@ -240,11 +244,9 @@ namespace Tutor_Master
 
 
             }
-
+            
             setToDisplay = masterSearchSet;
-            arrayToDisplay = new Appointment[setToDisplay.Count];
-            setToDisplay.CopyTo(arrayToDisplay);
-            arrayToDisplay.OrderBy(o => o.getStartTime()).ToArray();
+            listToDisplay = masterSearchSet.OrderBy(o => o.getStartTime()).ToList<Appointment>();
 
             displayAppointments();
             
@@ -253,16 +255,16 @@ namespace Tutor_Master
         private void displayAppointments()
         {
             this.Height = 550;
-            this.Width = 550;
+            this.Width = 570;
 
             lvMatches.Clear();
 
-            for (int i = 0; i < arrayToDisplay.Length; i++)
+            for (int i = 0; i < listToDisplay.Count; i++)
             {
-                lvMatches.Items.Add("Appointment with " + arrayToDisplay[i].getFreeTimeProf());
+                lvMatches.Items.Add("Appointment with " + listToDisplay[i].getFreeTimeProf());
             }
 
-            if (arrayToDisplay.Length == 0)
+            if (listToDisplay.Count == 0)
             {
                 rtbInfo.Clear();
                 MessageBox.Show("No appointments match these criteria.");
@@ -284,11 +286,11 @@ namespace Tutor_Master
                     foreach (int index in indexes)
                     {
 
-                        rtbInfo.AppendText("Free time with " + arrayToDisplay[index].getFreeTimeProf()
-                            + "\nFrom: " + arrayToDisplay[index].getStartTime().ToShortTimeString()
-                            + "\n    On: " + arrayToDisplay[index].getStartTime().ToShortDateString()
-                            + "\nTo: " + arrayToDisplay[index].getEndTime().ToShortTimeString()
-                            + "\n    On: " + arrayToDisplay[index].getEndTime().ToShortDateString());
+                        rtbInfo.AppendText("Free time with " + listToDisplay[index].getFreeTimeProf()
+                            + "\nFrom: " + listToDisplay[index].getStartTime().ToShortTimeString()
+                            + "\n    On: " + listToDisplay[index].getStartTime().ToShortDateString()
+                            + "\nTo: " + listToDisplay[index].getEndTime().ToShortTimeString()
+                            + "\n    On: " + listToDisplay[index].getEndTime().ToShortDateString());
                         currentIndex = index;
 
 
@@ -330,8 +332,8 @@ namespace Tutor_Master
             if (lvMatches.SelectedItems.Count == 1) 
             {
 
-                string tutor = arrayToDisplay[currentIndex].getFreeTimeProf();
-                Appointment a = arrayToDisplay[currentIndex];
+                string tutor = listToDisplay[currentIndex].getFreeTimeProf();
+                Appointment a = listToDisplay[currentIndex];
 
                 Database db = new Database();
                 db.editAppointment(a.getID(), null, null, course, a.getStartTime(), a.getEndTime(), a.getFreeTimeProf(), user, false, false, "MatchWithExistingAppointment");

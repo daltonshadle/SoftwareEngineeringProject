@@ -28,10 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UserProfile));
             this.btnLogout = new System.Windows.Forms.Button();
             this.lbTutor = new System.Windows.Forms.Label();
-            this.listView1 = new System.Windows.Forms.ListView();
-            this.listView2 = new System.Windows.Forms.ListView();
+            this.tutorListView = new System.Windows.Forms.ListView();
+            this.tuteeListView = new System.Windows.Forms.ListView();
             this.label1 = new System.Windows.Forms.Label();
             this.btnViewCal = new System.Windows.Forms.Button();
             this.btnMatchingAppoint = new System.Windows.Forms.Button();
@@ -67,37 +68,37 @@
             // lbTutor
             // 
             this.lbTutor.AutoSize = true;
-            this.lbTutor.Location = new System.Drawing.Point(23, 18);
+            this.lbTutor.Location = new System.Drawing.Point(45, 18);
             this.lbTutor.Name = "lbTutor";
             this.lbTutor.Size = new System.Drawing.Size(101, 13);
             this.lbTutor.TabIndex = 3;
             this.lbTutor.Text = "Courses for tutoring:";
             // 
-            // listView1
+            // tutorListView
             // 
-            this.listView1.Location = new System.Drawing.Point(14, 43);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(119, 101);
-            this.listView1.TabIndex = 4;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.SmallIcon;
-            this.listView1.Visible = false;
+            this.tutorListView.Location = new System.Drawing.Point(24, 43);
+            this.tutorListView.Name = "tutorListView";
+            this.tutorListView.Size = new System.Drawing.Size(150, 101);
+            this.tutorListView.TabIndex = 4;
+            this.tutorListView.UseCompatibleStateImageBehavior = false;
+            this.tutorListView.View = System.Windows.Forms.View.SmallIcon;
+            this.tutorListView.Visible = false;
             // 
-            // listView2
+            // tuteeListView
             // 
-            this.listView2.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-            this.listView2.Location = new System.Drawing.Point(178, 43);
-            this.listView2.Name = "listView2";
-            this.listView2.Size = new System.Drawing.Size(119, 101);
-            this.listView2.TabIndex = 6;
-            this.listView2.UseCompatibleStateImageBehavior = false;
-            this.listView2.View = System.Windows.Forms.View.SmallIcon;
-            this.listView2.Visible = false;
+            this.tuteeListView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.tuteeListView.Location = new System.Drawing.Point(199, 43);
+            this.tuteeListView.Name = "tuteeListView";
+            this.tuteeListView.Size = new System.Drawing.Size(150, 101);
+            this.tuteeListView.TabIndex = 6;
+            this.tuteeListView.UseCompatibleStateImageBehavior = false;
+            this.tuteeListView.View = System.Windows.Forms.View.SmallIcon;
+            this.tuteeListView.Visible = false;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(175, 18);
+            this.label1.Location = new System.Drawing.Point(214, 18);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(122, 13);
             this.label1.TabIndex = 5;
@@ -148,7 +149,7 @@
             // 
             // btnAddTutorCourses
             // 
-            this.btnAddTutorCourses.Location = new System.Drawing.Point(35, 72);
+            this.btnAddTutorCourses.Location = new System.Drawing.Point(59, 72);
             this.btnAddTutorCourses.Name = "btnAddTutorCourses";
             this.btnAddTutorCourses.Size = new System.Drawing.Size(75, 23);
             this.btnAddTutorCourses.TabIndex = 12;
@@ -159,7 +160,7 @@
             // 
             // btnAddTuteeCourses
             // 
-            this.btnAddTuteeCourses.Location = new System.Drawing.Point(201, 72);
+            this.btnAddTuteeCourses.Location = new System.Drawing.Point(238, 72);
             this.btnAddTuteeCourses.Name = "btnAddTuteeCourses";
             this.btnAddTuteeCourses.Size = new System.Drawing.Size(75, 23);
             this.btnAddTuteeCourses.TabIndex = 13;
@@ -186,13 +187,13 @@
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel1.Controls.Add(this.btnAddTuteeCourses);
             this.panel1.Controls.Add(this.btnAddTutorCourses);
-            this.panel1.Controls.Add(this.listView2);
+            this.panel1.Controls.Add(this.tuteeListView);
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.listView1);
+            this.panel1.Controls.Add(this.tutorListView);
             this.panel1.Controls.Add(this.lbTutor);
             this.panel1.Location = new System.Drawing.Point(12, 75);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(315, 157);
+            this.panel1.Size = new System.Drawing.Size(375, 157);
             this.panel1.TabIndex = 15;
             // 
             // panel2
@@ -291,6 +292,7 @@
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.weekCalendar);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "UserProfile";
             this.Text = "User Profile";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
@@ -309,8 +311,8 @@
 
         private System.Windows.Forms.Button btnLogout;
         private System.Windows.Forms.Label lbTutor;
-        private System.Windows.Forms.ListView listView1;
-        private System.Windows.Forms.ListView listView2;
+        private System.Windows.Forms.ListView tutorListView;
+        private System.Windows.Forms.ListView tuteeListView;
         private System.Windows.Forms.Label label1;
         private WeekCalendar weekCalendar;
         private System.Windows.Forms.Button btnViewCal;

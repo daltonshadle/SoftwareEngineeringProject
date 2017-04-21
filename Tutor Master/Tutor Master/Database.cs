@@ -636,7 +636,6 @@ namespace Tutor_Master
             return appointmentList;
         }
 
-        //Scott: Look on the Program.cs ... I use the below functions and a homemade intersect 
         //function cause I wasn't having luck with the built in ones.
         public HashSet<Appointment> getAppointmentCourseSet(string course)
         {

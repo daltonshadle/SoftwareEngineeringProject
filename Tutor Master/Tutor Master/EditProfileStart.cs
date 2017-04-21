@@ -30,12 +30,14 @@ namespace Tutor_Master
             {
                 var newEditForm = new EditProfileInfo(username, checkBoxPassword.Checked, checkBoxName.Checked, checkBoxTutor.Checked, checkBoxTutee.Checked);
                 newEditForm.Show();
+                this.Close();
                 this.Hide();
             }
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
+            this.Close();
             this.Hide();
         }
 

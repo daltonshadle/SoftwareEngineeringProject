@@ -87,7 +87,8 @@ namespace Tutor_Master
                     cbxCourseList.Text = "";
 
                     for (int x = 0; x < builderTuteeCourses.Count; x++) { 
-                        cbxCourseList.Items.Add(builderTuteeCourses[x]);
+                        if (builderTuteeCourses[x] != "")
+                            cbxCourseList.Items.Add(builderTuteeCourses[x]);
                     }
 
                     panelCourse.Visible = true;
@@ -306,6 +307,7 @@ namespace Tutor_Master
 
         private bool isTimeInBetween(DateTime startTime, DateTime endTime, DateTime startTimeInQuestion, DateTime endTimeInQuestion)
         {
+            //Dalton: problem occured here where starttimeinquestion = 4:15:45 and endtime = 4:15:45
             return (startTime <= endTimeInQuestion && startTimeInQuestion <= endTime);
         }
 
