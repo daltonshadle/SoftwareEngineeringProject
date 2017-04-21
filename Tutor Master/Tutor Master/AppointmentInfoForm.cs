@@ -39,7 +39,7 @@ namespace Tutor_Master
         public AppointmentInfoForm()
         {
             InitializeComponent();
-            this.Width = 280;
+            this.Width = 285;
             displayApproveButton();
         }
 
@@ -190,7 +190,7 @@ namespace Tutor_Master
         {
             if ((user == firstName) && (apptType == "Learning") && (isApproved == false))
             {
-                this.Height = 390;
+                this.Height = 420;
                 btnApprove.Visible = true;
                 btnReject.Visible = true;
             }
@@ -216,7 +216,7 @@ namespace Tutor_Master
          */
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            this.Width = 680;
+            this.Width = 645;
             panelEdit.Visible = true;
             initializePanel();
             btnConfirmEdit.Visible = true;
@@ -232,7 +232,7 @@ namespace Tutor_Master
         private void btnApprove_Click(object sender, EventArgs e)
         {
             //Check to see if all of the fields are filled in. Specifically, Place must be checked
-            if (apptPlace != null)
+            if (apptPlace != null || (txtMeetingPlace.Text != "" && txtMeetingPlace != null))
             {
                 //Database db = new Database();
 
@@ -249,11 +249,11 @@ namespace Tutor_Master
             else
             {
                 MessageBox.Show("Appointment needs a place. Add place and click \"Approve\" again.");
-                this.Width = 680;
+                this.Width = 645;
                 panelEdit.Visible = true;
                 lblPlacePanel.Visible = true;
                 txtMeetingPlace.Visible = true;
-                btnConfirmEdit.Visible = true;
+                btnConfirmEdit.Visible = false;
             }
 
         }
