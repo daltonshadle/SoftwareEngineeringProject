@@ -13,6 +13,7 @@ namespace Tutor_Master
     {
         private string first, last, user, adminName;
         private bool tutorAcc, tuteeAcc, adminAcc;
+        private DateTime currentDate;
 
         List<string> tuteeCoursesList = new List<string>();
         List<string> tutorCoursesList = new List<string>();
@@ -26,6 +27,7 @@ namespace Tutor_Master
         public UserProfile(string username)
         {
             InitializeComponent();
+            currentDate = DateTime.Now;
 
             user = username;
 
@@ -329,8 +331,6 @@ namespace Tutor_Master
                 newMessageForm.ShowDialog();
             }
         }
-
-
 
 
     }

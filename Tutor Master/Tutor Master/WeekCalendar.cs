@@ -15,7 +15,7 @@ namespace Tutor_Master
 
         List<Appointment> appointmentList;
         string username;
-        DateTime currentDate;
+        DateTime currentDate = DateTime.MinValue;
 
         public WeekCalendar()
         {
@@ -75,7 +75,8 @@ namespace Tutor_Master
         public void assignWeeklyAppointments(string user)
         {
             username = user;
-            currentDate = DateTime.Now;
+            if(currentDate == DateTime.MinValue)
+                currentDate = DateTime.Now;
             //fetch the appointments
             assignWeeklyAppointmentsHelper(currentDate);
         }
@@ -189,13 +190,13 @@ namespace Tutor_Master
 
         public void updateWeekLabel(DateTime date) {
 
-            while (date.DayOfWeek != DayOfWeek.Saturday)
+            while (date.DayOfWeek != DayOfWeek.Sunday)
             {
                 date = date.AddDays(-1);
             }
 
             DateTime startDate = date;
-            DateTime endDate = date.AddDays(7);
+            DateTime endDate = date.AddDays(6);
 
             lblWeek.Text = startDate.ToShortDateString() + " - " + endDate.ToShortDateString();
         }
@@ -235,5 +236,9 @@ namespace Tutor_Master
             assignWeeklyAppointmentsHelper(currentDate);
         }
 
+        public DateTime getCurrentDate()
+        {
+            return currentDate;
+        }
     }
 }

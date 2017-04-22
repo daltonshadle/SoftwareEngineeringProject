@@ -267,13 +267,13 @@ namespace Tutor_Master
                                 tempEnd = tempEnd = tempEnd.AddDays(7 * i);
 
                                 Appointment a = new Appointment(type, place, course, tempStart, tempEnd, tutorProf, tuteeProf, false, "TuteeMatch");
-                                a.addAppointmentToDatabase();
+                                int lastId = a.addAppointmentToDatabase();
                                 
 
                                 string msg = builderProf + " has requested to make a weekly tutoring appointment for course: " + course + " at " + startTime.ToShortTimeString() + " on " + startTime.DayOfWeek.ToString() + "s";
                                 Database db = new Database();
                               
-                                db.sendMessage(builderProf, otherProfName, "Request for appointment", msg, false, DateTime.Now, course, a.getID());
+                                db.sendMessage(builderProf, otherProfName, "Request for appointment", msg, false, DateTime.Now, course, lastId);
                             }
                         }
                     }
@@ -281,14 +281,14 @@ namespace Tutor_Master
                     {
                         offsetStartAndEndTimes();
                         Appointment a = new Appointment(type, place, course, startTime, endTime, tutorProf, tuteeProf, false, "TuteeMatch");
-                        a.addAppointmentToDatabase();
+                        int lastId = a.addAppointmentToDatabase();
 
                         //This is where we will send a message if a person is doing a learning appointment
                         //send message to other person.
 
                         string msg = builderProf + " has requested to make a tutoring appointment for course: " + course + " at " + startTime.ToShortTimeString() + " on " + startTime.ToShortDateString();
                         Database db = new Database();
-                        db.sendMessage(builderProf, otherProfName, "Request for appointment", msg, false, DateTime.Now, course, a.getID());
+                        db.sendMessage(builderProf, otherProfName, "Request for appointment", msg, false, DateTime.Now, course, lastId);
                     }
                 }
                 this.Hide();

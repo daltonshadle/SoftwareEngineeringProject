@@ -164,10 +164,13 @@ namespace Tutor_Master
         }
 
         //adds an appointment to the appointments table
-        public void addAppointment(string free, string meetingPlace, string course, DateTime startTime, DateTime endTime, string tutor, string tutee, bool isFreeTime, bool isApproved, string source)
+        public int addAppointment(string free, string meetingPlace, string course, DateTime startTime, DateTime endTime, string tutor, string tutee, bool isFreeTime, bool isApproved, string source)
         {
             {
-                string query = "INSERT INTO appointment ([free time], tutor, tutee, courseName, meetingPlace, startTime, endTime, isFreeTimeSession, isApproved, source) VALUES (@freeTime, @tutor, @tutee, @courseName, @meetingPlace, @startTime, @endTime, @isFreeTime, @isApproved, @source)";
+                string query = "INSERT INTO appointment([free time], tutor, tutee, courseName, meetingPlace, startTime, endTime, isFreeTimeSession, isApproved, source) VALUES(@freeTime, @tutor, @tutee, @courseName, @meetingPlace, @startTime, @endTime, @isFreeTime, @isApproved, @source)";
+                string idQuery = "SELECT @@IDENTITY";
+
+                int lastId = -1;
 
                 if (this.OpenConnection())
                 {
@@ -221,14 +224,24 @@ namespace Tutor_Master
                     try
                     {
                         cmd.ExecuteNonQuery();
+                        cmd.CommandText = idQuery;
+                        //cmd.ExecuteNonQuery();
+                        string tempStr = Convert.ToString(cmd.ExecuteScalar());
+
+                        Int32.TryParse(tempStr, out lastId);
+
                     }
                     catch (Exception ex)
                     {
                         MessageBox.Show(ex.Message);
+                        return lastId;
                     }
 
                     this.CloseConnection();
+                    return lastId;
                 }
+                else
+                    return lastId;
             }
         }
 

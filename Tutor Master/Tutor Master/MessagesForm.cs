@@ -11,8 +11,7 @@ namespace Tutor_Master
 {
     public partial class MessagesForm : Form
     {
-        private static bool INBOX = true;
-
+        private bool INBOX = true;
         private List<Messages> sentMessageList;
         private List<Messages> inboxMessageList;
         Database db = new Database();

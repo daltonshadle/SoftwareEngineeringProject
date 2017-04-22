@@ -224,22 +224,24 @@ namespace Tutor_Master
             }
         }
 
-        public void addAppointmentToDatabase()
+        public int addAppointmentToDatabase()
         {
             //db.addAppointment(null, getMeetingPlace(), getCourse(), getStartTime(), getEndTime(), getTutor(), getTutee());
             Database db = new Database();
-
+            int lastId = -1;
 
             if (isFreeTimeSession)
             {
                 //add freetime appt
-                db.addAppointment(freeTimeProf, null, null, startTime, endTime, null, null, isFreeTimeSession, isApproved, source); 
+                lastId = db.addAppointment(freeTimeProf, null, null, startTime, endTime, null, null, isFreeTimeSession, isApproved, source); 
             }
             else
             { 
                 //add tutor/tutee appt
-                db.addAppointment(null, meetingPlace, course, startTime, endTime, tutorProf, tuteeProf, isFreeTimeSession, isApproved, source);
+                lastId = db.addAppointment(null, meetingPlace, course, startTime, endTime, tutorProf, tuteeProf, isFreeTimeSession, isApproved, source);
             }
+
+            return lastId;
         }
 
         public string getMeetingType()
