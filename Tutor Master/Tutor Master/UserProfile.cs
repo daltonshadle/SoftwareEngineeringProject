@@ -209,19 +209,30 @@ namespace Tutor_Master
             button1.Image = Properties.Resources.small_pizza_still;
         }
 
+        //Sets information to be displayed when you hover over the functions bar
+        private void initButtonHovers()
+        {
+            System.Windows.Forms.ToolTip ToolTip1 = new System.Windows.Forms.ToolTip();
+            ToolTip1.SetToolTip(this.btnLogout, "Logout");
+            ToolTip1.SetToolTip(this.buttonEditProfile, "Edit Profile");
+            ToolTip1.SetToolTip(this.btnViewCal, "View Calendar");
+            ToolTip1.SetToolTip(this.btnViewMessages, "View Messages");
+            ToolTip1.SetToolTip(this.btnMatchingAppoint, "Make Appointment");
+            ToolTip1.SetToolTip(this.btnRefinedSearch, "Refined Search");
+            ToolTip1.SetToolTip(this.button1, "Order Pizza");
+        }
 
-        //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Registering button clicks~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+        //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Registering event listeners~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         private void btnAddTutorCourses_Click(object sender, EventArgs e)
         {
-            var next = new Registration2(user, tutorAcc, tuteeAcc, tuteeCoursesList, 2000);   //2000 is the id for coming from userprofile
-            this.Hide();
+            var next = new EditProfileInfo(user, false, false, true, false);
             next.Show();
         }
 
         private void buttAddTuteeCourses_Click(object sender, EventArgs e)
         {
-            var next = new Registration3(user, tutorCoursesList);
-            this.Hide();
+            var next = new EditProfileInfo(user, false, false, false, true);
             next.Show();
         }
 
@@ -308,18 +319,6 @@ namespace Tutor_Master
         private void btnLogout_MouseHover(object sender, EventArgs e)
         {
             
-        }
-
-        private void initButtonHovers()
-        {
-            System.Windows.Forms.ToolTip ToolTip1 = new System.Windows.Forms.ToolTip();
-            ToolTip1.SetToolTip(this.btnLogout, "Logout");
-            ToolTip1.SetToolTip(this.buttonEditProfile, "Edit Profile");
-            ToolTip1.SetToolTip(this.btnViewCal, "View Calendar");
-            ToolTip1.SetToolTip(this.btnViewMessages, "View Messages");
-            ToolTip1.SetToolTip(this.btnMatchingAppoint, "Make Appointment");
-            ToolTip1.SetToolTip(this.btnRefinedSearch, "Refined Search");
-            ToolTip1.SetToolTip(this.button1, "Order Pizza");
         }
 
         private void lvMessages_SelectedIndexChanged_1(object sender, EventArgs e)
