@@ -16,9 +16,12 @@ namespace Tutor_Master
         List<string> listOfAllProfiles;
         List<string> activeList;
 
+        //constructor
         public AdminForm(string username)
         {
             InitializeComponent();
+
+            //initializing components
             admin = username;
             listOfAllProfiles = new List<string>();
             activeList = new List<string>();
@@ -57,12 +60,10 @@ namespace Tutor_Master
             return input.First().ToString().ToUpper() + input.Substring(1);
         }
 
-        //Works to fill the list view. The string parameter is included so that it could be updated with a partial 
-        //string to be used while searching by username
+        //Function to display all profiles from the database in listview
         public void initListView(string searchBy)
         {
             Database db = new Database();
-
             
             listOfAllProfiles = db.getAllProfiles();
 
@@ -80,49 +81,6 @@ namespace Tutor_Master
             }
             updatelvAllProfiles();
 
-        }
-
-        private void btnLogout_Click(object sender, EventArgs e)
-        {
-            var form = new StartForm();
-            form.Show();
-            this.Hide();
-        }
-
-        private void btnSignIn_Click(object sender, EventArgs e)
-        {
-            //Sign in as ordinary user
-            var profile = new UserProfile(user, true, admin);
-            profile.Show();
-            this.Hide();
-        }
-
-        private void btnPassword_Click(object sender, EventArgs e)
-        {
-            //Function: Assigns a default password to a user, sends message to user to remind them to change it afterward.
-            MessageBox.Show(user + "'s password has been changed to \"tempPass\"");
-
-            Database db = new Database();
-            db.editPassword(user, "tempPass");
-            db.sendMessage(admin, user, "Password changed", "Your password has been changed to a temporary password by an administrator. Remember to change it to something unique!", true, DateTime.Now, "", -1);
-        }
-
-        //Allows the administrator to delete profiles
-        private void btnDelete_Click(object sender, EventArgs e)
-        {
-            if (MessageBox.Show("Delete " + user + " completely?", "My application", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-            {
-                Database db = new Database();
-
-                //deleteAccount will remove the profile from the database in all forms except that users who received messages from the profile will still have those messages.
-                db.deleteAccount(user);
-                initListView("");
-            }
-        }
-
-        private void lvAllProfiles_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            updatelvAllProfiles();
         }
 
         //Changes what is displayed on the screen and in the list view
@@ -151,6 +109,52 @@ namespace Tutor_Master
             }
         }
 
+        //*************************All listener functions***************************//
+
+        private void btnLogout_Click(object sender, EventArgs e)
+        {
+            //takes user back to home page
+            var form = new StartForm();
+            form.Show();
+            this.Hide();
+        }
+
+        private void btnSignIn_Click(object sender, EventArgs e)
+        {
+            //Sign in as ordinary user with admin priviledges
+            var profile = new UserProfile(user, true, admin);
+            profile.Show();
+            this.Hide();
+        }
+
+        private void btnPassword_Click(object sender, EventArgs e)
+        {
+            //Assigns a default password to a user, sends message to user to remind them to change it afterward.
+            MessageBox.Show(user + "'s password has been changed to \"tempPass\"");
+
+            Database db = new Database();
+            db.editPassword(user, "tempPass");
+            db.sendMessage(admin, user, "Password changed", "Your password has been changed to a temporary password by an administrator. Remember to change it to something unique!", true, DateTime.Now, "", -1);
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            //Allows the administrator to delete profiles
+            if (MessageBox.Show("Delete " + user + " completely?", "My application", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                Database db = new Database();
+
+                //deleteAccount will remove the profile from the database in all forms except that users who received messages from the profile will still have those messages.
+                db.deleteAccount(user);
+                initListView("");
+            }
+        }
+
+        private void lvAllProfiles_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            updatelvAllProfiles();
+        }
+
         private void AdminForm_Activated(object sender, System.EventArgs e)
         {
             initListView("");        
@@ -158,6 +162,7 @@ namespace Tutor_Master
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
+            //updates listview with profile names as text is changed
             string searchBy = txtSearch.Text;
             initListView(searchBy);
         }

@@ -23,3 +23,29 @@ F:\Software Engineering\Tutor Master\Tutor Master\Tutor Master\obj\x86\Debug\Tut
 F:\Software Engineering\Tutor Master\Tutor Master\Tutor Master\obj\x86\Debug\Tutor Master.csproj.GenerateResource.Cache
 F:\Software Engineering\Tutor Master\Tutor Master\Tutor Master\obj\x86\Debug\Tutor Master.exe
 F:\Software Engineering\Tutor Master\Tutor Master\Tutor Master\obj\x86\Debug\Tutor Master.pdb
+F:\Soft\Tutor Master\Tutor Master\obj\x86\Debug\Tutor Master.exe
+F:\Soft\Tutor Master\Tutor Master\obj\x86\Debug\Tutor Master.pdb
+F:\Soft\Tutor Master\Tutor Master\bin\Debug\Tutor Master.exe
+F:\Soft\Tutor Master\Tutor Master\bin\Debug\Tutor Master.pdb
+F:\Soft\Tutor Master\Tutor Master\obj\x86\Debug\Tutor Master.csprojResolveAssemblyReference.cache
+F:\Soft\Tutor Master\Tutor Master\obj\x86\Debug\Tutor_Master.AdminForm.resources
+F:\Soft\Tutor Master\Tutor Master\obj\x86\Debug\Tutor_Master.AppointmentBlock.resources
+F:\Soft\Tutor Master\Tutor Master\obj\x86\Debug\Tutor_Master.AppointmentInfoForm.resources
+F:\Soft\Tutor Master\Tutor Master\obj\x86\Debug\Tutor_Master.EditProfileInfo.resources
+F:\Soft\Tutor Master\Tutor Master\obj\x86\Debug\Tutor_Master.EditProfileStart.resources
+F:\Soft\Tutor Master\Tutor Master\obj\x86\Debug\Tutor_Master.FacultyForm.resources
+F:\Soft\Tutor Master\Tutor Master\obj\x86\Debug\Tutor_Master.StartForm.resources
+F:\Soft\Tutor Master\Tutor Master\obj\x86\Debug\Tutor_Master.MatchingAppointmentForm.resources
+F:\Soft\Tutor Master\Tutor Master\obj\x86\Debug\Tutor_Master.MessagesForm.resources
+F:\Soft\Tutor Master\Tutor Master\obj\x86\Debug\Tutor_Master.MonthCalendar.resources
+F:\Soft\Tutor Master\Tutor Master\obj\x86\Debug\Tutor_Master.MonthCalendarForm.resources
+F:\Soft\Tutor Master\Tutor Master\obj\x86\Debug\Tutor_Master.Properties.Resources.resources
+F:\Soft\Tutor Master\Tutor Master\obj\x86\Debug\Tutor_Master.RegisterForm.resources
+F:\Soft\Tutor Master\Tutor Master\obj\x86\Debug\Tutor_Master.Registration.resources
+F:\Soft\Tutor Master\Tutor Master\obj\x86\Debug\Tutor_Master.Registration2.resources
+F:\Soft\Tutor Master\Tutor Master\obj\x86\Debug\Tutor_Master.Registration3.resources
+F:\Soft\Tutor Master\Tutor Master\obj\x86\Debug\Tutor_Master.SearchRefinementForm.resources
+F:\Soft\Tutor Master\Tutor Master\obj\x86\Debug\Tutor_Master.SignIn.resources
+F:\Soft\Tutor Master\Tutor Master\obj\x86\Debug\Tutor_Master.UserProfile.resources
+F:\Soft\Tutor Master\Tutor Master\obj\x86\Debug\Tutor_Master.WeekCalendar.resources
+F:\Soft\Tutor Master\Tutor Master\obj\x86\Debug\Tutor Master.csproj.GenerateResource.Cache

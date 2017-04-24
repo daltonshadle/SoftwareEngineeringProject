@@ -9,6 +9,8 @@ namespace Tutor_Master
     {
        
         //NEW APPOINTMENT CLASS
+
+        //constants
         private const string FREETYPE = "Free Time Session", TUTORTYPE = "Tutoring Session";
 
         //all the private data
@@ -41,6 +43,8 @@ namespace Tutor_Master
             isApproved = false;
             apptID = -1;
         }
+
+        //tutor appointment constuctor
         public Appointment(string tempMeetingType, string tempPlace, string tempCourse, DateTime tempStartTime, DateTime tempEndTime, string tempTutor,  string tempTutee, bool isAppointApproved, string src)
         {
             meetingPlace = tempPlace;
@@ -57,28 +61,9 @@ namespace Tutor_Master
             
         }
 
-        //Will work on getting rid of this function
-        public Appointment(string tempMeetingType, string tempPlace, string tempCourse, DateTime tempStartTime, DateTime tempEndTime, Profile tempTutor, Profile tempTutee, bool isAppointApproved, string src)
-
-        {
-            //validation of these parameters can be done before the creation of the appointment object
-            //appointment constructor for tutoring or tuteeing sessions
-            meetingPlace = tempPlace;
-            course = tempCourse;
-            startTime = tempStartTime;
-            endTime = tempEndTime;
-            tutorProf = tempTutor.getUsername();
-            tuteeProf = tempTutee.getUsername();
-            isFreeTimeSession = meetingTypeStringToBool(tempMeetingType);
-            isApproved = isAppointApproved;
-            apptID = -1; 
-            meetingType = tempMeetingType;
-            source = src;
-        }
-
+        //Freetime appointment constructor
         public Appointment(DateTime tempStartTime, DateTime tempEndTime, string owner)
         {
-            //Freetime appointment constructor
             startTime = tempStartTime;
             endTime = tempEndTime;
             isFreeTimeSession = true;
@@ -88,6 +73,7 @@ namespace Tutor_Master
             meetingType = "Freetime";
         }
 
+        //returns bool true is freetime and false if not
         private bool meetingTypeStringToBool(string type) {
             return (type.Equals(FREETYPE));
         }
@@ -113,7 +99,6 @@ namespace Tutor_Master
         {
             return source;
         }
-
         public void setSource(string src)
         {
             source = src;
@@ -198,7 +183,10 @@ namespace Tutor_Master
             return isFreeTimeSession;
         }
 
-
+        public string getMeetingType()
+        {
+            return meetingType;
+        }
         public void setMeetingType(int type)
         {
             switch (type)
@@ -219,14 +207,14 @@ namespace Tutor_Master
                     isFreeTimeSession = false;
                     break;
                 default:
-                    //shit didn't work
+                    //something didn't work
                     break;
             }
         }
 
+        //adds appointment to database by freetime or tutor appointment
         public int addAppointmentToDatabase()
         {
-            //db.addAppointment(null, getMeetingPlace(), getCourse(), getStartTime(), getEndTime(), getTutor(), getTutee());
             Database db = new Database();
             int lastId = -1;
 
@@ -242,11 +230,6 @@ namespace Tutor_Master
             }
 
             return lastId;
-        }
-
-        public string getMeetingType()
-        {
-            return meetingType;
         }
     }
 }

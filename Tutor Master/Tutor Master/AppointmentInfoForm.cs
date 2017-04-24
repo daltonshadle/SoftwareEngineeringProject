@@ -11,6 +11,7 @@ namespace Tutor_Master
 {
     public partial class AppointmentInfoForm : Form
     {
+        //all private data
         private string apptType;
         private string apptPlace;
         private string apptCourse;
@@ -25,7 +26,9 @@ namespace Tutor_Master
         private bool initialValue1, initialValue2;
         private string source;
 
-        //Constructor
+        //all functions
+
+        //Constructor by type and id
         public AppointmentInfoForm(string type, int id)
         {
             InitializeComponent();
@@ -38,7 +41,7 @@ namespace Tutor_Master
 
         }
 
-        //Constructor
+        //Constructor all info from database
         public AppointmentInfoForm(string type, string place, string course, string datetime, string endDateDateTime, string fname, string sname, int id, string username, bool approved, string src)
         {
             InitializeComponent();

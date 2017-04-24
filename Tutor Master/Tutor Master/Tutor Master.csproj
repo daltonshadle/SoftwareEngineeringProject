@@ -75,7 +75,6 @@
     <Compile Include="AdminForm.Designer.cs">
       <DependentUpon>AdminForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Administrator.cs" />
     <Compile Include="AppointmentBlock.cs">
       <SubType>UserControl</SubType>
     </Compile>

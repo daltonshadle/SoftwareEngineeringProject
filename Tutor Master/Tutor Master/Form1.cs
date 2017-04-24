@@ -11,6 +11,7 @@ namespace Tutor_Master
 {
     public partial class StartForm : Form
     {
+        //contructor
         public StartForm()
         {
             InitializeComponent();
@@ -18,6 +19,7 @@ namespace Tutor_Master
             
         }
 
+        //*********************************All listener functions*********************************//
         private void btnSignIn_Click(object sender, EventArgs e)
         {
             var signin = new SignIn();
