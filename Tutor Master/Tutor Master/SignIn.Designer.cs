@@ -36,7 +36,7 @@
             this.btnRegister = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.lblFreatures = new System.Windows.Forms.Label();
+            this.lblFeatures = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
@@ -120,7 +120,7 @@
             this.panel2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.panel2.BackColor = System.Drawing.Color.LightSteelBlue;
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel2.Controls.Add(this.lblFreatures);
+            this.panel2.Controls.Add(this.lblFeatures);
             this.panel2.Controls.Add(this.label1);
             this.panel2.Controls.Add(this.label2);
             this.panel2.Controls.Add(this.btnRegister);
@@ -129,16 +129,16 @@
             this.panel2.Size = new System.Drawing.Size(260, 299);
             this.panel2.TabIndex = 1;
             // 
-            // lblFreatures
+            // lblFeatures
             // 
-            this.lblFreatures.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.lblFreatures.AutoSize = true;
-            this.lblFreatures.Location = new System.Drawing.Point(30, 76);
-            this.lblFreatures.MaximumSize = new System.Drawing.Size(200, 0);
-            this.lblFreatures.Name = "lblFreatures";
-            this.lblFreatures.Size = new System.Drawing.Size(48, 13);
-            this.lblFreatures.TabIndex = 26;
-            this.lblFreatures.Text = "Features";
+            this.lblFeatures.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lblFeatures.AutoSize = true;
+            this.lblFeatures.Location = new System.Drawing.Point(30, 76);
+            this.lblFeatures.MaximumSize = new System.Drawing.Size(200, 0);
+            this.lblFeatures.Name = "lblFeatures";
+            this.lblFeatures.Size = new System.Drawing.Size(48, 13);
+            this.lblFeatures.TabIndex = 26;
+            this.lblFeatures.Text = "Features";
             // 
             // label2
             // 
@@ -151,7 +151,6 @@
             this.label2.TabIndex = 0;
             this.label2.Text = "Sign In";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // panel1
             // 
@@ -220,7 +219,7 @@
         private System.Windows.Forms.Button btnRegister;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Label lblFreatures;
+        private System.Windows.Forms.Label lblFeatures;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label3;
