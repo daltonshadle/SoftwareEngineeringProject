@@ -15,6 +15,7 @@ namespace Tutor_Master
     {
         private string username, password;
 
+        //Constructor
         public SignIn()
         {
             InitializeComponent();
@@ -22,6 +23,13 @@ namespace Tutor_Master
             initFeaturesList();
         }
 
+        //Displays features 
+        private void initFeaturesList() { 
+            string l = "-Easy to use, clean and clear interface \n\n-Create tutor session schedules with course, time, place \n\n-Create weekly tutor sessions \n\n-Automated checks - Check for availability and conflicts \n\n-Access with any Windows devices";
+            lblFeatures.Text = l;
+        }
+
+        //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Registering event listeners~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         private void btnSignIn_Click(object sender, EventArgs e)
         {
             username = tbxUsername.Text;
@@ -37,7 +45,7 @@ namespace Tutor_Master
             if (accountValid)
             {
                 Database db = new Database();
-               
+
                 if (db.isAdminAccount(username))
                 {
                     //Sign in as admin
@@ -61,14 +69,14 @@ namespace Tutor_Master
                         profile.Show();
                         this.Hide();
                     }
-                    
+
                 }
                 //move to profile form, successfully signed in
             }
-            else 
+            else
             {
                 MessageBox.Show("Sign In error: Password did not match username.");
-                
+
                 //username doesn't match database, display error message
             }
         }
@@ -78,16 +86,6 @@ namespace Tutor_Master
             var regis = new RegisterForm();
             regis.Show();
             this.Hide();
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void initFeaturesList() { 
-            string l = "-Easy to use, clean and clear interface \n\n-Create tutor session schedules with course, time, place \n\n-Create weekly tutor sessions \n\n-Automated checks - Check for availability and conflicts \n\n-Access with any Windows devices";
-            lblFreatures.Text = l;
         }
     }
 }

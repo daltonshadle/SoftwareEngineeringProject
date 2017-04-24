@@ -39,9 +39,8 @@
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel1.Location = new System.Drawing.Point(282, 28);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(730, 285);
+            this.panel1.Size = new System.Drawing.Size(730, 305);
             this.panel1.TabIndex = 1;
-            this.panel1.Visible = false;
             // 
             // monthCalendar1
             // 
@@ -49,7 +48,7 @@
             this.monthCalendar1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.monthCalendar1.Location = new System.Drawing.Point(12, 28);
             this.monthCalendar1.Name = "monthCalendar1";
-            this.monthCalendar1.Size = new System.Drawing.Size(245, 285);
+            this.monthCalendar1.Size = new System.Drawing.Size(245, 305);
             this.monthCalendar1.TabIndex = 0;
             // 
             // MonthCalendarForm
@@ -57,7 +56,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.SteelBlue;
-            this.ClientSize = new System.Drawing.Size(548, 326);
+            this.ClientSize = new System.Drawing.Size(548, 357);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.monthCalendar1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));

@@ -29,6 +29,7 @@ namespace Tutor_Master
         List<Appointment> listToDisplay;
         private int currentIndex = -1;   //used for the selecting items in listview
 
+        //Default constructor
         public SearchRefinementForm()
         {
             InitializeComponent();
@@ -37,6 +38,7 @@ namespace Tutor_Master
             listToDisplay = new List<Appointment>();
         }
 
+        //Constructor
         public SearchRefinementForm(string username)
         {
             InitializeComponent();

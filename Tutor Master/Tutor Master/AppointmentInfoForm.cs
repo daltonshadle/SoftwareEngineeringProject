@@ -430,7 +430,6 @@ namespace Tutor_Master
             //Check to see if all of the fields are filled in. Specifically, Place must be checked
             if (apptPlace != null || cbxMeetingPlace.SelectedItem != null)
             {
-                //Database db = new Database();
 
                 Database db = new Database();
                 int messageId = db.getMessageIdFromAppt(apptId);
