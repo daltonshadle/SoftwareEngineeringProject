@@ -48,6 +48,10 @@ namespace Tutor_Master
             }
         }
 
+        private void initCourseView()
+        {
+        }
+
         //fucntion to initialize name textview of form from database
         private void initName() {
             Database db = new Database();
@@ -223,8 +227,5 @@ namespace Tutor_Master
             form.Show();
             this.Hide();
         }
-
-
-
     }
 }

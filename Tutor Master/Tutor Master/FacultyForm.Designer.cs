@@ -48,6 +48,7 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.lblNameAndUser = new System.Windows.Forms.Label();
+            this.lvCourses = new System.Windows.Forms.ListView();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -252,12 +253,21 @@
             this.lblNameAndUser.TabIndex = 12;
             this.lblNameAndUser.Text = "Name";
             // 
+            // lvCourses
+            // 
+            this.lvCourses.Location = new System.Drawing.Point(284, 592);
+            this.lvCourses.Name = "lvCourses";
+            this.lvCourses.Size = new System.Drawing.Size(192, 151);
+            this.lvCourses.TabIndex = 15;
+            this.lvCourses.UseCompatibleStateImageBehavior = false;
+            // 
             // FacultyForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.SteelBlue;
-            this.ClientSize = new System.Drawing.Size(1111, 591);
+            this.ClientSize = new System.Drawing.Size(1111, 887);
+            this.Controls.Add(this.lvCourses);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
@@ -296,5 +306,6 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label lblNameAndUser;
+        private System.Windows.Forms.ListView lvCourses;
     }
 }
