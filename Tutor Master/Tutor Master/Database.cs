@@ -353,6 +353,8 @@ namespace Tutor_Master
         public void deleteAppointment(int apptId)
         {
             Database db = new Database();
+            Appointment appt = db.getAppointmentById(apptId);
+            //db.sendMessage();
 
             string query = "DELETE FROM appointment WHERE [id number] = @ID";
             
@@ -1517,6 +1519,15 @@ namespace Tutor_Master
                     cmdDeleteTuteeCourse.ExecuteNonQuery();
                     cmdDeleteTutorCourse.ExecuteNonQuery();
                     cmdDeleteAppointment.ExecuteNonQuery();
+
+                    //Now we need to delete all of the appointments where the profile
+                    //was a tutor or tutee and send the appropriate message
+                    Database db = new Database();
+                    List<Appointment> apptList = db.getDailyAppointments(username);
+                    foreach (Appointment appt in apptList)
+                    { 
+                    }
+
                     cmdDeleteReceivedMessages.ExecuteNonQuery();
                     cmdDeleteSentMessages.ExecuteNonQuery();
                     
@@ -1531,8 +1542,8 @@ namespace Tutor_Master
 
             //Now we need to delete all of the appointments where the profile
             //was a tutor or tutee and send the appropriate message
-            Database db = new Database();
-            db.getDailyAppointments(username);
+            /*Database db = new Database();
+            db.getDailyAppointments(username);*/
 
 
         }
@@ -2307,5 +2318,48 @@ namespace Tutor_Master
             return allProfiles;
 
         }
+
+        //returns a list of every tutor that's approved for a specific course
+        public List<string> getAllTutorsForCourse(string courseName)
+        {
+            List<string> tutorList = new List<string>();
+            string query = "SELECT username FROM tutorCourses WHERE ((course1 = @courseName AND course1Approved = 'True') OR (course2 = @courseName AND course2Approved = 'True') OR (course3 = @courseName AND course3Approved = 'True') OR (course4 = @courseName AND course4Approved = 'True'))";
+
+            if (this.OpenConnection())
+            {
+                SqlCeCommand cmd = new SqlCeCommand();
+                cmd.CommandText = query;
+                cmd.Parameters.Add("@courseName", courseName);
+                cmd.Connection = con;
+                try
+                {
+                    SqlCeDataReader dataReader = cmd.ExecuteReader();
+
+                    //Read the data and store them in the list
+                    string username = "";
+                    while (dataReader.Read())
+                    {
+                        username = dataReader["username"].ToString() + "";
+                        tutorList.Add(username);
+                    }
+
+                    //close Data Reader
+                    dataReader.Close();
+                    this.CloseConnection();
+                    return tutorList;
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    tutorList.Clear();
+                    this.CloseConnection();
+                    return tutorList;
+                }
+            }
+
+            return tutorList;
+        }
+
     }
 }
