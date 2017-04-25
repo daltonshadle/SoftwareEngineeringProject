@@ -11,6 +11,7 @@ namespace Tutor_Master
 {
     public partial class FacultyForm : Form
     {
+        //all private data
         private static bool INBOX = true;
 
         private List<Messages> sentMessageList;
@@ -20,6 +21,8 @@ namespace Tutor_Master
 
         string user;
 
+        //all public functions
+        //constructor by username
         public FacultyForm(string username)
         {
             InitializeComponent();
@@ -32,7 +35,7 @@ namespace Tutor_Master
             initName();
             this.Icon = Tutor_Master.Properties.Resources.favicon;
             
-
+            //adding message contents to listview
             for (int i = 0; i < inboxMessageList.Count(); i++)
             {
                 ListViewItem listItem = new ListViewItem(inboxMessageList[i].getFromUser());
@@ -45,6 +48,7 @@ namespace Tutor_Master
             }
         }
 
+        //fucntion to initialize name textview of form from database
         private void initName() {
             Database db = new Database();
             List<string> listOfProfileInfo = db.getProfileInfo(user);
@@ -63,6 +67,7 @@ namespace Tutor_Master
             }
         }
 
+        //helper function to capitalize first char in string
         public string FirstCharToUpper(string input)
         {
             if (String.IsNullOrEmpty(input))
@@ -70,6 +75,7 @@ namespace Tutor_Master
             return input.First().ToString().ToUpper() + input.Substring(1);
         }
 
+        //*********************************All listener functions*********************************//
         private void btnInbox_Click(object sender, EventArgs e)
         {
             INBOX = true;
@@ -79,6 +85,8 @@ namespace Tutor_Master
             lvMessages.Items.Clear();
             inboxMessageList.Clear();
             inboxMessageList = db.getInbox(user);
+
+            //loads listview with indox messages of faculty user
             for (int i = 0; i < inboxMessageList.Count(); i++)
             {
                 ListViewItem listItem = new ListViewItem(inboxMessageList[i].getFromUser());
@@ -100,6 +108,8 @@ namespace Tutor_Master
             sentMessageList = db.getSentMail(user);
             button1.Visible = false;
             button2.Visible = false;
+
+            //loads all sent mail of faculty user
             for (int i = 0; i < sentMessageList.Count(); i++)
             {
                 ListViewItem listItem = new ListViewItem(sentMessageList[i].getFromUser());
@@ -113,6 +123,7 @@ namespace Tutor_Master
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
+            //function to delete selected message from listview and database
             if (lvMessages.SelectedItems.Count == 0)
                 MessageBox.Show("No message selected");
             else
@@ -134,6 +145,7 @@ namespace Tutor_Master
 
         private void button1_Click(object sender, EventArgs e)
         {
+            //function for approving a tutor status in a message
             //check if selected index is what you want for "True" and "False" or currentIndex
             if (currentIndex == -1)
                 MessageBox.Show("No message selected");
@@ -141,7 +153,6 @@ namespace Tutor_Master
             {
                 if (INBOX)
                 {
-                    //MessageBox.Show("About to approve " + inboxMessageList[currentIndex].getMessage());
                     if (lvMessages.SelectedItems[0].SubItems[4].Text == "False")
                     {
                         db.approveCourseInTutorCourses(inboxMessageList[currentIndex].getFromUser(), inboxMessageList[currentIndex].getCourseName(), inboxMessageList[currentIndex].getIdNum(), true);
@@ -157,6 +168,7 @@ namespace Tutor_Master
 
         private void button2_Click(object sender, EventArgs e)
         {
+            //function for rejecting a tutor status in a message
             //check if selected index is what you want for "True" and "False" or currentIndex
             if (currentIndex == -1)
                 MessageBox.Show("No message selected");
@@ -164,7 +176,6 @@ namespace Tutor_Master
             {
                 if (INBOX)
                 {
-                    //MessageBox.Show("About to approve " + inboxMessageList[currentIndex].getMessage());
                     if (lvMessages.SelectedItems[0].SubItems[4].Text == "False")
                     {
                         db.approveCourseInTutorCourses(inboxMessageList[currentIndex].getFromUser(), inboxMessageList[currentIndex].getCourseName(), inboxMessageList[currentIndex].getIdNum(), false);
@@ -180,6 +191,7 @@ namespace Tutor_Master
 
         private void lvMessages_SelectedIndexChanged_1(object sender, EventArgs e)
         {
+            //function to display message details of a selected message
             if (lvMessages.SelectedItems.Count == 1)
             {
                 rtbMessageDetails.Clear();

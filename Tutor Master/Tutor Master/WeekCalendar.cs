@@ -17,6 +17,7 @@ namespace Tutor_Master
         string username;
         DateTime currentDate = DateTime.MinValue;
 
+        //Constructor
         public WeekCalendar()
         {
             InitializeComponent();
@@ -24,27 +25,28 @@ namespace Tutor_Master
             WeekCalendar_Load();
         }
 
+        //Custom buttons
         private void WeekCalendar_Load()
         {
             // Define the points in the polygonal path.
             Point[] ptsRight = {
-        new Point(12,  6),
-        new Point(24,  6),
-        new Point(24,  2),
-        new Point(32, 10),
-        new Point(24, 18),
-        new Point(24, 14),
-        new Point(12, 14)
-    };
-            Point[] ptsLeft = {
-        new Point(12,  10),
-        new Point(20,  2),
-        new Point(20,  6),
-        new Point(32,  6),
-        new Point(32, 14),
-        new Point(20, 14),
-        new Point(20, 18)
-    };
+                new Point(12,  6),
+                new Point(24,  6),
+                new Point(24,  2),
+                new Point(32, 10),
+                new Point(24, 18),
+                new Point(24, 14),
+                new Point(12, 14)
+            };
+                    Point[] ptsLeft = {
+                new Point(12,  10),
+                new Point(20,  2),
+                new Point(20,  6),
+                new Point(32,  6),
+                new Point(32, 14),
+                new Point(20, 14),
+                new Point(20, 18)
+            };
 
             // Make the GraphicsPath.
             GraphicsPath polygon_path = new GraphicsPath(FillMode.Winding);
@@ -66,12 +68,14 @@ namespace Tutor_Master
                 btnRightArrow.Location.Y,
                 ptsRight[3].X + 5, ptsRight[4].Y + 5);
 
+            // Make the button big enough to hold the whole region.
             btnLeftArrow.SetBounds(
                 btnLeftArrow.Location.X,
                 btnLeftArrow.Location.Y,
                 ptsLeft[3].X + 5, ptsLeft[4].Y + 5);
         }
 
+        //Selects date to work around
         public void assignWeeklyAppointments(string user)
         {
             username = user;
@@ -81,6 +85,7 @@ namespace Tutor_Master
             assignWeeklyAppointmentsHelper(currentDate);
         }
 
+        //Sets what dates to work with depending on selected week
         private void assignWeeklyAppointmentsHelper(DateTime date)
         {
             Database db = new Database();
@@ -113,6 +118,7 @@ namespace Tutor_Master
             displayDay(Saturday, panelSat);
         }
 
+        //Updates appointments to put in one day column
         public void displayDay(DateTime date, Panel p)
         {
             Database db = new Database();
@@ -174,20 +180,7 @@ namespace Tutor_Master
             
         }
 
-        // In event method.
-        private void NewButton_Click(object sender, EventArgs e)
-        {
-            Button btn = (Button)sender;
-
-            // Find the programatically created button and assign its onClick event
-            if (btn.Name == ("btnSeeMore"))
-            {
-                var monthCal = new MonthCalendarForm(username);
-                monthCal.StartPosition = FormStartPosition.CenterParent;
-                monthCal.Show();
-            }
-        }
-
+        //Updates the label displaying the string dates
         public void updateWeekLabel(DateTime date) {
 
             while (date.DayOfWeek != DayOfWeek.Sunday)
@@ -201,6 +194,7 @@ namespace Tutor_Master
             lblWeek.Text = startDate.ToShortDateString() + " - " + endDate.ToShortDateString();
         }
 
+        //Clears contents but leaves days of the weeks
         public void clearWeeklyCalendar()
         {
             panelSun.Controls.Clear();
@@ -220,6 +214,13 @@ namespace Tutor_Master
             
         }
 
+        //Getter for currentDate
+        public DateTime getCurrentDate()
+        {
+            return currentDate;
+        }
+
+        //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Registering event listeners~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         private void btnRightArrow_Click(object sender, EventArgs e)
         {
             //fetch the appointments
@@ -236,9 +237,18 @@ namespace Tutor_Master
             assignWeeklyAppointmentsHelper(currentDate);
         }
 
-        public DateTime getCurrentDate()
+        //for the "See More" button that gets dynamically added if more than 3 appointments are on a day
+        private void NewButton_Click(object sender, EventArgs e)
         {
-            return currentDate;
+            Button btn = (Button)sender;
+
+            // Find the programatically created button and assign its onClick event
+            if (btn.Name == ("btnSeeMore"))
+            {
+                var monthCal = new MonthCalendarForm(username);
+                monthCal.StartPosition = FormStartPosition.CenterParent;
+                monthCal.Show();
+            }
         }
     }
 }

@@ -11,7 +11,7 @@ namespace Tutor_Master
 {
     public partial class AppointmentBlock : UserControl
     {
-
+        //all private data
         private string apptType;
         private string apptPlace;
         private string apptCourse;
@@ -26,11 +26,16 @@ namespace Tutor_Master
         private bool isApproved;
         private string source;
 
+
+        //all public data
+
+        //constructor
         public AppointmentBlock()
         {
             InitializeComponent();
         }
 
+        //constructor
         public AppointmentBlock(Appointment a, string username)
         {
             InitializeComponent();
@@ -60,6 +65,7 @@ namespace Tutor_Master
             setViews();
         }
 
+        //sets views of the appointment block to correct info
         private void setViews() {
             lblCourse.Text = apptCourse;
             lblFirst.Text = firstName;
@@ -69,6 +75,7 @@ namespace Tutor_Master
             setBackColor();
         }
 
+        //sets correct back color of appointment block based on type
         private void setBackColor() {
             if (!buildingAppt.getIsFreeTimeSession())
             {
@@ -86,11 +93,11 @@ namespace Tutor_Master
                 this.BackColor = Color.Yellow;
             }
         }
-        
+
+        //private data setters and getters
         public string getAppointmentName() {
             return apptType;
         }
-
         public void setAppointmentName(string type) {
             lblAppointmentType.Text = type;
             apptType = type;
@@ -102,7 +109,6 @@ namespace Tutor_Master
         {
             return apptTime + " " + apptPlace;
         }
-
         public void setTimeAndPlace(string place, DateTime time)
         {
             lblTimeAndPlace.Text = time.ToShortTimeString() + " " + place;
@@ -112,7 +118,6 @@ namespace Tutor_Master
         {
             return apptCourse;
         }
-
         public void setCourse(string course)
         {
             lblCourse.Text = course;
@@ -122,21 +127,19 @@ namespace Tutor_Master
         {
             return firstName;
         }
-
         public void setAppointmentOwnerName(string user)
         {
             string name = user;
             lblAppointmentType.Text = name;
         }
 
+
+        //****************************All listener functions**************************//
         private void AppointmentBlock_Click(object sender, EventArgs e)
         {
-            //MessageBox.Show("Appointment clicked");
             Form form = new AppointmentInfoForm(this.apptType, this.apptPlace, this.apptCourse, this.apptTime, this.endDate, this.firstName, this.secondName, this.id, this.userProf, this.isApproved, this.source);
             form.FormClosing += new FormClosingEventHandler(AppointmentForm_FormClosing);
-            //Form form = new AppointmentInfoForm(this.apptType, this.id);
             form.Show();
-            //this.Hide();
         }
 
         void AppointmentForm_FormClosing(object sender, FormClosingEventArgs e)

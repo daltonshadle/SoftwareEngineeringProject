@@ -11,29 +11,18 @@ namespace Tutor_Master
 {
     public partial class MonthCalendarForm : Form
     {
-
         private string username;
-        DateTime now;
         List<Appointment> appointmentList;
         DateTime selectedDate;
 
+        //Constructor
         public MonthCalendarForm(string user)
         {
-            selectedDate = DateTime.Now.Date;
-
             InitializeComponent();
-            this.Icon = Tutor_Master.Properties.Resources.favicon;
-            username = user;
-
-            this.monthCalendar1.profileMonthCalendar.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.profileMonthCalendar_DateSelected);
-
-            now = DateTime.Now;
-
-            Database db = new Database();
-            appointmentList = db.getDailyAppointments(username);
-            appointmentList = appointmentList.OrderBy(o => o.getStartTime()).ToList();
 
             //Fill the calendar with bolded dates
+            Database db = new Database();
+            appointmentList = db.getDailyAppointments(user);
             monthCalendar1.profileMonthCalendar.BoldedDates = new System.DateTime[] { };
             for (int i = 0; i < appointmentList.Count; i++)
             {
@@ -41,101 +30,71 @@ namespace Tutor_Master
                 monthCalendar1.profileMonthCalendar.AddBoldedDate(appointmentDate);
             }
 
-            clearPanel();
-
-            //Set the panel to display once the calendar is pulled up
-            //would clean up code a shit-ton if i could make a function, but e.Start is the problem.
-
-            //Fill up the list for each day.
-            List<Appointment> dailyAppointments = new List<Appointment>();
-            for (int i = 0; i < appointmentList.Count; i++)
-            {
-                if (appointmentList[i].getStartTime().Date == DateTime.Now.Date)
-                {
-                    dailyAppointments.Add(appointmentList[i]);
-                }
-            }
-
-            dailyAppointments = dailyAppointments.OrderBy(o => o.getStartTime()).ToList();
-            //Display all of the daily apps
-            if (dailyAppointments.Count > 0)
-            {
-
-                AppointmentBlock a;
-                for (int j = 0; j < dailyAppointments.Count; j++)
-                {
-                    a = new AppointmentBlock(dailyAppointments[j], user);
-                    int x = makeX(j);
-                    int y = makeY(j);
-                    a.Location = new Point(x, y);
-                    panel1.Controls.Add(a);
-                }
-                panel1.Visible = true;
-            }
-            else
-                panel1.Visible = false;
+            username = user;
+            selectedDate = DateTime.Now;
+            displayPanel();
 
         }
 
-        private void profileMonthCalendar_DateSelected(object sender, System.Windows.Forms.DateRangeEventArgs e)
+        //Updates the display of panel depending on which date is selected.
+        private void displayPanel()
         {
-            //Display the date of the selected date
-            monthCalendar1.lblTempDate.Text = e.Start.ToShortDateString();
-
+            //Clear all items inside
             clearPanel();
 
-            selectedDate = e.Start.Date;
-
-            Database db = new Database();
-            appointmentList = db.getDailyAppointments(username);
-            appointmentList = appointmentList.OrderBy(o => o.getStartTime()).ToList();
             //Fill up the list for each day.
             List<Appointment> dailyAppointments = new List<Appointment>();
             for (int i = 0; i < appointmentList.Count; i++)
             {
-                if (appointmentList[i].getStartTime().Date == e.Start.Date)
+                if (appointmentList[i].getStartTime().Date == selectedDate.Date)
                 {
                     dailyAppointments.Add(appointmentList[i]);
                 }
             }
 
+            //Sort all of the appointments by start time
             dailyAppointments = dailyAppointments.OrderBy(o => o.getStartTime()).ToList();
+
             //Display all of the daily apps
             if (dailyAppointments.Count > 0)
             {
-                
+                panel1.Visible = true;
+
                 AppointmentBlock a;
                 for (int j = 0; j < dailyAppointments.Count; j++)
                 {
                     a = new AppointmentBlock(dailyAppointments[j], username);
                     int x = makeX(j);
                     int y = makeY(j);
-                    a.Location = new Point(x, y);
+                    a.Location = new Point(x +10, y +10);
                     panel1.Controls.Add(a);
                 }
-                panel1.Visible = true;
-
             }
             else
                 panel1.Visible = false;
-
         }
 
+        //Clears items in the panel
         public void clearPanel()
         {
             panel1.Controls.Clear();
         }
 
+        //Sets the x position of the appointment block added to panel & adjusts width of form
         public int makeX(int iteration)
         {
             int x;
             int col = iteration/3;
-            panel1.Width = 105 + col * 120;
+            panel1.Width = 125 + col * 120;
             x = (col*120);
+
+            if (col > 1)
+                this.Width = 440 + col * 120;
 
             return x;
         }
 
+        //Sets the y position of the appointment block added to panel
         public int makeY(int iteration)
         {
             int y;
@@ -145,39 +104,20 @@ namespace Tutor_Master
             return y;
         }
 
+        //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Registering event listeners~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         private void MonthCalendarForm_Activated(object sender, EventArgs e)
         {
-            clearPanel();
-            Database db = new Database();
-            appointmentList = db.getDailyAppointments(username);
-            appointmentList = appointmentList.OrderBy(o => o.getStartTime()).ToList();
-            List<Appointment> dailyAppointments = new List<Appointment>();
-            for (int i = 0; i < appointmentList.Count; i++)
-            {
-                if (appointmentList[i].getStartTime().Date == selectedDate)
-                {
-                    dailyAppointments.Add(appointmentList[i]);
-                }
-            }
+            displayPanel();
+        }
 
-            dailyAppointments = dailyAppointments.OrderBy(o => o.getStartTime()).ToList();
-            //Display all of the daily apps
-            if (dailyAppointments.Count > 0)
-            {
+        private void profileMonthCalendar_DateSelected(object sender, System.Windows.Forms.DateRangeEventArgs e)
+        {
+            //Display the date of the selected date
+            monthCalendar1.lblTempDate.Text = e.Start.ToShortDateString();
 
-                AppointmentBlock a;
-                for (int j = 0; j < dailyAppointments.Count; j++)
-                {
-                    a = new AppointmentBlock(dailyAppointments[j], username);
-                    int x = makeX(j);
-                    int y = makeY(j);
-                    a.Location = new Point(x, y);
-                    panel1.Controls.Add(a);
-                }
-                panel1.Visible = true;
-            }
-            else
-                panel1.Visible = false;
+            //updates the selected date so that displayPanel() can use it
+            selectedDate = e.Start.Date;
+            displayPanel();
         }
 
     }

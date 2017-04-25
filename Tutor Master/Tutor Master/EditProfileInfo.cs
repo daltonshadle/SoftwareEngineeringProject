@@ -12,7 +12,10 @@ namespace Tutor_Master
 {
     public partial class EditProfileInfo : Form
     {
+        //constants
         private const int MAX_NUM_COURSES = 4;
+
+        //private data and variables
         private bool isAllEditGood = true;
         private string first, last, user, pass;
         private bool isTutee, isTutor, isFaculty, isAdmin;
@@ -30,6 +33,8 @@ namespace Tutor_Master
 
         Database db = new Database();
 
+        //functions
+        //constructor by username
         public EditProfileInfo(string username)
         {
             InitializeComponent();
@@ -39,6 +44,7 @@ namespace Tutor_Master
             initInfo(username);
         }
 
+        //constructor by username and checkbox bools
         public EditProfileInfo(string username, bool password, bool name, bool tutor, bool tutee)
         {
             InitializeComponent();
@@ -55,6 +61,7 @@ namespace Tutor_Master
 
         }
 
+        //initializing all data of the user from database
         private void initInfo(string username)
         {
             Database db = new Database();
@@ -81,9 +88,9 @@ namespace Tutor_Master
             numTutorCourses = getNumCourses(tutorCoursesList);
         }
 
+        //initializing all views to display correct info
         private void initViews() 
         {
-            //need to put all info into the views as well
             txtFirstName.Text = first;
             txtLastName.Text = last;
 
@@ -93,6 +100,7 @@ namespace Tutor_Master
             Database db = new Database();
             List<string> allCourses = db.getAllCourses();
 
+            //checking all items in checkbox list that user already has
             for(int i = 0; i < allCourses.Count; i++){
                 checkListTuteeCourses.Items.Add(allCourses[i]);
                 checkListTutorCourses.Items.Add(allCourses[i]);
@@ -106,6 +114,7 @@ namespace Tutor_Master
                 }
             }
 
+            //setting visibility based on checkbox bools
             if (!changeName)
                 panelName.Visible = false;
             if (!changePass)
@@ -116,6 +125,7 @@ namespace Tutor_Master
                 panelTutor.Visible = false;
         }
 
+        //get number of courses from list
         private int getNumCourses(List<string> courseList) {
             int num = 0;
             for (int i = 0; i < courseList.Count; i++)
@@ -128,78 +138,7 @@ namespace Tutor_Master
             return num;
         }
 
-        private void btnConfirm_Click(object sender, EventArgs e)
-        {
-            isAllEditGood = true;
-
-            if (changeName)
-            {
-                changeNameFunction();
-            }
-            else 
-            {
-                newFirst = first;
-                newLast = last;
-            }
-
-            if (changePass && isAllEditGood)
-            {
-                changePasswordFunction();
-            }
-            else 
-            {
-                newPass = pass;
-            }
-
-            if (changeTutee && isAllEditGood)
-            {
-                if (checkTutorAndTuteeCourseOverlap())
-                {
-                    //don't overlap and all is good
-                    changeTuteeFunction();
-                }
-                else {
-                    isAllEditGood = false;
-                    MessageBox.Show("Tutor and tutee courses cannot overlap.");
-                }
-                //tuteeCourseList should be updated
-            }
-            else
-            {
-                newIsTutee = isTutee;
-            }
-
-            if (changeTutor && isAllEditGood)
-            {
-                if (checkTutorAndTuteeCourseOverlap())
-                {
-                    changeTutorFunction();
-                    //tutorCourseList should be updated
-                    //tutorApprovedCourseList should be updated
-                }
-                else 
-                {
-                    isAllEditGood = false;
-                    MessageBox.Show("Tutor and tutee courses cannot overlap.");
-                }
-            }
-            else
-            {
-                newIsTutor = isTutor;
-            }
-
-            //all good to go with the edit
-            if (isAllEditGood)
-            { 
-                //confirm edit of person and add info to database
-                //close form and have user form refresh
-                db.editProfileInfo(user, newFirst, newLast, newPass, newIsTutor, newIsTutee);
-                this.Close();
-                this.Hide();
-            }
-
-        }
-
+        //function to verify and change name of profile and update in database
         private void changeNameFunction() 
         {
             Database db = new Database();
@@ -226,6 +165,7 @@ namespace Tutor_Master
             }
         }
 
+        //function to verify and change password of profile and update in database
         private void changePasswordFunction()
         {
             if (changePass)
@@ -256,6 +196,7 @@ namespace Tutor_Master
             }
         }
 
+        //function to verify and change tutee status of profile and update database
         private void changeTuteeFunction() 
         {
             if (changeTutee)
@@ -301,6 +242,7 @@ namespace Tutor_Master
 
         }
 
+        //function to verify and change tutor status of profile and update database
         private void changeTutorFunction()
         {
             if (changeTutor)
@@ -341,7 +283,6 @@ namespace Tutor_Master
                             {
                                 //not approved, send message for approval
                                 approvedBoolList.Add(false);
-                                //tutorCourseApprovedList.Insert(i, "false");
                                 string facultyApprover = db.getFacultyApprover(selected[i]);
                                 db.sendMessage(user, facultyApprover, "Tutor Request", user + " is requesting to tutor " + selected[i], false, DateTime.Now, selected[i], -1);
                             }
@@ -379,6 +320,7 @@ namespace Tutor_Master
 
         }
 
+        //function to set the approval list of a profile in database
         private void setApprovedTutorCourses(List<bool> courseList, string username)
         {
             List<bool?> approved = new List<bool?>();
@@ -405,6 +347,7 @@ namespace Tutor_Master
             db.setCourseApproval(username, approved[0], approved[1], approved[2], approved[3]);
         }
 
+        //function to check that tutor and tutee courses don't overlap
         private bool checkTutorAndTuteeCourseOverlap() 
         {
             bool good = true;
@@ -426,6 +369,80 @@ namespace Tutor_Master
             }
 
             return good;
+        }
+
+        //*********************************All listener functions*********************************//
+        private void btnConfirm_Click(object sender, EventArgs e)
+        {
+            isAllEditGood = true;
+
+            if (changeName)
+            {
+                changeNameFunction();
+            }
+            else
+            {
+                newFirst = first;
+                newLast = last;
+            }
+
+            if (changePass && isAllEditGood)
+            {
+                changePasswordFunction();
+            }
+            else
+            {
+                newPass = pass;
+            }
+
+            if (changeTutee && isAllEditGood)
+            {
+                if (checkTutorAndTuteeCourseOverlap())
+                {
+                    //don't overlap and all is good
+                    changeTuteeFunction();
+                }
+                else
+                {
+                    isAllEditGood = false;
+                    MessageBox.Show("Tutor and tutee courses cannot overlap.");
+                }
+                //tuteeCourseList should be updated
+            }
+            else
+            {
+                newIsTutee = isTutee;
+            }
+
+            if (changeTutor && isAllEditGood)
+            {
+                if (checkTutorAndTuteeCourseOverlap())
+                {
+                    changeTutorFunction();
+                    //tutorCourseList should be updated
+                    //tutorApprovedCourseList should be updated
+                }
+                else
+                {
+                    isAllEditGood = false;
+                    MessageBox.Show("Tutor and tutee courses cannot overlap.");
+                }
+            }
+            else
+            {
+                newIsTutor = isTutor;
+            }
+
+            //all good to go with the edit
+            if (isAllEditGood)
+            {
+                //confirm edit of person and add info to database
+                //close form and have user form refresh
+                db.editProfileInfo(user, newFirst, newLast, newPass, newIsTutor, newIsTutee);
+                this.Close();
+                this.Hide();
+            }
+
         }
 
         private void btnCancel_Click(object sender, EventArgs e)

@@ -32,22 +32,6 @@ namespace Tutor_Master
             tutorSchedule = new Schedule();
         }
 
-        public void manageSchedule() {
-        
-        }
-
-        public void confirmTuteeRequest() { 
-        
-        }
-
-        public void declineTuteeRequest() { 
-        
-        }
-
-        public void sendApptRequest() { 
-        
-        }
-
         public void addApptToTutorSchedule(Appointment a)
         {
             tutorSchedule.addAppt(a);

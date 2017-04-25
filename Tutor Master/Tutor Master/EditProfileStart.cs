@@ -11,19 +11,25 @@ namespace Tutor_Master
 {
     public partial class EditProfileStart : Form
     {
+        //private data
         private string username;
 
+        //public functions
+        //constructor be username and bools
         public EditProfileStart(string name, bool isTutee, bool isTutor)
         {
             InitializeComponent();
             this.Icon = Tutor_Master.Properties.Resources.favicon;
             username = name;
-
-            //checkBoxTutee.Visible = isTutee;
-            //checkBoxTutor.Visible = isTutor;
-
         }
 
+        //function that check to see if atleast one checkbox is checked
+        private bool isOneChecked()
+        {
+            return checkBoxPassword.Checked || checkBoxName.Checked || checkBoxTutor.Checked || checkBoxTutee.Checked;
+        }
+
+        //*********************************All listener functions*********************************//
         private void buttonConfirm_Click(object sender, EventArgs e)
         {
             if(isOneChecked())
@@ -39,11 +45,6 @@ namespace Tutor_Master
         {
             this.Close();
             this.Hide();
-        }
-
-        private bool isOneChecked() 
-        { 
-            return checkBoxPassword.Checked || checkBoxName.Checked || checkBoxTutor.Checked || checkBoxTutee.Checked;
         }
 
         private void buttonPasswordCancel_Click(object sender, EventArgs e)

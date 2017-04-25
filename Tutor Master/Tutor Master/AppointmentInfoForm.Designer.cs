@@ -271,7 +271,7 @@
             this.panelTime.Controls.Add(this.dateTimeDay1);
             this.panelTime.Controls.Add(this.lblEndTimePanel);
             this.panelTime.Controls.Add(this.lblStartTimePanel);
-            this.panelTime.Location = new System.Drawing.Point(21, 82);
+            this.panelTime.Location = new System.Drawing.Point(21, 154);
             this.panelTime.Name = "panelTime";
             this.panelTime.Size = new System.Drawing.Size(296, 61);
             this.panelTime.TabIndex = 49;
@@ -309,7 +309,7 @@
             // dateTimeDay1
             // 
             this.dateTimeDay1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimeDay1.Location = new System.Drawing.Point(72, 5);
+            this.dateTimeDay1.Location = new System.Drawing.Point(72, 8);
             this.dateTimeDay1.Name = "dateTimeDay1";
             this.dateTimeDay1.Size = new System.Drawing.Size(101, 20);
             this.dateTimeDay1.TabIndex = 0;
@@ -338,7 +338,7 @@
             // cbxCourseList
             // 
             this.cbxCourseList.FormattingEnabled = true;
-            this.cbxCourseList.Location = new System.Drawing.Point(93, 33);
+            this.cbxCourseList.Location = new System.Drawing.Point(93, 105);
             this.cbxCourseList.Name = "cbxCourseList";
             this.cbxCourseList.Size = new System.Drawing.Size(121, 21);
             this.cbxCourseList.TabIndex = 47;
@@ -348,7 +348,7 @@
             // lblPlacePanel
             // 
             this.lblPlacePanel.AutoSize = true;
-            this.lblPlacePanel.Location = new System.Drawing.Point(44, 63);
+            this.lblPlacePanel.Location = new System.Drawing.Point(44, 135);
             this.lblPlacePanel.Name = "lblPlacePanel";
             this.lblPlacePanel.Size = new System.Drawing.Size(37, 13);
             this.lblPlacePanel.TabIndex = 45;
@@ -358,7 +358,7 @@
             // lblCoursePanel
             // 
             this.lblCoursePanel.AutoSize = true;
-            this.lblCoursePanel.Location = new System.Drawing.Point(38, 36);
+            this.lblCoursePanel.Location = new System.Drawing.Point(38, 108);
             this.lblCoursePanel.Name = "lblCoursePanel";
             this.lblCoursePanel.Size = new System.Drawing.Size(43, 13);
             this.lblCoursePanel.TabIndex = 44;
@@ -370,21 +370,22 @@
             this.panelEdit.BackColor = System.Drawing.Color.LightSteelBlue;
             this.panelEdit.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panelEdit.Controls.Add(this.cbxMeetingPlace);
+            this.panelEdit.Controls.Add(this.btnConfirmEdit);
             this.panelEdit.Controls.Add(this.label1);
             this.panelEdit.Controls.Add(this.panelTime);
             this.panelEdit.Controls.Add(this.cbxCourseList);
             this.panelEdit.Controls.Add(this.lblPlacePanel);
             this.panelEdit.Controls.Add(this.lblCoursePanel);
-            this.panelEdit.Location = new System.Drawing.Point(276, 72);
+            this.panelEdit.Location = new System.Drawing.Point(276, 12);
             this.panelEdit.Name = "panelEdit";
-            this.panelEdit.Size = new System.Drawing.Size(337, 183);
+            this.panelEdit.Size = new System.Drawing.Size(337, 285);
             this.panelEdit.TabIndex = 53;
             this.panelEdit.Visible = false;
             // 
             // cbxMeetingPlace
             // 
             this.cbxMeetingPlace.FormattingEnabled = true;
-            this.cbxMeetingPlace.Location = new System.Drawing.Point(93, 63);
+            this.cbxMeetingPlace.Location = new System.Drawing.Point(93, 135);
             this.cbxMeetingPlace.Name = "cbxMeetingPlace";
             this.cbxMeetingPlace.Size = new System.Drawing.Size(121, 21);
             this.cbxMeetingPlace.TabIndex = 50;
@@ -393,7 +394,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(138, 11);
+            this.label1.Location = new System.Drawing.Point(138, 83);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(76, 13);
             this.label1.TabIndex = 50;
@@ -401,7 +402,7 @@
             // 
             // btnConfirmEdit
             // 
-            this.btnConfirmEdit.Location = new System.Drawing.Point(417, 261);
+            this.btnConfirmEdit.Location = new System.Drawing.Point(130, 254);
             this.btnConfirmEdit.Name = "btnConfirmEdit";
             this.btnConfirmEdit.Size = new System.Drawing.Size(75, 23);
             this.btnConfirmEdit.TabIndex = 54;
@@ -449,7 +450,7 @@
             this.panel1.Controls.Add(this.lblTime);
             this.panel1.Location = new System.Drawing.Point(12, 12);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(242, 347);
+            this.panel1.Size = new System.Drawing.Size(242, 350);
             this.panel1.TabIndex = 56;
             // 
             // AppointmentInfoForm
@@ -458,9 +459,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.SteelBlue;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ClientSize = new System.Drawing.Size(631, 381);
+            this.ClientSize = new System.Drawing.Size(631, 469);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.btnConfirmEdit);
             this.Controls.Add(this.panelEdit);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "AppointmentInfoForm";
