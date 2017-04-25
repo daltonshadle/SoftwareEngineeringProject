@@ -20,17 +20,20 @@ namespace Tutor_Master
             password = "";
         }
 
+        //constructor
         public Profile(string name)
         {
             username = name;
             password = "";
         }
 
+        //constructor
         public Profile(string name, string pass){
             username = name;
             password = pass;
         }
 
+        //constructor
         public Profile(Profile previousPerson)
         {
             username = previousPerson.username;

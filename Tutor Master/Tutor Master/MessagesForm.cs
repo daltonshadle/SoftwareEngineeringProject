@@ -11,6 +11,7 @@ namespace Tutor_Master
 {
     public partial class MessagesForm : Form
     {
+        //all private data
         private bool INBOX = true;
         private List<Messages> sentMessageList;
         private List<Messages> inboxMessageList;
@@ -19,12 +20,15 @@ namespace Tutor_Master
 
         string user;
 
+        //all functions
+        //constructor
         public MessagesForm(string username)
         {
             InitializeComponent();
             user = username;
             sentMessageList = db.getSentMail(username);
             inboxMessageList = db.getInbox(username);
+            //loading all the messages into listview
             for (int i = 0; i < inboxMessageList.Count(); i++)
             {
                 ListViewItem listItem = new ListViewItem(inboxMessageList[i].getFromUser());
@@ -37,12 +41,15 @@ namespace Tutor_Master
             }
         }
 
+        //constructor
         public MessagesForm(string username, int index)
         {
             InitializeComponent();
             user = username;
             sentMessageList = db.getSentMail(username);
             inboxMessageList = db.getInbox(username);
+
+            //loading all messages into listview
             for (int i = 0; i < inboxMessageList.Count(); i++)
             {
                 ListViewItem listItem = new ListViewItem(inboxMessageList[i].getFromUser());
@@ -61,14 +68,18 @@ namespace Tutor_Master
             }
         }
 
+        //*********************************All listener functions*********************************//
         private void btnInbox_Click(object sender, EventArgs e)
         {
+            //function for button to load all inbox messages
             INBOX = true;
             lblMessages.Text = "Inbox";
             lvMessages.Items.Clear();
             inboxMessageList.Clear();
             inboxMessageList = db.getInbox(user);
             rtbMessageDetails.Clear();
+
+            //loading all inbox messages into the listview
             for (int i = 0; i < inboxMessageList.Count(); i++)
             {
                 ListViewItem listItem = new ListViewItem(inboxMessageList[i].getFromUser());
@@ -83,6 +94,7 @@ namespace Tutor_Master
 
         private void btnSent_Click(object sender, EventArgs e)
         {
+            //function for button to load all sent messages
             INBOX = false;
             lblMessages.Text = "Sent Messages";
             btnApprove.Visible = false;
@@ -91,6 +103,8 @@ namespace Tutor_Master
             sentMessageList.Clear();
             sentMessageList = db.getSentMail(user);
             rtbMessageDetails.Clear();
+
+            //loading all sent messages into listview
             for (int i = 0; i < sentMessageList.Count(); i++)
             {
                 ListViewItem listItem = new ListViewItem(sentMessageList[i].getFromUser());
@@ -104,6 +118,7 @@ namespace Tutor_Master
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
+            //function for button to delet a certain message from databse and listview 
             if (lvMessages.SelectedItems.Count == 0)
                 MessageBox.Show("No message selected");
             else
@@ -112,6 +127,7 @@ namespace Tutor_Master
                 int messageID;
                 if (INBOX)
                 {
+                    //deleting message from inbox, database and listview
                     messageID = inboxMessageList[currentIndex].getIdNum();
                     db.deleteMessageFromInbox(messageID);
                     inboxMessageList.Clear();
@@ -119,6 +135,7 @@ namespace Tutor_Master
                 }
                 else
                 {
+                    //deleting message from sent box, database and listview
                     messageID = sentMessageList[currentIndex].getIdNum();
                     db.deleteMessageFromSentMail(messageID);
                     sentMessageList.Clear();
@@ -130,6 +147,7 @@ namespace Tutor_Master
 
         private void lvMessages_SelectedIndexChanged_1(object sender, EventArgs e)
         {
+            //function to listen for a selected item in listview
             if (lvMessages.SelectedItems.Count == 1)
             {
                 rtbMessageDetails.Clear();
@@ -142,10 +160,13 @@ namespace Tutor_Master
                     {
                         if (INBOX)
                         {
+                            //setting details of the messge in the textbox
                             rtbMessageDetails.AppendText(inboxMessageList[index].getMessage());
                             currentIndex = index;
                             Messages message = inboxMessageList[currentIndex];
                             Appointment appt = db.getAppointmentById(message.getApptId());
+
+                            //showing or hiding buttons based on whether it has been answered or not
                             if (lvMessages.SelectedItems[0].SubItems[4].Text == "True" || appt.getEndTime() < DateTime.Now)
                             {
                                 btnApprove.Visible = false;
@@ -167,9 +188,9 @@ namespace Tutor_Master
             }
         }
 
-
         private void btnApprove_Click(object sender, EventArgs e)
         {
+            //function for button to approve appointment based on message
             Database db = new Database();
 
             Messages message = inboxMessageList[currentIndex];
@@ -180,10 +201,12 @@ namespace Tutor_Master
             {
                 if (lvMessages.SelectedItems[0].SubItems[4].Text == "False" && appt.getEndTime() > DateTime.Now)
                 {
+                    //database functions to approve message, edit appointment, and send message
                     db.approveMessageDetailsFromAppointment(messageId, true);
                     db.editAppointment(appt.getID(), null, appt.getMeetingPlace(), appt.getCourse(), appt.getStartTime(), appt.getEndTime(), appt.getTutor(), appt.getTutee(), false, true, "ApprovedInMessage");
                     db.sendMessage(user, appt.getTutee(), "Appoinment Request Confirmed", user + " has confirmed your appointment regarding " + appt.getCourse(), true, DateTime.Now, appt.getCourse(), appt.getID());
 
+                    //reseting the textbox to affirm that process is done
                     lvMessages.SelectedItems[0].SubItems[4].Text = "True";
                     rtbMessageDetails.Clear();
                     rtbMessageDetails.AppendText("Done");
@@ -199,6 +222,7 @@ namespace Tutor_Master
 
         private void btnReject_Click(object sender, EventArgs e)
         {
+            //function for rejecting appointment based on the message
             Database db = new Database();
 
             Messages message = inboxMessageList[currentIndex];
@@ -216,6 +240,7 @@ namespace Tutor_Master
                     {
                         //Run this if the appointment was created by a tutee
                         case "TuteeMatch":
+                            //database functions for setting message approval, sending a message, and deleting the appointment
                             db.approveMessageDetailsFromAppointment(messageId, true);
                             db.sendMessage(user, appt.getTutee(), subject, messageStr, false, DateTime.Now, appt.getCourse(), appt.getID());
                             db.deleteAppointment(appt.getID());
@@ -226,6 +251,7 @@ namespace Tutor_Master
 
                         //Run this if the appointment was a free time that got paired with.
                         case "MatchWithExistingAppointment":
+                            //database functions for setting message approval, sending a message, and reseting the appointment
                             db.approveMessageDetailsFromAppointment(messageId, true);
                             db.sendMessage(user, appt.getTutee(), subject, messageStr, false, DateTime.Now, appt.getCourse(), appt.getID());
                             db.editAppointment(appt.getID(), user, null, null, appt.getStartTime(), appt.getEndTime(), null, null, true, false, "EditForm");
@@ -246,31 +272,6 @@ namespace Tutor_Master
                 }
             }
         }
-
-
-        /*string message = "Your request to be tutored by " + user + " was rejected.";
-            string subject = "Appointment Rejected";
-            switch (source)
-            {
-                //Run this if the appointment was created by a tutee
-                case "TuteeMatch":
-                    int messageId = db.getMessageIdFromAppt(apptId);
-                    db.approveMessageDetailsFromAppointment(messageId, true);
-                    db.sendMessage(user, otherUser, subject, message, false, DateTime.Now, apptCourse, apptId);
-                    db.deleteAppointment(apptId);
-                    break;
-
-                //Run this if the appointment was a free time that got paired with.
-                case "MatchWithExistingAppointment":
-                    messageId = db.getMessageIdFromAppt(apptId);
-                    db.approveMessageDetailsFromAppointment(messageId, true);
-                    db.sendMessage(user, otherUser, subject, message, false, DateTime.Now, apptCourse, apptId);
-                    db.editAppointment(apptId, firstName, null, null, apptDateStartTime, apptDateEnd, null, null, true, false, "EditForm");
-                    break;
-
-            }*/
-
-
 
     }
 }

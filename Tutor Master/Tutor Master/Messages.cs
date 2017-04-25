@@ -7,11 +7,15 @@ namespace Tutor_Master
 {
     class Messages
     {
+        //private data
         private int id, apptId;
         private string toUser, fromUser, subject, message, course;
         private bool? pending;
         private DateTime timeSent;
 
+
+        //all functions
+        //default constructor
         public Messages() 
         {
             id = -1;
@@ -25,6 +29,7 @@ namespace Tutor_Master
             apptId = -1;
         }
 
+        //constructor with all parameters
         public Messages(int idNum, string toUserName, string fromUserName, string subj, string mess, bool pend, DateTime sent, string courseName, int appointmentId)
         {
             id = idNum;
@@ -38,6 +43,7 @@ namespace Tutor_Master
             apptId = appointmentId;
         }
 
+        //setters and getters
         public int getIdNum() { return id; }
         public void setIdNum(int idNum) { id = idNum; }
 

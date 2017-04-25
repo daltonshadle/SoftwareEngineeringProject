@@ -11,6 +11,7 @@ namespace Tutor_Master
 {
     public partial class MonthCalendarForm : Form
     {
+        //private data
         private string username;
         List<Appointment> appointmentList;
         DateTime selectedDate;
