@@ -11,7 +11,7 @@ namespace Tutor_Master
 {
     public partial class MonthCalendar : UserControl
     {
-
+        //constructor
         public MonthCalendar()
         {
             InitializeComponent();

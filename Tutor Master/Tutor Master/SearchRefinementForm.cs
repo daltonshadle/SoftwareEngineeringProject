@@ -17,6 +17,7 @@ namespace Tutor_Master
         //This form is only accessible for tutees.
 
     {
+        //private data
         private int stateOfProgress;    //This variable will tell what search refinements are being used
         private string user;
         private string course;
@@ -29,6 +30,8 @@ namespace Tutor_Master
         List<Appointment> listToDisplay;
         private int currentIndex = -1;   //used for the selecting items in listview
 
+        
+        //all functions
         //Default constructor
         public SearchRefinementForm()
         {
@@ -50,7 +53,12 @@ namespace Tutor_Master
             Database db = new Database();
             List<string> allProfileInfo = db.getProfileInfo(user);
 
+<<<<<<< HEAD
             for (int i = 4; i < 8; i++)
+=======
+            //initializing the courses for the tutee
+            for (int i = 4; i < 7; i++)
+>>>>>>> 887ee5172f942f594dedca433d1bf3954ffae22a
             {
                 if (allProfileInfo[i] != "")
                     comboCourse.Items.Add(allProfileInfo[i]);
@@ -68,6 +76,7 @@ namespace Tutor_Master
             populateTutors(course);
         }
 
+        //function for populating view with tutor profiles based on course parameter
         public void populateTutors(string course)
         {
             Database db = new Database();
@@ -79,6 +88,7 @@ namespace Tutor_Master
             
             string[] tutorComboList = new string[list2.Length];
 
+            //setting all courses in the view
             for (int i = 0; i < courseSet.Count; i++)
             {
                 bool add = true;
@@ -101,6 +111,7 @@ namespace Tutor_Master
             }
         }
 
+        //function for getting all freetime appointments from database based on course parameter
         private HashSet<Appointment> getCourseSet(string course)
         {
             HashSet<Appointment> appointmentSet = new HashSet<Appointment>();
@@ -144,15 +155,6 @@ namespace Tutor_Master
             return appointmentSet;
         }
 
-        private void comboCourse_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            comboTutor.ResetText();
-            checkTutor.Checked = false;
-            populateTutors(comboCourse.SelectedItem.ToString());
-            rtbInfo.Clear();
-            lvMatches.Clear();
-        }
-
         //Written by Garrett to override the .Intersect() function for a set
         static HashSet<Appointment> intersection(HashSet<Appointment> A, HashSet<Appointment> B)
         {
@@ -169,8 +171,39 @@ namespace Tutor_Master
             return C;
         }
 
+        //function for displaying appointments in listview
+        private void displayAppointments()
+        {
+            this.Height = 550;
+            this.Width = 570;
+
+            lvMatches.Clear();
+
+            for (int i = 0; i < listToDisplay.Count; i++)
+            {
+                lvMatches.Items.Add("Appointment with " + listToDisplay[i].getFreeTimeProf());
+            }
+
+            if (listToDisplay.Count == 0)
+            {
+                rtbInfo.Clear();
+                MessageBox.Show("No appointments match these criteria.");
+            }
+        }
+
+        //*********************************All listener functions*********************************//
+        private void comboCourse_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            comboTutor.ResetText();
+            checkTutor.Checked = false;
+            populateTutors(comboCourse.SelectedItem.ToString());
+            rtbInfo.Clear();
+            lvMatches.Clear();
+        }
+
         private void btnMoreFields_Click(object sender, EventArgs e)
         {
+            //function for setting views based on more button click
             switch (stateOfProgress)
             {
                 case 0:
@@ -214,6 +247,7 @@ namespace Tutor_Master
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
+            //function for button click to search database for freetime appointments based on criteria
             Database db = new Database();
             HashSet<Appointment> courseSet;
             HashSet<Appointment> dateSet;
@@ -274,27 +308,9 @@ namespace Tutor_Master
             }
         }
 
-        private void displayAppointments()
-        {
-            this.Height = 550;
-            this.Width = 570;
-
-            lvMatches.Clear();
-
-            for (int i = 0; i < listToDisplay.Count; i++)
-            {
-                lvMatches.Items.Add("Appointment with " + listToDisplay[i].getFreeTimeProf());
-            }
-
-            if (listToDisplay.Count == 0)
-            {
-                rtbInfo.Clear();
-                MessageBox.Show("No appointments match these criteria.");
-            }
-        }
-
         private void lvMatches_SelectedIndexChanged(object sender, EventArgs e)
         {
+            //function to display appointment info based on listview item selected
             if (lvMatches.SelectedItems.Count != 1)
                 rtbInfo.Clear();
             else
@@ -351,6 +367,7 @@ namespace Tutor_Master
 
         private void btnAskToJoin_Click(object sender, EventArgs e)
         {
+            //function for requesting the appointment, sends messages, and edits appointment
             if (lvMatches.SelectedItems.Count == 1) 
             {
 

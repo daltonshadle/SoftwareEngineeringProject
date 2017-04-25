@@ -13,9 +13,12 @@ namespace Tutor_Master
 {
     public partial class RegisterForm : Form
     {
+        //private data
         private string username, password, passConfirm, firstName, lastName;
         bool accountValid = false;
 
+        //all functions
+        //constructor
         public RegisterForm()
         {
             InitializeComponent();
@@ -23,8 +26,17 @@ namespace Tutor_Master
             initFeaturesList();
         }
 
+        //function for initializing the features textbox
+        private void initFeaturesList()
+        {
+            string l = "-Easy to use, clean and clear interface \n\n-Create tutor session schedules with course, time, place \n\n-Create weekly tutor sessions \n\n-Automated checks - Check for availability and conflicts \n\n-Access with any Windows devices";
+            lblFreatures.Text = l;
+        }
+
+        //*********************************All listener functions*********************************//
         private void btnRegister_Click(object sender, EventArgs e)
         {
+            //function to take all information from form and pass to next form
             username = tbxUsername.Text;
             password = tbxPassword.Text;
             passConfirm = tbxPassConfirm.Text;
@@ -74,15 +86,11 @@ namespace Tutor_Master
 
         private void btnSignIn_Click(object sender, EventArgs e)
         {
+            //function to go to sign in form
             var signInform = new SignIn();
             signInform.Show();
             this.Hide();
         }
 
-        private void initFeaturesList()
-        {
-            string l = "-Easy to use, clean and clear interface \n\n-Create tutor session schedules with course, time, place \n\n-Create weekly tutor sessions \n\n-Automated checks - Check for availability and conflicts \n\n-Access with any Windows devices";
-            lblFreatures.Text = l;
-        }
     }
 }

@@ -12,7 +12,7 @@ namespace Tutor_Master
 {
     public partial class WeekCalendar : UserControl
     {
-
+        //all private data
         List<Appointment> appointmentList;
         string username;
         DateTime currentDate = DateTime.MinValue;

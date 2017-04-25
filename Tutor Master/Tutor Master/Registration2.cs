@@ -11,6 +11,7 @@ namespace Tutor_Master
 {
     public partial class Registration2 : Form
     {
+        //private data
         bool tutorAcc, tuteeAcc;
         string username;
         List<string> tutorClassesList;
@@ -19,6 +20,8 @@ namespace Tutor_Master
 
         Database db = new Database();
 
+        //all functions
+        //constructor
         public Registration2(int fromCode)
         {
             code = fromCode;
@@ -26,9 +29,8 @@ namespace Tutor_Master
             this.Icon = Tutor_Master.Properties.Resources.favicon;
             initFeaturesList();
 
-            //Here we will try to fill the checkboxes
+            //Here we fill the checkboxes in the list
             List<string> courses = db.getAllCourses();
-
             var checkBox = (CheckedListBox)checkedListBox1;
             for (int i = 0; i < courses.Count(); i++)
             {
@@ -36,8 +38,10 @@ namespace Tutor_Master
             }
         }
 
+        //constructor sent from registration1 with all parameters
         public Registration2(string user, bool isTutor, bool isTutee, int fromCode)  //if this constructor is run, means user is adding courses from profile page
-        {   //if this constructor is run, means user is sent from registration1
+        {   
+            //if this constructor is run, means user is sent from registration1
             code = fromCode;
             InitializeComponent();
             this.Icon = Tutor_Master.Properties.Resources.favicon;
@@ -48,9 +52,8 @@ namespace Tutor_Master
             username = user;
             tutorClassesList = new List<string>();
 
-            //Here we will try to fill the checkboxes
+            //Here we fill the checkboxes in the list
             List<string> courses = db.getAllCourses();
-
             var checkBox = (CheckedListBox)checkedListBox1;
             for (int i = 0; i < courses.Count(); i++)
             {
@@ -58,6 +61,7 @@ namespace Tutor_Master
             }
         }
 
+        //constructor sent from adding courses from profile page with all parameters
         public Registration2(string user, bool isTutor, bool isTutee, List<string> list, int fromCode)  //if this constructor is run, means user is adding courses from profile page
         {   //if this constructor is run, means user is adding courses from profile page
             code = fromCode;
@@ -71,9 +75,8 @@ namespace Tutor_Master
             tuteeClassesList = list;
             tutorClassesList = new List<string>();
 
-            //Here we will try to fill the checkboxes
+            //Here we fill the checkboxes in the list
             List<string> courses = db.getAllCourses();
-
             var checkBox = (CheckedListBox)checkedListBox1;
             for (int i = 0; i < courses.Count(); i++)
             {
@@ -82,8 +85,17 @@ namespace Tutor_Master
             }
         }
 
+        //function for initializing the feature textbox
+        private void initFeaturesList()
+        {
+            string l = "-Easy to use, clean and clear interface \n\n-Create tutor session schedules with course, time, place \n\n-Create weekly tutor sessions \n\n-Automated checks - Check for availability and conflicts \n\n-Access with any Windows devices";
+            lblFreatures.Text = l;
+        }
+
+        //*********************************All listener functions*********************************//
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
+            //function listening for form to close to delete profile
             base.OnFormClosing(e);
 
             if (e.CloseReason == CloseReason.WindowsShutDown) return;
@@ -95,6 +107,8 @@ namespace Tutor_Master
 
         private void button1_Click(object sender, EventArgs e)
         {
+            //function for verifying all info and adding to profile
+            //then moves on to next form
             if (checkedListBox1.CheckedItems.Count > 0 && checkedListBox1.CheckedItems.Count < 5)
             {
                 // If so, loop through all checked items and print results.  
@@ -147,15 +161,11 @@ namespace Tutor_Master
 
         private void btnSignIn_Click(object sender, EventArgs e)
         {
+            //function for button to go to sign in form
             var signInform = new SignIn();
             signInform.Show();
             this.Hide();
         }
 
-        private void initFeaturesList()
-        {
-            string l = "-Easy to use, clean and clear interface \n\n-Create tutor session schedules with course, time, place \n\n-Create weekly tutor sessions \n\n-Automated checks - Check for availability and conflicts \n\n-Access with any Windows devices";
-            lblFreatures.Text = l;
-        }
     }
 }

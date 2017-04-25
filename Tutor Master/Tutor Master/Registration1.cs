@@ -11,9 +11,12 @@ namespace Tutor_Master
 {
     public partial class Registration : Form
     {
+        //private data
         private bool isTutee = false, isTutor = false;
         string username;
 
+        //all functions
+        //constructor
         public Registration(string user)
         {
             InitializeComponent();
@@ -22,8 +25,17 @@ namespace Tutor_Master
             initFeaturesList();
         }
 
+        //function for initializing the feature text box
+        private void initFeaturesList()
+        {
+            string l = "-Easy to use, clean and clear interface \n\n-Create tutor session schedules with course, time, place \n\n-Create weekly tutor sessions \n\n-Automated checks - Check for availability and conflicts \n\n-Access with any Windows devices";
+            lblFreatures.Text = l;
+        }
+
+        //*********************************All listener functions*********************************//
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
+            //function listening for closing of form, deleting the account if so
             base.OnFormClosing(e);
 
             if (e.CloseReason == CloseReason.WindowsShutDown) return;
@@ -35,12 +47,13 @@ namespace Tutor_Master
 
         private void chkTutor_CheckedChanged(object sender, EventArgs e)
         {
-
+            //function setting bool to check box as it changes
             isTutor = chkTutor.Checked;
         }
 
         private void chkTutee_CheckedChanged(object sender, EventArgs e)
         {
+            //function setting bool to check box as it changes
             isTutee = chkTutee.Checked;
         }
 
@@ -85,15 +98,10 @@ namespace Tutor_Master
 
         private void btnSignIn_Click(object sender, EventArgs e)
         {
+            //function to go to sign in page
             var signInform = new SignIn();
             signInform.Show();
             this.Hide();
-        }
-
-        private void initFeaturesList()
-        {
-            string l = "-Easy to use, clean and clear interface \n\n-Create tutor session schedules with course, time, place \n\n-Create weekly tutor sessions \n\n-Automated checks - Check for availability and conflicts \n\n-Access with any Windows devices";
-            lblFreatures.Text = l;
         }
 
 

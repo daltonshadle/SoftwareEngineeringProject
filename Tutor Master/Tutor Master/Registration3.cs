@@ -11,6 +11,7 @@ namespace Tutor_Master
 {
     public partial class Registration3 : Form
     {
+        //private data
         bool tutorAcc, tuteeAcc;
         string username;
         List<string> tutorClassesList;
@@ -18,7 +19,8 @@ namespace Tutor_Master
 
         Database db = new Database();
 
-        public Registration3(string user)  //If this constructor is run, it means the profile is only a tutee.
+        //constructor if the profile is only a tutee.
+        public Registration3(string user) 
         {
             InitializeComponent();
             this.Icon = Tutor_Master.Properties.Resources.favicon;
@@ -39,7 +41,8 @@ namespace Tutor_Master
             }
         }
 
-        public Registration3(string user, List<string> list)  //If this constructor is run, it means user is adding courses from profile page
+        //constructpr if the profile is adding courses from profile page
+        public Registration3(string user, List<string> list) 
         {
             InitializeComponent();
             this.Icon = Tutor_Master.Properties.Resources.favicon;
@@ -61,7 +64,8 @@ namespace Tutor_Master
             }
         }
 
-        public Registration3(string user, bool isTutor, bool isTutee, List<string> list)    //if this file is run, it means profile is both tutor and tutee
+        //constructor is profile is both tutor and tutee
+        public Registration3(string user, bool isTutor, bool isTutee, List<string> list) 
         {
             InitializeComponent();
             this.Icon = Tutor_Master.Properties.Resources.favicon;
@@ -84,8 +88,17 @@ namespace Tutor_Master
             }
         }
 
+        //function for initializing the feature textbox
+        private void initFeaturesList()
+        {
+            string l = "-Easy to use, clean and clear interface \n\n-Create tutor session schedules with course, time, place \n\n-Create weekly tutor sessions \n\n-Automated checks - Check for availability and conflicts \n\n-Access with any Windows devices";
+            lblFreatures.Text = l;
+        }
+
+        //*********************************All listener functions*********************************//
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
+            //function listening for form closing and then deleting profile
             base.OnFormClosing(e);
 
             if (e.CloseReason == CloseReason.WindowsShutDown) return;
@@ -97,6 +110,7 @@ namespace Tutor_Master
 
         private void button1_Click(object sender, EventArgs e)
         {
+            //function for verifying all info, updating profile in database, and moving to next form
             if (checkedListBox1.CheckedItems.Count > 0 && checkedListBox1.CheckedItems.Count < 5)
             {
                 // If so, loop through all checked items and print results.  
@@ -124,16 +138,13 @@ namespace Tutor_Master
 
         private void btnSignIn_Click(object sender, EventArgs e)
         {
+            //function for going to sign in page
             var signInform = new SignIn();
             signInform.Show();
             this.Hide();
         }
 
-        private void initFeaturesList()
-        {
-            string l = "-Easy to use, clean and clear interface \n\n-Create tutor session schedules with course, time, place \n\n-Create weekly tutor sessions \n\n-Automated checks - Check for availability and conflicts \n\n-Access with any Windows devices";
-            lblFreatures.Text = l;
-        }
+
 
     }
 }

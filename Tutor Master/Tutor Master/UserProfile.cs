@@ -11,6 +11,7 @@ namespace Tutor_Master
 {
     public partial class UserProfile : Form
     {
+        //all private data
         private string first, last, user, adminName;
         private bool tutorAcc, tuteeAcc, adminAcc;
         private DateTime currentDate;
@@ -23,6 +24,8 @@ namespace Tutor_Master
         private List<Messages> inboxMessageList;
         Database db = new Database();
 
+
+        //all functions
         //Normal constructor. Will be called by tutors and tutees, not by admin
         public UserProfile(string username)
         {
@@ -303,6 +306,8 @@ namespace Tutor_Master
             lvMessagesPreview.Items.Clear();
             sentMessageList = db.getSentMail(user);
             inboxMessageList = db.getInbox(user);
+
+            //initializing messages in listview
             for (int i = 0; i < inboxMessageList.Count(); i++)
             {
                 ListViewItem listItem = new ListViewItem(inboxMessageList[i].getFromUser());
