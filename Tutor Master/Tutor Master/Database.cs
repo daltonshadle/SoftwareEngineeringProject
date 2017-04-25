@@ -1966,8 +1966,6 @@ namespace Tutor_Master
         //figures out which faculty goes username goes with a course
         public string getFacultyApprover(string courseName) 
         {
-            List<Messages> messageList = new List<Messages>();
-
             string query;
             query = "SELECT facultyApprover FROM courses WHERE name = @courseName";
 
@@ -2312,6 +2310,48 @@ namespace Tutor_Master
                     {
                         username = dataReader["username"].ToString() + "";
                         tutorList.Add(username);
+                    }
+
+                    //close Data Reader
+                    dataReader.Close();
+                    this.CloseConnection();
+                    return tutorList;
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    tutorList.Clear();
+                    this.CloseConnection();
+                    return tutorList;
+                }
+            }
+
+            return tutorList;
+        }
+
+        //returns a list of all the courses a faculty member is approved to tutor
+        public List<string> getFacultyMemberCourses(string username)
+        {
+            List<string> tutorList = new List<string>();
+            string query = "SELECT name FROM courses WHERE facultyApprover = @username";
+
+            if (this.OpenConnection())
+            {
+                SqlCeCommand cmd = new SqlCeCommand();
+                cmd.CommandText = query;
+                cmd.Parameters.Add("@username", username);
+                cmd.Connection = con;
+                try
+                {
+                    SqlCeDataReader dataReader = cmd.ExecuteReader();
+
+                    //Read the data and store them in the list
+                    string course = "";
+                    while (dataReader.Read())
+                    {
+                        course = dataReader["name"].ToString() + "";
+                        tutorList.Add(course);
                     }
 
                     //close Data Reader
