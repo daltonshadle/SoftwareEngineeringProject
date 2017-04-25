@@ -1474,12 +1474,10 @@ namespace Tutor_Master
         //delete any information we may have put into the database
         public void deleteAccount(string username)
         {
-            Database db = new Database();
-
             string queryProfile = "DELETE FROM profile WHERE username = @username";
             string queryTuteeCourse = "DELETE FROM tuteeCourses WHERE username = @username";
             string queryTutorCourse = "DELETE FROM tutorCourses WHERE username = @username";
-            string queryAppointment = "DELETE FROM appointment WHERE ([free time] = @username OR tutor = @username OR tutee = @username)";
+            string queryAppointment = "DELETE FROM appointment WHERE ([free time] = @username)";
             string queryReceivedMessages = "DELETE FROM receivedMessages WHERE toUserName = @username";
             string querySentMessages = "DELETE FROM sentMessages WHERE fromUserName = @username";
 
@@ -1530,6 +1528,13 @@ namespace Tutor_Master
 
                 this.CloseConnection();
             }
+
+            //Now we need to delete all of the appointments where the profile
+            //was a tutor or tutee and send the appropriate message
+            Database db = new Database();
+            db.getDailyAppointments(username);
+
+
         }
 
         //Returns the first and last name, if the user is a tutor and/or tutee
