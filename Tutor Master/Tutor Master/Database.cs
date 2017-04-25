@@ -352,10 +352,6 @@ namespace Tutor_Master
         //Delete an appointment
         public void deleteAppointment(int apptId)
         {
-            Database db = new Database();
-            Appointment appt = db.getAppointmentById(apptId);
-            //db.sendMessage();
-
             string query = "DELETE FROM appointment WHERE [id number] = @ID";
             
             if (this.OpenConnection())
@@ -1431,42 +1427,12 @@ namespace Tutor_Master
             bool isValidDelete = false;
             Database db = new Database();
 
-            string queryProfile = "DELETE FROM profile WHERE username = @username";
-            string queryTuteeCourse = "DELETE FROM tuteeCourses WHERE username = @username";
-            string queryTutorCourse = "DELETE FROM tutorCourses WHERE username = @username";
-
             if (this.OpenConnection()) 
             {
                 db.isValidSignIn(username, password, ref isValidDelete);
                 if (isValidDelete)
                 {
-                    SqlCeCommand cmdDeleteProfile = new SqlCeCommand();
-                    SqlCeCommand cmdDeleteTuteeCourse = new SqlCeCommand();
-                    SqlCeCommand cmdDeleteTutorCourse = new SqlCeCommand();
-
-                    cmdDeleteProfile.CommandText = queryProfile;
-                    cmdDeleteTuteeCourse.CommandText = queryTuteeCourse;
-                    cmdDeleteTutorCourse.CommandText = queryTutorCourse;
-
-                    cmdDeleteProfile.Parameters.Add("@username", username);
-                    cmdDeleteTuteeCourse.Parameters.Add("@username", username);
-                    cmdDeleteTutorCourse.Parameters.Add("@username", username);
-
-                    cmdDeleteTutorCourse.Connection = con;
-                    cmdDeleteTuteeCourse.Connection = con;
-                    cmdDeleteProfile.Connection = con;
-                    try
-                    {
-                        cmdDeleteProfile.ExecuteNonQuery();
-                        cmdDeleteTuteeCourse.ExecuteNonQuery();
-                        cmdDeleteTutorCourse.ExecuteNonQuery();
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.Message);
-                    }
-
-                    this.CloseConnection();
+                    db.deleteAccount(username);
                 }
 
             }
@@ -1482,6 +1448,8 @@ namespace Tutor_Master
             string queryAppointment = "DELETE FROM appointment WHERE ([free time] = @username)";
             string queryReceivedMessages = "DELETE FROM receivedMessages WHERE toUserName = @username";
             string querySentMessages = "DELETE FROM sentMessages WHERE fromUserName = @username";
+
+            string subject = "Appointment Deleted";
 
             if (this.OpenConnection())
             {
@@ -1525,9 +1493,19 @@ namespace Tutor_Master
                     Database db = new Database();
                     List<Appointment> apptList = db.getDailyAppointments(username);
                     foreach (Appointment appt in apptList)
-                    { 
+                    {
+                        string otherUser = "";
+                        if (appt.getTutee() == username)
+                            otherUser = appt.getTutor();
+                        else
+                            otherUser = appt.getTutee();
+
+                        db.sendMessage(username, otherUser, subject, username + " has deleted your appointment for " + appt.getCourse(), true, DateTime.Now, appt.getCourse(), appt.getID());
+                        db.deleteAppointment(appt.getID());
                     }
 
+                    //Delete the correct messages that were just created that notified the other students
+                    //that appointments had been deleted
                     cmdDeleteReceivedMessages.ExecuteNonQuery();
                     cmdDeleteSentMessages.ExecuteNonQuery();
                     
@@ -1539,13 +1517,6 @@ namespace Tutor_Master
 
                 this.CloseConnection();
             }
-
-            //Now we need to delete all of the appointments where the profile
-            //was a tutor or tutee and send the appropriate message
-            /*Database db = new Database();
-            db.getDailyAppointments(username);*/
-
-
         }
 
         //Returns the first and last name, if the user is a tutor and/or tutee
