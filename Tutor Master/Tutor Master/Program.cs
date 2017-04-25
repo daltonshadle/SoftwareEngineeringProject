@@ -17,7 +17,7 @@ namespace Tutor_Master
             Application.SetCompatibleTextRenderingDefault(false);
 
             Database db = new Database();
-            db.getAppointmentCourseSet("CS2");
+            //db.getAppointmentCourseSet("CS2");
             //MessageBox.Show("Good?");
             /*DateTime dt = new DateTime(2017, 4, 1);
 

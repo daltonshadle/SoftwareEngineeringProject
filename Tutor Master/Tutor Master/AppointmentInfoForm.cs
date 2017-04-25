@@ -184,7 +184,7 @@ namespace Tutor_Master
         //Changes heights of the panels and visibility of buttons depending on status of appointment and who is viewing
         private void displayApproveButton()
         {
-            if ((user == firstName) && (apptType == "Learning") && (isApproved == false))
+            if ((user == firstName) && (apptType == "Learning") && (isApproved == false) && (apptEndDate > DateTime.Now))
             {
                 this.Height = 420;
                 panel1.Height = 350;

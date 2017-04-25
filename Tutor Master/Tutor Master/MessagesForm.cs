@@ -72,7 +72,7 @@ namespace Tutor_Master
             for (int i = 0; i < inboxMessageList.Count(); i++)
             {
                 ListViewItem listItem = new ListViewItem(inboxMessageList[i].getFromUser());
-                listItem.SubItems.Add(inboxMessageList[i].getSubject());
+                listItem.SubItems.Add(inboxMessageList[i].getToUser());
                 listItem.SubItems.Add(inboxMessageList[i].getSubject());
                 DateTime tempDate = inboxMessageList[i].getTimeSent();
                 listItem.SubItems.Add(tempDate.ToString("MM/dd/yyyy  h:mm tt"));
