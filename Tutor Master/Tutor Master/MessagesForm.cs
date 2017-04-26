@@ -130,6 +130,8 @@ namespace Tutor_Master
                     //deleting message from inbox, database and listview
                     messageID = inboxMessageList[currentIndex].getIdNum();
                     db.deleteMessageFromInbox(messageID);
+                    rtbMessageDetails.Clear();
+                    currentIndex = -1;
                     inboxMessageList.Clear();
                     inboxMessageList = db.getInbox(user);
                 }
@@ -138,6 +140,8 @@ namespace Tutor_Master
                     //deleting message from sent box, database and listview
                     messageID = sentMessageList[currentIndex].getIdNum();
                     db.deleteMessageFromSentMail(messageID);
+                    rtbMessageDetails.Clear();
+                    currentIndex = -1;
                     sentMessageList.Clear();
                     sentMessageList = db.getSentMail(user);
                 }

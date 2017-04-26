@@ -97,12 +97,12 @@ namespace Tutor_Master
 
             if (lvCourses.SelectedItems.Count == 1)
             {
-                ListView.SelectedIndexCollection indexes = this.lvCourses.SelectedIndices;
-                if (indexes.Count > 1)
+                ListView.SelectedIndexCollection indexes2 = this.lvCourses.SelectedIndices;
+                if (indexes2.Count > 1)
                     MessageBox.Show("Can only view one profile at a time.");
                 else
                 {
-                    foreach (int index in indexes)
+                    foreach (int index in indexes2)
                         course = courses[index];
 
                     List<string> tutors = db.getAllTutorsForCourse(course);
