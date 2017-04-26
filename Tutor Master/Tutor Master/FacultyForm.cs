@@ -118,6 +118,8 @@ namespace Tutor_Master
         //*********************************All listener functions*********************************//
         private void btnInbox_Click(object sender, EventArgs e)
         {
+            rtbMessageDetails.Clear();
+            currentIndex = -1;
             INBOX = true;
             lblMessages.Text = "Inbox";
             button1.Visible = true;
@@ -141,6 +143,8 @@ namespace Tutor_Master
 
         private void btnSent_Click(object sender, EventArgs e)
         {
+            rtbMessageDetails.Clear();
+            currentIndex = -1;
             INBOX = false;
             lblMessages.Text = "Sent Messages";
             lvMessages.Items.Clear();
