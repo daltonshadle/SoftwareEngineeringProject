@@ -18,6 +18,8 @@ namespace Tutor_Master
         private List<Messages> inboxMessageList;
         Database db = new Database();
         int currentIndex = -1;
+        private string course;
+        List<string> courses;
 
         string user;
 
@@ -45,6 +47,19 @@ namespace Tutor_Master
                 listItem.SubItems.Add(tempDate.ToString("MM/dd/yyyy h:mm tt"));
                 listItem.SubItems.Add(inboxMessageList[i].getPending().ToString());
                 lvMessages.Items.Add(listItem);
+            }
+
+            courses = db.getFacultyMemberCourses(user);
+            initCourseView();
+        }
+
+        private void initCourseView()
+        {
+            //adding message contents to listview
+            for (int i = 0; i < courses.Count(); i++)
+            {
+                ListViewItem listItem = new ListViewItem(courses[i]);
+                lvCourses.Items.Add(listItem);
             }
         }
 
@@ -75,6 +90,31 @@ namespace Tutor_Master
             return input.First().ToString().ToUpper() + input.Substring(1);
         }
 
+        //Changes what is displayed on the screen in the tutors list view
+        private void updatelvTutors()
+        {
+            lvTutors.Items.Clear();
+
+            if (lvCourses.SelectedItems.Count == 1)
+            {
+                ListView.SelectedIndexCollection indexes = this.lvCourses.SelectedIndices;
+                if (indexes.Count > 1)
+                    MessageBox.Show("Can only view one profile at a time.");
+                else
+                {
+                    foreach (int index in indexes)
+                        course = courses[index];
+
+                    List<string> tutors = db.getAllTutorsForCourse(course);
+
+                    for (int i = 0; i < tutors.Count; i++)
+                    {
+                        lvTutors.Items.Add(tutors[i]);
+                    }
+
+                }
+            }
+        }
         //*********************************All listener functions*********************************//
         private void btnInbox_Click(object sender, EventArgs e)
         {
@@ -224,7 +264,9 @@ namespace Tutor_Master
             this.Hide();
         }
 
-
-
+        private void lvCourses_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            updatelvTutors();
+        }
     }
 }

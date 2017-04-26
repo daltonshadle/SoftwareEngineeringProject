@@ -31,8 +31,10 @@ namespace Tutor_Master
                 monthCalendar1.profileMonthCalendar.AddBoldedDate(appointmentDate);
             }
 
+            this.monthCalendar1.profileMonthCalendar.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.profileMonthCalendar_DateSelected);
+
             username = user;
-            selectedDate = DateTime.Now;
+            selectedDate = DateTime.Now.Date;
             displayPanel();
 
         }
@@ -47,7 +49,7 @@ namespace Tutor_Master
             List<Appointment> dailyAppointments = new List<Appointment>();
             for (int i = 0; i < appointmentList.Count; i++)
             {
-                if (appointmentList[i].getStartTime().Date == selectedDate.Date)
+                if (appointmentList[i].getStartTime().Date == selectedDate)
                 {
                     dailyAppointments.Add(appointmentList[i]);
                 }
@@ -120,6 +122,5 @@ namespace Tutor_Master
             selectedDate = e.Start.Date;
             displayPanel();
         }
-
     }
 }

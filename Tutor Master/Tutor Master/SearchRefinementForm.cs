@@ -54,7 +54,7 @@ namespace Tutor_Master
             List<string> allProfileInfo = db.getProfileInfo(user);
 
             //initializing the courses for the tutee
-            for (int i = 4; i < 7; i++)
+            for (int i = 4; i < 8; i++)
             {
                 if (allProfileInfo[i] != "")
                     comboCourse.Items.Add(allProfileInfo[i]);
@@ -249,42 +249,58 @@ namespace Tutor_Master
             HashSet<Appointment> dateSet;
             HashSet<Appointment> tutorSet;
             HashSet<Appointment> masterSearchSet = db.getAllFreeTimeAppointments();
-            
-            //Get all the search criteria.
+
             course = comboCourse.SelectedItem.ToString();
-            courseSet = getCourseSet(course);
 
-            masterSearchSet = intersection(masterSearchSet, courseSet);
-
-            bool operate = true;
-            if (checkDates.Checked)
+            //Figure out if there are any tutors
+            List<string> tutors = db.getAllTutorsForCourse(course);
+            if (tutors.Count == 0)
             {
-                dateSet = db.getAppointmentDateSet(dateTimeStartDate.Value, dateTimeEndDate.Value);
-                masterSearchSet = intersection(masterSearchSet, dateSet);
+                //If there are no tutors available for a course, the faculty should be notified.
+                if (MessageBox.Show("Notify faculty to add a tutor?", "No tutors available for " + course, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    string faculty = db.getFacultyApprover(course);
+                    db.sendMessage(user, faculty, "Tutor needed for " + course, "No tutor available for course: " + course + ".\n" + user + " requested that you consult a student about becoming a tutor for this course.", true, DateTime.Now, course, -1);
+                }
             }
 
-            if (checkTutor.Checked)
+            else
             {
-                if (comboTutor.SelectedItem == null)
+                //Get all the search criteria.
+                courseSet = getCourseSet(course);
+
+                masterSearchSet = intersection(masterSearchSet, courseSet);
+
+                bool operate = true;
+                if (checkDates.Checked)
                 {
-                    MessageBox.Show("Search by tutor is checked but not filled.");
-                    operate = false;
-                }                   
-                else
-                {
-                    tutorSet = db.getAppointmentTutorSet(comboTutor.SelectedItem.ToString());
-                    masterSearchSet = intersection(masterSearchSet, tutorSet);
-                    operate = true;
+                    dateSet = db.getAppointmentDateSet(dateTimeStartDate.Value, dateTimeEndDate.Value);
+                    masterSearchSet = intersection(masterSearchSet, dateSet);
                 }
 
+                if (checkTutor.Checked)
+                {
+                    if (comboTutor.SelectedItem == null)
+                    {
+                        MessageBox.Show("Search by tutor is checked but not filled.");
+                        operate = false;
+                    }
+                    else
+                    {
+                        tutorSet = db.getAppointmentTutorSet(comboTutor.SelectedItem.ToString());
+                        masterSearchSet = intersection(masterSearchSet, tutorSet);
+                        operate = true;
+                    }
 
-            }
 
-            if (operate)
-            {
-                setToDisplay = masterSearchSet;
-                listToDisplay = masterSearchSet.OrderBy(o => o.getStartTime()).ToList<Appointment>();
-                displayAppointments();
+                }
+
+                if (operate)
+                {
+                    setToDisplay = masterSearchSet;
+                    listToDisplay = masterSearchSet.OrderBy(o => o.getStartTime()).ToList<Appointment>();
+                    displayAppointments();
+                }
             }
         }
 

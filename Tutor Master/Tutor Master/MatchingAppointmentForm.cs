@@ -163,12 +163,27 @@ namespace Tutor_Master
                 }
                 else
                 {
-                    //find relevant profile with correct tutor course
-                    usernameList = db.getUsernamesForCourse(course, true);
-
-                    for (int i = 0; i < usernameList.Count; i++)
+                    //Figure out if there are any tutors
+                    List<string> tutors = db.getAllTutorsForCourse(course);
+                    if (tutors.Count == 0)
                     {
-                        cbxProfileList.Items.Add(usernameList[i]);
+                        //If there are no tutors available for a course, the faculty should be notified.
+                        if (MessageBox.Show("Notify faculty to add a tutor?", "No tutors available for " + course, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                        {
+                            string faculty = db.getFacultyApprover(course);
+                            db.sendMessage(builderProf, faculty, "Tutor needed for " + course, "No tutor available for course: " + course + ".\n" + builderProf + " requested that you consult a student about becoming a tutor for this course.", true, DateTime.Now, course, -1);
+                        }
+                    }
+
+                    else
+                    {
+                        //find relevant profile with correct tutor course
+                        usernameList = db.getUsernamesForCourse(course, true);
+
+                        for (int i = 0; i < usernameList.Count; i++)
+                        {
+                            cbxProfileList.Items.Add(usernameList[i]);
+                        }
                     }
                 }
             }
@@ -465,7 +480,6 @@ namespace Tutor_Master
                     //add tutee courses here for type TUTORTYPE
                     type = 2;
 
-                    int j = 0;
                     cbxCourseList.Items.Clear();
                     cbxCourseList.Text = "";
 
