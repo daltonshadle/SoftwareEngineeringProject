@@ -36,9 +36,7 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.lblFreatures = new System.Windows.Forms.Label();
-            this.btnSignIn = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
@@ -114,9 +112,7 @@
             this.panel2.BackColor = System.Drawing.Color.LightSteelBlue;
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel2.Controls.Add(this.lblFreatures);
-            this.panel2.Controls.Add(this.btnSignIn);
             this.panel2.Controls.Add(this.label2);
-            this.panel2.Controls.Add(this.label7);
             this.panel2.Location = new System.Drawing.Point(220, 70);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(260, 299);
@@ -133,17 +129,6 @@
             this.lblFreatures.TabIndex = 26;
             this.lblFreatures.Text = "Features List";
             // 
-            // btnSignIn
-            // 
-            this.btnSignIn.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnSignIn.Location = new System.Drawing.Point(90, 260);
-            this.btnSignIn.Name = "btnSignIn";
-            this.btnSignIn.Size = new System.Drawing.Size(75, 23);
-            this.btnSignIn.TabIndex = 0;
-            this.btnSignIn.Text = "Sign In";
-            this.btnSignIn.UseVisualStyleBackColor = true;
-            this.btnSignIn.Click += new System.EventHandler(this.btnSignIn_Click);
-            // 
             // label2
             // 
             this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -154,16 +139,6 @@
             this.label2.Size = new System.Drawing.Size(183, 59);
             this.label2.TabIndex = 0;
             this.label2.Text = "Register";
-            // 
-            // label7
-            // 
-            this.label7.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(49, 244);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(153, 13);
-            this.label7.TabIndex = 24;
-            this.label7.Text = "Already have a profile? Sign in!";
             // 
             // Registration3
             // 
@@ -196,8 +171,6 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label lblFreatures;
-        private System.Windows.Forms.Button btnSignIn;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label7;
     }
 }
