@@ -480,7 +480,6 @@ namespace Tutor_Master
                     //add tutee courses here for type TUTORTYPE
                     type = 2;
 
-                    int j = 0;
                     cbxCourseList.Items.Clear();
                     cbxCourseList.Text = "";
 

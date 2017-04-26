@@ -49,9 +49,16 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.lblNameAndUser = new System.Windows.Forms.Label();
             this.lvCourses = new System.Windows.Forms.ListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.lvTutors = new System.Windows.Forms.ListView();
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
+            this.panel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // lblMessages
@@ -255,11 +262,67 @@
             // 
             // lvCourses
             // 
-            this.lvCourses.Location = new System.Drawing.Point(284, 592);
+            this.lvCourses.Activation = System.Windows.Forms.ItemActivation.OneClick;
+            this.lvCourses.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.lvCourses.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1});
+            this.lvCourses.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.lvCourses.Location = new System.Drawing.Point(16, 21);
+            this.lvCourses.MultiSelect = false;
             this.lvCourses.Name = "lvCourses";
-            this.lvCourses.Size = new System.Drawing.Size(192, 151);
+            this.lvCourses.Size = new System.Drawing.Size(162, 151);
             this.lvCourses.TabIndex = 15;
             this.lvCourses.UseCompatibleStateImageBehavior = false;
+            this.lvCourses.View = System.Windows.Forms.View.Details;
+            this.lvCourses.SelectedIndexChanged += new System.EventHandler(this.lvCourses_SelectedIndexChanged);
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "Your courses:";
+            this.columnHeader1.Width = 145;
+            // 
+            // lvTutors
+            // 
+            this.lvTutors.Activation = System.Windows.Forms.ItemActivation.OneClick;
+            this.lvTutors.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.lvTutors.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader2});
+            this.lvTutors.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.lvTutors.Location = new System.Drawing.Point(204, 21);
+            this.lvTutors.MultiSelect = false;
+            this.lvTutors.Name = "lvTutors";
+            this.lvTutors.Size = new System.Drawing.Size(162, 151);
+            this.lvTutors.TabIndex = 16;
+            this.lvTutors.UseCompatibleStateImageBehavior = false;
+            this.lvTutors.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "Tutors for course:";
+            this.columnHeader2.Width = 145;
+            // 
+            // panel4
+            // 
+            this.panel4.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.panel4.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel4.Controls.Add(this.lvCourses);
+            this.panel4.Controls.Add(this.lvTutors);
+            this.panel4.Location = new System.Drawing.Point(716, 325);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(383, 193);
+            this.panel4.TabIndex = 17;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.pictureBox1.Image = global::Tutor_Master.Properties.Resources.BCB_Logo;
+            this.pictureBox1.Location = new System.Drawing.Point(535, 556);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(112, 58);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 32;
+            this.pictureBox1.TabStop = false;
             // 
             // FacultyForm
             // 
@@ -267,7 +330,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.SteelBlue;
             this.ClientSize = new System.Drawing.Size(1111, 887);
-            this.Controls.Add(this.lvCourses);
+            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
@@ -280,6 +344,8 @@
             this.panel2.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
+            this.panel4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -307,5 +373,10 @@
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label lblNameAndUser;
         private System.Windows.Forms.ListView lvCourses;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ListView lvTutors;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
