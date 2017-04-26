@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Tutor_Master
 {
-    class Messages
+    public class Messages
     {
         //private data
         private int id, apptId;

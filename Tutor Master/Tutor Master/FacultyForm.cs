@@ -94,7 +94,7 @@ namespace Tutor_Master
             for (int i = 0; i < inboxMessageList.Count(); i++)
             {
                 ListViewItem listItem = new ListViewItem(inboxMessageList[i].getFromUser());
-                listItem.SubItems.Add(inboxMessageList[i].getSubject());
+                listItem.SubItems.Add(inboxMessageList[i].getToUser());
                 listItem.SubItems.Add(inboxMessageList[i].getSubject());
                 DateTime tempDate = inboxMessageList[i].getTimeSent();
                 listItem.SubItems.Add(tempDate.ToString("MM/dd/yyyy  h:mm tt"));
@@ -159,8 +159,22 @@ namespace Tutor_Master
                 {
                     if (lvMessages.SelectedItems[0].SubItems[4].Text == "False")
                     {
-                        db.approveCourseInTutorCourses(inboxMessageList[currentIndex].getFromUser(), inboxMessageList[currentIndex].getCourseName(), inboxMessageList[currentIndex].getIdNum(), true);
-                        db.sendMessage(user, inboxMessageList[currentIndex].getFromUser(), "Tutor Request Approved", user + " has approved you to tutor " + inboxMessageList[currentIndex].getCourseName(), true, DateTime.Now, inboxMessageList[currentIndex].getCourseName(), -1);
+                        switch (MessageBox.Show(this, "Do you want to add a personalized message?", "Add message", MessageBoxButtons.YesNoCancel))
+                        {
+                            case DialogResult.No:
+                                db.approveCourseInTutorCourses(inboxMessageList[currentIndex].getFromUser(), inboxMessageList[currentIndex].getCourseName(), inboxMessageList[currentIndex].getIdNum(), true);
+                                db.sendMessage(user, inboxMessageList[currentIndex].getFromUser(), "Tutor Request Approved", user + " has approved you to tutor " + inboxMessageList[currentIndex].getCourseName(), true, DateTime.Now, inboxMessageList[currentIndex].getCourseName(), -1);
+                                break;
+                            case DialogResult.Yes:
+                                Messages newMessage = new Messages(inboxMessageList[currentIndex].getIdNum(), inboxMessageList[currentIndex].getFromUser(), user, "Tutor Request Approved", user + " has approved you to tutor " + inboxMessageList[currentIndex].getCourseName(), true, DateTime.Now, inboxMessageList[currentIndex].getCourseName(), -1);
+                                var personalMsg = new PersonalizedMessage(newMessage, true);
+                                personalMsg.StartPosition = FormStartPosition.CenterParent;
+                                personalMsg.Show();
+                                break;
+                            default:
+                                break;
+                        }
+                        //db.sendMessage(user, inboxMessageList[currentIndex].getFromUser(), "Tutor Request Approved", user + " has approved you to tutor " + inboxMessageList[currentIndex].getCourseName(), true, DateTime.Now, inboxMessageList[currentIndex].getCourseName(), -1);
 
                         lvMessages.SelectedItems[0].SubItems[4].Text = "True";
                         rtbMessageDetails.Clear();
@@ -182,8 +196,24 @@ namespace Tutor_Master
                 {
                     if (lvMessages.SelectedItems[0].SubItems[4].Text == "False")
                     {
-                        db.approveCourseInTutorCourses(inboxMessageList[currentIndex].getFromUser(), inboxMessageList[currentIndex].getCourseName(), inboxMessageList[currentIndex].getIdNum(), false);
-                        db.sendMessage(user, inboxMessageList[currentIndex].getFromUser(), "Tutor Request REJECTED", user + " has not approved you to tutor " + inboxMessageList[currentIndex].getCourseName(), true, DateTime.Now, inboxMessageList[currentIndex].getCourseName(), -1);
+                        //db.approveCourseInTutorCourses(inboxMessageList[currentIndex].getFromUser(), inboxMessageList[currentIndex].getCourseName(), inboxMessageList[currentIndex].getIdNum(), false);
+                        //db.sendMessage(user, inboxMessageList[currentIndex].getFromUser(), "Tutor Request rejected", user + " has not approved you to tutor " + inboxMessageList[currentIndex].getCourseName(), true, DateTime.Now, inboxMessageList[currentIndex].getCourseName(), -1);
+
+                        switch (MessageBox.Show(this, "Do you want to add a personalized message?", "Add message", MessageBoxButtons.YesNoCancel))
+                        {
+                            case DialogResult.No:
+                                db.approveCourseInTutorCourses(inboxMessageList[currentIndex].getFromUser(), inboxMessageList[currentIndex].getCourseName(), inboxMessageList[currentIndex].getIdNum(), false);
+                                db.sendMessage(user, inboxMessageList[currentIndex].getFromUser(), "Tutor Request Rejected", user + " has rejected you to tutor " + inboxMessageList[currentIndex].getCourseName(), true, DateTime.Now, inboxMessageList[currentIndex].getCourseName(), -1);
+                                break;
+                            case DialogResult.Yes:
+                                Messages newMessage = new Messages(inboxMessageList[currentIndex].getIdNum(), inboxMessageList[currentIndex].getFromUser(), user, "Tutor Request Rejected", user + " has rejected you to tutor " + inboxMessageList[currentIndex].getCourseName(), true, DateTime.Now, inboxMessageList[currentIndex].getCourseName(), -1);
+                                var personalMsg = new PersonalizedMessage(newMessage, false);
+                                personalMsg.StartPosition = FormStartPosition.CenterParent;
+                                personalMsg.Show();
+                                break;
+                            default:
+                                break;
+                        }
 
                         lvMessages.SelectedItems[0].SubItems[4].Text = "True";
                         rtbMessageDetails.Clear();

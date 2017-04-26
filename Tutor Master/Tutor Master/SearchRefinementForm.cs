@@ -53,12 +53,8 @@ namespace Tutor_Master
             Database db = new Database();
             List<string> allProfileInfo = db.getProfileInfo(user);
 
-<<<<<<< HEAD
-            for (int i = 4; i < 8; i++)
-=======
             //initializing the courses for the tutee
-            for (int i = 4; i < 7; i++)
->>>>>>> 887ee5172f942f594dedca433d1bf3954ffae22a
+            for (int i = 4; i < 8; i++)
             {
                 if (allProfileInfo[i] != "")
                     comboCourse.Items.Add(allProfileInfo[i]);
