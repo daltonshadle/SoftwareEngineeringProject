@@ -164,7 +164,7 @@ namespace Tutor_Master
         }
 
         //adds an appointment to the appointments table
-        public int addAppointment(string free, string meetingPlace, string course, DateTime startTime, DateTime endTime, string tutor, string tutee, bool isFreeTime, bool isApproved, string source)
+        public int addAppointment(string free, string meetingPlace, string course, DateTime startTime, DateTime endTime, string tutor, string tutee, bool isFreeTime, bool isApproved, string source, Boolean needReturnValue)
         {
             {
                 string query = "INSERT INTO appointment([free time], tutor, tutee, courseName, meetingPlace, startTime, endTime, isFreeTimeSession, isApproved, source) VALUES(@freeTime, @tutor, @tutee, @courseName, @meetingPlace, @startTime, @endTime, @isFreeTime, @isApproved, @source)";
@@ -224,11 +224,13 @@ namespace Tutor_Master
                     try
                     {
                         cmd.ExecuteNonQuery();
-                        cmd.CommandText = idQuery;
-                        //cmd.ExecuteNonQuery();
-                        string tempStr = Convert.ToString(cmd.ExecuteScalar());
+                        if (needReturnValue)
+                        {
+                            cmd.CommandText = idQuery;
+                            string tempStr = Convert.ToString(cmd.ExecuteScalar());
 
-                        Int32.TryParse(tempStr, out lastId);
+                            Int32.TryParse(tempStr, out lastId);
+                        }
 
                     }
                     catch (Exception ex)

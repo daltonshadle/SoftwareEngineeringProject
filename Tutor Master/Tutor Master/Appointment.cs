@@ -213,7 +213,7 @@ namespace Tutor_Master
         }
 
         //adds appointment to database by freetime or tutor appointment
-        public int addAppointmentToDatabase()
+        public int addAppointmentToDatabase(Boolean needReturnValue)
         {
             Database db = new Database();
             int lastId = -1;
@@ -221,12 +221,12 @@ namespace Tutor_Master
             if (isFreeTimeSession)
             {
                 //add freetime appt
-                lastId = db.addAppointment(freeTimeProf, null, null, startTime, endTime, null, null, isFreeTimeSession, isApproved, source); 
+                lastId = db.addAppointment(freeTimeProf, null, null, startTime, endTime, null, null, isFreeTimeSession, isApproved, source, needReturnValue); 
             }
             else
             { 
                 //add tutor/tutee appt
-                lastId = db.addAppointment(null, meetingPlace, course, startTime, endTime, tutorProf, tuteeProf, isFreeTimeSession, isApproved, source);
+                lastId = db.addAppointment(null, meetingPlace, course, startTime, endTime, tutorProf, tuteeProf, isFreeTimeSession, isApproved, source, needReturnValue);
             }
 
             return lastId;

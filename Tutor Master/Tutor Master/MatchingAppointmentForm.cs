@@ -529,7 +529,7 @@ namespace Tutor_Master
 
                                 Appointment a = new Appointment(tempStart, tempEnd, builderProf);
                                 //free time needs no message
-                                a.addAppointmentToDatabase();
+                                a.addAppointmentToDatabase(false);
                             }
                         }
                     }
@@ -538,7 +538,7 @@ namespace Tutor_Master
                         offsetStartAndEndTimes();
                         Appointment a = new Appointment(startTime, endTime, builderProf);
                         //free time needs no message
-                        a.addAppointmentToDatabase();
+                        a.addAppointmentToDatabase(false);
                     }
                 }
                 else
@@ -566,7 +566,7 @@ namespace Tutor_Master
                                 tempEnd = tempEnd = tempEnd.AddDays(7 * i);
 
                                 Appointment a = new Appointment(type, place, course, tempStart, tempEnd, tutorProf, tuteeProf, false, "TuteeMatch");
-                                int lastId = a.addAppointmentToDatabase();
+                                int lastId = a.addAppointmentToDatabase(true);
                                 
 
                                 string msg = builderProf + " has requested to make a weekly tutoring appointment for course: " + course + " at " + startTime.ToShortTimeString() + " on " + startTime.DayOfWeek.ToString() + "s";
@@ -580,7 +580,7 @@ namespace Tutor_Master
                     {
                         offsetStartAndEndTimes();
                         Appointment a = new Appointment(type, place, course, startTime, endTime, tutorProf, tuteeProf, false, "TuteeMatch");
-                        int lastId = a.addAppointmentToDatabase();
+                        int lastId = a.addAppointmentToDatabase(true);
 
                         //This is where we will send a message if a person is doing a learning appointment
                         //send message to other person.

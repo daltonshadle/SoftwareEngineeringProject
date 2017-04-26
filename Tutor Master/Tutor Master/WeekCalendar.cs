@@ -250,5 +250,12 @@ namespace Tutor_Master
                 monthCal.Show();
             }
         }
+
+        private void btnThisWeek_Click(object sender, EventArgs e)
+        {
+            currentDate = DateTime.Now;
+            updateWeekLabel(currentDate);
+            assignWeeklyAppointmentsHelper(currentDate);
+        }
     }
 }
