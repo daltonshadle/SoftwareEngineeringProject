@@ -602,8 +602,8 @@ namespace Tutor_Master
                 initialValue1 = false;
                 return;
             }
-
-            DateTime dt = dateTimeTime1.Value;
+            
+            DateTime dt = dateTimeDay1.Value.Date + dateTimeTime1.Value.TimeOfDay;
             DateTime tempHold = dt;
             TimeSpan diff = dt - prevTime1;
 
@@ -665,7 +665,7 @@ namespace Tutor_Master
                 return;
             }
 
-            DateTime dt = dateTimeTime2.Value;
+            DateTime dt = dateTimeDay2.Value.Date + dateTimeTime2.Value.TimeOfDay;
             DateTime tempHold = dt;
             TimeSpan diff = dt - prevTime2;
 
