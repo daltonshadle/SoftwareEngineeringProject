@@ -51,6 +51,7 @@
             this.lblLegendPending = new System.Windows.Forms.Label();
             this.btnRightArrow = new System.Windows.Forms.Button();
             this.btnLeftArrow = new System.Windows.Forms.Button();
+            this.btnThisWeek = new System.Windows.Forms.Button();
             this.panelSun.SuspendLayout();
             this.panelMon.SuspendLayout();
             this.panelTues.SuspendLayout();
@@ -275,11 +276,22 @@
             this.btnLeftArrow.UseVisualStyleBackColor = false;
             this.btnLeftArrow.Click += new System.EventHandler(this.btnLeftArrow_Click);
             // 
+            // btnThisWeek
+            // 
+            this.btnThisWeek.Location = new System.Drawing.Point(946, 73);
+            this.btnThisWeek.Name = "btnThisWeek";
+            this.btnThisWeek.Size = new System.Drawing.Size(75, 23);
+            this.btnThisWeek.TabIndex = 15;
+            this.btnThisWeek.Text = "This Week";
+            this.btnThisWeek.UseVisualStyleBackColor = true;
+            this.btnThisWeek.Click += new System.EventHandler(this.btnThisWeek_Click);
+            // 
             // WeekCalendar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.Controls.Add(this.btnThisWeek);
             this.Controls.Add(this.btnLeftArrow);
             this.Controls.Add(this.btnRightArrow);
             this.Controls.Add(this.pnlLegendPending);
@@ -345,5 +357,6 @@
         private System.Windows.Forms.Label lblLegendPending;
         private System.Windows.Forms.Button btnRightArrow;
         private System.Windows.Forms.Button btnLeftArrow;
+        private System.Windows.Forms.Button btnThisWeek;
     }
 }

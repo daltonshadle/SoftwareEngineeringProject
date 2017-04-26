@@ -16,6 +16,7 @@ namespace Tutor_Master
         private string apptPlace;
         private string apptCourse;
         private DateTime apptStartTime, apptStartDate, apptEndTime, apptEndDate;
+        private string freeTimeProf;
         private string firstName;
         private string secondName;
         private int apptId;
@@ -307,32 +308,24 @@ namespace Tutor_Master
 
                 //checking both profile times to see if they conflict with the start and end times
                 Database db = new Database();
-                List<Appointment> builderAppoint = db.getDailyAppointments(firstName);
-                List<Appointment> otherAppoint = db.getDailyAppointments(secondName);
+                List<Appointment> builderAppoint = db.getDailyAppointments(user);
+                List<Appointment> otherAppoint = new List<Appointment>();
+                if (apptType == "Learning")
+                    otherAppoint = db.getDailyAppointments(otherUser);
 
                 int it = 0;
 
                 while (good && it < builderAppoint.Count)
                 {
-                    bool timeConflict = false;
-                    bool sameIds = false;
+                    bool temp = false;
 
                     Appointment a = builderAppoint[it];
-                    timeConflict = isTimeInBetween(a.getStartTime(), a.getEndTime(), startTime, endTime);
-                    sameIds = (apptId == a.getID());
+                    temp = !isTimeInBetween(a.getStartTime(), a.getEndTime(), startTime, endTime);
 
-                    if (!timeConflict)
+                    good = temp;
+                    if (!good)
                     {
-                        //Good if there is no time conflict
-                        good = true;
-                    }
-                    else
-                    {
-                        if (!sameIds)
-                        {
-                            //Good if there is a time conflict but the only conflict is itself.
-                            good = false;
-                        }
+                        MessageBox.Show("One of your appointments is already scheduled for this time.");
                     }
                     it++;
                 }
@@ -340,25 +333,15 @@ namespace Tutor_Master
                 it = 0;
                 while (good && it < otherAppoint.Count)
                 {
-                    bool timeConflict = false;
-                    bool sameIds = false;
+                    bool temp = false;
 
                     Appointment a = otherAppoint[it];
-                    timeConflict = isTimeInBetween(a.getStartTime(), a.getEndTime(), startTime, endTime);
-                    sameIds = (apptId == a.getID());
+                    temp = !isTimeInBetween(a.getStartTime(), a.getEndTime(), startTime, endTime);
 
-                    if (!timeConflict)
+                    good = temp;
+                    if (!good)
                     {
-                        //Good if there is no time conflict
-                        good = true;
-                    }
-                    else
-                    {
-                        if (!sameIds)
-                        {
-                            //Good if there is a time conflict but the only conflict is itself.
-                            good = false;
-                        }
+                        MessageBox.Show("One of the tutor's appointments is already scheduled for this time.");
                     }
                     it++;
                 }
@@ -366,10 +349,10 @@ namespace Tutor_Master
             }
             else
             {
-                if (apptType == "FreeTime" && good)
+                if ((apptType == "Freetime") && good)
                 {
                     Database db = new Database();
-                    List<Appointment> builderAppoint = db.getDailyAppointments(firstName);
+                    List<Appointment> builderAppoint = db.getDailyAppointments(user);
 
                     int it = 0;
 
@@ -382,6 +365,11 @@ namespace Tutor_Master
 
                         good = temp;
                         it++;
+                    }
+
+                    if (!good)
+                    {
+                        MessageBox.Show("One of your appointments is already scheduled for this time.");
                     }
                 }
             }
@@ -404,6 +392,16 @@ namespace Tutor_Master
             {
                 cbxMeetingPlace.Items.Add(placeList[i]);
             }
+        }
+
+        //function is just to make sure that appointments don't overlap
+        private void offsetStartAndEndTimes()
+        {
+            //ex. one ends at 3:00:00 and one starts at 3:00:01
+            apptStartTime = apptStartTime.AddMilliseconds(-apptStartTime.Millisecond);
+            apptStartTime = apptStartTime.AddSeconds(-apptStartTime.Second + 1);
+            apptEndTime = apptEndTime.AddMilliseconds(-apptEndTime.Millisecond);
+            apptEndTime = apptEndTime.AddSeconds(-apptEndTime.Second);
         }
 
         //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Registering event listeners~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -456,7 +454,6 @@ namespace Tutor_Master
 
         private void btnConfirmEdit_Click(object sender, EventArgs e)
         {
-            string freeTimeProf;
             //Re-assign all of the info for course, place, startTime, and endTime
             if (apptType == "Learning")
                 freeTimeProf = null;
@@ -472,7 +469,7 @@ namespace Tutor_Master
                 apptPlace = cbxMeetingPlace.Text;
             apptStartTime = dateTimeDay1.Value.Date + dateTimeTime1.Value.TimeOfDay;
             apptEndTime = dateTimeDay2.Value.Date + dateTimeTime2.Value.TimeOfDay;
-
+            offsetStartAndEndTimes();
 
 
             //Check if the place is nonempty
@@ -483,13 +480,16 @@ namespace Tutor_Master
                 {
                     //Edit the appointment and send the message.
                     Database db = new Database();
-
+                    
                     db.editAppointment(apptId, freeTimeProf, apptPlace, apptCourse, apptStartTime, apptEndTime, firstName, secondName, isFreeTime, isApproved, "EditForm");
-                    db.sendMessage(user, otherUser, "Appoinment edited", user + " has edited an appointment with you: \n\tCourse now: " + apptCourse
-                        + "\n\tPlace now: " + apptPlace
-                        + "\n\tNow from: " + apptStartDate.ToShortDateString() + " at " + apptStartTime.ToShortTimeString()
-                        + "\n\tUntil: " + apptEndDate.ToShortTimeString() + " at " + apptEndTime.ToShortTimeString()
-                        , true, DateTime.Now, apptCourse, apptId);
+                    if (!isFreeTime)
+                    {
+                        db.sendMessage(user, otherUser, "Appoinment edited", user + " has edited an appointment with you: \n\tCourse now: " + apptCourse
+                            + "\n\tPlace now: " + apptPlace
+                            + "\n\tNow from: " + apptStartDate.ToShortDateString() + " at " + apptStartTime.ToShortTimeString()
+                            + "\n\tUntil: " + apptEndDate.ToShortTimeString() + " at " + apptEndTime.ToShortTimeString()
+                            , true, DateTime.Now, apptCourse, apptId);
+                    }
 
                     this.Hide();
                     this.Close();
@@ -498,13 +498,16 @@ namespace Tutor_Master
                 {
                     //Times don't work for one or both of the people.
                     MessageBox.Show("This time frame does not work for you or for the other person.");
-
+                    this.Hide();
+                    this.Close();
                 }
             }
             //If the place is empty
             else
             {
                 MessageBox.Show("Place field was left empty. Must be filled.");
+                this.Hide();
+                this.Close();
             }
 
         }

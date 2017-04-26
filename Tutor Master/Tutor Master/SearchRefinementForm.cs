@@ -129,7 +129,7 @@ namespace Tutor_Master
                 List<string> tutorCourseList = new List<string>();
                 List<string> allTutorInfo = db.getProfileInfo(tutor);
                 //Determine if owner of free time can tutor that course
-                for (int j = 8; j < 11; j++)
+                for (int j = 8; j < 12; j++)
                 {
                     if ((allTutorInfo[j] != "") && (allTutorInfo[j+4] == "True"))
                     {

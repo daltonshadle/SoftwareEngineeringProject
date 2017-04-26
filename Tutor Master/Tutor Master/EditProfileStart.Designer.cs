@@ -29,27 +29,32 @@
         private void InitializeComponent()
         {
             this.panelWhole = new System.Windows.Forms.Panel();
+            this.panelPasswordCheck = new System.Windows.Forms.Panel();
+            this.txtPassword = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.buttonPasswordConfirm = new System.Windows.Forms.Button();
+            this.btnCancel = new System.Windows.Forms.Button();
+            this.buttonPasswordCancel = new System.Windows.Forms.Button();
             this.checkBoxTutor = new System.Windows.Forms.CheckBox();
             this.checkBoxTutee = new System.Windows.Forms.CheckBox();
             this.checkBoxName = new System.Windows.Forms.CheckBox();
             this.checkBoxPassword = new System.Windows.Forms.CheckBox();
             this.label1 = new System.Windows.Forms.Label();
             this.buttonConfirm = new System.Windows.Forms.Button();
-            this.btnCancel = new System.Windows.Forms.Button();
-            this.panelPasswordCheck = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
-            this.buttonPasswordConfirm = new System.Windows.Forms.Button();
-            this.buttonPasswordCancel = new System.Windows.Forms.Button();
-            this.txtPassword = new System.Windows.Forms.TextBox();
+            this.panelEditOrDelete = new System.Windows.Forms.Panel();
+            this.buttonEditOnSecondPanel = new System.Windows.Forms.Button();
+            this.buttonDeleteStuff = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.buttonCancelEdtorDel = new System.Windows.Forms.Button();
             this.panelWhole.SuspendLayout();
             this.panelPasswordCheck.SuspendLayout();
+            this.panelEditOrDelete.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelWhole
             // 
             this.panelWhole.BackColor = System.Drawing.Color.LightSteelBlue;
             this.panelWhole.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panelWhole.Controls.Add(this.panelPasswordCheck);
             this.panelWhole.Controls.Add(this.buttonPasswordCancel);
             this.panelWhole.Controls.Add(this.checkBoxTutor);
             this.panelWhole.Controls.Add(this.checkBoxTutee);
@@ -61,6 +66,67 @@
             this.panelWhole.Name = "panelWhole";
             this.panelWhole.Size = new System.Drawing.Size(260, 219);
             this.panelWhole.TabIndex = 0;
+            // 
+            // panelPasswordCheck
+            // 
+            this.panelPasswordCheck.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.panelPasswordCheck.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panelPasswordCheck.Controls.Add(this.txtPassword);
+            this.panelPasswordCheck.Controls.Add(this.label2);
+            this.panelPasswordCheck.Controls.Add(this.buttonPasswordConfirm);
+            this.panelPasswordCheck.Controls.Add(this.btnCancel);
+            this.panelPasswordCheck.Location = new System.Drawing.Point(12, 12);
+            this.panelPasswordCheck.Name = "panelPasswordCheck";
+            this.panelPasswordCheck.Size = new System.Drawing.Size(260, 219);
+            this.panelPasswordCheck.TabIndex = 7;
+            // 
+            // txtPassword
+            // 
+            this.txtPassword.Location = new System.Drawing.Point(55, 87);
+            this.txtPassword.Name = "txtPassword";
+            this.txtPassword.PasswordChar = '*';
+            this.txtPassword.Size = new System.Drawing.Size(156, 20);
+            this.txtPassword.TabIndex = 3;
+            this.txtPassword.UseSystemPasswordChar = true;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(75, 47);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(115, 13);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "Enter password to edit.";
+            // 
+            // buttonPasswordConfirm
+            // 
+            this.buttonPasswordConfirm.Location = new System.Drawing.Point(146, 184);
+            this.buttonPasswordConfirm.Name = "buttonPasswordConfirm";
+            this.buttonPasswordConfirm.Size = new System.Drawing.Size(75, 23);
+            this.buttonPasswordConfirm.TabIndex = 1;
+            this.buttonPasswordConfirm.Text = "Confirm";
+            this.buttonPasswordConfirm.UseVisualStyleBackColor = true;
+            this.buttonPasswordConfirm.Click += new System.EventHandler(this.buttonPasswordConfirm_Click);
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.Location = new System.Drawing.Point(40, 184);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(75, 23);
+            this.btnCancel.TabIndex = 0;
+            this.btnCancel.Text = "Cancel";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
+            // buttonPasswordCancel
+            // 
+            this.buttonPasswordCancel.Location = new System.Drawing.Point(40, 184);
+            this.buttonPasswordCancel.Name = "buttonPasswordCancel";
+            this.buttonPasswordCancel.Size = new System.Drawing.Size(75, 23);
+            this.buttonPasswordCancel.TabIndex = 0;
+            this.buttonPasswordCancel.Text = "Cancel";
+            this.buttonPasswordCancel.UseVisualStyleBackColor = true;
+            this.buttonPasswordCancel.Click += new System.EventHandler(this.buttonPasswordCancel_Click);
             // 
             // checkBoxTutor
             // 
@@ -121,66 +187,57 @@
             this.buttonConfirm.UseVisualStyleBackColor = true;
             this.buttonConfirm.Click += new System.EventHandler(this.buttonConfirm_Click);
             // 
-            // btnCancel
+            // panelEditOrDelete
             // 
-            this.btnCancel.Location = new System.Drawing.Point(40, 184);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(75, 23);
-            this.btnCancel.TabIndex = 0;
-            this.btnCancel.Text = "Cancel";
-            this.btnCancel.UseVisualStyleBackColor = true;
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            this.panelEditOrDelete.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.panelEditOrDelete.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panelEditOrDelete.Controls.Add(this.buttonCancelEdtorDel);
+            this.panelEditOrDelete.Controls.Add(this.label3);
+            this.panelEditOrDelete.Controls.Add(this.buttonEditOnSecondPanel);
+            this.panelEditOrDelete.Controls.Add(this.buttonDeleteStuff);
+            this.panelEditOrDelete.Location = new System.Drawing.Point(12, 12);
+            this.panelEditOrDelete.Name = "panelEditOrDelete";
+            this.panelEditOrDelete.Size = new System.Drawing.Size(260, 219);
+            this.panelEditOrDelete.TabIndex = 8;
             // 
-            // panelPasswordCheck
+            // buttonEditOnSecondPanel
             // 
-            this.panelPasswordCheck.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.panelPasswordCheck.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panelPasswordCheck.Controls.Add(this.txtPassword);
-            this.panelPasswordCheck.Controls.Add(this.label2);
-            this.panelPasswordCheck.Controls.Add(this.buttonPasswordConfirm);
-            this.panelPasswordCheck.Controls.Add(this.btnCancel);
-            this.panelPasswordCheck.Location = new System.Drawing.Point(-2, -2);
-            this.panelPasswordCheck.Name = "panelPasswordCheck";
-            this.panelPasswordCheck.Size = new System.Drawing.Size(260, 219);
-            this.panelPasswordCheck.TabIndex = 7;
+            this.buttonEditOnSecondPanel.Location = new System.Drawing.Point(90, 99);
+            this.buttonEditOnSecondPanel.Name = "buttonEditOnSecondPanel";
+            this.buttonEditOnSecondPanel.Size = new System.Drawing.Size(75, 23);
+            this.buttonEditOnSecondPanel.TabIndex = 1;
+            this.buttonEditOnSecondPanel.Text = "Edit";
+            this.buttonEditOnSecondPanel.UseVisualStyleBackColor = true;
+            this.buttonEditOnSecondPanel.Click += new System.EventHandler(this.buttonEditOnSecondPanel_Click);
             // 
-            // label2
+            // buttonDeleteStuff
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(75, 47);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(115, 13);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Enter password to edit.";
+            this.buttonDeleteStuff.Location = new System.Drawing.Point(90, 128);
+            this.buttonDeleteStuff.Name = "buttonDeleteStuff";
+            this.buttonDeleteStuff.Size = new System.Drawing.Size(75, 23);
+            this.buttonDeleteStuff.TabIndex = 0;
+            this.buttonDeleteStuff.Text = "Delete";
+            this.buttonDeleteStuff.UseVisualStyleBackColor = true;
+            this.buttonDeleteStuff.Click += new System.EventHandler(this.buttonDeleteStuff_Click);
             // 
-            // buttonPasswordConfirm
+            // label3
             // 
-            this.buttonPasswordConfirm.Location = new System.Drawing.Point(146, 184);
-            this.buttonPasswordConfirm.Name = "buttonPasswordConfirm";
-            this.buttonPasswordConfirm.Size = new System.Drawing.Size(75, 23);
-            this.buttonPasswordConfirm.TabIndex = 1;
-            this.buttonPasswordConfirm.Text = "Confirm";
-            this.buttonPasswordConfirm.UseVisualStyleBackColor = true;
-            this.buttonPasswordConfirm.Click += new System.EventHandler(this.buttonPasswordConfirm_Click);
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(29, 41);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(213, 13);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "Would you like to edit or delete your profile?";
             // 
-            // buttonPasswordCancel
+            // buttonCancelEdtorDel
             // 
-            this.buttonPasswordCancel.Location = new System.Drawing.Point(40, 184);
-            this.buttonPasswordCancel.Name = "buttonPasswordCancel";
-            this.buttonPasswordCancel.Size = new System.Drawing.Size(75, 23);
-            this.buttonPasswordCancel.TabIndex = 0;
-            this.buttonPasswordCancel.Text = "Cancel";
-            this.buttonPasswordCancel.UseVisualStyleBackColor = true;
-            this.buttonPasswordCancel.Click += new System.EventHandler(this.buttonPasswordCancel_Click);
-            // 
-            // txtPassword
-            // 
-            this.txtPassword.Location = new System.Drawing.Point(55, 87);
-            this.txtPassword.Name = "txtPassword";
-            this.txtPassword.PasswordChar = '*';
-            this.txtPassword.Size = new System.Drawing.Size(156, 20);
-            this.txtPassword.TabIndex = 3;
-            this.txtPassword.UseSystemPasswordChar = true;
+            this.buttonCancelEdtorDel.Location = new System.Drawing.Point(90, 157);
+            this.buttonCancelEdtorDel.Name = "buttonCancelEdtorDel";
+            this.buttonCancelEdtorDel.Size = new System.Drawing.Size(75, 23);
+            this.buttonCancelEdtorDel.TabIndex = 3;
+            this.buttonCancelEdtorDel.Text = "Cancel";
+            this.buttonCancelEdtorDel.UseVisualStyleBackColor = true;
+            this.buttonCancelEdtorDel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // EditProfileStart
             // 
@@ -188,6 +245,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.SteelBlue;
             this.ClientSize = new System.Drawing.Size(284, 243);
+            this.Controls.Add(this.panelPasswordCheck);
+            this.Controls.Add(this.panelEditOrDelete);
             this.Controls.Add(this.panelWhole);
             this.Name = "EditProfileStart";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -196,6 +255,8 @@
             this.panelWhole.PerformLayout();
             this.panelPasswordCheck.ResumeLayout(false);
             this.panelPasswordCheck.PerformLayout();
+            this.panelEditOrDelete.ResumeLayout(false);
+            this.panelEditOrDelete.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -215,5 +276,10 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button buttonPasswordConfirm;
         private System.Windows.Forms.Button buttonPasswordCancel;
+        private System.Windows.Forms.Panel panelEditOrDelete;
+        private System.Windows.Forms.Button buttonCancelEdtorDel;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button buttonEditOnSecondPanel;
+        private System.Windows.Forms.Button buttonDeleteStuff;
     }
 }
