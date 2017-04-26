@@ -191,12 +191,6 @@ namespace Tutor_Master
             }
         }
 
-        //Action when this page becomes active again
-        private void UserProfile_Activated(object sender, System.EventArgs e)
-        {
-            updateAllDisplays();
-        }
-
         //Run both on creation of page and whenever page becomes active again
         private void updateAllDisplays() 
         {
@@ -225,8 +219,13 @@ namespace Tutor_Master
             ToolTip1.SetToolTip(this.button1, "Order Pizza");
         }
 
-
         //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Registering event listeners~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        private void UserProfile_Activated(object sender, System.EventArgs e)
+        {
+            //Action when this page becomes active again
+            updateAllDisplays();
+        }
+
         private void btnAddTutorCourses_Click(object sender, EventArgs e)
         {
             var next = new EditProfileInfo(user, false, false, true, false);
@@ -330,10 +329,11 @@ namespace Tutor_Master
         {
             if (lvMessagesPreview.FocusedItem != null)
             {
-                int index = lvMessagesPreview.FocusedItem.Index;
-                var newMessageForm = new MessagesForm(user, index);
-                newMessageForm.ShowDialog();
+                var newMessageForm = new MessagesForm(user);
+                newMessageForm.Show();
+                newMessageForm.TopMost = true;
             }
+
         }
 
 

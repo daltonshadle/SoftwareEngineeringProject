@@ -66,5 +66,37 @@ namespace Tutor_Master
                 MessageBox.Show("Invalid password");
             }
         }
+
+        private void buttonEditOnSecondPanel_Click(object sender, EventArgs e)
+        {
+            panelEditOrDelete.Visible = false;
+        }
+
+        private void buttonDeleteStuff_Click(object sender, EventArgs e)
+        {
+            // Confirm user wants to close
+            switch (MessageBox.Show(this, "Are you sure you want to delete your profile?", "Deleting Profile", MessageBoxButtons.YesNo))
+            {
+                case DialogResult.Yes:
+                    Database db = new Database();
+                    db.deleteAccount(username);
+                    List<Form> openForms = new List<Form>();
+
+                    foreach (Form f in Application.OpenForms)
+                        openForms.Add(f);
+
+                    foreach (Form f in openForms)
+                    {
+                        if (f.Name != "Menu")
+                            f.Hide();
+                    }
+
+                    var mainForm = new StartForm();
+                    mainForm.Show();
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 }
