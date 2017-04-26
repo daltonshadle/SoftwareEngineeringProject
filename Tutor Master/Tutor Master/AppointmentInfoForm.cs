@@ -317,10 +317,11 @@ namespace Tutor_Master
 
                 while (good && it < builderAppoint.Count)
                 {
-                    bool temp = false;
+                    bool temp = true;
 
                     Appointment a = builderAppoint[it];
-                    temp = !isTimeInBetween(a.getStartTime(), a.getEndTime(), startTime, endTime);
+                    if(a.getID() != apptId) //don't say time isn't available if it is only clashing with itself.
+                        temp = !isTimeInBetween(a.getStartTime(), a.getEndTime(), startTime, endTime);
 
                     good = temp;
                     if (!good)
@@ -333,10 +334,11 @@ namespace Tutor_Master
                 it = 0;
                 while (good && it < otherAppoint.Count)
                 {
-                    bool temp = false;
+                    bool temp = true;
 
                     Appointment a = otherAppoint[it];
-                    temp = !isTimeInBetween(a.getStartTime(), a.getEndTime(), startTime, endTime);
+                    if(a.getID() != apptId) //don't say time isn't available if it is only clashing with itself.
+                        temp = !isTimeInBetween(a.getStartTime(), a.getEndTime(), startTime, endTime);
 
                     good = temp;
                     if (!good)
